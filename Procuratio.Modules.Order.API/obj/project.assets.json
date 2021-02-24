@@ -1,11 +1,46 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "Procuratio.Shared.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Procuratio.Shared.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Shared.Abstractions.dll": {}
+        }
+      },
+      "Procuratio.Shared.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Procuratio.Shared.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Shared.Infrastructure.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Procuratio.Shared.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Shared.Abstractions/Procuratio.Shared.Abstractions.csproj",
+      "msbuildProject": "../Procuratio.Shared.Abstractions/Procuratio.Shared.Abstractions.csproj"
+    },
+    "Procuratio.Shared.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Shared.Infrastructure/Procuratio.Shared.Infrastructure.csproj",
+      "msbuildProject": "../Procuratio.Shared.Infrastructure/Procuratio.Shared.Infrastructure.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "Procuratio.Shared.Abstractions >= 1.0.0",
+      "Procuratio.Shared.Infrastructure >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\tomi_\\.nuget\\packages\\": {},
@@ -14,9 +49,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj",
-      "projectName": "Procuratio.Modules.Order.API",
-      "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj",
+      "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Orders.API.csproj",
+      "projectName": "Procuratio.Modules.Orders.API",
+      "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Orders.API.csproj",
       "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\obj\\",
       "projectStyle": "PackageReference",
@@ -38,7 +73,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
+              "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
+            },
+            "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -61,6 +103,9 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
