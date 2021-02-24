@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Procuratio.Shared.Infrastructure
+namespace Procuratio.Modules.Orders.Mapper
 {
     public class Class1
     {
