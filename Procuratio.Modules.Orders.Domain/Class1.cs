@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Procuratio.Modules.Order.API
+namespace Procuratio.Modules.Orders.Domain
 {
     public class Class1
     {

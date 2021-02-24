@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Procuratio.Shared.Abstractions
+namespace Procuratio.Modules.Orders.DataAccess
 {
     public class Class1
     {
