@@ -351,6 +351,5 @@ MigrationBackup/
 
 # My own git ignore
 .vs/Procuratio/DesignTimeBuild/.dtbcache.v2
-.vs/Procuratio/v16/.suo
 Procuratio.API/obj/Debug/net5.0/Procuratio.API.csprojAssemblyReference.cache
 Procuratio.Shared.Abstractions/obj/Debug/netcoreapp3.1/Procuratio.Shared.Abstractions.csprojAssemblyReference.cache
