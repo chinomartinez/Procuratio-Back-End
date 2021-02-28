@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Procuratio.Shared.Infrastructure.API
 {

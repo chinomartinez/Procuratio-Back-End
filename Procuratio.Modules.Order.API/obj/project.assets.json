@@ -76,6 +76,19 @@
           "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
         }
       },
+      "Procuratio.Modules.Orders.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Shared.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Orders.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Orders.Service.dll": {}
+        }
+      },
       "Procuratio.Shared.Abstractions/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -93,6 +106,9 @@
       "Procuratio.Shared.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Shared.Abstractions": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Procuratio.Shared.Infrastructure.dll": {}
         },
@@ -232,6 +248,11 @@
         "version.txt"
       ]
     },
+    "Procuratio.Modules.Orders.Service/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Orders.Service/Procuratio.Modules.Orders.Service.csproj",
+      "msbuildProject": "../Procuratio.Modules.Orders.Service/Procuratio.Modules.Orders.Service.csproj"
+    },
     "Procuratio.Shared.Abstractions/1.0.0": {
       "type": "project",
       "path": "../Procuratio.Shared.Abstractions/Procuratio.Shared.Abstractions.csproj",
@@ -245,6 +266,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Procuratio.Modules.Orders.Service >= 1.0.0",
       "Procuratio.Shared.Abstractions >= 1.0.0",
       "Procuratio.Shared.Infrastructure >= 1.0.0"
     ]
@@ -281,6 +303,9 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+            "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Orders.Service.csproj": {
+              "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Orders.Service.csproj"
+            },
             "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
               "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
             },

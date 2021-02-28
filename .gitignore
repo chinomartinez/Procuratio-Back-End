@@ -348,8 +348,3 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-
-# My own git ignore
-.vs/Procuratio/DesignTimeBuild/.dtbcache.v2
-Procuratio.API/obj/Debug/net5.0/Procuratio.API.csprojAssemblyReference.cache
-Procuratio.Shared.Abstractions/obj/Debug/netcoreapp3.1/Procuratio.Shared.Abstractions.csprojAssemblyReference.cache
