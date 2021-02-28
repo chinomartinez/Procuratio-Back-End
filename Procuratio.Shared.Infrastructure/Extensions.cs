@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Shared.Infrastructure.API;
-using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.API")]
 namespace Procuratio.Shared.Infrastructure
@@ -22,6 +19,9 @@ namespace Procuratio.Shared.Infrastructure
             return services;
         }
 
-        public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app) => app;
+        public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
+        {
+            return app;
+        }
     }
 }

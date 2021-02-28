@@ -154,6 +154,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "Procuratio.Modules.Orders.Service": "1.0.0",
           "Procuratio.Shared.Abstractions": "1.0.0",
           "Procuratio.Shared.Infrastructure": "1.0.0"
         },
@@ -166,6 +167,19 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Procuratio.Modules.Orders.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Shared.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Orders.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Orders.Service.dll": {}
+        }
       },
       "Procuratio.Shared.Abstractions/1.0.0": {
         "type": "project",
@@ -184,6 +198,9 @@
       "Procuratio.Shared.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Shared.Abstractions": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Procuratio.Shared.Infrastructure.dll": {}
         },
@@ -434,6 +451,11 @@
       "type": "project",
       "path": "../Procuratio.Modules.Order.API/Procuratio.Modules.Orders.API.csproj",
       "msbuildProject": "../Procuratio.Modules.Order.API/Procuratio.Modules.Orders.API.csproj"
+    },
+    "Procuratio.Modules.Orders.Service/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Orders.Service/Procuratio.Modules.Orders.Service.csproj",
+      "msbuildProject": "../Procuratio.Modules.Orders.Service/Procuratio.Modules.Orders.Service.csproj"
     },
     "Procuratio.Shared.Abstractions/1.0.0": {
       "type": "project",
