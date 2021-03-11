@@ -9,9 +9,6 @@ namespace Procuratio.Modules.Orders.Service.Exceptions
     {
         public int OrderID { get; }
 
-        public OrderNotFoundException(int orderID) : base(message: $"Order with ID: '{orderID}' was not found.")
-        {
-            OrderID = orderID;
-        }
+        public OrderNotFoundException() : base(message: $"La Orden no fue encontrada.") { }
     }
 }
