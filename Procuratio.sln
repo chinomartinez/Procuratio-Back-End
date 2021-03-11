@@ -43,6 +43,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Tests", "Procura
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logins", "Logins", "{BC4E61CD-E0E0-435A-9129-466828888C67}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcuratioFramework", "ProcuratioFramework", "{13E84B24-5237-4F4A-AEE3-5767A151FDB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.ProcuratioFramework.ProcuratioFramework", "Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj", "{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +93,10 @@ Global
 		{D85867E3-3B2A-449B-B7F2-111DCBA28DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D85867E3-3B2A-449B-B7F2-111DCBA28DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D85867E3-3B2A-449B-B7F2-111DCBA28DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +118,7 @@ Global
 		{300C6892-6AF3-45F8-92EF-1C3C1375FB7A} = {A56E8AEA-BF05-47F2-82D7-4CA75DE34D36}
 		{D85867E3-3B2A-449B-B7F2-111DCBA28DB2} = {AC483812-3379-4E93-BE94-F7F8E32C60E4}
 		{BC4E61CD-E0E0-435A-9129-466828888C67} = {15717C1A-155D-4B90-93CC-B6F6988A8094}
+		{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B} = {13E84B24-5237-4F4A-AEE3-5767A151FDB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C884A54F-7BD6-4032-B462-DEA7C50A6DF3}

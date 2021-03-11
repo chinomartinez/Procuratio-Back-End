@@ -7,8 +7,6 @@ namespace Procuratio.Modules.Orders.Service.Exceptions
 {
     internal class OrderNotFoundException : CustomExceptionBase
     {
-        public int OrderID { get; }
-
         public OrderNotFoundException() : base(message: $"La Orden no fue encontrada.") { }
     }
 }
