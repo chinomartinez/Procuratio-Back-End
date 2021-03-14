@@ -45,7 +45,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logins", "Logins", "{BC4E61
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcuratioFramework", "ProcuratioFramework", "{13E84B24-5237-4F4A-AEE3-5767A151FDB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.ProcuratioFramework.ProcuratioFramework", "Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj", "{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.ProcuratioFramework.ProcuratioFramework", "Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj", "{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
