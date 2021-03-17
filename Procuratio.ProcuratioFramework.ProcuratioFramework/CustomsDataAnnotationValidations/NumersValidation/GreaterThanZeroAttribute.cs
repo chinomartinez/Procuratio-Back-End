@@ -11,19 +11,19 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.CustomsDataAnnotati
         {
             if (value is null) { return ValidationResult.Success; }
 
+            ValidationResult validationResult = new ValidationResult($"El valor {validationContext.DisplayName} debe ser superior a cero");
+
             if (value is decimal)
             {
-                if ((decimal)value <= 0)
-                {
-                    return new ValidationResult($"El valor {validationContext.DisplayName} debe ser superior a cero");
-                }
+                if ((decimal)value <= 0) { return validationResult; }
+            }
+            else if (value is float)
+            {
+                if ((float)value <= 0) { return validationResult; }
             }
             else
             {
-                if ((int)value <= 0)
-                {
-                    return new ValidationResult($"El valor {validationContext.DisplayName} debe ser superior a cero");
-                }
+                if ((int)value <= 0) { return validationResult; }
             }
 
             return ValidationResult.Success;

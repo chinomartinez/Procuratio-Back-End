@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Procuratio.Modules.Menues.API.Controllers;
 using Procuratio.Modules.Orders.API;
 using Procuratio.Shared.Infrastructure;
 
@@ -36,6 +37,7 @@ namespace Procuratio.API
 
             services.AddInfrastructure();
             services.AddOrdersModule();
+            services.AddMenuesModule();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +59,7 @@ namespace Procuratio.API
             app.UseCors();
 
             app.UseOrdersModule();
+            app.UseMenuesModule();
 
             app.UseAuthorization();
 

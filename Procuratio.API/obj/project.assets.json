@@ -701,6 +701,37 @@
           "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
         }
       },
+      "Procuratio.Modules.Menues.API/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Modules.Menues.Service": "1.0.0",
+          "Procuratio.Shared.Abstractions": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Menues.API.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Menues.API.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Procuratio.Modules.Menues.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Shared.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Menues.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Menues.Service.dll": {}
+        }
+      },
       "Procuratio.Modules.Orders.API/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -1675,6 +1706,16 @@
         "version.txt"
       ]
     },
+    "Procuratio.Modules.Menues.API/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Menues.API/Procuratio.Modules.Menues.API.csproj",
+      "msbuildProject": "../Procuratio.Modules.Menues.API/Procuratio.Modules.Menues.API.csproj"
+    },
+    "Procuratio.Modules.Menues.Service/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Menues.Service/Procuratio.Modules.Menues.Service.csproj",
+      "msbuildProject": "../Procuratio.Modules.Menues.Service/Procuratio.Modules.Menues.Service.csproj"
+    },
     "Procuratio.Modules.Orders.API/1.0.0": {
       "type": "project",
       "path": "../Procuratio.Modules.Order.API/Procuratio.Modules.Orders.API.csproj",
@@ -1698,6 +1739,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Procuratio.Modules.Menues.API >= 1.0.0",
       "Procuratio.Modules.Orders.API >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
@@ -1734,6 +1776,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menues.API\\Procuratio.Modules.Menues.API.csproj": {
+              "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menues.API\\Procuratio.Modules.Menues.API.csproj"
+            },
             "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Orders.API.csproj": {
               "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Orders.API.csproj"
             }

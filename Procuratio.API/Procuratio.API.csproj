@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Procuratio.Modules.Menues.API\Procuratio.Modules.Menues.API.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Order.API\Procuratio.Modules.Orders.API.csproj" />
   </ItemGroup>
 

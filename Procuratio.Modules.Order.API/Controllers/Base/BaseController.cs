@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Procuratio.Modules.Orders.API.Controllers.BaseControllers
+namespace Procuratio.Modules.Orders.API.Controllers.Base
 {
     [ApiController]
     [Route(template: BasePath + "/[controller]")]
