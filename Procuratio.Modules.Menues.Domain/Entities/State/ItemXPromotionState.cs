@@ -14,10 +14,5 @@ namespace Procuratio.Modules.Menues.Domain.Entities.State
         public string Name { get; set; }
 
         public List<ItemXPromotion> ItemsXPromotion { get; set; }
-
-        public enum State
-        {
-
-        }
     }
 }

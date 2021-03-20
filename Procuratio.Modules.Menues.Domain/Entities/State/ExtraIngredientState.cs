@@ -9,8 +9,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities.State
     {
         public int ID { get; set; }
 
-        public int RestaurantID { get; set; }
-
         [StringLength(30)]
         public string Name { get; set; }
 

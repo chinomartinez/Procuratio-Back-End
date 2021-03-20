@@ -8,4 +8,10 @@
     <ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+    <Folder Include="ServicesInterfaces\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

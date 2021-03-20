@@ -4,7 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Procuratio.Modules.Menues.API.Controllers;
+using Procuratio.Modules.Cashes.API;
+using Procuratio.Modules.Customers.API;
+using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
 using Procuratio.Shared.Infrastructure;
 
@@ -38,6 +40,8 @@ namespace Procuratio.API
             services.AddInfrastructure();
             services.AddOrdersModule();
             services.AddMenuesModule();
+            services.AddCustomersModule();
+            services.AddCashesModule();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +64,8 @@ namespace Procuratio.API
 
             app.UseOrdersModule();
             app.UseMenuesModule();
+            app.UseCustomersModule();
+            app.UseCashesModule();
 
             app.UseAuthorization();
 

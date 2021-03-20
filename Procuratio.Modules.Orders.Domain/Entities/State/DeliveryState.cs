@@ -8,13 +8,8 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
         public int ID { get; set; }
 
         [StringLength(30)]
-        public string MyProperty { get; set; }
+        public string Name { get; set; }
 
         public List<Delivery> Deliveries { get; set; }
-
-        public enum State
-        {
-
-        }
     }
 }

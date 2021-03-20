@@ -17,16 +17,16 @@ namespace Procuratio.Modules.Menues.Domain.Entities
         [StringLength(30)]
         public string Name { get; set; }
 
-        [ItCantBeNegative]
+        [GreaterThanZero]
         public decimal? MenuPrice { get; set; }
 
-        [ItCantBeNegative]
+        [GreaterThanZero]
         public decimal? DinerInPrice { get; set; }
 
-        [ItCantBeNegative]
+        [GreaterThanZero]
         public decimal? TakeAwayPrice { get; set; }
 
-        [ItCantBeNegative]
+        [GreaterThanZero]
         public decimal? DeliveryPrice { get; set; }
 
         public List<ExtraIngredientXItem> ExtraIngredientXItem { get; set; }

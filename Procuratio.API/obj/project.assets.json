@@ -701,6 +701,68 @@
           "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
         }
       },
+      "Procuratio.Modules.Cashes.API/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Modules.Cashes.Service": "1.0.0",
+          "Procuratio.Shared.Abstractions": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Cashes.API.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Cashes.API.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Procuratio.Modules.Cashes.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Shared.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Cashes.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Cashes.Service.dll": {}
+        }
+      },
+      "Procuratio.Modules.Customers.API/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Modules.Customers.Service": "1.0.0",
+          "Procuratio.Shared.Abstractions": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Customers.API.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Customers.API.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Procuratio.Modules.Customers.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Shared.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Customers.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Customers.Service.dll": {}
+        }
+      },
       "Procuratio.Modules.Menues.API/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -761,6 +823,37 @@
         },
         "runtime": {
           "bin/placeholder/Procuratio.Modules.Orders.Service.dll": {}
+        }
+      },
+      "Procuratio.Modules.Securities.API/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Modules.Securities.Service": "1.0.0",
+          "Procuratio.Shared.Abstractions": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Securities.API.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Securities.API.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Procuratio.Modules.Securities.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Procuratio.Shared.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Securities.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Securities.Service.dll": {}
         }
       },
       "Procuratio.Shared.Abstractions/1.0.0": {
@@ -1706,6 +1799,26 @@
         "version.txt"
       ]
     },
+    "Procuratio.Modules.Cashes.API/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Cashes.API/Procuratio.Modules.Cashes.API.csproj",
+      "msbuildProject": "../Procuratio.Modules.Cashes.API/Procuratio.Modules.Cashes.API.csproj"
+    },
+    "Procuratio.Modules.Cashes.Service/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Cashes.Service/Procuratio.Modules.Cashes.Service.csproj",
+      "msbuildProject": "../Procuratio.Modules.Cashes.Service/Procuratio.Modules.Cashes.Service.csproj"
+    },
+    "Procuratio.Modules.Customers.API/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Customers.API/Procuratio.Modules.Customers.API.csproj",
+      "msbuildProject": "../Procuratio.Modules.Customers.API/Procuratio.Modules.Customers.API.csproj"
+    },
+    "Procuratio.Modules.Customers.Service/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Customers.Service/Procuratio.Modules.Customers.Service.csproj",
+      "msbuildProject": "../Procuratio.Modules.Customers.Service/Procuratio.Modules.Customers.Service.csproj"
+    },
     "Procuratio.Modules.Menues.API/1.0.0": {
       "type": "project",
       "path": "../Procuratio.Modules.Menues.API/Procuratio.Modules.Menues.API.csproj",
@@ -1726,6 +1839,16 @@
       "path": "../Procuratio.Modules.Orders.Service/Procuratio.Modules.Orders.Service.csproj",
       "msbuildProject": "../Procuratio.Modules.Orders.Service/Procuratio.Modules.Orders.Service.csproj"
     },
+    "Procuratio.Modules.Securities.API/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Securities.API/Procuratio.Modules.Securities.API.csproj",
+      "msbuildProject": "../Procuratio.Modules.Securities.API/Procuratio.Modules.Securities.API.csproj"
+    },
+    "Procuratio.Modules.Securities.Service/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Securities.Service/Procuratio.Modules.Securities.Service.csproj",
+      "msbuildProject": "../Procuratio.Modules.Securities.Service/Procuratio.Modules.Securities.Service.csproj"
+    },
     "Procuratio.Shared.Abstractions/1.0.0": {
       "type": "project",
       "path": "../Procuratio.Shared.Abstractions/Procuratio.Shared.Abstractions.csproj",
@@ -1739,8 +1862,11 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Procuratio.Modules.Cashes.API >= 1.0.0",
+      "Procuratio.Modules.Customers.API >= 1.0.0",
       "Procuratio.Modules.Menues.API >= 1.0.0",
       "Procuratio.Modules.Orders.API >= 1.0.0",
+      "Procuratio.Modules.Securities.API >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -1776,11 +1902,20 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Cashes.API\\Procuratio.Modules.Cashes.API.csproj": {
+              "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Cashes.API\\Procuratio.Modules.Cashes.API.csproj"
+            },
+            "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Customers.API\\Procuratio.Modules.Customers.API.csproj": {
+              "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Customers.API\\Procuratio.Modules.Customers.API.csproj"
+            },
             "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menues.API\\Procuratio.Modules.Menues.API.csproj": {
               "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menues.API\\Procuratio.Modules.Menues.API.csproj"
             },
             "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Orders.API.csproj": {
               "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Orders.API.csproj"
+            },
+            "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Securities.API\\Procuratio.Modules.Securities.API.csproj": {
+              "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Securities.API\\Procuratio.Modules.Securities.API.csproj"
             }
           }
         }

@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.API")]
-namespace Procuratio.Modules.Menues.API.Controllers
+namespace Procuratio.Modules.Menues.API
 {
     internal static class MenuesModule
     {

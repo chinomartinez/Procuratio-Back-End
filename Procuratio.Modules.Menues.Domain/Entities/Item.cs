@@ -22,16 +22,16 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public int MyProperty { get; set; }
 
-        [ItCantBeNegative]
+        [GreaterThanZero]
         public decimal? MenuPrice { get; set; }
 
-        [ItCantBeNegative]
+        [GreaterThanZero]
         public decimal? DinerInPrice { get; set; }
 
-        [ItCantBeNegative]
+        [GreaterThanZero]
         public decimal? TakeAwayPrice { get; set; }
 
-        [ItCantBeNegative]
+        [GreaterThanZero]
         public decimal? DeliveryPrice { get; set; }
 
         public bool ForKitchen { get; set; }

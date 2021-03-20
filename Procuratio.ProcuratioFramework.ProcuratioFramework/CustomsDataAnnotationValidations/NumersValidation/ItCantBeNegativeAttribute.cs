@@ -13,17 +13,21 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.CustomsDataAnnotati
 
             ValidationResult validationResult = new ValidationResult($"El valor {validationContext.DisplayName} no puede ser negativo");
 
-            if (value is decimal)
+            if (value is decimal @decimal)
             {
-                if ((decimal)value < 0) { return validationResult; }
+                if (@decimal < 0) { return validationResult; }
             }
-            else if (value is float)
+            else if (value is float single)
             {
-                if ((float)value < 0) { return validationResult; }
+                if (single < 0) { return validationResult; }
+            }
+            else if (value is float single1)
+            {
+                if (single1 < 0) { return validationResult; }
             }
             else
             {
-                if ((int)value < 0) { return validationResult; }
+                if ((int)value <= 0) { return validationResult; }
             }
 
             return ValidationResult.Success;

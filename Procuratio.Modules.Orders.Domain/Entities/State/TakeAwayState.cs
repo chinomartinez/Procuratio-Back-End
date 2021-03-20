@@ -15,10 +15,5 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
         public string Name { get; set; }
 
         public List<TakeAway> TakeAways { get; set; }
-
-        public enum State
-        {
-
-        }
     }
 }

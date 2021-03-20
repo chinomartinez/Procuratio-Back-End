@@ -6,7 +6,10 @@
 
 	<ItemGroup>
 		<Folder Include="Entities\Intermediate\" />
-		<Folder Include="Entities\State\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj" />
 	</ItemGroup>
 
 </Project>

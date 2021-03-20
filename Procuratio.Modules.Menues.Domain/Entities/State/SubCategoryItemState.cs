@@ -13,10 +13,5 @@ namespace Procuratio.Modules.Menues.Domain.Entities.State
         public string Name { get; set; }
 
         public List<SubCategoryItem> SubCategoryItem { get; set; }
-
-        public enum State
-        {
-
-        }
     }
 }
