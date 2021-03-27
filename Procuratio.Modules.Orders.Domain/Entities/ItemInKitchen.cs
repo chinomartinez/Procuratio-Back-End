@@ -1,16 +1,13 @@
-﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.CustomsDataAnnotationValidations.NumersValidation;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
-    public class ItemInKitchen
+    public class ItemInKitchen : CompoundKeyBaseEntity<int>
     {
         public int OrderDetailID { get; set; }
         public OrderDetail OrderDetail { get; set; }
         public int ItemID { get; set; }
 
-        public int RestaurantID { get; set; }
-
-        [GreaterThanZero]
         public int Quantity { get; set; }
     }
 }

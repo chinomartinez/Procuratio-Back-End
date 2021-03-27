@@ -1,20 +1,14 @@
 ﻿using Procuratio.Modules.Menues.Domain.Entities.Intermediate;
 using Procuratio.Modules.Menues.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.CustomsDataAnnotationValidations.NumersValidation;
-using System;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
-    public class Item
+    public class Item : BaseEntity<int>
     {
-        public int ID { get; set; }
-
-        public int RestaurantID { get; set; }
-
-        [StringLength(70, MinimumLength = 3)]
+        [StringLength(70)]
         public string Name { get; set; }
 
         [StringLength(200)]
@@ -22,16 +16,12 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public int MyProperty { get; set; }
 
-        [GreaterThanZero]
         public decimal? MenuPrice { get; set; }
 
-        [GreaterThanZero]
         public decimal? DinerInPrice { get; set; }
 
-        [GreaterThanZero]
         public decimal? TakeAwayPrice { get; set; }
 
-        [GreaterThanZero]
         public decimal? DeliveryPrice { get; set; }
 
         public bool ForKitchen { get; set; }
@@ -39,7 +29,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
         [StringLength(200)]
         public string Image { get; set; }
 
-        [GreaterThanZero]
         public int ItemOrder { get; set; }
 
         public int ItemStateID { get; set; }

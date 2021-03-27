@@ -8,6 +8,7 @@ using Procuratio.Modules.Cashes.API;
 using Procuratio.Modules.Customers.API;
 using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
+using Procuratio.Modules.Securities.API;
 using Procuratio.Shared.Infrastructure;
 
 namespace Procuratio.API
@@ -28,7 +29,7 @@ namespace Procuratio.API
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins(Configuration.GetValue<string>("Local_FrontEnd_Url")).AllowAnyMethod().AllowAnyHeader();
+                    builder.WithOrigins(Configuration.GetValue<string>("Local_FrontEnd_URL")).AllowAnyMethod().AllowAnyHeader();
                 });
             });
 
@@ -42,6 +43,7 @@ namespace Procuratio.API
             services.AddMenuesModule();
             services.AddCustomersModule();
             services.AddCashesModule();
+            services.AddSecuritiesModule();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +68,7 @@ namespace Procuratio.API
             app.UseMenuesModule();
             app.UseCustomersModule();
             app.UseCashesModule();
+            app.UseSecuritiesModule();
 
             app.UseAuthorization();
 

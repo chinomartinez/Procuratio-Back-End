@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Orders.DataAccess;
+using Procuratio.Shared.Infrastructure.SQLServer;
 
 namespace Procuratio.Modules.Orders.Service
 {
@@ -8,6 +10,8 @@ namespace Procuratio.Modules.Orders.Service
         {
             //services.AddScoped<INTERFAZSERVICIO, CLASESERVICIO>();
             //services.AddSingleton<INTERFAZREPOSITORIO, REPOSITORIO>();
+
+            services.AddDatabase();
 
             return services;
         }

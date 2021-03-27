@@ -1,16 +1,12 @@
 ﻿using Procuratio.Modules.Menues.Domain.Entities.Intermediate;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
-    public class PromotionDayOfWeekTimeRange
+    public class PromotionDayOfWeekTimeRange : BaseEntity<int>
     {
-        public int ID { get; set; }
-
-        public int RestaurantID { get; set; }
-
         public TimeSpan Begin { get; set; }
 
         public TimeSpan Finish { get; set; }

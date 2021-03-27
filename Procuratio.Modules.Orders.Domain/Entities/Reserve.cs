@@ -1,23 +1,15 @@
 ﻿using Procuratio.Modules.Orders.Domain.Entities.intermediate;
 using Procuratio.Modules.Orders.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.CustomsDataAnnotationValidations.NumersValidation;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
-    public class Reserve
+    public class Reserve : BaseEntity<int>
     {
-        public int ID { get; set; }
-
-        public int RestaurantID { get; set; }
-
         public DateTime Date { get; set; }
 
-        [GreaterThanZero]
         public short NumberOfDiners { get; set; }
 
         public int OrderID { get; set; }

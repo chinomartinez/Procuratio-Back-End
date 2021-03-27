@@ -1,21 +1,14 @@
 ﻿using Procuratio.Modules.Cashes.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.CustomsDataAnnotationValidations.NumersValidation;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Procuratio.Modules.Cashes.Domain.Entities
 {
-    public class Cash
+    public class Cash : BaseEntity<int>
     {
-        public int ID { get; set; }
-
-        public int RestaurantID { get; set; }
-
         public DateTime Date { get; set; }
 
-        [ItCantBeNegative]
         public decimal Mount { get; set; }
 
         [StringLength(100)]

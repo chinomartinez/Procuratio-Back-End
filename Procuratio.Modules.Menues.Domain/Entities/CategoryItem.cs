@@ -1,18 +1,13 @@
 ﻿using Procuratio.Modules.Menues.Domain.Entities.State;
-using System;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
-    public class CategoryItem
+    public class CategoryItem : BaseEntity<int>
     {
-        public int ID { get; set; }
-
-        public int RestaurantID { get; set; }
-
-        [StringLength(70, MinimumLength = 3)]
+        [StringLength(70)]
         public string Name { get; set; }
 
         public int CategoryItemStateID { get; set; }

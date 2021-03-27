@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Threading.Tasks;
-using Humanizer;
+﻿using Humanizer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Procuratio.Shared.Abstractions.Exceptions;
+using System;
+using System.Collections.Concurrent;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Procuratio.Shared.Infrastructure.Exceptions
 {
@@ -27,7 +28,7 @@ namespace Procuratio.Shared.Infrastructure.Exceptions
             }
             catch (Exception exception)
             {
-                int statusCode = 500;
+                int statusCode = (int)HttpStatusCode.InternalServerError;
                 string code = "error";
                 string errorMessage = "Hubo un error.";
 
@@ -35,7 +36,7 @@ namespace Procuratio.Shared.Infrastructure.Exceptions
 
                 if (exception is CustomExceptionBase customExceptionBase)
                 {
-                    statusCode = 400;
+                    statusCode = (int)HttpStatusCode.BadRequest;
                     Type exceptionType = customExceptionBase.GetType();
 
                     if (!_codes.TryGetValue(exceptionType, out string errorCode))

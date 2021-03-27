@@ -1,17 +1,14 @@
 ﻿using Procuratio.Modules.Customers.Domain.Entities.Intermediate;
-using System;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Procuratio.Modules.Customers.Domain.Entities.State
 {
-    public class CustomerXOrderState
+    public class CustomerXOrderState : StateBaseEntity<int>
     {
-        public int ID { get; set; }
-
         [StringLength(30)]
-        public string MyProperty { get; set; }
+        public string Name { get; set; }
 
         public List<CustomerXOrder> CustomersXOrders { get; set; }
     }

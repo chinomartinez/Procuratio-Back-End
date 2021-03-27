@@ -1,11 +1,9 @@
 ﻿using Procuratio.Modules.Customers.Domain.Entities.State;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 
 namespace Procuratio.Modules.Customers.Domain.Entities.Intermediate
 {
-    public class CustomerXOrder
+    public class CustomerXOrder : IntermediateBaseEntity
     {
         public int CustomerID { get; set; }
         public Customer MyProperty { get; set; }

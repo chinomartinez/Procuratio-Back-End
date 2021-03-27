@@ -1,20 +1,11 @@
 ﻿using Procuratio.Modules.Orders.Domain.Entities.State;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
-    public class TakeAway
+    public class TakeAway : BaseEntity<int>
     {
-        public int ID { get; set; }
-
-        public int RestaurantID { get; set; }
-
         public int UserID { get; set; }
-        //public User User { get; set; }
 
         public int OrderID { get; set; }
         public Order Order { get; set; }

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 
 namespace Procuratio.Modules.Cashes.Domain.Entities
 {
-    public class MovementType
+    public class MovementType : BaseEntity<int>
     {
-        public int ID { get; set; }
-
-        public int RestaurantID { get; set; }
-
         public int MovementTypeID { get; set; }
         public MovementType MovementsType { get; set; }
     }
