@@ -9,7 +9,6 @@ namespace Procuratio.Modules.Orders.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            throw new NotImplementedException();
         }
     }
 }
