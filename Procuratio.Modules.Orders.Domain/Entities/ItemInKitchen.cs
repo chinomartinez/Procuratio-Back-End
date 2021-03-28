@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
-    public class ItemInKitchen : CompoundKeyBaseEntity<int>
+    public class ItemInKitchen : CompoundKeyBaseEntity
     {
         public int OrderDetailID { get; set; }
         public OrderDetail OrderDetail { get; set; }

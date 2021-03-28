@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Orders.DataAccess.EF.Configurations.State
+namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations.State
 {
-    public class TableStateConfiguration : IEntityTypeConfiguration<TableState>
+    public class TakeAwayStateConfiguration : IEntityTypeConfiguration<TakeAwayState>
     {
-        public void Configure(EntityTypeBuilder<TableState> builder)
+        public void Configure(EntityTypeBuilder<TakeAwayState> builder)
         {
+            builder.Property(x => x.Name).HasMaxLength(30);
         }
     }
 }

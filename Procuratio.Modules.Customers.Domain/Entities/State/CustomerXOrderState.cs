@@ -7,7 +7,6 @@ namespace Procuratio.Modules.Customers.Domain.Entities.State
 {
     public class CustomerXOrderState : StateBaseEntity<int>
     {
-        [StringLength(30)]
         public string Name { get; set; }
 
         public List<CustomerXOrder> CustomersXOrders { get; set; }

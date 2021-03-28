@@ -2,7 +2,8 @@
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain
 {
-    public abstract class CompoundKeyBaseEntity<TKey> : BaseIdentity<TKey>
+    public abstract class CompoundKeyBaseEntity : IRestaurant
     {
+        public int RestaurantID { get; set; }
     }
 }

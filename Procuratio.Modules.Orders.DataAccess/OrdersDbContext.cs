@@ -36,15 +36,11 @@ namespace Procuratio.Modules.Orders.DataAccess
         public DbSet<TakeAwayState> TakeAwayState { get; set; }
         #endregion
 
-        public OrdersDbContext(DbContextOptions<OrdersDbContext> options) : base(options)
-        {
-
-        }
+        public OrdersDbContext(DbContextOptions<OrdersDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("Orders");
-            // ver si toma las configuraciones de las otras capas
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

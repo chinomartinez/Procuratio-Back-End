@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Orders.DataAccess.EF.Configurations
+namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
 {
-    public class ReserveConfiguration : IEntityTypeConfiguration<Reserve>
+    public class TakeAwayConfiguration : IEntityTypeConfiguration<TakeAway>
     {
-        public void Configure(EntityTypeBuilder<Reserve> builder)
+        public void Configure(EntityTypeBuilder<TakeAway> builder)
         {
         }
     }

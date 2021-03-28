@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Procuratio.Shared.Infrastructure.SQLServer
@@ -17,7 +18,7 @@ namespace Procuratio.Shared.Infrastructure.SQLServer
         {
             SQLServerOptions options = services.GetOptions<SQLServerOptions>(sectionName: "SQLServer");
 
-            services.AddDbContext<T>(x => x.UseSqlServer(options.Connectionstring));
+            services.AddDbContext<T>(x => x.UseSqlServer("Server=LAPTOP-MM9C4PM3\\MSSQLSERVER2; Initial Catalog=Procuratio; User=sa;Password=qhqcq1998"));
 
             using var scope = services.BuildServiceProvider().CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<T>();

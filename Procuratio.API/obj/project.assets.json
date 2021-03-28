@@ -1276,10 +1276,41 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Procuratio.Modules.Cashes.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Procuratio.Modules.Cashes.Domain": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Cashes.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Cashes.DataAccess.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Procuratio.Modules.Cashes.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Procuratio.ProcuratioFramework.ProcuratioFramework": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Cashes.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Cashes.Domain.dll": {}
+        }
+      },
       "Procuratio.Modules.Cashes.Service/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Procuratio.Modules.Cashes.DataAccess": "1.0.0",
           "Procuratio.Shared.Abstractions": "1.0.0"
         },
         "compile": {
@@ -1287,7 +1318,10 @@
         },
         "runtime": {
           "bin/placeholder/Procuratio.Modules.Cashes.Service.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Procuratio.Modules.Customers.API/1.0.0": {
         "type": "project",
@@ -1307,18 +1341,54 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Procuratio.Modules.Customers.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Procuratio.Modules.Customers.Domain": "1.0.0",
+          "Procuratio.Shared.Abstractions": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Customers.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Customers.DataAccess.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Procuratio.Modules.Customers.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Procuratio.ProcuratioFramework.ProcuratioFramework": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Customers.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Customers.Domain.dll": {}
+        }
+      },
       "Procuratio.Modules.Customers.Service/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Procuratio.Shared.Abstractions": "1.0.0"
+          "Procuratio.Modules.Customers.DataAccess": "1.0.0",
+          "Procuratio.Shared.Abstractions": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Procuratio.Modules.Customers.Service.dll": {}
         },
         "runtime": {
           "bin/placeholder/Procuratio.Modules.Customers.Service.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Procuratio.Modules.Menues.API/1.0.0": {
         "type": "project",
@@ -3543,6 +3613,16 @@
       "path": "../Procuratio.Modules.Cashes.API/Procuratio.Modules.Cashes.API.csproj",
       "msbuildProject": "../Procuratio.Modules.Cashes.API/Procuratio.Modules.Cashes.API.csproj"
     },
+    "Procuratio.Modules.Cashes.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Cashes.DataAccess/Procuratio.Modules.Cashes.DataAccess.csproj",
+      "msbuildProject": "../Procuratio.Modules.Cashes.DataAccess/Procuratio.Modules.Cashes.DataAccess.csproj"
+    },
+    "Procuratio.Modules.Cashes.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Cashes.Domain/Procuratio.Modules.Cashes.Domain.csproj",
+      "msbuildProject": "../Procuratio.Modules.Cashes.Domain/Procuratio.Modules.Cashes.Domain.csproj"
+    },
     "Procuratio.Modules.Cashes.Service/1.0.0": {
       "type": "project",
       "path": "../Procuratio.Modules.Cashes.Service/Procuratio.Modules.Cashes.Service.csproj",
@@ -3552,6 +3632,16 @@
       "type": "project",
       "path": "../Procuratio.Modules.Customers.API/Procuratio.Modules.Customers.API.csproj",
       "msbuildProject": "../Procuratio.Modules.Customers.API/Procuratio.Modules.Customers.API.csproj"
+    },
+    "Procuratio.Modules.Customers.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Customers.DataAccess/Procuratio.Modules.Customers.DataAccess.csproj",
+      "msbuildProject": "../Procuratio.Modules.Customers.DataAccess/Procuratio.Modules.Customers.DataAccess.csproj"
+    },
+    "Procuratio.Modules.Customers.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Customers.Domain/Procuratio.Modules.Customers.Domain.csproj",
+      "msbuildProject": "../Procuratio.Modules.Customers.Domain/Procuratio.Modules.Customers.Domain.csproj"
     },
     "Procuratio.Modules.Customers.Service/1.0.0": {
       "type": "project",

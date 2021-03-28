@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "15pzh93BXr+kc6Y1lzb4f0SulyA6uS9rjSx4DAyPVCIFmAEgstOjgCXgAzy5D9U3Uk2PH/uXvaIZoOVjGokUfA==",
+  "dgSpecHash": "v8RoDc6s0JuEyyVTk6zbF4/hDbc1K9fAC1xuUKs0+55QV/nQoyUxI+tKZqw+wkr+r33SBg3R9rjqAgPutywjgw==",
   "success": true,
   "projectFilePath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -58,8 +58,10 @@
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0-preview.2.21154.2\\microsoft.entityframeworkcore.6.0.0-preview.2.21154.2.nupkg.sha512",
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.0-preview.2.21154.2\\microsoft.entityframeworkcore.abstractions.6.0.0-preview.2.21154.2.nupkg.sha512",
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.0-preview.2.21154.2\\microsoft.entityframeworkcore.analyzers.6.0.0-preview.2.21154.2.nupkg.sha512",
+    "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.0-preview.2.21154.2\\microsoft.entityframeworkcore.design.6.0.0-preview.2.21154.2.nupkg.sha512",
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.0-preview.2.21154.2\\microsoft.entityframeworkcore.relational.6.0.0-preview.2.21154.2.nupkg.sha512",
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.0-preview.2.21154.2\\microsoft.entityframeworkcore.sqlserver.6.0.0-preview.2.21154.2.nupkg.sha512",
+    "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.0-preview.2.21154.2\\microsoft.entityframeworkcore.tools.6.0.0-preview.2.21154.2.nupkg.sha512",
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0-preview.2.21154.6\\microsoft.extensions.caching.abstractions.6.0.0-preview.2.21154.6.nupkg.sha512",
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.0-preview.2.21154.6\\microsoft.extensions.caching.memory.6.0.0-preview.2.21154.6.nupkg.sha512",
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0-preview.2.21154.6\\microsoft.extensions.configuration.abstractions.6.0.0-preview.2.21154.6.nupkg.sha512",

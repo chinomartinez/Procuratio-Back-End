@@ -39,11 +39,12 @@ namespace Procuratio.API
             });
 
             services.AddInfrastructure();
+
             services.AddOrdersModule();
-            services.AddMenuesModule();
+            //services.AddMenuesModule();
             services.AddCustomersModule();
             services.AddCashesModule();
-            services.AddSecuritiesModule();
+            //services.AddSecuritiesModule();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,10 +66,10 @@ namespace Procuratio.API
             app.UseCors();
 
             app.UseOrdersModule();
-            app.UseMenuesModule();
+            //app.UseMenuesModule();
             app.UseCustomersModule();
             app.UseCashesModule();
-            app.UseSecuritiesModule();
+            //app.UseSecuritiesModule();
 
             app.UseAuthorization();
 

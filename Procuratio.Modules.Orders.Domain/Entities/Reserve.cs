@@ -16,13 +16,11 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public Order Order { get; set; }
 
         public int UserID { get; set; }
-        //public User User { get; set; }
 
         public int ReserveStateID { get; set; }
         public ReserveState ReserveState { get; set; }
 
         public int CustomerID { get; set; }
-        //public Customer Customer { get; set; }
 
         public List<TableXReserve> TableXReserve { get; set; }
     }

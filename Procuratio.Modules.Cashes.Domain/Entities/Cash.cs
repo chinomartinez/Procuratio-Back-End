@@ -11,7 +11,6 @@ namespace Procuratio.Modules.Cashes.Domain.Entities
 
         public decimal Mount { get; set; }
 
-        [StringLength(100)]
         public string Detail { get; set; }
 
         public int OrderID { get; set; }

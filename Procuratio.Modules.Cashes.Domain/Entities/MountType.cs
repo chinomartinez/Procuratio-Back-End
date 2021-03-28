@@ -6,7 +6,6 @@ namespace Procuratio.Modules.Cashes.Domain.Entities
 {
     public class MountType : BaseEntity<int>
     {
-        [StringLength(30)]
         public string Name { get; set; }
 
         public MovementType MovementType { get; set; }

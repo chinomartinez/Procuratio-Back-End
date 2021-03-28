@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Orders.DataAccess.EF.Configurations.Intermediate
+namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations.Intermediate
 {
-    public class TableXReserveConfiguration : IEntityTypeConfiguration<TableXReserve>
+    public class TableXDinerInConfiguration : IEntityTypeConfiguration<TableXDinerIn>
     {
-        public void Configure(EntityTypeBuilder<TableXReserve> builder)
+        public void Configure(EntityTypeBuilder<TableXDinerIn> builder)
         {
-            builder.HasKey(x => new { x.ReserveID, x.TableID });
+            builder.HasKey(x => new { x.DinnerInID, x.TableID });
         }
     }
 }

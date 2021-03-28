@@ -6,7 +6,6 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
 {
     public class TakeAwayState : StateBaseEntity<int>
     {
-        [StringLength(30)]
         public string Name { get; set; }
 
         public List<TakeAway> TakeAways { get; set; }

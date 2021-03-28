@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Orders.DataAccess.EF.Configurations
+namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
 {
     public class ItemInKitchenConfiguration : IEntityTypeConfiguration<ItemInKitchen>
     {
