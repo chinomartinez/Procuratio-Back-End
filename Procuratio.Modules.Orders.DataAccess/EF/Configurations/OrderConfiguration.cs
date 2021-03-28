@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Procuratio.Modules.Orders.Domain.Entities;
 using System;
 
-namespace Procuratio.Modules.Orders.DataAccess.Configurations
+namespace Procuratio.Modules.Orders.DataAccess.EF.Configurations
 {
     public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {

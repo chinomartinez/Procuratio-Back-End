@@ -80,21 +80,19 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.ItemInKitchen", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ItemID")
+                    b.Property<int>("OrderDetailID")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderDetailID")
+                    b.Property<int>("ItemID")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<int>("RestaurantID")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailID", "ItemID");
 
                     b.HasIndex("OrderDetailID")
                         .IsUnique();

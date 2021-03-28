@@ -329,15 +329,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                 schema: "Orders",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     OrderDetailID = table.Column<int>(type: "int", nullable: false),
                     ItemID = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    RestaurantID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ItemInKitchen", x => x.ID);
+                    table.PrimaryKey("PK_ItemInKitchen", x => new { x.OrderDetailID, x.ItemID });
                     table.ForeignKey(
                         name: "FK_ItemInKitchen_OrderDetail_OrderDetailID",
                         column: x => x.OrderDetailID,

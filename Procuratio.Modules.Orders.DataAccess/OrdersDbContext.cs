@@ -47,9 +47,6 @@ namespace Procuratio.Modules.Orders.DataAccess
             // ver si toma las configuraciones de las otras capas
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
-            modelBuilder.Entity<TableXDinerIn>().HasKey(x => new { x.DinnerInID, x.TableID });
-            modelBuilder.Entity<TableXReserve>().HasKey(x => new { x.ReserveID, x.TableID });
-
             base.OnModelCreating(modelBuilder);
         }
     }

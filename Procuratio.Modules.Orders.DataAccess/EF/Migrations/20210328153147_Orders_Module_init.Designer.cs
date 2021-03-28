@@ -10,8 +10,8 @@ using Procuratio.Modules.Orders.DataAccess;
 namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 {
     [DbContext(typeof(OrdersDbContext))]
-    [Migration("20210328010835_init")]
-    partial class init
+    [Migration("20210328153147_Orders_Module_init")]
+    partial class Orders_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,21 +82,19 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.ItemInKitchen", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ItemID")
+                    b.Property<int>("OrderDetailID")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderDetailID")
+                    b.Property<int>("ItemID")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<int>("RestaurantID")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailID", "ItemID");
 
                     b.HasIndex("OrderDetailID")
                         .IsUnique();

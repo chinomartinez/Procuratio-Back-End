@@ -9,8 +9,4 @@
 	  <ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="EF\" />
-	</ItemGroup>
-
 </Project>
