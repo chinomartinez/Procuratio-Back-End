@@ -7,7 +7,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class SubCategoryItem : BaseEntity<int>
     {
-        [StringLength(30)]
         public string Name { get; set; }
 
         public int SubCategoryItemOrder { get; set; }

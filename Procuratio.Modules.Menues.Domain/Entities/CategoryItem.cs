@@ -7,7 +7,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class CategoryItem : BaseEntity<int>
     {
-        [StringLength(70)]
         public string Name { get; set; }
 
         public int CategoryItemStateID { get; set; }

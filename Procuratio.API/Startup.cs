@@ -41,7 +41,7 @@ namespace Procuratio.API
             services.AddInfrastructure();
 
             services.AddOrdersModule();
-            //services.AddMenuesModule();
+            services.AddMenuesModule();
             services.AddCustomersModule();
             services.AddCashesModule();
             //services.AddSecuritiesModule();
@@ -66,7 +66,7 @@ namespace Procuratio.API
             app.UseCors();
 
             app.UseOrdersModule();
-            //app.UseMenuesModule();
+            app.UseMenuesModule();
             app.UseCustomersModule();
             app.UseCashesModule();
             //app.UseSecuritiesModule();

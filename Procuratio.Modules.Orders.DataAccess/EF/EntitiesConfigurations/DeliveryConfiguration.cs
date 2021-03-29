@@ -13,6 +13,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<Delivery> builder)
         {
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Menues.DataAccess;
 
 namespace Procuratio.Modules.Menues.Service
 {
@@ -8,6 +9,8 @@ namespace Procuratio.Modules.Menues.Service
         {
             //services.AddScoped<INTERFAZSERVICIO, CLASESERVICIO>();
             //services.AddSingleton<INTERFAZREPOSITORIO, REPOSITORIO>();
+
+            services.AddDatabase();
 
             return services;
         }

@@ -8,6 +8,6 @@ namespace Procuratio.Shared.Infrastructure.SQLServer
 {
     public class SQLServerOptions
     {
-        public string Connectionstring { get; set; }
+        public string defaultConnection { get; set; }
     }
 }

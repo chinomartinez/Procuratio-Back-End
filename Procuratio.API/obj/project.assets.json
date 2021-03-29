@@ -1408,18 +1408,53 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Procuratio.Modules.Menues.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Procuratio.Modules.Menues.Domain": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Menues.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Menues.DataAccess.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Procuratio.Modules.Menues.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Procuratio.ProcuratioFramework.ProcuratioFramework": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Procuratio.Modules.Menues.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Procuratio.Modules.Menues.Domain.dll": {}
+        }
+      },
       "Procuratio.Modules.Menues.Service/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Procuratio.Shared.Abstractions": "1.0.0"
+          "Procuratio.Modules.Menues.DataAccess": "1.0.0",
+          "Procuratio.Shared.Abstractions": "1.0.0",
+          "Procuratio.Shared.Infrastructure": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Procuratio.Modules.Menues.Service.dll": {}
         },
         "runtime": {
           "bin/placeholder/Procuratio.Modules.Menues.Service.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Procuratio.Modules.Orders.API/1.0.0": {
         "type": "project",
@@ -3652,6 +3687,16 @@
       "type": "project",
       "path": "../Procuratio.Modules.Menues.API/Procuratio.Modules.Menues.API.csproj",
       "msbuildProject": "../Procuratio.Modules.Menues.API/Procuratio.Modules.Menues.API.csproj"
+    },
+    "Procuratio.Modules.Menues.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Menues.DataAccess/Procuratio.Modules.Menues.DataAccess.csproj",
+      "msbuildProject": "../Procuratio.Modules.Menues.DataAccess/Procuratio.Modules.Menues.DataAccess.csproj"
+    },
+    "Procuratio.Modules.Menues.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Procuratio.Modules.Menues.Domain/Procuratio.Modules.Menues.Domain.csproj",
+      "msbuildProject": "../Procuratio.Modules.Menues.Domain/Procuratio.Modules.Menues.Domain.csproj"
     },
     "Procuratio.Modules.Menues.Service/1.0.0": {
       "type": "project",

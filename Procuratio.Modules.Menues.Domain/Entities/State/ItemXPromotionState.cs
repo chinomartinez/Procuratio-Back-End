@@ -7,7 +7,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities.State
 {
     public class ItemXPromotionState : StateBaseEntity<int>
     {
-        [StringLength(30)]
         public string Name { get; set; }
 
         public List<ItemXPromotion> ItemsXPromotion { get; set; }

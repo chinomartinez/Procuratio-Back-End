@@ -6,7 +6,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class Promotion : BaseEntity<int>
     {
-        [StringLength(70)]
         public string Name { get; set; }
 
         public decimal? MenuPrice { get; set; }

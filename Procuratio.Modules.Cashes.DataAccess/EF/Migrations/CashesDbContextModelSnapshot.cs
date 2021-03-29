@@ -34,10 +34,12 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Detail")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Mount")
+                        .HasPrecision(18, 4)
                         .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("MountTypeID")
@@ -72,6 +74,7 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -116,6 +119,7 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 

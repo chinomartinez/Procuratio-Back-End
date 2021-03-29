@@ -7,9 +7,8 @@ namespace Procuratio.Modules.Menues.Domain.Entities.State
 {
     public class ExtraIngredientXItemState : StateBaseEntity<int>
     {
-        [StringLength(30)]
         public string Name { get; set; }
 
-        public List<ExtraIngredientXItem> MyProperty { get; set; }
+        public List<ExtraIngredientXItem> ExtraIngredientXItem { get; set; }
     }
 }

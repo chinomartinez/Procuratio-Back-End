@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<MountType> builder)
         {
-            builder.Property(x => x.Name).HasMaxLength(30);
+            builder.Property(x => x.Name).HasMaxLength(30).IsRequired();
         }
     }
 }

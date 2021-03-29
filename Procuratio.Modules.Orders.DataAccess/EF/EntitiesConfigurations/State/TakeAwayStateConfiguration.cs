@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations.State
     {
         public void Configure(EntityTypeBuilder<TakeAwayState> builder)
         {
-            builder.Property(x => x.Name).HasMaxLength(30);
+            builder.Property(x => x.Name).HasMaxLength(30).IsRequired();
         }
     }
 }

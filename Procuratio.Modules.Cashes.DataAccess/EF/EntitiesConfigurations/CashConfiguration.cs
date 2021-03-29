@@ -10,7 +10,7 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.EntitiesConfigurations
         {
             builder.Property(x => x.Mount).HasPrecision(18, 4);
 
-            builder.Property(x => x.Detail).HasMaxLength(100);
+            builder.Property(x => x.Detail).HasMaxLength(100).IsRequired();
         }
     }
 }

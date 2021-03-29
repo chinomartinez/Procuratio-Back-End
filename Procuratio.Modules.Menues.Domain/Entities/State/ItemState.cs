@@ -6,9 +6,8 @@ namespace Procuratio.Modules.Menues.Domain.Entities.State
 {
     public class ItemState : StateBaseEntity<int>
     {
-        [StringLength(30)]
         public string Name { get; set; }
 
-        public List<Item> Item { get; set; }
+        public List<Item> Items { get; set; }
     }
 }

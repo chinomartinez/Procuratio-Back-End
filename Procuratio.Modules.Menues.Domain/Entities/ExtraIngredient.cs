@@ -8,7 +8,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class ExtraIngredient : BaseEntity<int>
     {
-        [StringLength(30)]
         public string Name { get; set; }
 
         public decimal? MenuPrice { get; set; }
