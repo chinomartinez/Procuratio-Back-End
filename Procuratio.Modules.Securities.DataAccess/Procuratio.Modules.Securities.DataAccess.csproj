@@ -8,4 +8,9 @@
 		<Folder Include="Repositories\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Procuratio.Modules.Securities.Domain\Procuratio.Modules.Securities.Domain.csproj" />
+	  <ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
+	</ItemGroup>
+
 </Project>
