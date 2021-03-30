@@ -44,7 +44,7 @@ namespace Procuratio.API
             services.AddMenuesModule();
             services.AddCustomersModule();
             services.AddCashesModule();
-            //services.AddSecuritiesModule();
+            services.AddSecuritiesModule();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +69,7 @@ namespace Procuratio.API
             app.UseMenuesModule();
             app.UseCustomersModule();
             app.UseCashesModule();
-            //app.UseSecuritiesModule();
+            app.UseSecuritiesModule();
 
             app.UseAuthorization();
 
