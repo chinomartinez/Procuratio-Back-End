@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Entities\Intermediate\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj" />
+	</ItemGroup>
+
+</Project>

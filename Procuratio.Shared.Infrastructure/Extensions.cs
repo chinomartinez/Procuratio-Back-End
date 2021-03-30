@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Shared.Infrastructure.API;
 using Procuratio.Shared.Infrastructure.Exceptions;
+using Procuratio.Shared.Infrastructure.SQLServer;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.API")]
@@ -18,6 +20,7 @@ namespace Procuratio.Shared.Infrastructure
                 });
 
             services.AddSingleton<ErrorHandlerMiddleware>();
+            services.AddSQLServer();
 
             return services;
         }
@@ -27,6 +30,18 @@ namespace Procuratio.Shared.Infrastructure
             app.UseMiddleware<ErrorHandlerMiddleware>();
 
             return app;
+        }
+
+        public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
+        {
+            using ServiceProvider serviceProvider = services.BuildServiceProvider();
+            IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            IConfiguration section = configuration.GetSection(sectionName);
+            T options = new T();
+
+            section.Bind(options);
+
+            return options;
         }
     }
 }

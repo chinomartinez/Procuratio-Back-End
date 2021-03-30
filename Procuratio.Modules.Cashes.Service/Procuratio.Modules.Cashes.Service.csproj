@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Procuratio.Modules.Cashes.DataAccess\Procuratio.Modules.Cashes.DataAccess.csproj" />
+		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Exceptions\" />
+		<Folder Include="ServicesInterfaces\" />
+		<Folder Include="Services\" />
+	</ItemGroup>
+
+</Project>

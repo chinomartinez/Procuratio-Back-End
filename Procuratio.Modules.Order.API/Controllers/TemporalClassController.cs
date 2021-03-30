@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Procuratio.Modules.Orders.API.Controllers.BaseControllers;
+using Procuratio.Modules.Orders.API.Controllers.Base;
 
 namespace Procuratio.Modules.Orders.API.Controllers
 {
