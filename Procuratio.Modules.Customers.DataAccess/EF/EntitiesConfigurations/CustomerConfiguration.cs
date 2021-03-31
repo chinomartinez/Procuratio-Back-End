@@ -14,7 +14,9 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
+
             builder.Property(x => x.Surname).HasMaxLength(50).IsRequired();
+
             builder.Property(x => x.Phone).HasMaxLength(10).IsRequired();
         }
     }

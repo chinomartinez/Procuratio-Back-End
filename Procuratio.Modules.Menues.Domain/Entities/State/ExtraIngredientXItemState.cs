@@ -5,10 +5,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Menues.Domain.Entities.State
 {
-    public class ExtraIngredientXItemState : StateBaseEntity<int>
+    public class ExtraIngredientXItemState : StateBaseEntity
     {
-        public string Name { get; set; }
-
         public List<ExtraIngredientXItem> ExtraIngredientXItem { get; set; }
+
+        public enum State
+        {
+
+        }
     }
 }

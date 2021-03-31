@@ -4,10 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Menues.Domain.Entities.State
 {
-    public class CategoryItemState : StateBaseEntity<int>
+    public class CategoryItemState : StateBaseEntity
     {
-        public string Name { get; set; }
-
         public List<CategoryItem> CategoryItem { get; set; }
+
+        public enum State
+        {
+
+        }
     }
 }

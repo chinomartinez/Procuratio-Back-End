@@ -4,10 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Cashes.Domain.Entities.State
 {
-    public class CashState : StateBaseEntity<int>
+    public class CashState : StateBaseEntity
     {
-        public string Name { get; set; }
-
         public List<Cash> Cashes { get; set; }
+
+        public enum State
+        {
+
+        }
     }
 }

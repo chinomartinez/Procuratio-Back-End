@@ -5,10 +5,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Customers.Domain.Entities.State
 {
-    public class CustomerXOrderState : StateBaseEntity<int>
+    public class CustomerXOrderState : StateBaseEntity
     {
-        public string Name { get; set; }
-
         public List<CustomerXOrder> CustomersXOrders { get; set; }
+
+        public enum State
+        {
+
+        }
     }
 }
