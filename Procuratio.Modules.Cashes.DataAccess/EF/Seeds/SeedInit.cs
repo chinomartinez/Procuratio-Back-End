@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Procuratio.Modules.Cashes.DataAccess.EF.Seeds.ProductionEnviroment;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Seeds
 {
     internal class SeedInit
     {
-        internal void CreateSeeds()
+        internal static void CreateSeeds(CashesDbContext cashesDbContext)
         {
-
+            CashStateSeed.InitCashStateSeed(cashesDbContext.CashStates);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Seeds.ProductionEnviroment
 {
     sealed class CashStateSeed : CashState
     {
-        internal void Seed(DbSet<CashState> cashStateDbSet)
+        internal static void InitCashStateSeed(DbSet<CashState> cashStateDbSet)
         {
             if (cashStateDbSet.Any()) return;
 

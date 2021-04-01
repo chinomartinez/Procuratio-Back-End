@@ -2,6 +2,7 @@
 using Procuratio.Modules.Cashes.Domain.Entities;
 using Procuratio.Modules.Cashes.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
+using Procuratio.Modules.Cashes.DataAccess.EF.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,9 +36,6 @@ namespace Procuratio.Modules.Cashes.DataAccess
             base.OnModelCreating(modelBuilder);
         }
 
-        public void Seed()
-        {
-            throw new NotImplementedException();
-        }
+        public void Seed() => SeedInit.CreateSeeds(this);
     }
 }
