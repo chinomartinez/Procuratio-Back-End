@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,13 @@ namespace Procuratio.Modules.Cashes.DataAccess
             services.AddSQLServer<CashesDbContext>();
 
             return services;
+        }
+
+        public static IApplicationBuilder AddSeedDatabase(this IApplicationBuilder app)
+        {
+            app.AddSeedDataBase<CashesDbContext>();
+
+            return app;
         }
     }
 }

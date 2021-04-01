@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Cashes.Domain.Entities;
 using Procuratio.Modules.Cashes.Domain.Entities.State;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Cashes.DataAccess
 {
-    public class CashesDbContext : DbContext
+    public class CashesDbContext : DbContext, ISeed
     {
         #region DbSet of entities
         public DbSet<Cash> Cash { get; set; }
@@ -21,7 +22,7 @@ namespace Procuratio.Modules.Cashes.DataAccess
         #endregion
 
         #region DbSet of state entities
-        public DbSet<CashState> CashState { get; set; }
+        public DbSet<CashState> CashStates { get; set; }
         #endregion
 
         public CashesDbContext(DbContextOptions<CashesDbContext> options) : base(options) { }
@@ -32,6 +33,11 @@ namespace Procuratio.Modules.Cashes.DataAccess
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public void Seed()
+        {
+            throw new NotImplementedException();
         }
     }
 }
