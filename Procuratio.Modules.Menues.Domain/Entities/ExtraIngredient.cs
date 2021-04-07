@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class ExtraIngredient : BaseEntity<int>
     {
-        public string Name { get; set; }
+        public string ExtraIngredientName { get; set; }
 
         public decimal? MenuPrice { get; set; }
 

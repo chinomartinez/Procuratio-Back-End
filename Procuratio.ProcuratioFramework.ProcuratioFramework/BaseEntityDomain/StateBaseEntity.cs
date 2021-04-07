@@ -10,11 +10,6 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain
 {
     public abstract class StateBaseEntity : BaseIdentity<int>
     {
-        public string Name { get; private set; }
-
-        protected void SetStateName(string name)
-        {
-            Name = name;
-        }
+        public string StateName { get; set; }
     }
 }

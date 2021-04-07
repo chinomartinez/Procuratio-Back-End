@@ -27,13 +27,7 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration
 
         public static void EnsureSeeded(this DbContext dbContext)
         {
-            if ((dbContext is ISeed context1))
-            {
-                context1.Seed();
-            }
-
-            if (!(dbContext is ICreateForeignKey context2)) return;
-            context2.CreateForeignKeys();
+            if (dbContext is ISeed dbContextSeedToStart) { dbContextSeedToStart.Seed(); }
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Procuratio.Modules.Customers.DataAccess.EF.Seeds;
 using Procuratio.Modules.Customers.Domain.Entities;
 using Procuratio.Modules.Customers.Domain.Entities.Intermediate;
 using Procuratio.Modules.Customers.Domain.Entities.State;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Customers.DataAccess
 {
-    public class CustomersDbContext : DbContext
+    public class CustomersDbContext : DbContext, ISeed
     {
         #region DbSet of entities
         public DbSet<Customer> Customer { get; set; }
@@ -33,5 +35,7 @@ namespace Procuratio.Modules.Customers.DataAccess
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public void Seed() => CustomersSeedStart.CreateSeeds(this);
     }
 }

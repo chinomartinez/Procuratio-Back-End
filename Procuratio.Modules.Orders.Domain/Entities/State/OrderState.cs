@@ -10,7 +10,13 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
 
         public enum State
         {
-
+            Pendiente = 1,
+            EnProceso,
+            ParaEntrega,
+            Entregado,
+            EsperandoPago,
+            Eliminado,
+            Completado
         }
     }
 }

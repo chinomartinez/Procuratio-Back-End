@@ -13,6 +13,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<PromotionDayOfWeekTimeRange> builder)
         {
+            builder.HasOne(x => x.PromotionsDayOfWeek)
+                .WithMany(x => x.PromotionsDayOfWeekTimeRange)
+                .HasForeignKey(x => new { x.DayNumberID, x.PromotionID });
         }
     }
 }

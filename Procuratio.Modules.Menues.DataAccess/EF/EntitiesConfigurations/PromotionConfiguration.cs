@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<Promotion> builder)
         {
-            builder.Property(x => x.Name).HasMaxLength(70).IsRequired();
+            builder.Property(x => x.PromotionName).HasMaxLength(70).IsRequired();
 
             builder.Property(x => x.MenuPrice).HasPrecision(18, 4);
 

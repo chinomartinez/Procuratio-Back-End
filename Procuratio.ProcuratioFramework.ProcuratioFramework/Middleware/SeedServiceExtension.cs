@@ -10,23 +10,20 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware
 {
-    /// <summary>
-    /// Middleware que corre las migraciones y se asegura del estado de las base de datos
-    /// al iniciar el servidor
-    /// </summary>
     public static class SeedServiceExtension
     {
         public static IApplicationBuilder AddSeedDataBase<TContext>(this IApplicationBuilder app) where TContext : DbContext
         {
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (IServiceScope serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                TContext context = serviceScope.ServiceProvider.GetService<TContext>();
+                TContext currentContext = serviceScope.ServiceProvider.GetService<TContext>();
 
-                if (!context.AllMigrationsApplied())
+                if (!currentContext.AllMigrationsApplied())
                 {
-                    context.Database.Migrate();
+                    currentContext.Database.Migrate();
                 }
-                context.EnsureSeeded();
+
+                currentContext.EnsureSeeded();
             }
 
             return app;

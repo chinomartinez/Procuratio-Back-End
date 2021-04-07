@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.EntitiesConfigurations.Stat
     {
         public void Configure(EntityTypeBuilder<CustomerXOrderState> builder)
         {
-            builder.Property(x => x.Name).HasMaxLength(30).IsRequired();
+            builder.Property(x => x.StateName).HasMaxLength(30).IsRequired();
         }
     }
 }

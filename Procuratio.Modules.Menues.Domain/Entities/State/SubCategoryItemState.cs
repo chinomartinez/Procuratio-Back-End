@@ -10,7 +10,8 @@ namespace Procuratio.Modules.Menues.Domain.Entities.State
 
         public enum State
         {
-
+            Disponible = 1,
+            Eliminado
         }
     }
 }

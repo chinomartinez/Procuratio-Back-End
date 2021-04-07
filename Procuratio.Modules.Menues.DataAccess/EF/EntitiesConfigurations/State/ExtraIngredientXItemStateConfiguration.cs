@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations.State
     {
         public void Configure(EntityTypeBuilder<ExtraIngredientXItemState> builder)
         {
-            builder.Property(x => x.Name).HasMaxLength(30).IsRequired();
+            builder.Property(x => x.StateName).HasMaxLength(30).IsRequired();
         }
     }
 }

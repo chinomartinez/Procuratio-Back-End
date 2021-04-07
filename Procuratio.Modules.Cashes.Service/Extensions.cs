@@ -18,7 +18,7 @@ namespace Procuratio.Modules.Cashes.Service
 
         public static IApplicationBuilder AddCashesApps(this IApplicationBuilder app)
         {
-            app.AddSeedDatabase();
+            app.AddDatabase();
 
             return app;
         }

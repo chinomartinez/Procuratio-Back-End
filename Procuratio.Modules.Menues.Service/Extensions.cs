@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Menues.DataAccess;
 
 namespace Procuratio.Modules.Menues.Service
@@ -13,6 +14,13 @@ namespace Procuratio.Modules.Menues.Service
             services.AddDatabase();
 
             return services;
+        }
+
+        public static IApplicationBuilder AddMenuesApps(this IApplicationBuilder app)
+        {
+            app.AddDatabase();
+
+            return app;
         }
     }
 }

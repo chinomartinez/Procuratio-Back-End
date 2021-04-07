@@ -11,10 +11,8 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public TimeSpan Finish { get; set; }
 
-        public int DayOFweek { get; set; }
-
-        public List<PromotionDayOfWeek> PromotionsDayOfWeek { get; set; }
-
-        public List<ItemXPromotion> ItemXPromotion { get; set; }
+        public int DayNumberID { get; set; }
+        public int PromotionID { get; set; }
+        public PromotionDayOfWeek PromotionsDayOfWeek { get; set; }
     }
 }

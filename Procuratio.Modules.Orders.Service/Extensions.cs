@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Shared.Infrastructure.SQLServer;
 
@@ -14,6 +15,13 @@ namespace Procuratio.Modules.Orders.Service
             services.AddDatabase();
 
             return services;
+        }
+
+        public static IApplicationBuilder AddOrdersApps(this IApplicationBuilder app)
+        {
+            app.AddDatabase();
+
+            return app;
         }
     }
 }

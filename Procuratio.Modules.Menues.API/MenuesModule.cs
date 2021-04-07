@@ -15,6 +15,11 @@ namespace Procuratio.Modules.Menues.API
             return services;
         }
 
-        public static IApplicationBuilder UseMenuesModule(this IApplicationBuilder app) => app;
+        public static IApplicationBuilder UseMenuesModule(this IApplicationBuilder app)
+        {
+            app.AddMenuesApps();
+
+            return app;
+        }
     }
 }

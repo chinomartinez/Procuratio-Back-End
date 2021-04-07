@@ -13,6 +13,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<PromotionDayOfWeek> builder)
         {
+            builder.HasKey(x => new { x.PromotionID, x.DayNumber });
         }
     }
 }

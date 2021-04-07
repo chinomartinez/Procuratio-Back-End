@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class Item : BaseEntity<int>
     {
-        public string Name { get; set; }
+        public string ItemName { get; set; }
 
         public string Description { get; set; }
 

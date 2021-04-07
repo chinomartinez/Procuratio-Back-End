@@ -15,6 +15,11 @@ namespace Procuratio.Modules.Orders.API
             return services;
         }
 
-        public static IApplicationBuilder UseOrdersModule(this IApplicationBuilder app) => app;
+        public static IApplicationBuilder UseOrdersModule(this IApplicationBuilder app)
+        {
+            app.AddOrdersApps();
+
+            return app;
+        }
     }
 }

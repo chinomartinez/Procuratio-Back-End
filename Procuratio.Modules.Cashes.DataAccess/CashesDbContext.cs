@@ -23,7 +23,7 @@ namespace Procuratio.Modules.Cashes.DataAccess
         #endregion
 
         #region DbSet of state entities
-        public DbSet<CashState> CashStates { get; set; }
+        public DbSet<CashState> CashState { get; set; }
         #endregion
 
         public CashesDbContext(DbContextOptions<CashesDbContext> options) : base(options) { }
@@ -36,6 +36,6 @@ namespace Procuratio.Modules.Cashes.DataAccess
             base.OnModelCreating(modelBuilder);
         }
 
-        public void Seed() => SeedInit.CreateSeeds(this);
+        public void Seed() => CashesSeedStart.CreateSeeds(this);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,10 @@ namespace Procuratio.Modules.Securities.DataAccess
         public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
             services.AddSQLServer<SecuritiesDbContext>();
+
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<SecuritiesDbContext>()
+                .AddDefaultTokenProviders();
 
             return services;
         }

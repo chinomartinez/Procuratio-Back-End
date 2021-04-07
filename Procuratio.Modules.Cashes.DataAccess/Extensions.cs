@@ -21,7 +21,7 @@ namespace Procuratio.Modules.Cashes.DataAccess
             return services;
         }
 
-        public static IApplicationBuilder AddSeedDatabase(this IApplicationBuilder app)
+        public static IApplicationBuilder AddDatabase(this IApplicationBuilder app)
         {
             app.AddSeedDataBase<CashesDbContext>();
 

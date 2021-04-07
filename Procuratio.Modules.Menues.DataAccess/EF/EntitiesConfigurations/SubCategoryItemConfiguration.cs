@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<SubCategoryItem> builder)
         {
-            builder.Property(x => x.Name).HasMaxLength(70).IsRequired();
+            builder.Property(x => x.SubCategoryItemName).HasMaxLength(70).IsRequired();
         }
     }
 }

@@ -10,7 +10,9 @@ namespace Procuratio.Modules.Cashes.Domain.Entities.State
 
         public enum State
         {
-
+            Activa = 1,
+            Inactiva,
+            CajaCerrada
         }
     }
 }
