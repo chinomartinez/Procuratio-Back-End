@@ -1,18 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
 using Procuratio.Modules.Orders.DataAccess.EF.Seeds;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.intermediate;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
-using System;
-using System.IO;
 
 namespace Procuratio.Modules.Orders.DataAccess
 {
     public class OrdersDbContext : DbContext, ISeed
     {
+        internal const string OrdersSchemaName = "Orders";
+
         #region DbSet of entities
         public DbSet<Delivery> Delivery { get; set; }
         public DbSet<DinerIn> DinerIn { get; set; }
@@ -42,7 +40,7 @@ namespace Procuratio.Modules.Orders.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Orders");
+            modelBuilder.HasDefaultSchema(OrdersSchemaName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

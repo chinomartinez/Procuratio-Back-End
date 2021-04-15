@@ -4,16 +4,13 @@ using Procuratio.Modules.Menues.Domain.Entities;
 using Procuratio.Modules.Menues.Domain.Entities.Intermediate;
 using Procuratio.Modules.Menues.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Menues.DataAccess
 {
     public class MenuesDbContext : DbContext, ISeed
     {
+        internal const string MenuesSchemaName = "Menues";
+
         #region DbSet of entities
         public DbSet<CategoryItem> CategoryItem { get; set; }
         public DbSet<ExtraIngredient> ExtraIngredient { get; set; }
@@ -43,7 +40,7 @@ namespace Procuratio.Modules.Menues.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Menues");
+            modelBuilder.HasDefaultSchema(MenuesSchemaName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

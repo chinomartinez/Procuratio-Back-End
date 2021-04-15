@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Orders.DataAccess;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 {
     [DbContext(typeof(OrdersDbContext))]
-    partial class OrdersDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210407231602_ChangingReserveOrderIDToNull")]
+    partial class ChangingReserveOrderIDToNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Procuratio.Modules.Cashes.DataAccess.EF.Migrations
 {

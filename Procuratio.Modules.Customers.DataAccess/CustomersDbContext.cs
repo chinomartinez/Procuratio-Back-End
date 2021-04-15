@@ -4,16 +4,13 @@ using Procuratio.Modules.Customers.Domain.Entities;
 using Procuratio.Modules.Customers.Domain.Entities.Intermediate;
 using Procuratio.Modules.Customers.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Customers.DataAccess
 {
     public class CustomersDbContext : DbContext, ISeed
     {
+        internal const string CustomersSchemaName = "Customers";
+
         #region DbSet of entities
         public DbSet<Customer> Customer { get; set; }
         #endregion
@@ -30,7 +27,7 @@ namespace Procuratio.Modules.Customers.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Customers");
+            modelBuilder.HasDefaultSchema(CustomersSchemaName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

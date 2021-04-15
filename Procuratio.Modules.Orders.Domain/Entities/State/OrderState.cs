@@ -1,6 +1,5 @@
 ﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Orders.Domain.Entities.State
 {
@@ -10,13 +9,9 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
 
         public enum State
         {
-            Pendiente = 1,
-            EnProceso,
+            EnProceso = 1,
             ParaEntrega,
-            Entregado,
-            EsperandoPago,
-            Eliminado,
-            Completado
+            Entregado
         }
     }
 }

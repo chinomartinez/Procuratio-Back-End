@@ -1,6 +1,5 @@
 ﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Cashes.Domain.Entities.State
 {

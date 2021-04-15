@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.MicrosoftIdentity
 {
@@ -13,7 +8,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable(nameof(User).ToString(), "Securities");
+            builder.ToTable(nameof(User).ToString(), SecuritiesDbContext.SecuritesSchemaName);
         }
     }
 }

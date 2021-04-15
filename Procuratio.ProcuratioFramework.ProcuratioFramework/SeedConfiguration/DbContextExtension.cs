@@ -2,11 +2,8 @@
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration
 {

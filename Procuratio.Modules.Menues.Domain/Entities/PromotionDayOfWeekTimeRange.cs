@@ -1,7 +1,5 @@
-﻿using Procuratio.Modules.Menues.Domain.Entities.Intermediate;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
-using System.Collections.Generic;
 
 namespace Procuratio.Modules.Menues.Domain.Entities
 {

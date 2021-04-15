@@ -9,7 +9,6 @@ using Procuratio.Modules.Customers.API;
 using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
 using Procuratio.Modules.Securities.API;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration;
 using Procuratio.Shared.Infrastructure;
 
 namespace Procuratio.API

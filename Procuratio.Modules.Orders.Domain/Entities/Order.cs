@@ -2,7 +2,9 @@
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class Order : BaseEntity<int>
@@ -11,7 +13,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public string KitchenNote { get; set; }
 
-        public int OrderStateID { get; set; }
+        public int OrderStateID { get; internal set; }
         public OrderState OrderState { get; set; }
 
         public int ChefID { get; set; }
