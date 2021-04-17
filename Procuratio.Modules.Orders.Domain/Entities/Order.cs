@@ -18,6 +18,8 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public int ChefID { get; set; }
 
+        public int WaiterID { get; set; }
+
         public int CustomerID { get; set; }
 
         public Delivery Delivery { get; set; }

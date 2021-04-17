@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<Delivery> builder)
         {
-
+            builder.Property(x => x.DestinyDirection).HasMaxLength(100).IsRequired();
         }
     }
 }

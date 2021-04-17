@@ -17,8 +17,6 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public int? OrderID { get; set; }
         public Order Order { get; set; }
 
-        public int UserID { get; set; }
-
         public int ReserveStateID { get; internal set; }
         public ReserveState ReserveState { get; set; }
 

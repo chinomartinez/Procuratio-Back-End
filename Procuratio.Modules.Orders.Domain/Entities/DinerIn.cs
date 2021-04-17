@@ -9,8 +9,6 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class DinerIn : BaseEntity<int>
     {
-        public int UserID { get; set; }
-
         public int OrderID { get; set; }
         public Order Order { get; set; }
 

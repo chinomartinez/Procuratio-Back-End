@@ -8,6 +8,7 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<MovementType> builder)
         {
+            builder.Property(x => x.Name).HasMaxLength(30).IsRequired();
         }
     }
 }
