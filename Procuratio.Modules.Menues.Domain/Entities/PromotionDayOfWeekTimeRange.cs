@@ -1,7 +1,5 @@
-﻿using Procuratio.Modules.Menues.Domain.Entities.Intermediate;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
-using System.Collections.Generic;
 
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
@@ -11,10 +9,8 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public TimeSpan Finish { get; set; }
 
-        public int DayOFweek { get; set; }
-
-        public List<PromotionDayOfWeek> PromotionsDayOfWeek { get; set; }
-
-        public List<ItemXPromotion> ItemXPromotion { get; set; }
+        public int DayNumberID { get; set; }
+        public int PromotionID { get; set; }
+        public PromotionDayOfWeek PromotionsDayOfWeek { get; set; }
     }
 }

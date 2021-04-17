@@ -1,5 +1,4 @@
 ﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain
 {

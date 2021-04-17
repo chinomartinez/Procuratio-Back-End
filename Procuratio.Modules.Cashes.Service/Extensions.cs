@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Cashes.DataAccess;
 
 namespace Procuratio.Modules.Cashes.Service
@@ -13,6 +14,13 @@ namespace Procuratio.Modules.Cashes.Service
             services.AddDatabase();
 
             return services;
+        }
+
+        public static IApplicationBuilder AddCashesApps(this IApplicationBuilder app)
+        {
+            app.AddDatabase();
+
+            return app;
         }
     }
 }

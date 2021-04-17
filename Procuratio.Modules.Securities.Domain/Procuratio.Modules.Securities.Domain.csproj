@@ -8,4 +8,9 @@
 	  <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Entities\Intermediate\" />
+	  <Folder Include="Entities\State\" />
+	</ItemGroup>
+
 </Project>

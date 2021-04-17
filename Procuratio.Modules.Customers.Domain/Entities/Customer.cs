@@ -1,5 +1,4 @@
 ﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
-using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Customers.Domain.Entities
 {

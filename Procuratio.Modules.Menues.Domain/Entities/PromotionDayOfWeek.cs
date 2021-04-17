@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
-    public class PromotionDayOfWeek : BaseEntity<int>
+    public class PromotionDayOfWeek : CompoundKeyBaseEntity
     {
-        public int PromotionID { get; set; }
-        public List<Promotion> Promotion { get; set; }
+        public int DayNumber { get; set; }
 
-        public PromotionDayOfWeekTimeRange PromotionDayOfWeekTimeRange { get; set; }
+        public int PromotionID { get; set; }
+        public Promotion Promotion { get; set; }
+
+        public List<PromotionDayOfWeekTimeRange> PromotionsDayOfWeekTimeRange { get; set; }
     }
 }

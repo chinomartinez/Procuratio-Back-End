@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 {
@@ -17,7 +17,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +31,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,7 +59,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,28 +73,11 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ItemXPromotionState", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PromotionDayOfWeekTimeRange",
-                schema: "Menues",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Begin = table.Column<TimeSpan>(type: "time", nullable: false),
-                    Finish = table.Column<TimeSpan>(type: "time", nullable: false),
-                    DayOFweek = table.Column<int>(type: "int", nullable: false),
-                    RestaurantID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PromotionDayOfWeekTimeRange", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,7 +87,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -118,7 +101,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -132,7 +115,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     CategoryItemStateID = table.Column<int>(type: "int", nullable: false),
                     RestaurantID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -155,7 +138,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     MenuPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
                     DinerInPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
                     TakeAwayPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
@@ -176,26 +159,31 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PromotionDayOfWeek",
+                name: "Promotion",
                 schema: "Menues",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PromotionID = table.Column<int>(type: "int", nullable: false),
-                    PromotionDayOfWeekTimeRangeID = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    MenuPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
+                    DinerInPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
+                    TakeAwayPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
+                    DeliveryPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
+                    PromotionOrder = table.Column<int>(type: "int", nullable: false),
+                    PromotionStateID = table.Column<int>(type: "int", nullable: false),
                     RestaurantID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PromotionDayOfWeek", x => x.ID);
+                    table.PrimaryKey("PK_Promotion", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_PromotionDayOfWeek_PromotionDayOfWeekTimeRange_PromotionDayOfWeekTimeRangeID",
-                        column: x => x.PromotionDayOfWeekTimeRangeID,
+                        name: "FK_Promotion_PromotionState_PromotionStateID",
+                        column: x => x.PromotionStateID,
                         principalSchema: "Menues",
-                        principalTable: "PromotionDayOfWeekTimeRange",
+                        principalTable: "PromotionState",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -205,7 +193,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     SubCategoryItemOrder = table.Column<int>(type: "int", nullable: false),
                     SubCategoryItemStateID = table.Column<int>(type: "int", nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
@@ -231,37 +219,22 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Promotion",
+                name: "PromotionDayOfWeek",
                 schema: "Menues",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
-                    MenuPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
-                    DinerInPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
-                    TakeAwayPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
-                    DeliveryPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
-                    PromotionOrder = table.Column<int>(type: "int", nullable: false),
-                    PromotionStateID = table.Column<int>(type: "int", nullable: false),
-                    PromotionDayOfWeekID = table.Column<int>(type: "int", nullable: true),
+                    DayNumber = table.Column<int>(type: "int", nullable: false),
+                    PromotionID = table.Column<int>(type: "int", nullable: false),
                     RestaurantID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Promotion", x => x.ID);
+                    table.PrimaryKey("PK_PromotionDayOfWeek", x => new { x.PromotionID, x.DayNumber });
                     table.ForeignKey(
-                        name: "FK_Promotion_PromotionDayOfWeek_PromotionDayOfWeekID",
-                        column: x => x.PromotionDayOfWeekID,
+                        name: "FK_PromotionDayOfWeek_Promotion_PromotionID",
+                        column: x => x.PromotionID,
                         principalSchema: "Menues",
-                        principalTable: "PromotionDayOfWeek",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Promotion_PromotionState_PromotionStateID",
-                        column: x => x.PromotionStateID,
-                        principalSchema: "Menues",
-                        principalTable: "PromotionState",
+                        principalTable: "Promotion",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -273,8 +246,8 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     MyProperty = table.Column<int>(type: "int", nullable: false),
                     MenuPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
                     DinerInPrice = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: true),
@@ -311,6 +284,32 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                         principalSchema: "Menues",
                         principalTable: "SubCategoryItem",
                         principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PromotionDayOfWeekTimeRange",
+                schema: "Menues",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Begin = table.Column<TimeSpan>(type: "time", nullable: false),
+                    Finish = table.Column<TimeSpan>(type: "time", nullable: false),
+                    DayOfweekID = table.Column<int>(type: "int", nullable: false),
+                    PromotionDayOfWeekPromotionID = table.Column<int>(type: "int", nullable: true),
+                    PromotionDayOfWeekDayNumber = table.Column<int>(type: "int", nullable: true),
+                    RestaurantID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PromotionDayOfWeekTimeRange", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_PromotionDayOfWeekTimeRange_PromotionDayOfWeek_PromotionDayOfWeekPromotionID_PromotionDayOfWeekDayNumber",
+                        columns: x => new { x.PromotionDayOfWeekPromotionID, x.PromotionDayOfWeekDayNumber },
+                        principalSchema: "Menues",
+                        principalTable: "PromotionDayOfWeek",
+                        principalColumns: new[] { "PromotionID", "DayNumber" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -359,7 +358,6 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     PromotionID = table.Column<int>(type: "int", nullable: false),
                     ItemXPromotionOrder = table.Column<int>(type: "int", nullable: false),
                     ItemXPromotionStateID = table.Column<int>(type: "int", nullable: true),
-                    PromotionDayOfWeekTimeRangeID = table.Column<int>(type: "int", nullable: true),
                     RestaurantID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -386,13 +384,6 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                         principalTable: "Promotion",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ItemXPromotion_PromotionDayOfWeekTimeRange_PromotionDayOfWeekTimeRangeID",
-                        column: x => x.PromotionDayOfWeekTimeRangeID,
-                        principalSchema: "Menues",
-                        principalTable: "PromotionDayOfWeekTimeRange",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -444,22 +435,10 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 column: "ItemXPromotionStateID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemXPromotion_PromotionDayOfWeekTimeRangeID",
-                schema: "Menues",
-                table: "ItemXPromotion",
-                column: "PromotionDayOfWeekTimeRangeID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ItemXPromotion_PromotionID",
                 schema: "Menues",
                 table: "ItemXPromotion",
                 column: "PromotionID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Promotion_PromotionDayOfWeekID",
-                schema: "Menues",
-                table: "Promotion",
-                column: "PromotionDayOfWeekID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Promotion_PromotionStateID",
@@ -468,10 +447,10 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 column: "PromotionStateID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PromotionDayOfWeek_PromotionDayOfWeekTimeRangeID",
+                name: "IX_PromotionDayOfWeekTimeRange_PromotionDayOfWeekPromotionID_PromotionDayOfWeekDayNumber",
                 schema: "Menues",
-                table: "PromotionDayOfWeek",
-                column: "PromotionDayOfWeekTimeRangeID");
+                table: "PromotionDayOfWeekTimeRange",
+                columns: new[] { "PromotionDayOfWeekPromotionID", "PromotionDayOfWeekDayNumber" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubCategoryItem_CategoryID",
@@ -497,6 +476,10 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 schema: "Menues");
 
             migrationBuilder.DropTable(
+                name: "PromotionDayOfWeekTimeRange",
+                schema: "Menues");
+
+            migrationBuilder.DropTable(
                 name: "ExtraIngredient",
                 schema: "Menues");
 
@@ -513,7 +496,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 schema: "Menues");
 
             migrationBuilder.DropTable(
-                name: "Promotion",
+                name: "PromotionDayOfWeek",
                 schema: "Menues");
 
             migrationBuilder.DropTable(
@@ -529,11 +512,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 schema: "Menues");
 
             migrationBuilder.DropTable(
-                name: "PromotionDayOfWeek",
-                schema: "Menues");
-
-            migrationBuilder.DropTable(
-                name: "PromotionState",
+                name: "Promotion",
                 schema: "Menues");
 
             migrationBuilder.DropTable(
@@ -545,7 +524,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                 schema: "Menues");
 
             migrationBuilder.DropTable(
-                name: "PromotionDayOfWeekTimeRange",
+                name: "PromotionState",
                 schema: "Menues");
 
             migrationBuilder.DropTable(

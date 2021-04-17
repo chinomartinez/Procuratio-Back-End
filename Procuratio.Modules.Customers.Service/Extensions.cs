@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Customers.DataAccess;
 
 namespace Procuratio.Modules.Customers.Service
@@ -13,6 +14,13 @@ namespace Procuratio.Modules.Customers.Service
             services.AddDatabase();
 
             return services;
+        }
+
+        public static IApplicationBuilder AddCustomersApps(this IApplicationBuilder app)
+        {
+            app.AddDatabase();
+
+            return app;
         }
     }
 }

@@ -2,13 +2,14 @@
 using Procuratio.Modules.Menues.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class ExtraIngredient : BaseEntity<int>
     {
-        public string Name { get; set; }
+        public string ExtraIngredientName { get; set; }
 
         public decimal? MenuPrice { get; set; }
 
@@ -18,9 +19,11 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public decimal? DeliveryPrice { get; set; }
 
+        public decimal? PromotionPrice { get; set; }
+
         public List<ExtraIngredientXItem> ExtraIngredientXItem { get; set; }
 
-        public int ExtraIngredientStateID { get; set; }
+        public int ExtraIngredientStateID { get; internal set; }
         public ExtraIngredientState ExtraIngredientState { get; set; }
     }
 }

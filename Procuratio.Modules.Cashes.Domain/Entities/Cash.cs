@@ -1,8 +1,9 @@
 ﻿using Procuratio.Modules.Cashes.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Cashes.Domain.Entities
 {
     public class Cash : BaseEntity<int>
@@ -18,7 +19,7 @@ namespace Procuratio.Modules.Cashes.Domain.Entities
         public int MountTypeID { get; set; }
         public MountType MountType { get; set; }
 
-        public int CashStateID { get; set; }
+        public int CashStateID { get; internal set; }
         public CashState CashState { get; set; }
 
         public int UserID { get; set; }

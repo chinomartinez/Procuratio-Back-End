@@ -177,7 +177,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<short>("NumberOfDiners")
                         .HasColumnType("smallint");
 
-                    b.Property<int>("OrderID")
+                    b.Property<int?>("OrderID")
                         .HasColumnType("int");
 
                     b.Property<int>("ReserveStateID")
@@ -192,7 +192,8 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("OrderID")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[OrderID] IS NOT NULL");
 
                     b.HasIndex("ReserveStateID");
 
@@ -206,7 +207,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("StateName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -223,7 +224,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("StateName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -240,7 +241,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("StateName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -257,7 +258,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("StateName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -274,7 +275,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("StateName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -291,7 +292,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("StateName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -467,9 +468,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
                         .WithOne("Reserve")
-                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.Reserve", "OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.Reserve", "OrderID");
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.ReserveState", "ReserveState")
                         .WithMany("Reserve")

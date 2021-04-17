@@ -15,6 +15,11 @@ namespace Procuratio.Modules.Customers.API
             return services;
         }
 
-        public static IApplicationBuilder UseCustomersModule(this IApplicationBuilder app) => app;
+        public static IApplicationBuilder UseCustomersModule(this IApplicationBuilder app)
+        {
+            app.AddCustomersApps();
+
+            return app;
+        }
     }
 }

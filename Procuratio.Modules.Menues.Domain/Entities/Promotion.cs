@@ -1,24 +1,23 @@
-﻿using Procuratio.Modules.Menues.Domain.Entities.State;
+﻿using Procuratio.Modules.Menues.Domain.Entities.Intermediate;
+using Procuratio.Modules.Menues.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class Promotion : BaseEntity<int>
     {
-        public string Name { get; set; }
-
-        public decimal? MenuPrice { get; set; }
-
-        public decimal? DinerInPrice { get; set; }
-
-        public decimal? TakeAwayPrice { get; set; }
-
-        public decimal? DeliveryPrice { get; set; }
+        public string PromotionName { get; set; }
 
         public int PromotionOrder { get; set; }
 
-        public int PromotionStateID { get; set; }
+        public int PromotionStateID { get; internal set; }
         public PromotionState PromotionState { get; set; }
+
+        public List<PromotionDayOfWeek> PromotionsDayOfWeek { get; set; }
+
+        public List<ItemXPromotion> ItemXPromotion { get; set; }
     }
 }

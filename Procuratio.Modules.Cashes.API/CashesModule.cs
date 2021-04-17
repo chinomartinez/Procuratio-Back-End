@@ -15,6 +15,11 @@ namespace Procuratio.Modules.Cashes.API
             return services;
         }
 
-        public static IApplicationBuilder UseCashesModule(this IApplicationBuilder app) => app;
+        public static IApplicationBuilder UseCashesModule(this IApplicationBuilder app)
+        {
+            app.AddCashesApps();
+
+            return app;
+        }
     }
 }
