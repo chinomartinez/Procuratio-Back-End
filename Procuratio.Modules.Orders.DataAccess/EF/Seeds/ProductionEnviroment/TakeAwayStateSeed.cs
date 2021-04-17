@@ -10,13 +10,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (takeAwayStateDbSet.Any()) return;
 
+            takeAwayStateDbSet.Add(new TakeAwayState() { StateName = "En curso" });
+            OrdersSeedStart.SaveChangesForSeed();
+
             takeAwayStateDbSet.Add(new TakeAwayState() { StateName = "Completado" });
             OrdersSeedStart.SaveChangesForSeed();
 
             takeAwayStateDbSet.Add(new TakeAwayState() { StateName = "No vino" });
-            OrdersSeedStart.SaveChangesForSeed();
-
-            takeAwayStateDbSet.Add(new TakeAwayState() { StateName = "Eliminado" });
             OrdersSeedStart.SaveChangesForSeed();
         }
     }

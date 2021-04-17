@@ -16,7 +16,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
             reserveStateDbSet.Add(new ReserveState() { StateName = "Sin confirmar" });
             OrdersSeedStart.SaveChangesForSeed();
 
-            reserveStateDbSet.Add(new ReserveState() { StateName = "Eliminada" });
+            reserveStateDbSet.Add(new ReserveState() { StateName = "En curso" });
             OrdersSeedStart.SaveChangesForSeed();
 
             reserveStateDbSet.Add(new ReserveState() { StateName = "Completada" });
