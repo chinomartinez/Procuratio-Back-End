@@ -1,4 +1,5 @@
-﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
+﻿using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
 
 namespace Procuratio.Modules.Securities.Domain.Entities
@@ -10,5 +11,7 @@ namespace Procuratio.Modules.Securities.Domain.Entities
         public int Withdrawn { get; set; }
 
         public DateTime DateWithdrawn { get; set; }
+
+        public User User { get; set; }
     }
 }

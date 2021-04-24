@@ -5,7 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="EF\Repositories\" />
 		<Folder Include="EF\Seeds\Testing\" />
 	</ItemGroup>
 

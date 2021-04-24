@@ -6,7 +6,7 @@ using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 namespace Procuratio.Modules.Securities.DataAccess
 {
     public class SecuritiesDbContext : IdentityDbContext<User, Role, int, UserClaim,
-                                       UserRole, UserLogin, RoleClaim, UserToken>
+                                       UserXRole, UserLogin, RoleClaim, UserToken>
     {
         internal const string SecuritesSchemaName = "Securities";
 

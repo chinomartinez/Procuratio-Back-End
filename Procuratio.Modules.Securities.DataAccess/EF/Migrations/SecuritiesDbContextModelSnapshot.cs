@@ -183,21 +183,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.ToTable("UserLogin", "Securities");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("UserRole", "Securities");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserToken", b =>
                 {
                     b.Property<int>("UserId")
@@ -217,6 +202,21 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.ToTable("UserToken", "Securities");
                 });
 
+            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserXRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserXRole", "Securities");
+                });
+
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.Restaruant", b =>
                 {
                     b.Property<int>("ID")
@@ -232,10 +232,15 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Withdrawn")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Restaruant");
                 });
@@ -267,7 +272,16 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserRole", b =>
+            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserToken", b =>
+                {
+                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserXRole", b =>
                 {
                     b.HasOne("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.Role", null)
                         .WithMany()
@@ -282,13 +296,18 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserToken", b =>
+            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.Restaruant", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", "User")
+                        .WithMany("Restaruants")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", b =>
+                {
+                    b.Navigation("Restaruants");
                 });
 #pragma warning restore 612, 618
         }
