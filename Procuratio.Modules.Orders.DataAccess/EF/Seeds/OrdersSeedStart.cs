@@ -4,31 +4,26 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds
 {
     internal static class OrdersSeedStart
     {
-        private static OrdersDbContext OrdersDbContext;
-
         internal static void CreateSeeds(OrdersDbContext ordersDbContext)
         {
-            OrdersDbContext = ordersDbContext;
+            ProductionEnviromentSeeds(ordersDbContext);
+            TestingSeeds(ordersDbContext);
 
-            ProductionEnviromentSeeds();
-            TestingSeeds();
+            ordersDbContext.SaveChanges();
         }
 
-        private static void ProductionEnviromentSeeds()
+        private static void ProductionEnviromentSeeds(OrdersDbContext ordersDbContext)
         {
-            DeliveryStateSeed.StartDeliveryStateSeed(OrdersDbContext.DeliveryState);
-            DinerInStateSeed.StartDinerInStateSeed(OrdersDbContext.DinerInState);
-            OrderStateSeed.StartOrderStateSeed(OrdersDbContext.OrderState);
-            ReserveStateSeed.StartReserveStateSeed(OrdersDbContext.ReserveState);
-            TableStateSeed.StartTableStateSeed(OrdersDbContext.TableState);
-            TakeAwayStateSeed.StartTakeAwayStateSeed(OrdersDbContext.TakeAwayState);
+            DeliveryStateSeed.StartDeliveryStateSeed(ordersDbContext.DeliveryState);
+            DinerInStateSeed.StartDinerInStateSeed(ordersDbContext.DinerInState);
+            OrderStateSeed.StartOrderStateSeed(ordersDbContext.OrderState);
+            ReserveStateSeed.StartReserveStateSeed(ordersDbContext.ReserveState);
+            TableStateSeed.StartTableStateSeed(ordersDbContext.TableState);
+            TakeAwayStateSeed.StartTakeAwayStateSeed(ordersDbContext.TakeAwayState);
         }
 
-        private static void TestingSeeds()
+        private static void TestingSeeds(OrdersDbContext ordersDbContext)
         {
-            SaveChangesForSeed();
         }
-
-        internal static void SaveChangesForSeed() => OrdersDbContext.SaveChanges();
     }
 }

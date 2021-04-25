@@ -11,15 +11,13 @@ namespace Procuratio.Modules.Menues.Domain.Entities
     {
         public string ExtraIngredientName { get; set; }
 
-        public decimal? MenuPrice { get; set; }
+        public decimal? PriceInsideRestaurant { get; set; }
 
-        public decimal? DinerInPrice { get; set; }
+        public decimal? PriceOutsideRestaurant { get; set; }
 
-        public decimal? TakeAwayPrice { get; set; }
+        public decimal? PromotionPriceInsideRestaurant { get; set; }
 
-        public decimal? DeliveryPrice { get; set; }
-
-        public decimal? PromotionPrice { get; set; }
+        public decimal? PromotionPriceOutsideRestaurant { get; set; }
 
         public List<ExtraIngredientXItem> ExtraIngredientXItem { get; set; }
 

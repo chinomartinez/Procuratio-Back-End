@@ -1,4 +1,4 @@
-﻿using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.Interfaces;
+﻿using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

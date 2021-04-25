@@ -14,11 +14,9 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (cashStateDbSet.Any()) return;
 
-            cashStateDbSet.Add(new MovementType() { Name = "Egreso" });
-            CashesSeedStart.SaveChangesForSeed();
+            cashStateDbSet.Add(new MovementType() { ID = (int)MovementType.Type.Income, Name = "Ingreso" });
 
-            cashStateDbSet.Add(new MovementType() { Name = "Ingreso" });
-            CashesSeedStart.SaveChangesForSeed();
+            cashStateDbSet.Add(new MovementType() { ID = (int)MovementType.Type.Expenditure, Name = "Egreso" });
         }
     }
 }

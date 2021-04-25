@@ -4,27 +4,22 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Seeds
 {
     internal static class CashesSeedStart
     {
-        private static CashesDbContext CashesDbContext;
-
         internal static void CreateSeeds(CashesDbContext cashesDbContext)
         {
-            CashesDbContext = cashesDbContext;
+            ProductionEnviromentSeeds(cashesDbContext);
+            TestingSeeds(cashesDbContext);
 
-            ProductionEnviromentSeeds();
-            TestingSeeds();
+            cashesDbContext.SaveChanges();
         }
 
-        private static void ProductionEnviromentSeeds()
+        private static void ProductionEnviromentSeeds(CashesDbContext cashesDbContext)
         {
-            CashStateSeed.StartCashStateSeed(CashesDbContext.CashState);
+            CashStateSeed.StartCashStateSeed(cashesDbContext.CashState);
         }
 
-        private static void TestingSeeds()
+        private static void TestingSeeds(CashesDbContext cashesDbContext)
         {
 
-            SaveChangesForSeed();
         }
-
-        internal static void SaveChangesForSeed() => CashesDbContext.SaveChanges();
     }
 }

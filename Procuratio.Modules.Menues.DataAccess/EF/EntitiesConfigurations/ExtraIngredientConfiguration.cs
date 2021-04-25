@@ -10,15 +10,13 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
         {
             builder.Property(x => x.ExtraIngredientName).HasMaxLength(70).IsRequired();
 
-            builder.Property(x => x.MenuPrice).HasPrecision(18, 4);
+            builder.Property(x => x.PriceInsideRestaurant).HasPrecision(18, 2);
 
-            builder.Property(x => x.DinerInPrice).HasPrecision(18, 4);
+            builder.Property(x => x.PriceOutsideRestaurant).HasPrecision(18, 2);
 
-            builder.Property(x => x.TakeAwayPrice).HasPrecision(18, 4);
+            builder.Property(x => x.PromotionPriceInsideRestaurant).HasPrecision(18, 2);
 
-            builder.Property(x => x.DeliveryPrice).HasPrecision(18, 4);
-
-            builder.Property(x => x.PromotionPrice).HasPrecision(18, 4);
+            builder.Property(x => x.PromotionPriceOutsideRestaurant).HasPrecision(18, 2);
         }
     }
 }

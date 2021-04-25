@@ -18,6 +18,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public List<PromotionDayOfWeek> PromotionsDayOfWeek { get; set; }
 
-        public List<ItemXPromotion> ItemXPromotion { get; set; }
+        public List<ItemXPromotion> ItemsXPromotion { get; set; }
     }
 }

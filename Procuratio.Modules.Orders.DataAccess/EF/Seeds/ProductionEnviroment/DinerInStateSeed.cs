@@ -10,11 +10,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (dinerInStateDbSet.Any()) return;
 
-            dinerInStateDbSet.Add(new DinerInState() { StateName = "En curso" });
-            OrdersSeedStart.SaveChangesForSeed();
+            dinerInStateDbSet.Add(new DinerInState() { ID = (int)DinerInState.State.InProgress, StateName = "En curso" });
 
-            dinerInStateDbSet.Add(new DinerInState() { StateName = "Completada" });
-            OrdersSeedStart.SaveChangesForSeed();
+            dinerInStateDbSet.Add(new DinerInState() { ID = (int)DinerInState.State.Completed, StateName = "Completada" });
         }
     }
 }

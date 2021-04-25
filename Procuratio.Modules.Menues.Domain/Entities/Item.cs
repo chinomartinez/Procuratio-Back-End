@@ -15,16 +15,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public int MyProperty { get; set; }
 
-        public decimal? MenuPrice { get; set; }
-
-        public decimal? DinerInPrice { get; set; }
-
-        public decimal? TakeAwayPrice { get; set; }
-
-        public decimal? DeliveryPrice { get; set; }
-
-        public decimal? PromotionPrice { get; set; }
-
         public bool ForKitchen { get; set; }
 
         public string Image { get; set; }

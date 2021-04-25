@@ -10,11 +10,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (itemXPromotionStateDbSet.Any()) return;
 
-            itemXPromotionStateDbSet.Add(new ItemXPromotionState() { StateName = "Disponible" });
-            MenuesSeedStart.SaveChangesForSeed();
+            itemXPromotionStateDbSet.Add(new ItemXPromotionState() { ID = (int)ItemXPromotionState.State.Available, StateName = "Disponible" });
 
-            itemXPromotionStateDbSet.Add(new ItemXPromotionState() { StateName = "Eliminado" });
-            MenuesSeedStart.SaveChangesForSeed();
+            itemXPromotionStateDbSet.Add(new ItemXPromotionState() { ID = (int)ItemXPromotionState.State.Deleted, StateName = "Eliminado" });
         }
     }
 }

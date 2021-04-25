@@ -9,9 +9,10 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
 
         public enum State
         {
-            EnProceso = 1,
-            ParaEntrega,
-            Entregado
+            WithoutOrdering = 1,
+            InProgress,
+            ForDelivery,
+            Delivered
         }
     }
 }

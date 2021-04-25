@@ -10,6 +10,8 @@ namespace Procuratio.Modules.Menues.Domain.Entities.Intermediate
         public int ExtraIngredientID { get; set; }
         public ExtraIngredient ExtraIngredient { get; set; }
 
+        public bool ItsFree { get; set; }
+
         public int ExtraIngredientXItemStateID { get; set; }
         public ExtraIngredientXItemState ExtraIngredientXItemState { get; set; }
     }

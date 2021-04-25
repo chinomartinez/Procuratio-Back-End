@@ -19,11 +19,16 @@ namespace Procuratio.Modules.Menues.DataAccess
         public DbSet<PromotionDayOfWeek> PromotionDayOfWeek { get; set; }
         public DbSet<PromotionDayOfWeekTimeRange> PromotionDayOfWeekTimeRange { get; set; }
         public DbSet<SubCategoryItem> SubCategoryItem { get; set; }
+        public DbSet<ItemDrinkCapacity> ItemDrinkCapacity { get; set; }
+        public DbSet<ItemSize> ItemSize { get; set; }
+        public DbSet<UnitOfMeasureOfDrink> UnitOfMeasureOfDrink { get; set; }
         #endregion
 
         #region DbSet of intermediate entities
         public DbSet<ExtraIngredientXItem> ExtraIngredientXItem { get; set; }
         public DbSet<ItemXPromotion> ItemXPromotion { get; set; }
+        public DbSet<ItemDrinkCapacityXItem> ItemDrinkCapacityXItem { get; set; }
+        public DbSet<ItemSizeXItem> ItemSizeXItem { get; set; }
         #endregion
 
         #region DbSet of state entities

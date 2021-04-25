@@ -9,11 +9,11 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
 
         public enum State
         {
-            Pendiente = 1,
-            SinConfirmar,
-            Eliminada,
-            Completada,
-            NoVino
+            Pending = 1,
+            Unconfirmed,
+            InProgress,
+            Completed,
+            DidNotCome
         }
     }
 }

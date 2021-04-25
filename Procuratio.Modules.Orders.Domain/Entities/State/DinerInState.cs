@@ -9,8 +9,8 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
 
         public enum State
         {
-            Completada = 1,
-            Eliminado
+            Completed = 1,
+            InProgress
         }
     }
 }

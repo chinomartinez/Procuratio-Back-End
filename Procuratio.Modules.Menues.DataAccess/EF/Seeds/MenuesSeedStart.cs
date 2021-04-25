@@ -4,34 +4,28 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
 {
     internal static class MenuesSeedStart
     {
-        private static MenuesDbContext MenuesDbContext;
-
         internal static void CreateSeeds(MenuesDbContext menuesDbContext)
         {
-            MenuesDbContext = menuesDbContext;
-
-            ProductionEnviromentSeeds();
-            TestingSeeds();
+            ProductionEnviromentSeeds(menuesDbContext);
+            TestingSeeds(menuesDbContext);
 
             menuesDbContext.SaveChanges();
         }
 
-        private static void ProductionEnviromentSeeds()
+        private static void ProductionEnviromentSeeds(MenuesDbContext menuesDbContext)
         {
-            CategoryItemStateSeed.StartCategoryItemStateSeed(MenuesDbContext.CategoryItemState);
-            ExtraIngredientStateSeed.StartExtraIngredientStateSeed(MenuesDbContext.ExtraIngredientState);
-            ExtraIngredientXItemStateSeed.StartExtraIngredientXItemStateSeed(MenuesDbContext.ExtraIngredientXItemState);
-            ItemStateSeed.StartItemStateSeed(MenuesDbContext.ItemState);
-            ItemXPromotionStateSeed.StartCategoryItemStateSeed(MenuesDbContext.ItemXPromotionState);
-            SubCategoryItemStateSeed.StartCategoryItemStateSeed(MenuesDbContext.SubCategoryItemState);
-            PromotionStateSeed.StartPromotionStateSeed(MenuesDbContext.PromotionState);
+            CategoryItemStateSeed.StartCategoryItemStateSeed(menuesDbContext.CategoryItemState);
+            ExtraIngredientStateSeed.StartExtraIngredientStateSeed(menuesDbContext.ExtraIngredientState);
+            ExtraIngredientXItemStateSeed.StartExtraIngredientXItemStateSeed(menuesDbContext.ExtraIngredientXItemState);
+            ItemStateSeed.StartItemStateSeed(menuesDbContext.ItemState);
+            ItemXPromotionStateSeed.StartCategoryItemStateSeed(menuesDbContext.ItemXPromotionState);
+            SubCategoryItemStateSeed.StartSubCategoryItemStateSeed(menuesDbContext.SubCategoryItemState);
+            PromotionStateSeed.StartPromotionStateSeed(menuesDbContext.PromotionState);
+            UnitOfMeasureOfDrinkSeed.StarUnitOfMeasureOfDrinkSeedSeed(menuesDbContext.UnitOfMeasureOfDrink);
         }
 
-        private static void TestingSeeds()
+        private static void TestingSeeds(MenuesDbContext menuesDbContext)
         {
-            SaveChangesForSeed();
         }
-
-        internal static void SaveChangesForSeed() => MenuesDbContext.SaveChanges();
     }
 }

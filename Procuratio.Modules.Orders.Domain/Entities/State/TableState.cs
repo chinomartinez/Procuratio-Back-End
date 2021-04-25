@@ -9,9 +9,9 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
 
         public enum State
         {
-            Disponible = 1,
-            Ocupada,
-            Eliminada
+            Available = 1,
+            Ocuped,
+            Deleted
         }
     }
 }

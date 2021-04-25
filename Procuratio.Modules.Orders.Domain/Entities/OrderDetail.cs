@@ -10,6 +10,12 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public int? PromotionID { get; set; }
 
+        public int? ExtraIngredientID { get; set; }
+
+        public int? ItemSizeID { get; set; }
+
+        public int? ItemDrinkCapacityID { get; set; }
+
         public int OrderID { get; set; }
         public Order Order { get; set; }
 

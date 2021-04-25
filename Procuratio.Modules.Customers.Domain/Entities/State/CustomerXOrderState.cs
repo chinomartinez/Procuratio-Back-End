@@ -10,9 +10,9 @@ namespace Procuratio.Modules.Customers.Domain.Entities.State
 
         public enum State
         {
-            Disponible = 1,
-            Usado,
-            Eliminado
+            Available = 1,
+            Used,
+            Deleted
         }
     }
 }

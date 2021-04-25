@@ -6,15 +6,13 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds.ProductionEnviroment
 {
     internal static class SubCategoryItemStateSeed
     {
-        internal static void StartCategoryItemStateSeed(DbSet<SubCategoryItemState> subCategoryItemStateDbSet)
+        internal static void StartSubCategoryItemStateSeed(DbSet<SubCategoryItemState> subCategoryItemStateDbSet)
         {
             if (subCategoryItemStateDbSet.Any()) return;
 
-            subCategoryItemStateDbSet.Add(new SubCategoryItemState() { StateName = "Disponible" });
-            MenuesSeedStart.SaveChangesForSeed();
+            subCategoryItemStateDbSet.Add(new SubCategoryItemState() { ID = (int)SubCategoryItemState.State.Available, StateName = "Disponible" });
 
-            subCategoryItemStateDbSet.Add(new SubCategoryItemState() { StateName = "Eliminado" });
-            MenuesSeedStart.SaveChangesForSeed();
+            subCategoryItemStateDbSet.Add(new SubCategoryItemState() { ID = (int)SubCategoryItemState.State.Deleted, StateName = "Eliminado" });
         }
     }
 }

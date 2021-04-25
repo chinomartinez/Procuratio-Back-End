@@ -4,26 +4,21 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.Seeds
 {
     internal static class CustomersSeedStart
     {
-        private static CustomersDbContext CustomersDbContext;
-
         internal static void CreateSeeds(CustomersDbContext customersDbContext)
         {
-            CustomersDbContext = customersDbContext;
+            ProductionEnviromentSeeds(customersDbContext);
+            TestingSeeds(customersDbContext);
 
-            ProductionEnviromentSeeds();
-            TestingSeeds();
+            customersDbContext.SaveChanges();
         }
 
-        private static void ProductionEnviromentSeeds()
+        private static void ProductionEnviromentSeeds(CustomersDbContext customersDbContext)
         {
-            CustomerXOrderStateSeed.StartCashStateSeed(CustomersDbContext.CustomerXOrderState);
+            CustomerXOrderStateSeed.StartCashStateSeed(customersDbContext.CustomerXOrderState);
         }
 
-        private static void TestingSeeds()
+        private static void TestingSeeds(CustomersDbContext customersDbContext)
         {
-            SaveChangesForSeed();
         }
-
-        internal static void SaveChangesForSeed() => CustomersDbContext.SaveChanges();
     }
 }

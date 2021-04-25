@@ -12,16 +12,6 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
 
             builder.Property(x => x.Description).HasMaxLength(200).IsRequired();
 
-            builder.Property(x => x.MenuPrice).HasPrecision(18, 4);
-
-            builder.Property(x => x.DinerInPrice).HasPrecision(18, 4);
-
-            builder.Property(x => x.TakeAwayPrice).HasPrecision(18, 4);
-
-            builder.Property(x => x.DeliveryPrice).HasPrecision(18, 4);
-
-            builder.Property(x => x.PromotionPrice).HasPrecision(18, 4);
-
             builder.Property(x => x.Image).HasMaxLength(200);
         }
     }

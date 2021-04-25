@@ -10,14 +10,11 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (customerXOrderStateSeedDbSet.Any()) return;
 
-            customerXOrderStateSeedDbSet.Add(new CustomerXOrderState() { StateName = "Disponible" });
-            CustomersSeedStart.SaveChangesForSeed();
+            customerXOrderStateSeedDbSet.Add(new CustomerXOrderState() { ID = (int)CustomerXOrderState.State.Available, StateName = "Disponible" });
 
-            customerXOrderStateSeedDbSet.Add(new CustomerXOrderState() { StateName = "Usado" });
-            CustomersSeedStart.SaveChangesForSeed();
+            customerXOrderStateSeedDbSet.Add(new CustomerXOrderState() { ID = (int)CustomerXOrderState.State.Used, StateName = "Usado" });
 
-            customerXOrderStateSeedDbSet.Add(new CustomerXOrderState() { StateName = "Eliminado" });
-            CustomersSeedStart.SaveChangesForSeed();
+            customerXOrderStateSeedDbSet.Add(new CustomerXOrderState() { ID = (int)CustomerXOrderState.State.Deleted, StateName = "Eliminado" });
         }
     }
 }
