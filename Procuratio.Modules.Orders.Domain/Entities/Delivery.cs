@@ -12,7 +12,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public int OrderID { get; set; }
         public Order Order { get; set; }
 
-        public int DeliveryStateID { get; internal set; }
+        public short DeliveryStateID { get; internal set; }
         public DeliveryState DeliveryState { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Customers.DataAccess;
+using Procuratio.Modules.Customers.Service.Services;
+using Procuratio.Modules.Customers.Service.Services.Interfaces;
 
 namespace Procuratio.Modules.Customers.Service
 {
@@ -8,8 +10,7 @@ namespace Procuratio.Modules.Customers.Service
     {
         public static IServiceCollection AddCustomersServices(this IServiceCollection services)
         {
-            //services.AddScoped<INTERFAZSERVICIO, CLASESERVICIO>();
-            //services.AddSingleton<INTERFAZREPOSITORIO, REPOSITORIO>();
+            services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddDatabase();
 

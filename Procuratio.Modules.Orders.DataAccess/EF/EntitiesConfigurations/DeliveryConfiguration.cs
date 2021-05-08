@@ -4,7 +4,7 @@ using Procuratio.Modules.Orders.Domain.Entities;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
 {
-    public class DeliveryConfiguration : IEntityTypeConfiguration<Delivery>
+    internal class DeliveryConfiguration : IEntityTypeConfiguration<Delivery>
     {
         public void Configure(EntityTypeBuilder<Delivery> builder)
         {

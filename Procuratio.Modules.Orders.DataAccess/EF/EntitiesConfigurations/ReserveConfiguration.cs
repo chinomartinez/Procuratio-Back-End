@@ -4,7 +4,7 @@ using Procuratio.Modules.Orders.Domain.Entities;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
 {
-    public class ReserveConfiguration : IEntityTypeConfiguration<Reserve>
+    internal class ReserveConfiguration : IEntityTypeConfiguration<Reserve>
     {
         public void Configure(EntityTypeBuilder<Reserve> builder)
         {

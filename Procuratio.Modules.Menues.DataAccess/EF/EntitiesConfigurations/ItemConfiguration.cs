@@ -4,11 +4,11 @@ using Procuratio.Modules.Menues.Domain.Entities;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
 {
-    public class ItemConfiguration : IEntityTypeConfiguration<Item>
+    internal class ItemConfiguration : IEntityTypeConfiguration<Item>
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.Property(x => x.ItemName).HasMaxLength(70).IsRequired();
+            builder.Property(x => x.ItemName).HasMaxLength(50).IsRequired();
 
             builder.Property(x => x.Description).HasMaxLength(200).IsRequired();
 

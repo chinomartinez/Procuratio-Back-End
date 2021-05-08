@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Cashes.DataAccess;
+using Procuratio.Modules.Cashes.Service.Services;
+using Procuratio.Modules.Cashes.Service.Services.Interfaces;
 
 namespace Procuratio.Modules.Cashes.Service
 {
@@ -8,8 +10,8 @@ namespace Procuratio.Modules.Cashes.Service
     {
         public static IServiceCollection AddCashesServices(this IServiceCollection services)
         {
-            //services.AddScoped<INTERFAZSERVICIO, CLASESERVICIO>();
-            //services.AddSingleton<INTERFAZREPOSITORIO, REPOSITORIO>();
+            services.AddScoped<ICashService, CashService>();
+            services.AddScoped<IMountTypeService, MountTypeService>();
 
             services.AddDatabase();
 

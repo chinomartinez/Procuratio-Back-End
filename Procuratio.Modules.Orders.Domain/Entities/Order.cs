@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public string KitchenNote { get; set; }
 
-        public int OrderStateID { get; internal set; }
+        public short OrderStateID { get; internal set; }
         public OrderState OrderState { get; set; }
 
         public int ChefID { get; set; }

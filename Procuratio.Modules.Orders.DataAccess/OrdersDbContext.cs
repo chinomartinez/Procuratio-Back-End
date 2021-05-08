@@ -14,7 +14,6 @@ namespace Procuratio.Modules.Orders.DataAccess
         #region DbSet of entities
         public DbSet<Delivery> Delivery { get; set; }
         public DbSet<DinerIn> DinerIn { get; set; }
-        public DbSet<ItemInKitchen> ItemInKitchen { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         public DbSet<Reserve> Reserve { get; set; }

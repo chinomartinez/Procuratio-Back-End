@@ -29,11 +29,11 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 
                     b.Property<string>("CategoryItemName")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("CategoryItemStateID")
-                        .HasColumnType("int");
+                    b.Property<short>("CategoryItemStateID")
+                        .HasColumnType("smallint");
 
                     b.Property<int>("RestaurantID")
                         .HasColumnType("int");
@@ -45,98 +45,30 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.ToTable("CategoryItem");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.ExtraIngredient", b =>
+            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Intermediate.ItemAttributeXItem", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal?>("DeliveryPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<decimal?>("DinerInPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<string>("ExtraIngredientName")
-                        .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
-
-                    b.Property<int>("ExtraIngredientStateID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("MenuPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<decimal?>("PromotionPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("TakeAwayPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ExtraIngredientStateID");
-
-                    b.ToTable("ExtraIngredient");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Intermediate.ExtraIngredientXItem", b =>
-                {
-                    b.Property<int>("ExtraIngredientID")
+                    b.Property<int>("ItemAttributeID")
                         .HasColumnType("int");
 
                     b.Property<int>("ItemID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ExtraIngredientXItemStateID")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("PriceInsideRestaurant")
+                        .HasPrecision(19, 4)
+                        .HasColumnType("decimal(19,4)");
+
+                    b.Property<decimal?>("PriceOutsideRestaurant")
+                        .HasPrecision(19, 4)
+                        .HasColumnType("decimal(19,4)");
 
                     b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
-                    b.HasKey("ExtraIngredientID", "ItemID");
-
-                    b.HasIndex("ExtraIngredientXItemStateID");
+                    b.HasKey("ItemAttributeID", "ItemID");
 
                     b.HasIndex("ItemID");
 
-                    b.ToTable("ExtraIngredientXItem");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Intermediate.ItemXPromotion", b =>
-                {
-                    b.Property<int>("ItemID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PromotionID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemXPromotionOrder")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ItemXPromotionStateID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ItemID", "PromotionID");
-
-                    b.HasIndex("ItemXPromotionStateID");
-
-                    b.HasIndex("PromotionID");
-
-                    b.ToTable("ItemXPromotion");
+                    b.ToTable("ItemAttributeXItem");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Item", b =>
@@ -149,18 +81,10 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.Property<int?>("CategoryItemID")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("DeliveryPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<decimal?>("DinerInPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
 
                     b.Property<bool>("ForKitchen")
                         .HasColumnType("bit");
@@ -171,35 +95,20 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 
                     b.Property<string>("ItemName")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("ItemOrder")
                         .HasColumnType("int");
 
-                    b.Property<int>("ItemStateID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("MenuPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("PromotionPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                    b.Property<short>("ItemStateID")
+                        .HasColumnType("smallint");
 
                     b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
                     b.Property<int?>("SubCategoryItemID")
                         .HasColumnType("int");
-
-                    b.Property<decimal?>("TakeAwayPrice")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("ID");
 
@@ -212,85 +121,48 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.ToTable("Item");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Promotion", b =>
+            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.ItemAttribute", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("PromotionName")
+                    b.Property<string>("Attribute")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.Property<int>("PromotionOrder")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PromotionStateID")
-                        .HasColumnType("int");
+                    b.Property<short?>("MeasureID")
+                        .HasColumnType("smallint");
 
                     b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("PromotionStateID");
+                    b.HasIndex("MeasureID");
 
-                    b.ToTable("Promotion");
+                    b.ToTable("ItemAttribute");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.PromotionDayOfWeek", b =>
+            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Measure", b =>
                 {
-                    b.Property<int>("PromotionID")
-                        .HasColumnType("int");
+                    b.Property<short>("ID")
+                        .HasColumnType("smallint");
 
-                    b.Property<int>("DayNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
-
-                    b.HasKey("PromotionID", "DayNumber");
-
-                    b.ToTable("PromotionDayOfWeek");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.PromotionDayOfWeekTimeRange", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<TimeSpan>("Begin")
-                        .HasColumnType("time");
-
-                    b.Property<int>("DayNumberID")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("Finish")
-                        .HasColumnType("time");
-
-                    b.Property<int>("PromotionID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
+                    b.Property<string>("MeasureName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DayNumberID", "PromotionID");
-
-                    b.ToTable("PromotionDayOfWeekTimeRange");
+                    b.ToTable("Measure");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.CategoryItemState", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<short>("ID")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
                         .IsRequired()
@@ -302,46 +174,10 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.ToTable("CategoryItemState");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ExtraIngredientState", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("StateName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ExtraIngredientState");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ExtraIngredientXItemState", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("StateName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ExtraIngredientXItemState");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ItemState", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<short>("ID")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
                         .IsRequired()
@@ -353,46 +189,10 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.ToTable("ItemState");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ItemXPromotionState", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("StateName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ItemXPromotionState");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.PromotionState", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("StateName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("PromotionState");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.SubCategoryItemState", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<short>("ID")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
                         .IsRequired()
@@ -419,14 +219,14 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 
                     b.Property<string>("SubCategoryItemName")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("SubCategoryItemOrder")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubCategoryItemStateID")
-                        .HasColumnType("int");
+                    b.Property<short>("SubCategoryItemStateID")
+                        .HasColumnType("smallint");
 
                     b.HasKey("ID");
 
@@ -448,67 +248,23 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.Navigation("CategoryItemState");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.ExtraIngredient", b =>
+            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Intermediate.ItemAttributeXItem", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.ExtraIngredientState", "ExtraIngredientState")
-                        .WithMany("ExtraIngredient")
-                        .HasForeignKey("ExtraIngredientStateID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ExtraIngredientState");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Intermediate.ExtraIngredientXItem", b =>
-                {
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.ExtraIngredient", "ExtraIngredient")
-                        .WithMany("ExtraIngredientXItem")
-                        .HasForeignKey("ExtraIngredientID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.ExtraIngredientXItemState", "ExtraIngredientXItemState")
-                        .WithMany("ExtraIngredientXItem")
-                        .HasForeignKey("ExtraIngredientXItemStateID")
+                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.ItemAttribute", "ItemAttribute")
+                        .WithMany()
+                        .HasForeignKey("ItemAttributeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Menues.Domain.Entities.Item", "Item")
-                        .WithMany("ExtrasIngredientsXItem")
+                        .WithMany("ItemAttributesXItem")
                         .HasForeignKey("ItemID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ExtraIngredient");
-
-                    b.Navigation("ExtraIngredientXItemState");
-
-                    b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Intermediate.ItemXPromotion", b =>
-                {
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.Item", "Item")
-                        .WithMany("ItemsXPromotions")
-                        .HasForeignKey("ItemID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.ItemXPromotionState", "ItemXPromotionState")
-                        .WithMany("ItemsXPromotion")
-                        .HasForeignKey("ItemXPromotionStateID");
-
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.Promotion", "Promotion")
-                        .WithMany("ItemXPromotion")
-                        .HasForeignKey("PromotionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Item");
 
-                    b.Navigation("ItemXPromotionState");
-
-                    b.Navigation("Promotion");
+                    b.Navigation("ItemAttribute");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Item", b =>
@@ -534,37 +290,13 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.Navigation("SubCategoryItem");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Promotion", b =>
+            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.ItemAttribute", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.PromotionState", "PromotionState")
-                        .WithMany("Promotions")
-                        .HasForeignKey("PromotionStateID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.Measure", "Measure")
+                        .WithMany()
+                        .HasForeignKey("MeasureID");
 
-                    b.Navigation("PromotionState");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.PromotionDayOfWeek", b =>
-                {
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.Promotion", "Promotion")
-                        .WithMany("PromotionsDayOfWeek")
-                        .HasForeignKey("PromotionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Promotion");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.PromotionDayOfWeekTimeRange", b =>
-                {
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.PromotionDayOfWeek", "PromotionsDayOfWeek")
-                        .WithMany("PromotionsDayOfWeekTimeRange")
-                        .HasForeignKey("DayNumberID", "PromotionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PromotionsDayOfWeek");
+                    b.Navigation("Measure");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.SubCategoryItem", b =>
@@ -593,28 +325,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.Navigation("SubCategoryItems");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.ExtraIngredient", b =>
-                {
-                    b.Navigation("ExtraIngredientXItem");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Item", b =>
                 {
-                    b.Navigation("ExtrasIngredientsXItem");
-
-                    b.Navigation("ItemsXPromotions");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Promotion", b =>
-                {
-                    b.Navigation("ItemXPromotion");
-
-                    b.Navigation("PromotionsDayOfWeek");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.PromotionDayOfWeek", b =>
-                {
-                    b.Navigation("PromotionsDayOfWeekTimeRange");
+                    b.Navigation("ItemAttributesXItem");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.CategoryItemState", b =>
@@ -622,29 +335,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.Navigation("CategoryItem");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ExtraIngredientState", b =>
-                {
-                    b.Navigation("ExtraIngredient");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ExtraIngredientXItemState", b =>
-                {
-                    b.Navigation("ExtraIngredientXItem");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ItemState", b =>
                 {
                     b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ItemXPromotionState", b =>
-                {
-                    b.Navigation("ItemsXPromotion");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.PromotionState", b =>
-                {
-                    b.Navigation("Promotions");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.SubCategoryItemState", b =>

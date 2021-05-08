@@ -54,8 +54,8 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
                     b.Property<int>("OrderID")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerXOrderStateID")
-                        .HasColumnType("int");
+                    b.Property<short>("CustomerXOrderStateID")
+                        .HasColumnType("smallint");
 
                     b.Property<int>("RestaurantID")
                         .HasColumnType("int");
@@ -69,10 +69,8 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Customers.Domain.Entities.State.CustomerXOrderState", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<short>("ID")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
                         .IsRequired()

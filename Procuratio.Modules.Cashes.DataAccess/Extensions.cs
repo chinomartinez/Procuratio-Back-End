@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Cashes.DataAccess.EF.Repositories;
+using Procuratio.Modules.Cashes.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System.Runtime.CompilerServices;
@@ -11,6 +13,9 @@ namespace Procuratio.Modules.Cashes.DataAccess
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
+            services.AddScoped<ICashRepository, CashRepository>();
+            services.AddScoped<IMountTypeRepository, MountTypeRepository>();
+
             services.AddSQLServer<CashesDbContext>();
 
             return services;

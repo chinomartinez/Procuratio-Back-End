@@ -10,9 +10,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (deliveryStateDbSet.Any()) return;
 
-            deliveryStateDbSet.Add(new DeliveryState() { ID = (int)DeliveryState.State.Completado, StateName = "Completado" });
+            deliveryStateDbSet.Add(new DeliveryState() { ID = (short)DeliveryState.State.Completed, StateName = "Completado" });
 
-            deliveryStateDbSet.Add(new DeliveryState() { ID = (int)DeliveryState.State.EnCurso, StateName = "En curso" });
+            deliveryStateDbSet.Add(new DeliveryState() { ID = (short)DeliveryState.State.InProgress, StateName = "En curso" });
         }
     }
 }

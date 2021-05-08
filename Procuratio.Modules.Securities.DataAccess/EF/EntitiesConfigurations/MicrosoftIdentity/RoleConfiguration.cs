@@ -4,7 +4,7 @@ using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 
 namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.MicrosoftIdentity
 {
-    public class RoleConfiguration : IEntityTypeConfiguration<Role>
+    internal class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {

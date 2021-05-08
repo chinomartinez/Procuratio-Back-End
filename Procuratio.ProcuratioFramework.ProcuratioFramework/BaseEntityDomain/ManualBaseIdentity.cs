@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain
 {
-    public abstract class ManualBaseIdentity
+    public abstract class ManualBaseIdentity<TKey>
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        public TKey ID { get; set; }
     }
 }

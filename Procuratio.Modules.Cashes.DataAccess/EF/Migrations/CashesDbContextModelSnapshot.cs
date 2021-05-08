@@ -27,8 +27,8 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CashStateID")
-                        .HasColumnType("int");
+                    b.Property<short>("CashStateID")
+                        .HasColumnType("smallint");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -39,8 +39,8 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Mount")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasPrecision(19, 4)
+                        .HasColumnType("decimal(19,4)");
 
                     b.Property<int>("MountTypeID")
                         .HasColumnType("int");
@@ -91,9 +91,7 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Migrations
             modelBuilder.Entity("Procuratio.Modules.Cashes.Domain.Entities.MovementType", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -107,10 +105,8 @@ namespace Procuratio.Modules.Cashes.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Cashes.Domain.Entities.State.CashState", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<short>("ID")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
                         .IsRequired()

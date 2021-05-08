@@ -15,13 +15,8 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
         private static void ProductionEnviromentSeeds(MenuesDbContext menuesDbContext)
         {
             CategoryItemStateSeed.StartCategoryItemStateSeed(menuesDbContext.CategoryItemState);
-            ExtraIngredientStateSeed.StartExtraIngredientStateSeed(menuesDbContext.ExtraIngredientState);
-            ExtraIngredientXItemStateSeed.StartExtraIngredientXItemStateSeed(menuesDbContext.ExtraIngredientXItemState);
             ItemStateSeed.StartItemStateSeed(menuesDbContext.ItemState);
-            ItemXPromotionStateSeed.StartCategoryItemStateSeed(menuesDbContext.ItemXPromotionState);
             SubCategoryItemStateSeed.StartSubCategoryItemStateSeed(menuesDbContext.SubCategoryItemState);
-            PromotionStateSeed.StartPromotionStateSeed(menuesDbContext.PromotionState);
-            UnitOfMeasureOfDrinkSeed.StarUnitOfMeasureOfDrinkSeedSeed(menuesDbContext.UnitOfMeasureOfDrink);
         }
 
         private static void TestingSeeds(MenuesDbContext menuesDbContext)

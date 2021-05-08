@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Menues.DataAccess;
+using Procuratio.Modules.Menues.Service.Services;
+using Procuratio.Modules.Menues.Service.Services.Interfaces;
 
 namespace Procuratio.Modules.Menues.Service
 {
@@ -8,8 +10,9 @@ namespace Procuratio.Modules.Menues.Service
     {
         public static IServiceCollection AddMenuesServices(this IServiceCollection services)
         {
-            //services.AddScoped<INTERFAZSERVICIO, CLASESERVICIO>();
-            //services.AddSingleton<INTERFAZREPOSITORIO, REPOSITORIO>();
+            services.AddScoped<ICategoryItemService, CategoryItemService>();
+            services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<ISubCategoryItemService, SubCategoryItemService>();
 
             services.AddDatabase();
 

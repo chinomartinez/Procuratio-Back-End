@@ -11,7 +11,7 @@ namespace Procuratio.Modules.Customers.Domain.Entities.Intermediate
         public Customer MyProperty { get; set; }
         public int OrderID { get; set; }
 
-        public int CustomerXOrderStateID { get; internal set; }
+        public short CustomerXOrderStateID { get; internal set; }
         public CustomerXOrderState CustomerXOrderState { get; set; }
     }
 }

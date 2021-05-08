@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Cashes.Domain.Entities
 {
-    public class MovementType : ManualBaseIdentity
+    public class MovementType : ManualBaseIdentity<int>
     {
         public string Name { get; set; }
 

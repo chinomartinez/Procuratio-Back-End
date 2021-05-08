@@ -12,7 +12,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public int OrderID { get; set; }
         public Order Order { get; set; }
 
-        public int DinerInStateID { get; internal set; }
+        public short DinerInStateID { get; internal set; }
         public DinerInState DinerInState { get; set; }
 
         public List<TableXDinerIn> TableXDinerIn { get; set; }

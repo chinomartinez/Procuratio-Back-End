@@ -4,7 +4,7 @@ using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 
 namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.MicrosoftIdentity
 {
-    public class UserClaimConfiguration : IEntityTypeConfiguration<UserClaim>
+    internal class UserClaimConfiguration : IEntityTypeConfiguration<UserClaim>
     {
         public void Configure(EntityTypeBuilder<UserClaim> builder)
         {

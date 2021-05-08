@@ -4,7 +4,7 @@ using Procuratio.Modules.Orders.Domain.Entities.intermediate;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations.Intermediate
 {
-    public class TableXReserveConfiguration : IEntityTypeConfiguration<TableXReserve>
+    internal class TableXReserveConfiguration : IEntityTypeConfiguration<TableXReserve>
     {
         public void Configure(EntityTypeBuilder<TableXReserve> builder)
         {

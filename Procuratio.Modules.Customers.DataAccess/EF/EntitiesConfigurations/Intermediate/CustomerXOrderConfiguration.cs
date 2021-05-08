@@ -4,7 +4,7 @@ using Procuratio.Modules.Customers.Domain.Entities.Intermediate;
 
 namespace Procuratio.Modules.Customers.DataAccess.EF.EntitiesConfigurations.Intermediate
 {
-    public class CustomerXOrderConfiguration : IEntityTypeConfiguration<CustomerXOrder>
+    internal class CustomerXOrderConfiguration : IEntityTypeConfiguration<CustomerXOrder>
     {
         public void Configure(EntityTypeBuilder<CustomerXOrder> builder)
         {

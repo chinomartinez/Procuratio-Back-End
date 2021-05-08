@@ -4,7 +4,7 @@ using Procuratio.Modules.Securities.Domain.Entities;
 
 namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations
 {
-    public class RestaruantConfiguration : IEntityTypeConfiguration<Restaruant>
+    internal class RestaruantConfiguration : IEntityTypeConfiguration<Restaruant>
     {
         public void Configure(EntityTypeBuilder<Restaruant> builder)
         {

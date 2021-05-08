@@ -4,7 +4,7 @@ using Procuratio.Modules.Orders.Domain.Entities;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
 {
-    public class OrderConfiguration : IEntityTypeConfiguration<Order>
+    internal class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
