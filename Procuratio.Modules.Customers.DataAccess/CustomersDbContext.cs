@@ -7,7 +7,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Inter
 
 namespace Procuratio.Modules.Customers.DataAccess
 {
-    public class CustomersDbContext : DbContext, ISeed
+    internal class CustomersDbContext : DbContext, ISeed
     {
         internal const string CustomersSchemaName = "Customers";
 

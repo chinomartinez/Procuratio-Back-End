@@ -4,4 +4,9 @@
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Procuratio.Modules.Securities.Domain\Procuratio.Modules.Securities.Domain.csproj" />
+	  <ProjectReference Include="..\Procuratio.Modules.Securities.DTO\Procuratio.Modules.Securities.DTO.csproj" />
+	</ItemGroup>
+
 </Project>

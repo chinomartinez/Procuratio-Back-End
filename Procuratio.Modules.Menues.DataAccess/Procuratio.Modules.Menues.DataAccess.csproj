@@ -5,6 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Folder Include="EF\EntitiesConfigurations\Intermediate\" />
 		<Folder Include="EF\Seeds\Testing\" />
 	</ItemGroup>
 

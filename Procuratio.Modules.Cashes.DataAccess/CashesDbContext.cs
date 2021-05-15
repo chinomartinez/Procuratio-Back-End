@@ -6,7 +6,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Inter
 
 namespace Procuratio.Modules.Cashes.DataAccess
 {
-    public class CashesDbContext : DbContext, ISeed
+    internal class CashesDbContext : DbContext, ISeed
     {
         internal const string CashesSchemaName = "Cashes";
 

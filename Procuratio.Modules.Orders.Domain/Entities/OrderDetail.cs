@@ -8,7 +8,6 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public int QuantityInKitchen { get; set; }
 
-        public int ItemAttributeID { get; set; }
         public int ItemID { get; set; }
 
         public int OrderID { get; set; }

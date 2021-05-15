@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Menues.DataAccess;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 {
     [DbContext(typeof(MenuesDbContext))]
-    partial class MenuesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210515132458_DeletingItemAttribute")]
+    partial class DeletingItemAttribute
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,6 +108,19 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.HasIndex("SubCategoryItemID");
 
                     b.ToTable("Item");
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Measure", b =>
+                {
+                    b.Property<short>("ID")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("MeasureName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Measure");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.CategoryItemState", b =>

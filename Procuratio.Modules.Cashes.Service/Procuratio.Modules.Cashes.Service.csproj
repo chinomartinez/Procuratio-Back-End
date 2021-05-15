@@ -12,6 +12,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Procuratio.Modules.Cashes.DataAccess\Procuratio.Modules.Cashes.DataAccess.csproj" />
+		<ProjectReference Include="..\Procuratio.Modules.Cashes.DTO\Procuratio.Modules.Cashes.DTO.csproj" />
+		<ProjectReference Include="..\Procuratio.Modules.Cashes.Mapper\Procuratio.Modules.Cashes.Mapper.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
 	</ItemGroup>
 

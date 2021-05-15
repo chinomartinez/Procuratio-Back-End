@@ -5,6 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Procuratio.Modules.Orders.DTO\Procuratio.Modules.Orders.DTO.csproj" />
 		<ProjectReference Include="..\Procuratio.Modules.Orders.Service\Procuratio.Modules.Orders.Service.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />

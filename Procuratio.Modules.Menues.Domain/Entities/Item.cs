@@ -1,5 +1,4 @@
-﻿using Procuratio.Modules.Menues.Domain.Entities.Intermediate;
-using Procuratio.Modules.Menues.Domain.Entities.State;
+﻿using Procuratio.Modules.Menues.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -19,6 +18,12 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public int ItemOrder { get; set; }
 
+        public decimal? PriceInsideRestaurant { get; set; }
+
+        public decimal? PriceOutsideRestaurant { get; set; }
+
+        public string Code { get; set; }
+
         public short ItemStateID { get; internal set; }
         public ItemState ItemState { get; set; }
 
@@ -27,7 +32,5 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public int? SubCategoryItemID { get; set; }
         public SubCategoryItem SubCategoryItem { get; set; }
-
-        public List<ItemAttributeXItem> ItemAttributesXItem { get; set; }
     }
 }

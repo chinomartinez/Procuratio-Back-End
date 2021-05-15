@@ -1,25 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Menues.DataAccess.EF.Seeds;
 using Procuratio.Modules.Menues.Domain.Entities;
-using Procuratio.Modules.Menues.Domain.Entities.Intermediate;
 using Procuratio.Modules.Menues.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 
 namespace Procuratio.Modules.Menues.DataAccess
 {
-    public class MenuesDbContext : DbContext, ISeed
+    internal class MenuesDbContext : DbContext, ISeed
     {
         internal const string MenuesSchemaName = "Menues";
 
         #region DbSet of entities
         public DbSet<CategoryItem> CategoryItem { get; set; }
         public DbSet<SubCategoryItem> SubCategoryItem { get; set; }
-        public DbSet<Measure> Measure { get; set; }
-        public DbSet<ItemAttribute> ItemAttribute { get; set; }
         #endregion
 
         #region DbSet of intermediate entities
-        public DbSet<ItemAttributeXItem> ItemAttributeXItem { get; set; }
         #endregion
 
         #region DbSet of state entities

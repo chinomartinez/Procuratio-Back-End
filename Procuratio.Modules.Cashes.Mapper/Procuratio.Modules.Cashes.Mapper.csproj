@@ -4,4 +4,9 @@
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Procuratio.Modules.Cashes.Domain\Procuratio.Modules.Cashes.Domain.csproj" />
+	  <ProjectReference Include="..\Procuratio.Modules.Cashes.DTO\Procuratio.Modules.Cashes.DTO.csproj" />
+	</ItemGroup>
+
 </Project>
