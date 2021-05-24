@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Securities.Service.Services.Interfaces
+namespace Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity
 {
-    public interface IRoleClaimService
+    public interface IUserService
     {
     }
 }

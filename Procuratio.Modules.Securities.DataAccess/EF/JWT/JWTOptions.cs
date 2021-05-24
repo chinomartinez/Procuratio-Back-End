@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Securities.Service.Services.Interfaces
+namespace Procuratio.Modules.Securities.DataAccess.EF.JWT
 {
-    public interface IUserClaimService
+    internal class JWTOptions
     {
+        public string JWTKey { get; set; }
     }
 }

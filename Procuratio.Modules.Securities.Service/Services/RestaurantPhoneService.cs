@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.Service.Services
 {
-    internal class UserService : IUserService
+    internal class RestaurantPhoneService : IRestaurantPhoneService
     {
-        public UserService()
-        {
-
-        }
     }
 }

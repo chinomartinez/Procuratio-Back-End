@@ -7,10 +7,10 @@
 	<ItemGroup>
 		<Folder Include="EF\EntitiesConfigurations\Intermediate\" />
 		<Folder Include="EF\Seeds\Testing\" />
-		<Folder Include="EF\Seeds\ProductionEnviroment\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.6" />
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0-preview.2.21154.6" />
 	</ItemGroup>
 

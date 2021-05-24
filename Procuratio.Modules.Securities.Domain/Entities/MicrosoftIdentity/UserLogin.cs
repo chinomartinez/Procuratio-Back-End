@@ -4,5 +4,6 @@ namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
 {
     public class UserLogin : IdentityUserLogin<int>
     {
+        public int RestaurantID { get; set; }
     }
 }

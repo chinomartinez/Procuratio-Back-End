@@ -1,17 +1,22 @@
 ﻿using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
+using System.Collections.Generic;
 
 namespace Procuratio.Modules.Securities.Domain.Entities
 {
-    public class Restaruant : BaseIdentity<int>
+    public class Restaruant : ManualBaseIdentity<int>
     {
         public string Name { get; set; }
 
-        public int Withdrawn { get; set; }
+        public string Address { get; set; }
 
-        public DateTime DateWithdrawn { get; set; }
+        public string Slogan { get; set; }
 
-        public User User { get; set; }
+        public int? Withdrawn { get; set; }
+
+        public DateTime? DateWithdrawn { get; set; }
+
+        public List<User> Users { get; set; }
     }
 }

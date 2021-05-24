@@ -5,6 +5,8 @@ namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
 {
     public class User : IdentityUser<int>
     {
-        public List<Restaruant> Restaruants { get; set; }
+        public Restaruant Restaruant { get; set; }
+
+        public int RestaurantID { get; set; }
     }
 }

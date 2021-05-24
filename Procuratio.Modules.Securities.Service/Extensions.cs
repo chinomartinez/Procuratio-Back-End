@@ -22,5 +22,12 @@ namespace Procuratio.Modules.Securities.Service
 
             return services;
         }
+
+        public static IApplicationBuilder AddSecuritiesApps(this IApplicationBuilder app)
+        {
+            app.AddDatabase();
+
+            return app;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration;
@@ -23,6 +24,5 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware
 
             return app;
         }
-
     }
 }

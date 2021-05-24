@@ -1,5 +1,6 @@
 ﻿using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
+using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public Task<DinerIn> GetAsync(int id)
         {
-            return Task.FromResult(_ordersDbContext.DinerIn.SingleOrDefault(x => x.ID == id));
+            return Task.FromResult(_ordersDbContext.DinerIn.SingleOrDefault(x => x.ID == id && TGRID.RestaurantID == x.RestaurantID));
         }
     }
 }

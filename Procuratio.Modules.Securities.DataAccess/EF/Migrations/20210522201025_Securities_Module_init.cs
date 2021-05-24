@@ -11,6 +11,37 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 name: "Securities");
 
             migrationBuilder.CreateTable(
+                name: "Restaruant",
+                schema: "Securities",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Slogan = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Withdrawn = table.Column<int>(type: "int", nullable: true),
+                    DateWithdrawn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Restaruant", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RestaurantPhone",
+                schema: "Securities",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Phone = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RestaurantPhone", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Role",
                 schema: "Securities",
                 columns: table => new
@@ -33,6 +64,8 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RestaruantID = table.Column<int>(type: "int", nullable: true),
+                    RestaurantID = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -51,6 +84,13 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_Restaruant_RestaruantID",
+                        column: x => x.RestaruantID,
+                        principalSchema: "Securities",
+                        principalTable: "Restaruant",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,30 +114,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Restaruant",
-                schema: "Securities",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Withdrawn = table.Column<int>(type: "int", nullable: false),
-                    DateWithdrawn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Restaruant", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Restaruant_User_UserId",
-                        column: x => x.UserId,
-                        principalSchema: "Securities",
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -130,6 +146,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 {
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RestaurantID = table.Column<int>(type: "int", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -153,6 +170,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RestaurantID = table.Column<int>(type: "int", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -173,7 +191,8 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    RestaurantID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -195,12 +214,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Restaruant_UserId",
-                schema: "Securities",
-                table: "Restaruant",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 schema: "Securities",
                 table: "Role",
@@ -219,6 +232,12 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 schema: "Securities",
                 table: "User",
                 column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_RestaruantID",
+                schema: "Securities",
+                table: "User",
+                column: "RestaruantID");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -250,7 +269,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Restaruant",
+                name: "RestaurantPhone",
                 schema: "Securities");
 
             migrationBuilder.DropTable(
@@ -279,6 +298,10 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.DropTable(
                 name: "User",
+                schema: "Securities");
+
+            migrationBuilder.DropTable(
+                name: "Restaruant",
                 schema: "Securities");
         }
     }

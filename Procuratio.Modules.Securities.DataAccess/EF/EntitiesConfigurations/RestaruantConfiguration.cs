@@ -9,6 +9,10 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Restaruant> builder)
         {
             builder.Property(x => x.Name).HasMaxLength(30).IsRequired();
+
+            builder.Property(x => x.Address).HasMaxLength(30).IsRequired();
+
+            builder.Property(x => x.Slogan).HasMaxLength(30).IsRequired();
         }
     }
 }
