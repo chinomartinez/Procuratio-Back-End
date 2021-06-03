@@ -11,8 +11,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
         public enum State : short
         {
             Available = 1,
-            Ocuped,
-            Deleted
+            Ocuped
         }
     }
 }

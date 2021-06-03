@@ -9,6 +9,8 @@ namespace Procuratio.Modules.Securities.Domain.Entities
 {
     public class RestaurantPhone : BaseIdentity<int>
     {
+        public Restaurant Restaruant { get; set; }
+
         public string Phone { get; set; }
     }
 }

@@ -51,7 +51,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.ToTable("Delivery");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DinerIn", b =>
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DineIn", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -74,7 +74,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.HasIndex("OrderID")
                         .IsUnique();
 
-                    b.ToTable("DinerIn");
+                    b.ToTable("DineIn");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Order", b =>
@@ -192,7 +192,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.ToTable("DeliveryState");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.DinerInState", b =>
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.DineInState", b =>
                 {
                     b.Property<short>("ID")
                         .HasColumnType("smallint");
@@ -204,7 +204,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("DinerInState");
+                    b.ToTable("DineInState");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.OrderState", b =>
@@ -283,15 +283,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
-                    b.Property<int>("TableStateID")
-                        .HasColumnType("int");
-
-                    b.Property<short?>("TableStateID1")
+                    b.Property<short>("TableStateID")
                         .HasColumnType("smallint");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("TableStateID1");
+                    b.HasIndex("TableStateID");
 
                     b.ToTable("Table");
                 });
@@ -337,7 +334,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
                     b.HasIndex("TableID");
 
-                    b.ToTable("TableXDinerIn");
+                    b.ToTable("TableXDineIn");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXReserve", b =>
@@ -377,9 +374,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DinerIn", b =>
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DineIn", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.DinerInState", "DinerInState")
+                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.DineInState", "DinerInState")
                         .WithMany("DinerIn")
                         .HasForeignKey("DinerInStateID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -387,7 +384,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
                         .WithOne("DinerIn")
-                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.DinerIn", "OrderID")
+                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.DineIn", "OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -439,7 +436,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.TableState", "TableState")
                         .WithMany("Table")
-                        .HasForeignKey("TableStateID1");
+                        .HasForeignKey("TableStateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TableState");
                 });
@@ -465,7 +464,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXDinerIn", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.DinerIn", "DinnerIn")
+                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.DineIn", "DinnerIn")
                         .WithMany("TableXDinerIn")
                         .HasForeignKey("DinnerInID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -501,7 +500,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Navigation("Table");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DinerIn", b =>
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DineIn", b =>
                 {
                     b.Navigation("TableXDinerIn");
                 });
@@ -529,7 +528,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Navigation("Deliveries");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.DinerInState", b =>
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.DineInState", b =>
                 {
                     b.Navigation("DinerIn");
                 });

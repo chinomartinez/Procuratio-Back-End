@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Securities.DataAccess;
-using Procuratio.Modules.Securities.Service.Services;
+using Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity;
+using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.Services.Interfaces;
+using Procuratio.Modules.Securities.Service.Services;
 
 namespace Procuratio.Modules.Securities.Service
 {

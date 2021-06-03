@@ -29,7 +29,6 @@ namespace Procuratio.Modules.Securities.DataAccess
             services.AddScoped<IUserTokenRepository, UserTokenRepository>();
             services.AddScoped<IUserXRolRepository, UserXRolRepository>();
 
-
             services.AddSQLServer<SecuritiesDbContext>();
 
             services.AddIdentity<User, Role>()
@@ -65,7 +64,7 @@ namespace Procuratio.Modules.Securities.DataAccess
             using ServiceProvider serviceProvider = services.BuildServiceProvider();
             IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
             IConfiguration section = configuration.GetSection(sectionName);
-            T options = new T();
+            T options = new();
 
             section.Bind(options);
 

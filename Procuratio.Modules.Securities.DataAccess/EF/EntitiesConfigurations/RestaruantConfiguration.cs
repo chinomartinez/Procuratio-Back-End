@@ -4,11 +4,13 @@ using Procuratio.Modules.Securities.Domain.Entities;
 
 namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations
 {
-    internal class RestaruantConfiguration : IEntityTypeConfiguration<Restaruant>
+    internal class RestaruantConfiguration : IEntityTypeConfiguration<Restaurant>
     {
-        public void Configure(EntityTypeBuilder<Restaruant> builder)
+        public void Configure(EntityTypeBuilder<Restaurant> builder)
         {
             builder.Property(x => x.Name).HasMaxLength(30).IsRequired();
+
+            builder.HasIndex(x => new { x.Name }).IsUnique(true);
 
             builder.Property(x => x.Address).HasMaxLength(30).IsRequired();
 

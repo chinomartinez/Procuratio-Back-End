@@ -6,6 +6,7 @@
 
 	<ItemGroup>
 		<Folder Include="CustomsDataAnnotationValidations\" />
+		<Folder Include="CustomsDataAnnotations\" />
 	</ItemGroup>
 
 	<ItemGroup>

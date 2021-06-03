@@ -3,7 +3,6 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class SubCategoryItem : BaseEntity<int>
@@ -14,7 +13,7 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public List<Item> Items { get; set; }
 
-        public short SubCategoryItemStateID { get; internal set; }
+        public short SubCategoryItemStateID { get; set; }
         public SubCategoryItemState SubCategoryItemState { get; set; }
 
         public int CategoryID { get; set; }

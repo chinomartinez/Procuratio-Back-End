@@ -2,7 +2,6 @@
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class TakeAway : BaseEntity<int>
@@ -10,7 +9,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public int OrderID { get; set; }
         public Order Order { get; set; }
 
-        public short TakeAwayStateID { get; internal set; }
+        public short TakeAwayStateID { get; set; }
         public TakeAwayState TakeAwayState { get; set; }
     }
 }

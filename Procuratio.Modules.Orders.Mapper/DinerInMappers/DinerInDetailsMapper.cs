@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Orders.Mapper.DinerInMappers
     {
         public DinerInDetailsMapper()
         {
-            CreateMap<DinerIn, DinerInDetailsDTO>();
+            CreateMap<DineIn, DineInDetailsDTO>();
         }
     }
 }

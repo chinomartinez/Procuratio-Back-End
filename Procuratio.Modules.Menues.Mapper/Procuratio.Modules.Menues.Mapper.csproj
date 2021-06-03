@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
@@ -10,7 +10,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Procuratio.Modules.Menues.Domain\Procuratio.Modules.Menues.Domain.csproj" />
-	  <ProjectReference Include="..\Procuratio.Modules.Menues.DTO\Procuratio.Modules.Menues.DTO.csproj" />
 	</ItemGroup>
 
 </Project>

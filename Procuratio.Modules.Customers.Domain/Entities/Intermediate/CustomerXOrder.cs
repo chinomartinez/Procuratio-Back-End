@@ -2,7 +2,6 @@
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Customers.Domain.Entities.Intermediate
 {
     public class CustomerXOrder : IntermediateBaseEntity
@@ -11,7 +10,7 @@ namespace Procuratio.Modules.Customers.Domain.Entities.Intermediate
         public Customer MyProperty { get; set; }
         public int OrderID { get; set; }
 
-        public short CustomerXOrderStateID { get; internal set; }
+        public short CustomerXOrderStateID { get; set; }
         public CustomerXOrderState CustomerXOrderState { get; set; }
     }
 }

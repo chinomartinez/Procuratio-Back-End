@@ -15,7 +15,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds
         private static void ProductionEnviromentSeeds(OrdersDbContext ordersDbContext)
         {
             DeliveryStateSeed.StartDeliveryStateSeed(ordersDbContext.DeliveryState);
-            DinerInStateSeed.StartDinerInStateSeed(ordersDbContext.DinerInState);
+            DinerInStateSeed.StartDineInStateSeed(ordersDbContext.DineInState);
             OrderStateSeed.StartOrderStateSeed(ordersDbContext.OrderState);
             ReserveStateSeed.StartReserveStateSeed(ordersDbContext.ReserveState);
             TableStateSeed.StartTableStateSeed(ordersDbContext.TableState);

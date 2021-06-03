@@ -6,13 +6,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
 {
     internal static class DinerInStateSeed
     {
-        internal static void StartDinerInStateSeed(DbSet<DinerInState> dinerInStateDbSet)
+        internal static void StartDineInStateSeed(DbSet<DineInState> dineInStateDbSet)
         {
-            if (dinerInStateDbSet.Any()) return;
+            if (dineInStateDbSet.Any()) return;
 
-            dinerInStateDbSet.Add(new DinerInState() { ID = (short)DinerInState.State.InProgress, StateName = "En curso" });
+            dineInStateDbSet.Add(new DineInState() { ID = (short)DineInState.State.InProgress, StateName = "En curso" });
 
-            dinerInStateDbSet.Add(new DinerInState() { ID = (short)DinerInState.State.Completed, StateName = "Completada" });
+            dineInStateDbSet.Add(new DineInState() { ID = (short)DineInState.State.Completed, StateName = "Completada" });
         }
     }
 }

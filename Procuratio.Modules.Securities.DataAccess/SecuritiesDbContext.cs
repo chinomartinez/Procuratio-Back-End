@@ -12,7 +12,7 @@ namespace Procuratio.Modules.Securities.DataAccess
     {
         internal const string SecuritesSchemaName = "Securities";
 
-        public DbSet<Restaruant> Restaruant { get; set; }
+        public DbSet<Restaurant> Restaurant { get; set; }
 
         public DbSet<RestaurantPhone> RestaurantPhone { get; set; }
 

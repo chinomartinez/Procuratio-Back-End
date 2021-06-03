@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class Reserve : BaseEntity<int>
@@ -17,7 +16,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public int? OrderID { get; set; }
         public Order Order { get; set; }
 
-        public short ReserveStateID { get; internal set; }
+        public short ReserveStateID { get; set; }
         public ReserveState ReserveState { get; set; }
 
         public int CustomerID { get; set; }

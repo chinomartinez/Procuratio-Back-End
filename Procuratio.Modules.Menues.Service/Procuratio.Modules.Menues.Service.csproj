@@ -17,7 +17,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Procuratio.Modules.Menues.DataAccess\Procuratio.Modules.Menues.DataAccess.csproj" />
-		<ProjectReference Include="..\Procuratio.Modules.Menues.DTO\Procuratio.Modules.Menues.DTO.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
 	</ItemGroup>

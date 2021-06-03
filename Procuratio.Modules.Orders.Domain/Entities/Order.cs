@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class Order : BaseEntity<int>
@@ -13,7 +12,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public string KitchenNote { get; set; }
 
-        public short OrderStateID { get; internal set; }
+        public short OrderStateID { get; set; }
         public OrderState OrderState { get; set; }
 
         public int ChefID { get; set; }
@@ -28,7 +27,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public TakeAway TakeAway { get; set; }
 
-        public DinerIn DinerIn { get; set; }
+        public DineIn DinerIn { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
     }

@@ -9,6 +9,10 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
         public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder.ToTable(nameof(Role).ToString(), SecuritiesDbContext.SecuritesSchemaName);
+
+            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.NormalizedName).IsRequired();
+            builder.Property(x => x.ConcurrencyStamp).IsRequired();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Procuratio.Modules.Orders.DataAccess
         public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
             services.AddScoped<IDeliveryRepository, DeliveryRepository>();
-            services.AddScoped<IDinerInRepository, DinerInRepository>();
+            services.AddScoped<IDineInRepository, DineInRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IReserveRepository, ReserveRepository>();

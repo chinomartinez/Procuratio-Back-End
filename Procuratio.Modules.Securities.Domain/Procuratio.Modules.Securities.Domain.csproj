@@ -10,7 +10,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Entities\Intermediate\" />
-	  <Folder Include="Entities\State\" />
 	</ItemGroup>
 
 </Project>

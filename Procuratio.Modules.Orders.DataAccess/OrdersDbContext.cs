@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Orders.DataAccess
 
         #region DbSet of entities
         public DbSet<Delivery> Delivery { get; set; }
-        public DbSet<DinerIn> DinerIn { get; set; }
+        public DbSet<DineIn> DineIn { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         public DbSet<Reserve> Reserve { get; set; }
@@ -22,13 +22,13 @@ namespace Procuratio.Modules.Orders.DataAccess
         #endregion
 
         #region DbSet of intermediate entities
-        public DbSet<TableXDinerIn> TableXDinerIn { get; set; }
+        public DbSet<TableXDinerIn> TableXDineIn { get; set; }
         public DbSet<TableXReserve> TableXReserve { get; set; }
         #endregion
 
         #region DbSet of state entities
         public DbSet<DeliveryState> DeliveryState { get; set; }
-        public DbSet<DinerInState> DinerInState { get; set; }
+        public DbSet<DineInState> DineInState { get; set; }
         public DbSet<OrderState> OrderState { get; set; }
         public DbSet<ReserveState> ReserveState { get; set; }
         public DbSet<TableState> TableState { get; set; }
@@ -41,7 +41,7 @@ namespace Procuratio.Modules.Orders.DataAccess
         {
             modelBuilder.HasDefaultSchema(OrdersSchemaName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
+            
             base.OnModelCreating(modelBuilder);
         }
 

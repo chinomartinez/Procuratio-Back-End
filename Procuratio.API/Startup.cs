@@ -6,10 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Procuratio.Modules.Cashes.API;
-using Procuratio.Modules.Customers.API;
 using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
+using Procuratio.Modules.Orders.Service.Mappers.DinerInMappers;
 using Procuratio.Modules.Securities.API;
 using Procuratio.Shared.Infrastructure;
 using System;
@@ -29,8 +28,6 @@ namespace Procuratio.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Startup));
-
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -48,8 +45,6 @@ namespace Procuratio.API
 
             services.AddOrdersModule();
             services.AddMenuesModule();
-            services.AddCustomersModule();
-            services.AddCashesModule();
             services.AddSecuritiesModule();
         }
 
@@ -73,8 +68,6 @@ namespace Procuratio.API
 
             app.UseOrdersModule();
             app.UseMenuesModule();
-            app.UseCustomersModule();
-            app.UseCashesModule();
             app.UseSecuritiesModule();
 
             app.UseAuthorization();

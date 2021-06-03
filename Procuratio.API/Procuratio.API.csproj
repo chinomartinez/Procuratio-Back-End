@@ -18,8 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Procuratio.Modules.Cashes.API\Procuratio.Modules.Cashes.API.csproj" />
-    <ProjectReference Include="..\Procuratio.Modules.Customers.API\Procuratio.Modules.Customers.API.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Menues.API\Procuratio.Modules.Menues.API.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Order.API\Procuratio.Modules.Orders.API.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Securities.API\Procuratio.Modules.Securities.API.csproj" />

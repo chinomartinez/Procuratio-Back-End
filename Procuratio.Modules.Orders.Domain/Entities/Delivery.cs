@@ -2,7 +2,6 @@
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class Delivery : BaseEntity<int>
@@ -12,7 +11,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public int OrderID { get; set; }
         public Order Order { get; set; }
 
-        public short DeliveryStateID { get; internal set; }
+        public short DeliveryStateID { get; set; }
         public DeliveryState DeliveryState { get; set; }
     }
 }

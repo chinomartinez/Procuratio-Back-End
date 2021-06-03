@@ -4,7 +4,6 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "")]
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class Table : BaseEntity<int>
@@ -17,7 +16,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public List<TableXDinerIn> TableXDinerIn { get; set; }
 
-        public int TableStateID { get; internal set; }
+        public short TableStateID { get; set; }
         public TableState TableState { get; set; }
     }
 }
