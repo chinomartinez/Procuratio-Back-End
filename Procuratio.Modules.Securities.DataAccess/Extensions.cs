@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -31,9 +32,16 @@ namespace Procuratio.Modules.Securities.DataAccess
 
             services.AddSQLServer<SecuritiesDbContext>();
 
-            services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<SecuritiesDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<User, Role>(config =>
+            config.Password = new PasswordOptions()
+            {
+                RequireDigit = false,
+                RequiredLength = 4,
+                RequireNonAlphanumeric = false,
+                RequireUppercase = false
+            })
+            .AddEntityFrameworkStores<SecuritiesDbContext>()
+            .AddDefaultTokenProviders();
 
             JWTOptions options = services.GetOptions<JWTOptions>(sectionName: "JWTKey");
 

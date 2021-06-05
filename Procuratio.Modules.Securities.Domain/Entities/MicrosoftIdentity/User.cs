@@ -9,9 +9,9 @@ namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
         public Restaurant Restaurant { get; set; }
         public int RestaurantID { get; set; }
 
-        public string UserSurname { get; set; }
+        public string Name { get; set; }
 
-        public string NormalizedUserSurname { get; set; }
+        public string Surname { get; set; }
 
         public UserState UserState { get; set; }
         public short UserStateID { get; set; }

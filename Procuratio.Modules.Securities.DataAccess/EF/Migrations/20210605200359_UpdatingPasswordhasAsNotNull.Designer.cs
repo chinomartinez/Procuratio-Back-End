@@ -10,8 +10,8 @@ using Procuratio.Modules.Securities.DataAccess;
 namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 {
     [DbContext(typeof(SecuritiesDbContext))]
-    [Migration("20210530210400_AddingUserState")]
-    partial class AddingUserState
+    [Migration("20210605200359_UpdatingPasswordhasAsNotNull")]
+    partial class UpdatingPasswordhasAsNotNull
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,6 +103,10 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -112,11 +116,8 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("NormalizedUserSurname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -125,10 +126,14 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("RestaruantID")
+                    b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -142,10 +147,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<short>("UserStateID")
                         .HasColumnType("smallint");
 
-                    b.Property<string>("UserSurname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -155,10 +156,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.HasIndex("UserStateID");
+                    b.HasIndex("RestaurantID");
 
-                    b.HasIndex("RestaruantID", "UserName", "UserSurname")
-                        .IsUnique();
+                    b.HasIndex("UserName");
+
+                    b.HasIndex("UserStateID");
 
                     b.ToTable("User", "Securities");
                 });
@@ -251,7 +253,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.ToTable("UserXRole", "Securities");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.Restaruant", b =>
+            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.Restaurant", b =>
                 {
                     b.Property<int>("ID")
                         .HasColumnType("int");
@@ -282,7 +284,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Restaruant");
+                    b.ToTable("Restaurant");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.RestaurantPhone", b =>
@@ -333,9 +335,9 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.Restaruant", "Restaruant")
+                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.Restaurant", "Restaurant")
                         .WithMany("Users")
-                        .HasForeignKey("RestaruantID")
+                        .HasForeignKey("RestaurantID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -345,7 +347,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Restaruant");
+                    b.Navigation("Restaurant");
 
                     b.Navigation("UserState");
                 });
@@ -394,14 +396,14 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.RestaurantPhone", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.Restaruant", "Restaruant")
+                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.Restaurant", "Restaruant")
                         .WithMany("RestaurantPhones")
                         .HasForeignKey("RestaruantID");
 
                     b.Navigation("Restaruant");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.Restaruant", b =>
+            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.Restaurant", b =>
                 {
                     b.Navigation("RestaurantPhones");
 

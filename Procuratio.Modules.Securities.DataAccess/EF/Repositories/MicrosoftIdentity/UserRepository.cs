@@ -33,9 +33,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
         {
             toCreate.RestaurantID = TGRID.RestaurantID;
 
-            await _userManager.CreateAsync(toCreate);
-
-            await _securitiesDbContext.SaveChangesAsync();
+            await _userManager.CreateAsync(toCreate, toCreate.Password);
         }
 
         public async Task DeleteAsync(User entity)

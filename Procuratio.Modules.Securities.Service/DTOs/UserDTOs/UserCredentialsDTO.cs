@@ -10,15 +10,6 @@ namespace Procuratio.Modules.Securities.Service.DTOs.UserDTOs
     public class UserCredentialsDTO
     {
         [Required]
-        public string RestaurantName { get; set; }
-
-        [Required]
-        public int Id { get; set; }
-
-        [Required]
-        public int RestaurantID { get; set; }
-
-        [Required]
         public string UserName { get; set; }
 
         [Required]

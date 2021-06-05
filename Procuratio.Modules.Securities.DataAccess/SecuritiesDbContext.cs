@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Securities.DataAccess.EF.Seeds;
 using Procuratio.Modules.Securities.Domain.Entities;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
+using Procuratio.Modules.Securities.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 
 namespace Procuratio.Modules.Securities.DataAccess
@@ -15,6 +16,8 @@ namespace Procuratio.Modules.Securities.DataAccess
         public DbSet<Restaurant> Restaurant { get; set; }
 
         public DbSet<RestaurantPhone> RestaurantPhone { get; set; }
+
+        public DbSet<UserState> UserState { get; set; }
 
         public SecuritiesDbContext(DbContextOptions<SecuritiesDbContext> options) : base(options) { }
 

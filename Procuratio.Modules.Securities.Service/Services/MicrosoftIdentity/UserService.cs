@@ -50,9 +50,12 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
                 UserName = addDTO.UserName, 
                 NormalizedUserName = addDTO.UserName,
                 Password = addDTO.Password, 
-                UserSurname =  addDTO.UserSurname,
-                NormalizedUserSurname = addDTO.UserSurname,
-                UserStateID = 1 // Cambiar esto (falta agregar la seed)
+                Name = addDTO.Name,
+                Surname =  addDTO.Surname,
+                LockoutEnabled = false,
+                TwoFactorEnabled = false,
+                EmailConfirmed = false,
+                UserStateID = 1 // Cambiar esto
             };
 
             await _userRepository.AddAsync(user);
@@ -107,33 +110,34 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         private async Task<AuthenticationResponseDTO> BuildToken(UserCredentialsDTO credentials)
         {
+            User user = await _userManager.FindByNameAsync(credentials.UserName);
+
             var claims = new List<Claim>()
             {
-                new Claim("restaurantid", credentials.RestaurantID.ToString()),
-                new Claim(ClaimTypes.Name, credentials.UserName.ToString())
+                new Claim("restaurantid", user.RestaurantID.ToString()),
+                new Claim(ClaimTypes.Name, user.UserName.ToString())
             };
 
-            User user = await _userManager.FindByIdAsync(credentials.Id.ToString());
             IList<Claim> claimsDB = await _userManager.GetClaimsAsync(user);
 
             claims.AddRange(claimsDB);
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["llavejwt"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTKey"]));
             var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var expiracion = DateTime.UtcNow.AddDays(1);
+            var expiration = DateTime.UtcNow.AddDays(1);
 
             var token = new JwtSecurityToken(
                 issuer: null, 
                 audience: null, 
                 claims: claims,
-                expires: expiracion, 
+                expires: expiration, 
                 signingCredentials: credential);
 
             return new AuthenticationResponseDTO()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expiration = expiracion
+                Expiration = expiration
             };
         }
     }

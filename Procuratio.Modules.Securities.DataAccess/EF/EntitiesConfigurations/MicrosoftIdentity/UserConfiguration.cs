@@ -14,14 +14,15 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
 
             builder.Property(x => x.NormalizedUserName).IsRequired();
 
-            builder.Property(x => x.UserSurname).IsRequired();
+            builder.Property(x => x.Name).IsRequired();
 
-            builder.Property(x => x.NormalizedUserSurname).IsRequired();
+            builder.Property(x => x.Surname).IsRequired();
+
+            builder.Property(x => x.PasswordHash).HasColumnType("nvarchar(max)").IsRequired();
 
             builder.Ignore(x => x.Password);
 
-            builder.HasIndex(x => new { x.RestaurantID, x.UserName, x.PasswordHash }).IsUnique(true);
-            builder.HasIndex(x => new { x.RestaurantID, x.UserName, x.UserSurname }).IsUnique(true);
+            builder.HasIndex(x => new { x.UserName });
         }
     }
 }

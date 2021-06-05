@@ -10,8 +10,8 @@ using Procuratio.Modules.Securities.DataAccess;
 namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 {
     [DbContext(typeof(SecuritiesDbContext))]
-    [Migration("20210602235031_FixingRestaurantColumnaNameInUser")]
-    partial class FixingRestaurantColumnaNameInUser
+    [Migration("20210605190622_ChangingPaswordHashToNull")]
+    partial class ChangingPaswordHashToNull
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,6 +103,10 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -112,12 +116,8 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("NormalizedUserSurname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -131,6 +131,10 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -142,10 +146,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<short>("UserStateID")
                         .HasColumnType("smallint");
 
-                    b.Property<string>("UserSurname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -155,14 +155,9 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
+                    b.HasIndex("RestaurantID");
+
                     b.HasIndex("UserStateID");
-
-                    b.HasIndex("RestaurantID", "UserName", "PasswordHash")
-                        .IsUnique()
-                        .HasFilter("[PasswordHash] IS NOT NULL");
-
-                    b.HasIndex("RestaurantID", "UserName", "UserSurname")
-                        .IsUnique();
 
                     b.ToTable("User", "Securities");
                 });
@@ -286,7 +281,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Restaruant");
+                    b.ToTable("Restaurant");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.RestaurantPhone", b =>

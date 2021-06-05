@@ -11,7 +11,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 name: "Securities");
 
             migrationBuilder.CreateTable(
-                name: "Restaruant",
+                name: "Restaurant",
                 schema: "Securities",
                 columns: table => new
                 {
@@ -24,21 +24,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Restaruant", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RestaurantPhone",
-                schema: "Securities",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Phone = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RestaurantPhone", x => x.ID);
+                    table.PrimaryKey("PK_Restaurant", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,40 +44,38 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "UserState",
                 schema: "Securities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RestaruantID = table.Column<int>(type: "int", nullable: false),
-                    UserSurname = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    NormalizedUserSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<short>(type: "smallint", nullable: false),
+                    StateName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_UserState", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RestaurantPhone",
+                schema: "Securities",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RestaruantID = table.Column<int>(type: "int", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RestaurantPhone", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_User_Restaruant_RestaruantID",
+                        name: "FK_RestaurantPhone_Restaurant_RestaruantID",
                         column: x => x.RestaruantID,
                         principalSchema: "Securities",
-                        principalTable: "Restaruant",
+                        principalTable: "Restaurant",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,6 +98,51 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         principalSchema: "Securities",
                         principalTable: "Role",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                schema: "Securities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RestaurantID = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserStateID = table.Column<short>(type: "smallint", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_Restaurant_RestaurantID",
+                        column: x => x.RestaurantID,
+                        principalSchema: "Securities",
+                        principalTable: "Restaurant",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_User_UserState_UserStateID",
+                        column: x => x.UserStateID,
+                        principalSchema: "Securities",
+                        principalTable: "UserState",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -215,11 +244,17 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Restaruant_Name",
+                name: "IX_Restaurant_Name",
                 schema: "Securities",
-                table: "Restaruant",
+                table: "Restaurant",
                 column: "Name",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RestaurantPhone_RestaruantID",
+                schema: "Securities",
+                table: "RestaurantPhone",
+                column: "RestaruantID");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -241,11 +276,16 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_RestaruantID_UserName_UserSurname",
+                name: "IX_User_RestaurantID",
                 schema: "Securities",
                 table: "User",
-                columns: new[] { "RestaruantID", "UserName", "UserSurname" },
-                unique: true);
+                column: "RestaurantID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_UserStateID",
+                schema: "Securities",
+                table: "User",
+                column: "UserStateID");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -308,7 +348,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 schema: "Securities");
 
             migrationBuilder.DropTable(
-                name: "Restaruant",
+                name: "Restaurant",
+                schema: "Securities");
+
+            migrationBuilder.DropTable(
+                name: "UserState",
                 schema: "Securities");
         }
     }

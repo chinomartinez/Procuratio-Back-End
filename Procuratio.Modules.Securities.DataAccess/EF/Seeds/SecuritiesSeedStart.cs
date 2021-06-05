@@ -14,6 +14,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Seeds
         private static void ProductionEnviromentSeeds(SecuritiesDbContext securitiesDbContext)
         {
             RestaurantSeed.StartRestaurantSeed(securitiesDbContext.Restaurant);
+            UserStateSeed.StartUserStateSeed(securitiesDbContext.UserState);
         }
     }
 }
