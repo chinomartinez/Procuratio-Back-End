@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 
@@ -8,7 +9,9 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable(nameof(User).ToString(), SecuritiesDbContext.SecuritesSchemaName);
+            builder.ToTable(nameof(User).ToString(), SecuritiesDbContext.SecuritesSchemeName);
+
+            builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
             builder.Property(x => x.UserName).IsRequired();
 
@@ -22,7 +25,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
 
             builder.Ignore(x => x.Password);
 
-            builder.HasIndex(x => new { x.UserName });
+            builder.HasIndex(x => new { x.UserName }).IsUnique();
         }
     }
 }

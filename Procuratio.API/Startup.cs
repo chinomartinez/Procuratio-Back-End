@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
-using Procuratio.Modules.Orders.Service.Mappers.DinerInMappers;
+using Procuratio.Modules.Restaurants.API;
 using Procuratio.Modules.Securities.API;
 using Procuratio.Shared.Infrastructure;
 using System;
@@ -45,6 +45,7 @@ namespace Procuratio.API
 
             services.AddOrdersModule();
             services.AddMenuesModule();
+            services.AddRestaurantsModule();
             services.AddSecuritiesModule();
         }
 
@@ -68,6 +69,7 @@ namespace Procuratio.API
 
             app.UseOrdersModule();
             app.UseMenuesModule();
+            app.UseRestaurantsModule();
             app.UseSecuritiesModule();
 
             app.UseAuthorization();

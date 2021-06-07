@@ -23,12 +23,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<DineIn> GetAsync(int id)
         {
-            return await _dineIn.SingleOrDefaultAsync(x => x.ID == id && TGRID.RestaurantID == x.RestaurantID);
+            return await _dineIn.SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
         }
 
         public async Task<IReadOnlyList<DineIn>> BrowseAsync()
         {
-            return await _dineIn.Where(x => x.RestaurantID == TGRID.RestaurantID).AsNoTracking().ToListAsync();
+            return await _dineIn.Where(x => x.BranchID == TGRID.BranchID).AsNoTracking().ToListAsync();
         }
 
         public async Task UpdateAsync(DineIn dineIn)
@@ -40,8 +40,8 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task AddAsync(DineIn toCreate)
         {
-            toCreate.RestaurantID = TGRID.RestaurantID;
-            toCreate.Order.RestaurantID = TGRID.RestaurantID;
+            toCreate.BranchID = TGRID.BranchID;
+            toCreate.Order.BranchID = TGRID.BranchID;
 
             await _dineIn.AddAsync(toCreate);
 

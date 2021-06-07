@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Procuratio.Modules.Menues.Domain.Entities;
 
@@ -9,6 +10,8 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<CategoryItem> builder)
         {
             builder.Property(x => x.CategoryItemName).HasMaxLength(50).IsRequired();
+
+            builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         }
     }
 }

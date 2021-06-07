@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Procuratio.Shared.Infrastructure.SQLServer
 {
@@ -19,10 +21,11 @@ namespace Procuratio.Shared.Infrastructure.SQLServer
 
             services.AddDbContext<T>(x => x.UseSqlServer(options.defaultConnection));
 
-            using var scope = services.BuildServiceProvider().CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<T>();
+            // No es necesario mientras este el Middleware Seed
+            //using IServiceScope scope = services.BuildServiceProvider().CreateScope();
+            //T dbContext = scope.ServiceProvider.GetRequiredService<T>();
 
-            dbContext.Database.Migrate();
+            //dbContext.Database.Migrate();
 
             return services;
         }

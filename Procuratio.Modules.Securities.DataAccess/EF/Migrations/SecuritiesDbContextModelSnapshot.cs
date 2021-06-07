@@ -84,6 +84,9 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -124,9 +127,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -154,9 +154,8 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.HasIndex("RestaurantID");
-
-                    b.HasIndex("UserName");
+                    b.HasIndex("UserName")
+                        .IsUnique();
 
                     b.HasIndex("UserStateID");
 
@@ -194,11 +193,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<string>("ProviderKey")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -221,7 +220,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("RestaurantID")
+                    b.Property<int>("BranchID")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -241,7 +240,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RestaurantID")
+                    b.Property<int>("BranchID")
                         .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
@@ -249,62 +248,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserXRole", "Securities");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.Restaurant", b =>
-                {
-                    b.Property<int>("ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<DateTime?>("DateWithdrawn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Slogan")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<int?>("Withdrawn")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Restaurant");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.RestaurantPhone", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<int?>("RestaruantID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("RestaruantID");
-
-                    b.ToTable("RestaurantPhone");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.State.UserState", b =>
@@ -333,19 +276,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.Restaurant", "Restaurant")
-                        .WithMany("Users")
-                        .HasForeignKey("RestaurantID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Procuratio.Modules.Securities.Domain.Entities.State.UserState", "UserState")
                         .WithMany("Users")
                         .HasForeignKey("UserStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Restaurant");
 
                     b.Navigation("UserState");
                 });
@@ -390,22 +325,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.RestaurantPhone", b =>
-                {
-                    b.HasOne("Procuratio.Modules.Securities.Domain.Entities.Restaurant", "Restaruant")
-                        .WithMany("RestaurantPhones")
-                        .HasForeignKey("RestaruantID");
-
-                    b.Navigation("Restaruant");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.Restaurant", b =>
-                {
-                    b.Navigation("RestaurantPhones");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.State.UserState", b =>

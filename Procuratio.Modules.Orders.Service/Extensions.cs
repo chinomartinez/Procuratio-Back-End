@@ -7,10 +7,12 @@ using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.Service.ValidateChangeState;
 using Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Orders.API")]
 namespace Procuratio.Modules.Orders.Service
 {
-    public static class Extensions
+    internal static class Extensions
     {
         public static IServiceCollection AddOrderServices(this IServiceCollection services)
         {

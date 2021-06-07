@@ -9,7 +9,7 @@ namespace Procuratio.Modules.Orders.DataAccess
 {
     internal class OrdersDbContext : DbContext, ISeed
     {
-        internal const string OrdersSchemaName = "Orders";
+        internal const string OrdersSchemeName = "Orders";
 
         #region DbSet of entities
         public DbSet<Delivery> Delivery { get; set; }
@@ -39,7 +39,7 @@ namespace Procuratio.Modules.Orders.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(OrdersSchemaName);
+            modelBuilder.HasDefaultSchema(OrdersSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
             
             base.OnModelCreating(modelBuilder);

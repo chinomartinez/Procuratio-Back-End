@@ -27,6 +27,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<short>("DeliveryStateID")
                         .HasColumnType("smallint");
 
@@ -36,9 +39,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("OrderID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -58,13 +58,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<short>("DinerInStateID")
                         .HasColumnType("smallint");
 
                     b.Property<int>("OrderID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -84,6 +84,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ChefID")
                         .HasColumnType("int");
 
@@ -98,9 +101,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
                     b.Property<short>("OrderStateID")
                         .HasColumnType("smallint");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
 
                     b.Property<int>("WaiterID")
                         .HasColumnType("int");
@@ -119,6 +119,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ItemID")
                         .HasColumnType("int");
 
@@ -129,9 +132,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("QuantityInKitchen")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -148,6 +148,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
@@ -162,9 +165,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
                     b.Property<short>("ReserveStateID")
                         .HasColumnType("smallint");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -274,14 +274,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
                     b.Property<short>("Number")
                         .HasColumnType("smallint");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
 
                     b.Property<short>("TableStateID")
                         .HasColumnType("smallint");
@@ -300,10 +300,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("OrderID")
+                    b.Property<int>("BranchID")
                         .HasColumnType("int");
 
-                    b.Property<int>("RestaurantID")
+                    b.Property<int>("OrderID")
                         .HasColumnType("int");
 
                     b.Property<short>("TakeAwayStateID")
@@ -327,7 +327,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<int>("TableID")
                         .HasColumnType("int");
 
-                    b.Property<int>("RestaurantID")
+                    b.Property<int>("BranchID")
                         .HasColumnType("int");
 
                     b.HasKey("DinnerInID", "TableID");
@@ -345,7 +345,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<int>("TableID")
                         .HasColumnType("int");
 
-                    b.Property<int>("RestaurantID")
+                    b.Property<int>("BranchID")
                         .HasColumnType("int");
 
                     b.HasKey("ReserveID", "TableID");

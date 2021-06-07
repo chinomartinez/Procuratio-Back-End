@@ -27,6 +27,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
                     b.Property<string>("CategoryItemName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -34,9 +37,6 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 
                     b.Property<short>("CategoryItemStateID")
                         .HasColumnType("smallint");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -51,6 +51,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
 
                     b.Property<int?>("CategoryItemID")
                         .HasColumnType("int");
@@ -90,9 +93,6 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.Property<decimal?>("PriceOutsideRestaurant")
                         .HasPrecision(19, 4)
                         .HasColumnType("decimal(19,4)");
-
-                    b.Property<int>("RestaurantID")
-                        .HasColumnType("int");
 
                     b.Property<int?>("SubCategoryItemID")
                         .HasColumnType("int");
@@ -160,10 +160,10 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("BranchID")
                         .HasColumnType("int");
 
-                    b.Property<int>("RestaurantID")
+                    b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("SubCategoryItemName")

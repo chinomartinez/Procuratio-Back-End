@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Procuratio.Modules.Restaurants.Domain\Procuratio.Modules.Restaurants.Domain.csproj" />
+    <ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EF\EntitiesConfigurations\Intermediate\" />
+    <Folder Include="EF\Repositories\Interfaces\" />
+    <Folder Include="EF\Seeds\Testing\" />
+  </ItemGroup>
+
+</Project>

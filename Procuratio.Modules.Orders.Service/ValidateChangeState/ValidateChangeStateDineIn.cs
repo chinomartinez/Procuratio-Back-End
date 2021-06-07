@@ -15,6 +15,13 @@ namespace Procuratio.Modules.Orders.Service.ValidateChangeState
     {
         public void SetFromWithoutStateToInProgress(DineIn dineIn)
         {
+            bool isNewEntity = dineIn.ID == 0;
+
+            if (!isNewEntity)
+            {
+                // Throw exception
+            }
+
             dineIn.DinerInStateID = (short)DineInState.State.InProgress;
         } 
     }

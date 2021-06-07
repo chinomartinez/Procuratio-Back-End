@@ -33,12 +33,26 @@ namespace Procuratio.Modules.Securities.DataAccess
             services.AddSQLServer<SecuritiesDbContext>();
 
             services.AddIdentity<User, Role>(config =>
-            config.Password = new PasswordOptions()
             {
-                RequireDigit = false,
-                RequiredLength = 4,
-                RequireNonAlphanumeric = false,
-                RequireUppercase = false
+                config.Password = new PasswordOptions()
+                {
+                    RequireDigit = false,
+                    RequiredLength = 5,
+                    RequireNonAlphanumeric = false,
+                    RequireUppercase = false
+                };
+
+                config.Lockout = new LockoutOptions()
+                {
+                    AllowedForNewUsers = false
+                };
+
+                config.SignIn = new SignInOptions()
+                {
+                    RequireConfirmedPhoneNumber = false,
+                    RequireConfirmedAccount = false,
+                    RequireConfirmedEmail = false
+                };
             })
             .AddEntityFrameworkStores<SecuritiesDbContext>()
             .AddDefaultTokenProviders();

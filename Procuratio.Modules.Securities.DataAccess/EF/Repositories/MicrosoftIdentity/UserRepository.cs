@@ -26,12 +26,12 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task<IReadOnlyList<User>> BrowseAsync()
         {
-            return await _user.Where(x => x.RestaurantID == TGRID.RestaurantID).AsNoTracking().ToListAsync();
+            return await _user.Where(x => x.BranchID == TGRID.BranchID).AsNoTracking().ToListAsync();
         }
 
         public async Task AddAsync(User toCreate)
         {
-            toCreate.RestaurantID = TGRID.RestaurantID;
+            toCreate.BranchID = TGRID.BranchID;
 
             await _userManager.CreateAsync(toCreate, toCreate.Password);
         }
@@ -43,14 +43,12 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task<User> GetAsync(int id)
         {
-            return await _user.SingleOrDefaultAsync(x => x.Id == id && TGRID.RestaurantID == x.RestaurantID);
+            return await _user.SingleOrDefaultAsync(x => x.Id == id && TGRID.BranchID == x.BranchID);
         }
 
         public async Task UpdateAsync(User toUpdate)
         {
-            _user.Update(toUpdate);
-
-            await _securitiesDbContext.SaveChangesAsync();
+            await _userManager.UpdateAsync(toUpdate);
         }
     }
 }

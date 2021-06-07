@@ -5,11 +5,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj" />
+	  <Compile Remove="Entities\Intermediate\**" />
+	  <EmbeddedResource Remove="Entities\Intermediate\**" />
+	  <None Remove="Entities\Intermediate\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Entities\Intermediate\" />
+	  <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj" />
 	</ItemGroup>
 
 </Project>

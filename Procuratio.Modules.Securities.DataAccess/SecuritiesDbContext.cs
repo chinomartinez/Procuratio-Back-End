@@ -11,11 +11,7 @@ namespace Procuratio.Modules.Securities.DataAccess
     internal class SecuritiesDbContext : IdentityDbContext<User, Role, int, UserClaim,
                                        UserXRole, UserLogin, RoleClaim, UserToken>, ISeed
     {
-        internal const string SecuritesSchemaName = "Securities";
-
-        public DbSet<Restaurant> Restaurant { get; set; }
-
-        public DbSet<RestaurantPhone> RestaurantPhone { get; set; }
+        internal const string SecuritesSchemeName = "Securities";
 
         public DbSet<UserState> UserState { get; set; }
 
@@ -23,7 +19,7 @@ namespace Procuratio.Modules.Securities.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(SecuritesSchemaName);
+            modelBuilder.HasDefaultSchema(SecuritesSchemeName);
 
             base.OnModelCreating(modelBuilder);
 

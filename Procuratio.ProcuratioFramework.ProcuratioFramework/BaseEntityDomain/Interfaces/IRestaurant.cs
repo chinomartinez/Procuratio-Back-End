@@ -2,6 +2,6 @@
 {
     interface IRestaurant
     {
-        public int RestaurantID { get; set; }
+        public int BranchID { get; set; }
     }
 }

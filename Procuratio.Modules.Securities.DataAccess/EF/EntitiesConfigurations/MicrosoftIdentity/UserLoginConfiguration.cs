@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
     {
         public void Configure(EntityTypeBuilder<UserLogin> builder)
         {
-            builder.ToTable(nameof(UserLogin).ToString(), SecuritiesDbContext.SecuritesSchemaName);
+            builder.ToTable(nameof(UserLogin).ToString(), SecuritiesDbContext.SecuritesSchemeName);
         }
     }
 }

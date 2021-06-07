@@ -11,6 +11,6 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework
     /// </summary>
     public static class TGRID
     {
-        public static int RestaurantID { get { return 1; } }
+        public static int BranchID { get { return 1; } }
     }
 }

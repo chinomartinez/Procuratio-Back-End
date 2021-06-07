@@ -8,6 +8,7 @@ using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Exceptions;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
+using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -25,15 +26,17 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private readonly SignInManager<User> _signInManager;
+        private readonly IValidateChangeStateUser _validateChangeStateUser;
 
         public UserService(IUserRepository userRepository, IMapper mapper, UserManager<User> userManager, 
-            IConfiguration configuration, SignInManager<User> signInManager)
+            IConfiguration configuration, SignInManager<User> signInManager, IValidateChangeStateUser validateChangeStateUser)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
             _signInManager = signInManager;
+            _validateChangeStateUser = validateChangeStateUser;
         }
 
         public async Task<IReadOnlyList<UserDTO>> BrowseAsync()
@@ -45,18 +48,13 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         public async Task AddAsync(AddUserDTO addDTO)
         {
-            User user = new() 
-            { 
-                UserName = addDTO.UserName, 
-                NormalizedUserName = addDTO.UserName,
-                Password = addDTO.Password, 
-                Name = addDTO.Name,
-                Surname =  addDTO.Surname,
-                LockoutEnabled = false,
-                TwoFactorEnabled = false,
-                EmailConfirmed = false,
-                UserStateID = 1 // Cambiar esto
-            };
+            User user = new();
+
+            user = _mapper.Map(addDTO, user);
+
+            user.TwoFactorEnabled = false;
+
+            _validateChangeStateUser.SetFromWithoutStateToActive(user);
 
             await _userRepository.AddAsync(user);
         }
@@ -97,8 +95,8 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         public async Task<ActionResult<AuthenticationResponseDTO>> Login(UserCredentialsDTO userCredentialsDTO)
         {
-            var result = await _signInManager.PasswordSignInAsync(userCredentialsDTO.UserName, userCredentialsDTO.Password,
-                isPersistent: false, lockoutOnFailure: false);
+            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(userCredentialsDTO.UserName, 
+                userCredentialsDTO.Password, isPersistent: false, lockoutOnFailure: false);
 
             if (result.Succeeded)
             {
@@ -112,22 +110,22 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         {
             User user = await _userManager.FindByNameAsync(credentials.UserName);
 
-            var claims = new List<Claim>()
+            List<Claim> claims = new ()
             {
-                new Claim("restaurantid", user.RestaurantID.ToString()),
-                new Claim(ClaimTypes.Name, user.UserName.ToString())
+                new Claim("restaurantid", user.BranchID.ToString()),
+                new Claim("username", user.UserName)
             };
 
             IList<Claim> claimsDB = await _userManager.GetClaimsAsync(user);
 
             claims.AddRange(claimsDB);
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTKey"]));
-            var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            SymmetricSecurityKey symmetricSecurityKey = new (Encoding.UTF8.GetBytes(_configuration["JWTKey"]));
+            SigningCredentials credential = new (symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
-            var expiration = DateTime.UtcNow.AddDays(1);
+            DateTime expiration = DateTime.UtcNow.AddDays(1);
 
-            var token = new JwtSecurityToken(
+            JwtSecurityToken token = new(
                 issuer: null, 
                 audience: null, 
                 claims: claims,

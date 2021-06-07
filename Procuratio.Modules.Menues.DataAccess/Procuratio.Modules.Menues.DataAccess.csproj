@@ -5,7 +5,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="EF\EntitiesConfigurations\Intermediate\" />
+	  <Compile Remove="EF\EntitiesConfigurations\Intermediate\**" />
+	  <EmbeddedResource Remove="EF\EntitiesConfigurations\Intermediate\**" />
+	  <None Remove="EF\EntitiesConfigurations\Intermediate\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Folder Include="EF\Seeds\Testing\" />
 	</ItemGroup>
 

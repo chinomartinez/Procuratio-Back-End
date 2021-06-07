@@ -5,6 +5,9 @@ using Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.Services.Interfaces;
 using Procuratio.Modules.Securities.Service.Services;
+using System.Reflection;
+using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
+using Procuratio.Modules.Securities.Service.ValidateChangeState;
 
 namespace Procuratio.Modules.Securities.Service
 {
@@ -12,13 +15,16 @@ namespace Procuratio.Modules.Securities.Service
     {
         public static IServiceCollection AddSecuritiesServices(this IServiceCollection services)
         {
-            services.AddScoped<IRestaruantService, RestaruantService>();
             services.AddScoped<IRoleClaimService, RoleClaimService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUserClaimService, UserClaimService>();
             services.AddScoped<IUserLoginService, UserLoginService>();
             services.AddScoped<IUserTokenService, UserTokenService>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
+
+            services.AddSingleton<IValidateChangeStateUser, ValidateChangeStateUser>();
 
             services.AddDatabase();
 

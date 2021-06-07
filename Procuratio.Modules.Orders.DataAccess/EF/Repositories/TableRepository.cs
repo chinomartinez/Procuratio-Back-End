@@ -24,7 +24,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task AddAsync(Table toCreate)
         {
-            toCreate.RestaurantID = TGRID.RestaurantID;
+            toCreate.BranchID = TGRID.BranchID;
 
             await _table.AddAsync(toCreate);
 
@@ -33,7 +33,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<IReadOnlyList<Table>> BrowseAsync()
         {
-            return await _table.Where(x => x.RestaurantID == TGRID.RestaurantID).AsNoTracking().ToListAsync();
+            return await _table.Where(x => x.BranchID == TGRID.BranchID).AsNoTracking().ToListAsync();
         }
 
         public async Task DeleteAsync(Table entity)
@@ -43,12 +43,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<Table> GetAsync(int id)
         {
-            return await _table.SingleOrDefaultAsync(x => x.ID == id && TGRID.RestaurantID == x.RestaurantID);
+            return await _table.SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
         }
 
         public async Task<short?> GetLastNumberAsync()
         {
-            return await Task.FromResult(_table.OrderByDescending(x => x.Number).FirstOrDefaultAsync(x => TGRID.RestaurantID == x.RestaurantID).Result.Number);
+            return await Task.FromResult(_table.OrderByDescending(x => x.Number).FirstOrDefaultAsync(x => TGRID.BranchID == x.BranchID).Result.Number);
         }
 
         public async Task UpdateAsync(Table toUpdate)

@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.EntitiesConfigurations.Mic
     {
         public void Configure(EntityTypeBuilder<RoleClaim> builder)
         {
-            builder.ToTable(nameof(RoleClaim).ToString(), SecuritiesDbContext.SecuritesSchemaName);
+            builder.ToTable(nameof(RoleClaim).ToString(), SecuritiesDbContext.SecuritesSchemeName);
         }
     }
 }

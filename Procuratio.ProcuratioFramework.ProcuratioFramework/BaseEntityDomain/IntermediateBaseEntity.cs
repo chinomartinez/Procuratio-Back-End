@@ -4,6 +4,6 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain
 {
     public abstract class IntermediateBaseEntity : IRestaurant
     {
-        public int RestaurantID { get; set; }
+        public int BranchID { get; set; }
     }
 }

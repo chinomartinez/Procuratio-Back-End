@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
     {
         public void Configure(EntityTypeBuilder<UserToken> builder)
         {
-            builder.ToTable(nameof(UserToken).ToString(), SecuritiesDbContext.SecuritesSchemaName);
+            builder.ToTable(nameof(UserToken).ToString(), SecuritiesDbContext.SecuritesSchemeName);
 
             builder.Property(x => x.Value).IsRequired();
         }
