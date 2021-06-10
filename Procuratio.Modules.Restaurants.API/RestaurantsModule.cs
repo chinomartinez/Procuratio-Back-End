@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Procuratio.Modules.Restaurants.Service;
+using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.API")]
 namespace Procuratio.Modules.Restaurants.API

@@ -41,7 +41,7 @@ namespace Procuratio.Modules.Orders.DataAccess
         {
             modelBuilder.HasDefaultSchema(OrdersSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-            
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,11 +1,6 @@
 ﻿using Procuratio.Modules.Orders.Domain.Entities.intermediate;
 using Procuratio.Modules.Orders.Domain.Entities.State;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.DTOs.TableDTOs
 {

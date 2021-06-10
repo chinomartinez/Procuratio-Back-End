@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
 
 namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
 {

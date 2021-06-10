@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Securities.DataAccess;
-using Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
-using Procuratio.Modules.Securities.Service.Services.Interfaces;
-using Procuratio.Modules.Securities.Service.Services;
-using System.Reflection;
-using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
+using Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.ValidateChangeState;
+using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
+using System.Reflection;
 
 namespace Procuratio.Modules.Securities.Service
 {

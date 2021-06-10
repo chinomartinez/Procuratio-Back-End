@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Menues.DataAccess
 {
     internal class MenuesDbContext : DbContext, ISeed
     {
-        internal const string MenuesSchemaName = "Menues";
+        internal const string MenuesSchemeName = "Menues";
 
         #region DbSet of entities
         public DbSet<CategoryItem> CategoryItem { get; set; }
@@ -28,7 +28,7 @@ namespace Procuratio.Modules.Menues.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(MenuesSchemaName);
+            modelBuilder.HasDefaultSchema(MenuesSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

@@ -1,18 +1,15 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Procuratio.Modules.Customers.API;
 using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
 using Procuratio.Modules.Restaurants.API;
 using Procuratio.Modules.Securities.API;
 using Procuratio.Shared.Infrastructure;
-using System;
-using System.Text;
 
 namespace Procuratio.API
 {
@@ -45,6 +42,7 @@ namespace Procuratio.API
 
             services.AddOrdersModule();
             services.AddMenuesModule();
+            services.AddCustomersModule();
             services.AddRestaurantsModule();
             services.AddSecuritiesModule();
         }
@@ -69,6 +67,7 @@ namespace Procuratio.API
 
             app.UseOrdersModule();
             app.UseMenuesModule();
+            app.UseCustomersModule();
             app.UseRestaurantsModule();
             app.UseSecuritiesModule();
 

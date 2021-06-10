@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Procuratio.ProcuratioFramework.ProcuratioFramework
+﻿namespace Procuratio.ProcuratioFramework.ProcuratioFramework
 {
     /// <summary>
     /// Clase temporal que sera reemplazada por un get del ID del restaurante a partir del contexto HTTP

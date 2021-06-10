@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.DTOs.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
-using Procuratio.Modules.Orders.Service.ValidateChangeState;
 using Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Services
@@ -23,7 +18,7 @@ namespace Procuratio.Modules.Orders.Service.Services
         private readonly IValidateChangeStateDineIn _validateChangeStateDineInState;
         private readonly IValidateChangeStateOrder _validateChangeStateOrder;
 
-        public DineInService(IDineInRepository dinerInRepository, IMapper mapper, 
+        public DineInService(IDineInRepository dinerInRepository, IMapper mapper,
             IValidateChangeStateDineIn validateChangeStateDineInState, IValidateChangeStateOrder validateChangeStateOrder)
         {
             _dinerInRepository = dinerInRepository;

@@ -4,15 +4,12 @@ using Procuratio.Modules.Orders.DTO.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.DTOs.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.API.Controllers
 {
-    internal class DineInController : BaseController, IBaseControllerOperations<DineInDTO, UpdateDineInDTO, AddDineInDTO>
+    internal class DineInController : BaseController, IBaseControllerOperations<DineInDTO, UpdateDineInDTO, AddDineInDTO, int>
     {
         private readonly IDineInService _dinerInService;
 

@@ -2,11 +2,6 @@
 using Procuratio.Modules.Restaurants.DataAccess.EF.Seeds;
 using Procuratio.Modules.Restaurants.Domain.Entities;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Restaurants.DataAccess
 {

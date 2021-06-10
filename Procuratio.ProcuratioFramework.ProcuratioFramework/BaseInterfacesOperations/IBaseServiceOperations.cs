@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations
@@ -12,12 +9,13 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     /// <typeparam name="T">Base DTO of the entity</typeparam>
     /// <typeparam name="TUpdate">Update DTO of the entity</typeparam>
     /// <typeparam name="TAdd">Add DTO of the entity</typeparam>
-    public interface IBaseServiceOperations<T, TUpdate, TAdd> 
-        where T : class 
-        where TUpdate : class 
+    /// <typeparam name="TKey">Type of key of the entity</typeparam>
+    public interface IBaseServiceOperations<T, TUpdate, TAdd, TKey>
+        where T : class
+        where TUpdate : class
         where TAdd : class
     {
-        Task<T> GetAsync(int id);
+        Task<T> GetAsync(TKey id);
 
         Task<IReadOnlyList<T>> BrowseAsync();
 
@@ -25,6 +23,6 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
 
         Task AddAsync(TAdd addDTO);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(TKey id);
     }
 }

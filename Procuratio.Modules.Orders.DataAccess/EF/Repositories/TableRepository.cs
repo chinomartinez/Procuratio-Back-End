@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
-using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
@@ -19,7 +16,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         public TableRepository(OrdersDbContext ordersDbContext)
         {
             _ordersDbContext = ordersDbContext;
-            _table= ordersDbContext.Table;
+            _table = ordersDbContext.Table;
         }
 
         public async Task AddAsync(Table toCreate)

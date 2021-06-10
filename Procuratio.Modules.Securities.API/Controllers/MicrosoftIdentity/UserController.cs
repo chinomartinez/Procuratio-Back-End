@@ -1,22 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Securities.API.Controllers.Base;
-using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
 {
-    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UpdateUserDTO, AddUserDTO>
+    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UpdateUserDTO, AddUserDTO, int>
     {
         private readonly IUserService _userService;
-
 
         public UserController(IUserService userService)
         {

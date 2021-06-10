@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Orders.DataAccess;
-using Procuratio.Modules.Orders.Service.Mappers.DinerInMappers;
 using Procuratio.Modules.Orders.Service.Services;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.Service.ValidateChangeState;

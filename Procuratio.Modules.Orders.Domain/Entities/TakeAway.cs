@@ -1,6 +1,5 @@
 ﻿using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
-using System.Runtime.CompilerServices;
 
 namespace Procuratio.Modules.Orders.Domain.Entities
 {

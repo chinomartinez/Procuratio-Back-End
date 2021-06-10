@@ -15,7 +15,7 @@ namespace Procuratio.Modules.Securities.API
             return services;
         }
 
-        public static IApplicationBuilder UseSecuritiesModule(this IApplicationBuilder app) 
+        public static IApplicationBuilder UseSecuritiesModule(this IApplicationBuilder app)
         {
             app.UseAuthentication();
             app.AddSecuritiesApps();

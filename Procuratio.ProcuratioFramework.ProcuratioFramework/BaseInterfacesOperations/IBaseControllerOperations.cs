@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations
@@ -13,12 +10,13 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     /// <typeparam name="T">Base DTO of the entity</typeparam>
     /// <typeparam name="TUpdate">Update DTO of the entity</typeparam>
     /// <typeparam name="TCreate">Create DTO of the entity</typeparam>
-    public interface IBaseControllerOperations<T, TUpdate, TCreate>
+    /// <typeparam name="TKey">Type of key of the entity</typeparam>
+    public interface IBaseControllerOperations<T, TUpdate, TCreate, TKey>
         where T : class
         where TUpdate : class
         where TCreate : class
     {
-        Task<ActionResult<T>> GetAsync(int id);
+        Task<ActionResult<T>> GetAsync(TKey id);
 
         Task<ActionResult> AddAsync([FromBody] TCreate addDTO);
 
@@ -26,6 +24,6 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
 
         Task UpdateAsync([FromBody] TUpdate updateDTO);
 
-        Task<ActionResult> DeleteAsync(int id);
+        Task<ActionResult> DeleteAsync(TKey id);
     }
 }

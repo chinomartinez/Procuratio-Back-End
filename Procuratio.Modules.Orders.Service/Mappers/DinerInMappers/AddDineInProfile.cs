@@ -2,11 +2,8 @@
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.intermediate;
 using Procuratio.Modules.Orders.Service.DTOs.DinerInDTOs;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Mappers.DinerInMappers
 {

@@ -3,13 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Restaurants.DataAccess;
 using Procuratio.Modules.Restaurants.Service.Repositories;
 using Procuratio.Modules.Restaurants.Service.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Restaurants.API")]
 namespace Procuratio.Modules.Restaurants.Service
