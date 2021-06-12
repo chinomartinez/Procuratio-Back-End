@@ -52,18 +52,13 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task AddAsync(AddDineInDTO dineInCreationDTO)
         {
-            Order order = new();
-
-            _validateChangeStateOrder.SetFromwithoutStateToWithoutOrdering(order);
-
-            DineIn dineIn = new()
-            {
-                Order = order
-            };
+            DineIn dineIn = new();
 
             dineIn = _mapper.Map(dineInCreationDTO, dineIn);
 
-            _validateChangeStateDineInState.SetFromWithoutStateToInProgress(dineIn);
+            SetOrderToDineIn(dineIn);
+
+            _validateChangeStateDineInState.ValidateAndSetStateBeforeCreate(dineIn);
 
             await _dinerInRepository.AddAsync(dineIn);
         }
@@ -84,6 +79,15 @@ namespace Procuratio.Modules.Orders.Service.Services
             }
 
             return dineIn;
+        }
+
+        private void SetOrderToDineIn(DineIn newDineIn)
+        {
+            Order order = new();
+
+            _validateChangeStateOrder.ValidateAndSetStateBeforeCreate(order);
+
+            newDineIn.Order = order;
         }
     }
 }

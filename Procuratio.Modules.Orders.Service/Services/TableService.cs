@@ -29,27 +29,11 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             newTable = _mapper.Map(createDTO, newTable);
 
-            short? lastNumber = await GetLastNumberAsync();
+            SetTableNumber(newTable);
 
-            if (lastNumber == null)
-            {
-                const short numberIfIsFirstTable = 1;
-
-                newTable.Number = numberIfIsFirstTable;
-            }
-            else
-            {
-                newTable.Number = (short)(lastNumber + 1);
-            }
-
-            _validateChangeStateTable.SetFromwithoutStateToAvailable(newTable);
+            _validateChangeStateTable.ValidateAndSetStateBeforeCreate(newTable);
 
             await _tableRepository.AddAsync(newTable);
-        }
-
-        private async Task<short?> GetLastNumberAsync()
-        {
-            return await Task.FromResult(_tableRepository.GetLastNumberAsync().Result);
         }
 
         public async Task<IReadOnlyList<TableDTO>> BrowseAsync()
@@ -91,6 +75,27 @@ namespace Procuratio.Modules.Orders.Service.Services
             }
 
             return table;
+        }
+
+        private async Task<short?> GetLastNumberAsync()
+        {
+            return await Task.FromResult(_tableRepository.GetLastNumberAsync().Result);
+        }
+
+        private async void SetTableNumber(Table newTable)
+        {
+            short? lastNumber = await GetLastNumberAsync();
+
+            if (lastNumber == null)
+            {
+                const short numberIfItsFirstTable = 1;
+
+                newTable.Number = numberIfItsFirstTable;
+            }
+            else
+            {
+                newTable.Number = (short)(lastNumber + 1);
+            }
         }
     }
 }

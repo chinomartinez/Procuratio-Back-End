@@ -1,9 +1,9 @@
 ﻿using Procuratio.Modules.Orders.Domain.Entities;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.ValidateChangeStateBase;
 
 namespace Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces
 {
-    internal interface IValidateChangeStateTable
+    internal interface IValidateChangeStateTable : IValidateChangeStateBase<Table>
     {
-        void SetFromwithoutStateToAvailable(Table table);
     }
 }
