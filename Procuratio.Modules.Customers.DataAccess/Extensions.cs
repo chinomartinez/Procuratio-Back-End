@@ -15,14 +15,14 @@ namespace Procuratio.Modules.Customers.DataAccess
         {
             services.AddScoped<ICustomerRepository, CustomerRepository>();
 
-            services.AddSQLServer<CustomersDbContext>();
+            services.AddSQLServer<CustomerDbContext>();
 
             return services;
         }
 
         public static IApplicationBuilder AddDatabase(this IApplicationBuilder app)
         {
-            app.AddSeedDataBase<CustomersDbContext>();
+            app.AddSeedDataBase<CustomerDbContext>();
 
             return app;
         }

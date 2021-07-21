@@ -25,9 +25,9 @@ namespace Procuratio.Modules.Orders.Service
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
 
-            services.AddSingleton<IValidateChangeStateDineIn, ValidateChangeStateDineIn>();
-            services.AddSingleton<IValidateChangeStateOrder, ValidateChangeStateOrder>();
-            services.AddSingleton<IValidateChangeStateTable, ValidateChangeStateTable>();
+            services.AddScoped<IValidateChangeStateDineIn, ValidateChangeStateDineIn>();
+            services.AddScoped<IValidateChangeStateOrder, ValidateChangeStateOrder>();
+            services.AddScoped<IValidateChangeStateTable, ValidateChangeStateTable>();
 
             services.AddDatabase();
 

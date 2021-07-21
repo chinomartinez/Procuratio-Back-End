@@ -8,14 +8,14 @@ using Procuratio.Modules.Restaurants.DataAccess;
 
 namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
 {
-    [DbContext(typeof(RestaurantsDbContext))]
-    partial class RestaurantsDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(RestaurantDbContext))]
+    partial class RestaurantDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Restaurants")
+                .HasDefaultSchema("Restaurant")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);

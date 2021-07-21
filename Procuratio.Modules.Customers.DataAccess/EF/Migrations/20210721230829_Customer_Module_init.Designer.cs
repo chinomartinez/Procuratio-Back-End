@@ -8,15 +8,15 @@ using Procuratio.Modules.Customers.DataAccess;
 
 namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
 {
-    [DbContext(typeof(CustomersDbContext))]
-    [Migration("20210609223306_Customers_Module_init")]
-    partial class Customers_Module_init
+    [DbContext(typeof(CustomerDbContext))]
+    [Migration("20210721230829_Customer_Module_init")]
+    partial class Customer_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Customers")
+                .HasDefaultSchema("Customer")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);

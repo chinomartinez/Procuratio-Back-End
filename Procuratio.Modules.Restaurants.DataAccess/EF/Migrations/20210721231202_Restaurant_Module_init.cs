@@ -1,18 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
 {
-    public partial class Restaurants_Module_init : Migration
+    public partial class Restaurant_Module_init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Restaurants");
+                name: "Restaurant");
 
             migrationBuilder.CreateTable(
                 name: "Restaurant",
-                schema: "Restaurants",
+                schema: "Restaurant",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false),
@@ -26,7 +26,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Branch",
-                schema: "Restaurants",
+                schema: "Restaurant",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false),
@@ -41,7 +41,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
                     table.ForeignKey(
                         name: "FK_Branch_Restaurant_RestaurantID",
                         column: x => x.RestaurantID,
-                        principalSchema: "Restaurants",
+                        principalSchema: "Restaurant",
                         principalTable: "Restaurant",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -49,13 +49,13 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Branch_RestaurantID",
-                schema: "Restaurants",
+                schema: "Restaurant",
                 table: "Branch",
                 column: "RestaurantID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Restaurant_Name",
-                schema: "Restaurants",
+                schema: "Restaurant",
                 table: "Restaurant",
                 column: "Name",
                 unique: true);
@@ -65,11 +65,11 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Branch",
-                schema: "Restaurants");
+                schema: "Restaurant");
 
             migrationBuilder.DropTable(
                 name: "Restaurant",
-                schema: "Restaurants");
+                schema: "Restaurant");
         }
     }
 }

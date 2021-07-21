@@ -10,10 +10,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 {
     internal class TableRepository : ITableRepository
     {
-        private readonly OrdersDbContext _ordersDbContext;
+        private readonly OrderDbContext _ordersDbContext;
         private readonly DbSet<Table> _table;
 
-        public TableRepository(OrdersDbContext ordersDbContext)
+        public TableRepository(OrderDbContext ordersDbContext)
         {
             _ordersDbContext = ordersDbContext;
             _table = ordersDbContext.Table;

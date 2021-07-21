@@ -7,18 +7,18 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Inter
 
 namespace Procuratio.Modules.Securities.DataAccess
 {
-    internal class SecuritiesDbContext : IdentityDbContext<User, Role, int, UserClaim,
+    internal class SecurityDbContext : IdentityDbContext<User, Role, int, UserClaim,
                                        UserXRole, UserLogin, RoleClaim, UserToken>, ISeed
     {
-        internal const string SecuritesSchemeName = "Securities";
+        internal const string SecuritySchemeName = "Security";
 
         public DbSet<UserState> UserState { get; set; }
 
-        public SecuritiesDbContext(DbContextOptions<SecuritiesDbContext> options) : base(options) { }
+        public SecurityDbContext(DbContextOptions<SecurityDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(SecuritesSchemeName);
+            modelBuilder.HasDefaultSchema(SecuritySchemeName);
 
             base.OnModelCreating(modelBuilder);
 

@@ -2,16 +2,16 @@
 
 namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
 {
-    public partial class Customers_Module_init : Migration
+    public partial class Customer_Module_init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Customers");
+                name: "Customer");
 
             migrationBuilder.CreateTable(
                 name: "Customer",
-                schema: "Customers",
+                schema: "Customer",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -31,7 +31,7 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Customer",
-                schema: "Customers");
+                schema: "Customer");
         }
     }
 }

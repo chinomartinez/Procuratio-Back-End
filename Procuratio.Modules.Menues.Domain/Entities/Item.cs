@@ -5,7 +5,7 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 {
     public class Item : BaseEntity<int>
     {
-        public string ItemName { get; set; }
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public string Image { get; set; }
 
-        public int ItemOrder { get; set; }
+        public int Order { get; set; }
 
         public decimal? PriceInsideRestaurant { get; set; }
 
@@ -24,10 +24,7 @@ namespace Procuratio.Modules.Menues.Domain.Entities
         public short ItemStateID { get; set; }
         public ItemState ItemState { get; set; }
 
-        public int? CategoryItemID { get; set; }
-        public CategoryItem CategoryItem { get; set; }
-
-        public int? SubCategoryItemID { get; set; }
+        public int SubCategoryItemID { get; set; }
         public SubCategoryItem SubCategoryItem { get; set; }
     }
 }

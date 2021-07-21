@@ -3,19 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Securities.DataAccess;
 
 namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 {
-    [DbContext(typeof(SecuritiesDbContext))]
-    partial class SecuritiesDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(SecurityDbContext))]
+    [Migration("20210721231301_Security_Module_init")]
+    partial class Security_Module_init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Securities")
+                .HasDefaultSchema("Security")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -48,7 +50,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("Role", "Securities");
+                    b.ToTable("Role", "Security");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.RoleClaim", b =>
@@ -71,7 +73,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaim", "Securities");
+                    b.ToTable("RoleClaim", "Security");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", b =>
@@ -159,7 +161,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
                     b.HasIndex("UserStateID");
 
-                    b.ToTable("User", "Securities");
+                    b.ToTable("User", "Security");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserClaim", b =>
@@ -182,7 +184,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaim", "Securities");
+                    b.ToTable("UserClaim", "Security");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserLogin", b =>
@@ -206,7 +208,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogin", "Securities");
+                    b.ToTable("UserLogin", "Security");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserToken", b =>
@@ -229,7 +231,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserToken", "Securities");
+                    b.ToTable("UserToken", "Security");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.UserXRole", b =>
@@ -247,7 +249,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserXRole", "Securities");
+                    b.ToTable("UserXRole", "Security");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.State.UserState", b =>

@@ -5,9 +5,9 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Inter
 
 namespace Procuratio.Modules.Customers.DataAccess
 {
-    internal class CustomersDbContext : DbContext, ISeed
+    internal class CustomerDbContext : DbContext, ISeed
     {
-        internal const string CustomersSchemeName = "Customers";
+        internal const string CustomerSchemeName = "Customer";
 
         #region DbSet of entities
         public DbSet<Customer> Customer { get; set; }
@@ -19,11 +19,11 @@ namespace Procuratio.Modules.Customers.DataAccess
         #region DbSet of state entities
         #endregion
 
-        public CustomersDbContext(DbContextOptions<CustomersDbContext> options) : base(options) { }
+        public CustomerDbContext(DbContextOptions<CustomerDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(CustomersSchemeName);
+            modelBuilder.HasDefaultSchema(CustomerSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

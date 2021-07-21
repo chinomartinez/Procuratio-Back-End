@@ -17,14 +17,14 @@ namespace Procuratio.Modules.Menues.DataAccess
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<ISubCategoryItemRepository, SubCategoryItemRepository>();
 
-            services.AddSQLServer<MenuesDbContext>();
+            services.AddSQLServer<MenuDbContext>();
 
             return services;
         }
 
         public static IApplicationBuilder AddDatabase(this IApplicationBuilder app)
         {
-            app.AddSeedDataBase<MenuesDbContext>();
+            app.AddSeedDataBase<MenuDbContext>();
 
             return app;
         }

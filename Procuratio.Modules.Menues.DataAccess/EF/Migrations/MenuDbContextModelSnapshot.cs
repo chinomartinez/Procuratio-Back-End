@@ -8,14 +8,14 @@ using Procuratio.Modules.Menues.DataAccess;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 {
-    [DbContext(typeof(MenuesDbContext))]
-    partial class MenuesDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MenuDbContext))]
+    partial class MenuDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Menues")
+                .HasDefaultSchema("Menu")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -30,13 +30,13 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.Property<int>("BranchID")
                         .HasColumnType("int");
 
-                    b.Property<string>("CategoryItemName")
+                    b.Property<short>("CategoryItemStateID")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<short>("CategoryItemStateID")
-                        .HasColumnType("smallint");
 
                     b.HasKey("ID");
 
@@ -75,16 +75,16 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("ItemName")
+                    b.Property<short>("ItemStateID")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("ItemOrder")
+                    b.Property<int>("Order")
                         .HasColumnType("int");
-
-                    b.Property<short>("ItemStateID")
-                        .HasColumnType("smallint");
 
                     b.Property<decimal?>("PriceInsideRestaurant")
                         .HasPrecision(19, 4)
@@ -94,7 +94,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                         .HasPrecision(19, 4)
                         .HasColumnType("decimal(19,4)");
 
-                    b.Property<int?>("SubCategoryItemID")
+                    b.Property<int>("SubCategoryItemID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -166,12 +166,12 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
-                    b.Property<string>("SubCategoryItemName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("SubCategoryItemOrder")
+                    b.Property<int>("Order")
                         .HasColumnType("int");
 
                     b.Property<short>("SubCategoryItemStateID")
@@ -199,7 +199,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Item", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.CategoryItem", "CategoryItem")
+                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.CategoryItem", null)
                         .WithMany("Items")
                         .HasForeignKey("CategoryItemID");
 
@@ -211,9 +211,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Migrations
 
                     b.HasOne("Procuratio.Modules.Menues.Domain.Entities.SubCategoryItem", "SubCategoryItem")
                         .WithMany("Items")
-                        .HasForeignKey("SubCategoryItemID");
-
-                    b.Navigation("CategoryItem");
+                        .HasForeignKey("SubCategoryItemID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ItemState");
 

@@ -10,10 +10,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 {
     internal class DineInRepository : IDineInRepository
     {
-        private readonly OrdersDbContext _ordersDbContext;
+        private readonly OrderDbContext _ordersDbContext;
         private readonly DbSet<DineIn> _dineIn;
 
-        public DineInRepository(OrdersDbContext ordersDbContext)
+        public DineInRepository(OrderDbContext ordersDbContext)
         {
             _ordersDbContext = ordersDbContext;
             _dineIn = ordersDbContext.DineIn;

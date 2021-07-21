@@ -11,7 +11,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
         {
             builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
-            builder.Property(x => x.ItemName).HasMaxLength(50).IsRequired();
+            builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
 
             builder.Property(x => x.Description).HasMaxLength(200).IsRequired();
 

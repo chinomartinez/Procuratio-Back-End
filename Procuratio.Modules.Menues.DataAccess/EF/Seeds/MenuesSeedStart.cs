@@ -4,7 +4,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
 {
     internal static class MenuesSeedStart
     {
-        internal static void CreateSeeds(MenuesDbContext menuesDbContext)
+        internal static void CreateSeeds(MenuDbContext menuesDbContext)
         {
             ProductionEnviromentSeeds(menuesDbContext);
             TestingSeeds(menuesDbContext);
@@ -12,14 +12,14 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
             menuesDbContext.SaveChanges();
         }
 
-        private static void ProductionEnviromentSeeds(MenuesDbContext menuesDbContext)
+        private static void ProductionEnviromentSeeds(MenuDbContext menuesDbContext)
         {
             CategoryItemStateSeed.StartCategoryItemStateSeed(menuesDbContext.CategoryItemState);
             ItemStateSeed.StartItemStateSeed(menuesDbContext.ItemState);
             SubCategoryItemStateSeed.StartSubCategoryItemStateSeed(menuesDbContext.SubCategoryItemState);
         }
 
-        private static void TestingSeeds(MenuesDbContext menuesDbContext)
+        private static void TestingSeeds(MenuDbContext menuesDbContext)
         {
         }
     }

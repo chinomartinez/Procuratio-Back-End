@@ -11,11 +11,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 {
     internal class UserRepository : IUserRepository
     {
-        private readonly SecuritiesDbContext _securitiesDbContext;
+        private readonly SecurityDbContext _securitiesDbContext;
         private readonly DbSet<User> _user;
         private readonly UserManager<User> _userManager;
 
-        public UserRepository(SecuritiesDbContext securitiesDbContext, UserManager<User> userManager)
+        public UserRepository(SecurityDbContext securitiesDbContext, UserManager<User> userManager)
         {
             _securitiesDbContext = securitiesDbContext;
             _user = _securitiesDbContext.Users;
