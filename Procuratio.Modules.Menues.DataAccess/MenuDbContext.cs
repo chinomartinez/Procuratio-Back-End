@@ -6,9 +6,9 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Inter
 
 namespace Procuratio.Modules.Menues.DataAccess
 {
-    internal class MenuesDbContext : DbContext, ISeed
+    internal class MenuDbContext : DbContext, ISeed
     {
-        internal const string MenuesSchemeName = "Menues";
+        internal const string MenuSchemeName = "Menu";
 
         #region DbSet of entities
         public DbSet<CategoryItem> CategoryItem { get; set; }
@@ -24,11 +24,11 @@ namespace Procuratio.Modules.Menues.DataAccess
         public DbSet<SubCategoryItemState> SubCategoryItemState { get; set; }
         #endregion
 
-        public MenuesDbContext(DbContextOptions<MenuesDbContext> options) : base(options) { }
+        public MenuDbContext(DbContextOptions<MenuDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(MenuesSchemeName);
+            modelBuilder.HasDefaultSchema(MenuSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

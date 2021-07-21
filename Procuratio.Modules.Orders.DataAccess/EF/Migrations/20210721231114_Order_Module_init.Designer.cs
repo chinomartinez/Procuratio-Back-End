@@ -9,15 +9,15 @@ using Procuratio.Modules.Orders.DataAccess;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 {
-    [DbContext(typeof(OrdersDbContext))]
-    [Migration("20210607012654_Orders_Module_init")]
-    partial class Orders_Module_init
+    [DbContext(typeof(OrderDbContext))]
+    [Migration("20210721231114_Order_Module_init")]
+    partial class Order_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Orders")
+                .HasDefaultSchema("Order")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);

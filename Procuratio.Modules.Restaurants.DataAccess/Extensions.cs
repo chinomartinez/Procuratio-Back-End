@@ -11,14 +11,14 @@ namespace Procuratio.Modules.Restaurants.DataAccess
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
-            services.AddSQLServer<RestaurantsDbContext>();
+            services.AddSQLServer<RestaurantDbContext>();
 
             return services;
         }
 
         public static IApplicationBuilder AddDatabase(this IApplicationBuilder app)
         {
-            app.AddSeedDataBase<RestaurantsDbContext>();
+            app.AddSeedDataBase<RestaurantDbContext>();
 
             return app;
         }

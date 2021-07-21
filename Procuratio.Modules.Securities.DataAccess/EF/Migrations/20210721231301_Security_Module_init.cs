@@ -1,18 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 {
-    public partial class Securities_Module_init : Migration
+    public partial class Security_Module_init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Securities");
+                name: "Security");
 
             migrationBuilder.CreateTable(
                 name: "Role",
-                schema: "Securities",
+                schema: "Security",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -28,7 +28,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserState",
-                schema: "Securities",
+                schema: "Security",
                 columns: table => new
                 {
                     ID = table.Column<short>(type: "smallint", nullable: false),
@@ -41,7 +41,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.CreateTable(
                 name: "RoleClaim",
-                schema: "Securities",
+                schema: "Security",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -56,7 +56,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     table.ForeignKey(
                         name: "FK_RoleClaim_Role_RoleId",
                         column: x => x.RoleId,
-                        principalSchema: "Securities",
+                        principalSchema: "Security",
                         principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -64,7 +64,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.CreateTable(
                 name: "User",
-                schema: "Securities",
+                schema: "Security",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -94,7 +94,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     table.ForeignKey(
                         name: "FK_User_UserState_UserStateID",
                         column: x => x.UserStateID,
-                        principalSchema: "Securities",
+                        principalSchema: "Security",
                         principalTable: "UserState",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -102,7 +102,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserClaim",
-                schema: "Securities",
+                schema: "Security",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -117,7 +117,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     table.ForeignKey(
                         name: "FK_UserClaim_User_UserId",
                         column: x => x.UserId,
-                        principalSchema: "Securities",
+                        principalSchema: "Security",
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -125,7 +125,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserLogin",
-                schema: "Securities",
+                schema: "Security",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -140,7 +140,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     table.ForeignKey(
                         name: "FK_UserLogin_User_UserId",
                         column: x => x.UserId,
-                        principalSchema: "Securities",
+                        principalSchema: "Security",
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -148,7 +148,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserToken",
-                schema: "Securities",
+                schema: "Security",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -163,7 +163,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     table.ForeignKey(
                         name: "FK_UserToken_User_UserId",
                         column: x => x.UserId,
-                        principalSchema: "Securities",
+                        principalSchema: "Security",
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -171,7 +171,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserXRole",
-                schema: "Securities",
+                schema: "Security",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -184,14 +184,14 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                     table.ForeignKey(
                         name: "FK_UserXRole_Role_RoleId",
                         column: x => x.RoleId,
-                        principalSchema: "Securities",
+                        principalSchema: "Security",
                         principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserXRole_User_UserId",
                         column: x => x.UserId,
-                        principalSchema: "Securities",
+                        principalSchema: "Security",
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -199,58 +199,58 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
-                schema: "Securities",
+                schema: "Security",
                 table: "Role",
                 column: "NormalizedName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaim_RoleId",
-                schema: "Securities",
+                schema: "Security",
                 table: "RoleClaim",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                schema: "Securities",
+                schema: "Security",
                 table: "User",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_UserName",
-                schema: "Securities",
+                schema: "Security",
                 table: "User",
                 column: "UserName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_UserStateID",
-                schema: "Securities",
+                schema: "Security",
                 table: "User",
                 column: "UserStateID");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                schema: "Securities",
+                schema: "Security",
                 table: "User",
                 column: "NormalizedUserName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaim_UserId",
-                schema: "Securities",
+                schema: "Security",
                 table: "UserClaim",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserLogin_UserId",
-                schema: "Securities",
+                schema: "Security",
                 table: "UserLogin",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserXRole_RoleId",
-                schema: "Securities",
+                schema: "Security",
                 table: "UserXRole",
                 column: "RoleId");
         }
@@ -259,35 +259,35 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
         {
             migrationBuilder.DropTable(
                 name: "RoleClaim",
-                schema: "Securities");
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "UserClaim",
-                schema: "Securities");
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "UserLogin",
-                schema: "Securities");
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "UserToken",
-                schema: "Securities");
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "UserXRole",
-                schema: "Securities");
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "Role",
-                schema: "Securities");
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "User",
-                schema: "Securities");
+                schema: "Security");
 
             migrationBuilder.DropTable(
                 name: "UserState",
-                schema: "Securities");
+                schema: "Security");
         }
     }
 }

@@ -7,9 +7,9 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Inter
 
 namespace Procuratio.Modules.Orders.DataAccess
 {
-    internal class OrdersDbContext : DbContext, ISeed
+    internal class OrderDbContext : DbContext, ISeed
     {
-        internal const string OrdersSchemeName = "Orders";
+        internal const string OrderSchemeName = "Order";
 
         #region DbSet of entities
         public DbSet<Delivery> Delivery { get; set; }
@@ -35,11 +35,11 @@ namespace Procuratio.Modules.Orders.DataAccess
         public DbSet<TakeAwayState> TakeAwayState { get; set; }
         #endregion
 
-        public OrdersDbContext(DbContextOptions<OrdersDbContext> options) : base(options) { }
+        public OrderDbContext(DbContextOptions<OrderDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(OrdersSchemeName);
+            modelBuilder.HasDefaultSchema(OrderSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

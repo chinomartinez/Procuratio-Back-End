@@ -29,7 +29,7 @@ namespace Procuratio.Modules.Securities.DataAccess
             services.AddScoped<IUserTokenRepository, UserTokenRepository>();
             services.AddScoped<IUserXRolRepository, UserXRolRepository>();
 
-            services.AddSQLServer<SecuritiesDbContext>();
+            services.AddSQLServer<SecurityDbContext>();
 
             services.AddIdentity<User, Role>(config =>
             {
@@ -53,7 +53,7 @@ namespace Procuratio.Modules.Securities.DataAccess
                     RequireConfirmedEmail = false
                 };
             })
-            .AddEntityFrameworkStores<SecuritiesDbContext>()
+            .AddEntityFrameworkStores<SecurityDbContext>()
             .AddDefaultTokenProviders();
 
             JWTOptions options = services.GetOptions<JWTOptions>(sectionName: "JWTKey");
@@ -75,7 +75,7 @@ namespace Procuratio.Modules.Securities.DataAccess
 
         public static IApplicationBuilder AddDatabase(this IApplicationBuilder app)
         {
-            app.AddSeedDataBase<SecuritiesDbContext>();
+            app.AddSeedDataBase<SecurityDbContext>();
 
             return app;
         }

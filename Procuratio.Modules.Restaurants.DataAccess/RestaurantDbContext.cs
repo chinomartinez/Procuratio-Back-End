@@ -5,9 +5,9 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Inter
 
 namespace Procuratio.Modules.Restaurants.DataAccess
 {
-    internal class RestaurantsDbContext : DbContext, ISeed
+    internal class RestaurantDbContext : DbContext, ISeed
     {
-        internal const string RestaurantsSchemeName = "Restaurants";
+        internal const string RestaurantSchemeName = "Restaurant";
 
         #region DbSet of entities
         public DbSet<Restaurant> Restaurant { get; set; }
@@ -20,11 +20,11 @@ namespace Procuratio.Modules.Restaurants.DataAccess
         #region DbSet of state entities
         #endregion
 
-        public RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> options) : base(options) { }
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(RestaurantsSchemeName);
+            modelBuilder.HasDefaultSchema(RestaurantSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);

@@ -4,7 +4,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Seeds
 {
     internal static class RestaurantsSeedStart
     {
-        internal static void CreateSeeds(RestaurantsDbContext restaurantsDbContext)
+        internal static void CreateSeeds(RestaurantDbContext restaurantsDbContext)
         {
             ProductionEnviromentSeeds(restaurantsDbContext);
             TestingSeeds(restaurantsDbContext);
@@ -12,12 +12,12 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Seeds
             restaurantsDbContext.SaveChanges();
         }
 
-        private static void ProductionEnviromentSeeds(RestaurantsDbContext restaurantsDbContext)
+        private static void ProductionEnviromentSeeds(RestaurantDbContext restaurantsDbContext)
         {
             RestaurantSeed.StartRestaurantSeed(restaurantsDbContext.Restaurant);
         }
 
-        private static void TestingSeeds(RestaurantsDbContext ordersDbContext)
+        private static void TestingSeeds(RestaurantDbContext ordersDbContext)
         {
         }
     }

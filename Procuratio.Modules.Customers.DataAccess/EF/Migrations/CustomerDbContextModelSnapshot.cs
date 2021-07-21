@@ -7,14 +7,14 @@ using Procuratio.Modules.Customers.DataAccess;
 
 namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
 {
-    [DbContext(typeof(CustomersDbContext))]
-    partial class CustomersDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CustomerDbContext))]
+    partial class CustomerDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Customers")
+                .HasDefaultSchema("Customer")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);

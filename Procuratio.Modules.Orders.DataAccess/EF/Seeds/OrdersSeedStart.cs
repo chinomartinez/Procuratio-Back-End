@@ -4,7 +4,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds
 {
     internal static class OrdersSeedStart
     {
-        internal static void CreateSeeds(OrdersDbContext ordersDbContext)
+        internal static void CreateSeeds(OrderDbContext ordersDbContext)
         {
             ProductionEnviromentSeeds(ordersDbContext);
             TestingSeeds(ordersDbContext);
@@ -12,7 +12,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds
             ordersDbContext.SaveChanges();
         }
 
-        private static void ProductionEnviromentSeeds(OrdersDbContext ordersDbContext)
+        private static void ProductionEnviromentSeeds(OrderDbContext ordersDbContext)
         {
             DeliveryStateSeed.StartDeliveryStateSeed(ordersDbContext.DeliveryState);
             DinerInStateSeed.StartDineInStateSeed(ordersDbContext.DineInState);
@@ -22,7 +22,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds
             TakeAwayStateSeed.StartTakeAwayStateSeed(ordersDbContext.TakeAwayState);
         }
 
-        private static void TestingSeeds(OrdersDbContext ordersDbContext)
+        private static void TestingSeeds(OrderDbContext ordersDbContext)
         {
         }
     }

@@ -21,14 +21,14 @@ namespace Procuratio.Modules.Orders.DataAccess
             services.AddScoped<ITableRepository, TableRepository>();
             services.AddScoped<ITakeAwayRepository, TakeAwayRepository>();
 
-            services.AddSQLServer<OrdersDbContext>();
+            services.AddSQLServer<OrderDbContext>();
 
             return services;
         }
 
         public static IApplicationBuilder AddDatabase(this IApplicationBuilder app)
         {
-            app.AddSeedDataBase<OrdersDbContext>();
+            app.AddSeedDataBase<OrderDbContext>();
 
             return app;
         }

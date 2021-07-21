@@ -9,7 +9,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable(nameof(User), SecuritiesDbContext.SecuritesSchemeName);
+            builder.ToTable(nameof(User), SecurityDbContext.SecuritySchemeName);
 
             builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
