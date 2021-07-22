@@ -6,6 +6,6 @@ namespace Procuratio.Modules.Customers.API.Controllers.Base
     [Route(template: BasePath + "/[controller]")]
     public class BaseController : ControllerBase
     {
-        protected const string BasePath = "api/customers-module";
+        protected const string BasePath = "api/customer-module";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
@@ -63,6 +64,11 @@ namespace Procuratio.Modules.Orders.Service.Services
         {
             Table table = await GetTableAsync(id);
             await _tableRepository.DeleteAsync(table);
+        }
+
+        public async Task<ActionResult<int>> GetLastTableNumberAsync()
+        {
+            throw new System.NotImplementedException();
         }
 
         private async Task<Table> GetTableAsync(int id)

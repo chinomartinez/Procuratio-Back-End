@@ -6,6 +6,6 @@ namespace Procuratio.Modules.Orders.API.Controllers.Base
     [Route(template: BasePath + "/[controller]")]
     internal abstract class BaseController : ControllerBase
     {
-        protected const string BasePath = "api/orders-module";
+        protected const string BasePath = "api/order-module";
     }
 }

@@ -6,6 +6,6 @@ namespace Procuratio.Modules.Restaurants.API.Controllers.Base
     [Route(template: BasePath + "/[controller]")]
     internal class BaseController : ControllerBase
     {
-        protected const string BasePath = "api/restaurants-module";
+        protected const string BasePath = "api/restaurant-module";
     }
 }

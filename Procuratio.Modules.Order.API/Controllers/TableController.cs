@@ -52,5 +52,13 @@ namespace Procuratio.Modules.Orders.API.Controllers
         {
             await _tableService.UpdateAsync(updateDTO);
         }
+
+        [HttpGet("last-table-number")]
+        public async Task<ActionResult<int>> GetLastTableNumberAsync()
+        {
+            // TODO: Terminar esto y ver de cambiar de statename a name...
+
+            return Ok(22);
+        }
     }
 }

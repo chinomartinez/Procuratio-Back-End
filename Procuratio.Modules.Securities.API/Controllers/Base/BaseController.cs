@@ -6,6 +6,6 @@ namespace Procuratio.Modules.Securities.API.Controllers.Base
     [Route(template: BasePath + "/[controller]")]
     internal abstract class BaseController : ControllerBase
     {
-        protected const string BasePath = "api/securities-module";
+        protected const string BasePath = "api/security-module";
     }
 }
