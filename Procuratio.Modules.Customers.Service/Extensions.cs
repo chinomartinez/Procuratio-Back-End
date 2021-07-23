@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Customers.Service
 {
     public static class Extensions
     {
-        public static IServiceCollection AddCustomersServices(this IServiceCollection services)
+        public static IServiceCollection AddCustomerServices(this IServiceCollection services)
         {
             services.AddScoped<ICustomerService, CustomerService>();
 
@@ -17,7 +17,7 @@ namespace Procuratio.Modules.Customers.Service
             return services;
         }
 
-        public static IApplicationBuilder AddCustomersApps(this IApplicationBuilder app)
+        public static IApplicationBuilder AddCustomerApps(this IApplicationBuilder app)
         {
             app.AddDatabase();
 

@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Securities.Service.DTOs.UserDTOs
 {
-    public class AddUserDTO
+    public class AddUserDTO : IAddDTO
     {
         [Required]
         public string UserName { get; set; }

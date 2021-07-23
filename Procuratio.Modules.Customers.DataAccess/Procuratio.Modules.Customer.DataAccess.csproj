@@ -11,7 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Procuratio.Modules.Customers.Domain\Procuratio.Modules.Customers.Domain.csproj" />
+	  <ProjectReference Include="..\Procuratio.Modules.Customers.Domain\Procuratio.Modules.Customer.Domain.csproj" />
 	  <ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
 	  <ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
 	</ItemGroup>

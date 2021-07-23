@@ -5,8 +5,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="CustomsDataAnnotations\**" />
+	  <EmbeddedResource Remove="CustomsDataAnnotations\**" />
+	  <None Remove="CustomsDataAnnotations\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Folder Include="CustomsDataAnnotationValidations\" />
-		<Folder Include="CustomsDataAnnotations\" />
 	</ItemGroup>
 
 	<ItemGroup>

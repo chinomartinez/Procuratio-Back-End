@@ -8,16 +8,16 @@ namespace Procuratio.Modules.Restaurants.API
 {
     internal static class RestaurantsModule
     {
-        public static IServiceCollection AddRestaurantsModule(this IServiceCollection services)
+        public static IServiceCollection AddRestaurantModule(this IServiceCollection services)
         {
-            services.AddRestaurantsServices();
+            services.AddRestaurantServices();
 
             return services;
         }
 
-        public static IApplicationBuilder UseRestaurantsModule(this IApplicationBuilder app)
+        public static IApplicationBuilder UseRestaurantModule(this IApplicationBuilder app)
         {
-            app.AddRestaurantsApps();
+            app.AddRestaurantApps();
 
             return app;
         }

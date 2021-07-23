@@ -30,7 +30,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             newTable = _mapper.Map(createDTO, newTable);
 
-            SetTableNumber(newTable);
+            newTable.Number = await SetTableNumber();
 
             _validateChangeStateTable.ValidateAndSetStateBeforeCreate(newTable);
 
@@ -66,9 +66,15 @@ namespace Procuratio.Modules.Orders.Service.Services
             await _tableRepository.DeleteAsync(table);
         }
 
-        public async Task<ActionResult<int>> GetLastTableNumberAsync()
+        public async Task<short> GetLastNumberAsync()
         {
-            throw new System.NotImplementedException();
+            short? lastNumber = await Task.FromResult(_tableRepository.GetLastNumberAsync().Result);
+
+            const short lastNumberIfNull = 0;
+
+            if (lastNumber == null) { return lastNumberIfNull; }
+
+            return (short)lastNumber;
         }
 
         private async Task<Table> GetTableAsync(int id)
@@ -83,24 +89,19 @@ namespace Procuratio.Modules.Orders.Service.Services
             return table;
         }
 
-        private async Task<short?> GetLastNumberAsync()
+        private async Task<short> SetTableNumber()
         {
-            return await Task.FromResult(_tableRepository.GetLastNumberAsync().Result);
-        }
-
-        private async void SetTableNumber(Table newTable)
-        {
-            short? lastNumber = await GetLastNumberAsync();
+            short? lastNumber = await _tableRepository.GetLastNumberAsync();
 
             if (lastNumber == null)
             {
                 const short numberIfItsFirstTable = 1;
 
-                newTable.Number = numberIfItsFirstTable;
+                return numberIfItsFirstTable;
             }
             else
             {
-                newTable.Number = (short)(lastNumber + 1);
+                return (short)(lastNumber + 1);
             }
         }
     }

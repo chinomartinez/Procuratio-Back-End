@@ -17,17 +17,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Shared.Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{A56E8AEA-BF05-47F2-82D7-4CA75DE34D36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Orders.API", "Procuratio.Modules.Order.API\Procuratio.Modules.Orders.API.csproj", "{8B13C2FB-1AC4-4582-969C-3171038C3C79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Order.API", "Procuratio.Modules.Order.API\Procuratio.Modules.Order.API.csproj", "{8B13C2FB-1AC4-4582-969C-3171038C3C79}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Securities", "Securities", "{A12988B0-0BE8-451E-8E9D-BFFF3A656DD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Menues", "Menues", "{6CE38684-E7F2-4066-A769-B3FAC6EF3108}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Orders.Service", "Procuratio.Modules.Orders.Service\Procuratio.Modules.Orders.Service.csproj", "{6551F8CD-2599-42CB-AC3D-6B1596DC1297}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Order.Service", "Procuratio.Modules.Orders.Service\Procuratio.Modules.Order.Service.csproj", "{6551F8CD-2599-42CB-AC3D-6B1596DC1297}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Orders.Domain", "Procuratio.Modules.Orders.Domain\Procuratio.Modules.Orders.Domain.csproj", "{E1355B39-96FA-4EC1-AFEA-8A0023D3E083}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Order.Domain", "Procuratio.Modules.Orders.Domain\Procuratio.Modules.Order.Domain.csproj", "{E1355B39-96FA-4EC1-AFEA-8A0023D3E083}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Orders.DataAccess", "Procuratio.Modules.Orders.DataAccess\Procuratio.Modules.Orders.DataAccess.csproj", "{300C6892-6AF3-45F8-92EF-1C3C1375FB7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Order.DataAccess", "Procuratio.Modules.Orders.DataAccess\Procuratio.Modules.Order.DataAccess.csproj", "{300C6892-6AF3-45F8-92EF-1C3C1375FB7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AC483812-3379-4E93-BE94-F7F8E32C60E4}"
 EndProject
@@ -37,21 +37,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcuratioFramework", "Proc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.ProcuratioFramework.ProcuratioFramework", "Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj", "{063A415D-2C82-4F0B-BE7C-BA1747CAEF4B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menues.API", "Procuratio.Modules.Menues.API\Procuratio.Modules.Menues.API.csproj", "{B9B891A8-C036-4B33-9A8D-4C668320DBCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menu.API", "Procuratio.Modules.Menues.API\Procuratio.Modules.Menu.API.csproj", "{B9B891A8-C036-4B33-9A8D-4C668320DBCE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menues.DataAccess", "Procuratio.Modules.Menues.DataAccess\Procuratio.Modules.Menues.DataAccess.csproj", "{3F240D57-3BE7-4EE1-B3AC-852FA2556313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menu.DataAccess", "Procuratio.Modules.Menues.DataAccess\Procuratio.Modules.Menu.DataAccess.csproj", "{3F240D57-3BE7-4EE1-B3AC-852FA2556313}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menues.Domain", "Procuratio.Modules.Menues.Domain\Procuratio.Modules.Menues.Domain.csproj", "{7D5778E0-29BB-4F82-A6E2-16D3B2F3F358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menu.Domain", "Procuratio.Modules.Menues.Domain\Procuratio.Modules.Menu.Domain.csproj", "{7D5778E0-29BB-4F82-A6E2-16D3B2F3F358}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menues.Service", "Procuratio.Modules.Menues.Service\Procuratio.Modules.Menues.Service.csproj", "{539AD443-BC65-4A87-B1FD-7DEE2EE960B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menu.Service", "Procuratio.Modules.Menues.Service\Procuratio.Modules.Menu.Service.csproj", "{539AD443-BC65-4A87-B1FD-7DEE2EE960B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Securities.API", "Procuratio.Modules.Securities.API\Procuratio.Modules.Securities.API.csproj", "{298077F1-D3B0-4512-A400-E8212B53FD84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Security.API", "Procuratio.Modules.Securities.API\Procuratio.Modules.Security.API.csproj", "{298077F1-D3B0-4512-A400-E8212B53FD84}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Securities.DataAccess", "Procuratio.Modules.Securities.DataAccess\Procuratio.Modules.Securities.DataAccess.csproj", "{22A2797E-C364-4D99-8B64-A9326FA49821}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Security.DataAccess", "Procuratio.Modules.Securities.DataAccess\Procuratio.Modules.Security.DataAccess.csproj", "{22A2797E-C364-4D99-8B64-A9326FA49821}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Securities.Domain", "Procuratio.Modules.Securities.Domain\Procuratio.Modules.Securities.Domain.csproj", "{C54CB358-804E-41E2-BE67-C3C54DFE70C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Security.Domain", "Procuratio.Modules.Securities.Domain\Procuratio.Modules.Security.Domain.csproj", "{C54CB358-804E-41E2-BE67-C3C54DFE70C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Securities.Service", "Procuratio.Modules.Securities.Service\Procuratio.Modules.Securities.Service.csproj", "{D3475662-B716-46FC-975F-5904BBD77F21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Security.Service", "Procuratio.Modules.Securities.Service\Procuratio.Modules.Security.Service.csproj", "{D3475662-B716-46FC-975F-5904BBD77F21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E6C5DBED-2778-4980-84EC-DDA491D334B3}"
 EndProject
@@ -75,13 +75,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A2BC0CA8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurants.Tests.Test", "Procuratio.Modules.Restaurants.Tests.Test\Procuratio.Modules.Restaurants.Tests.Test.csproj", "{9C1E12A3-B738-4351-A647-2373906AD8A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurants.API", "Procuratio.Modules.Restaurants.API\Procuratio.Modules.Restaurants.API.csproj", "{2F6AF3F8-0621-487D-B448-0939BFD66DB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurant.API", "Procuratio.Modules.Restaurants.API\Procuratio.Modules.Restaurant.API.csproj", "{2F6AF3F8-0621-487D-B448-0939BFD66DB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurants.DataAccess", "Procuratio.Modules.Restaurants.DataAccess\Procuratio.Modules.Restaurants.DataAccess.csproj", "{389E1731-3D00-4110-BFBE-79C17CF9809A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurant.DataAccess", "Procuratio.Modules.Restaurants.DataAccess\Procuratio.Modules.Restaurant.DataAccess.csproj", "{389E1731-3D00-4110-BFBE-79C17CF9809A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurants.Domain", "Procuratio.Modules.Restaurants.Domain\Procuratio.Modules.Restaurants.Domain.csproj", "{4A6301AA-BE5F-4F0C-BEDD-170101075B1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurant.Domain", "Procuratio.Modules.Restaurants.Domain\Procuratio.Modules.Restaurant.Domain.csproj", "{4A6301AA-BE5F-4F0C-BEDD-170101075B1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurants.Service", "Procuratio.Modules.Restaurants.Service\Procuratio.Modules.Restaurants.Service.csproj", "{A9AF8F6C-2837-44DF-B01D-FE39113E7E7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurant.Service", "Procuratio.Modules.Restaurants.Service\Procuratio.Modules.Restaurant.Service.csproj", "{A9AF8F6C-2837-44DF-B01D-FE39113E7E7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customers", "Customers", "{920D2DA1-B6D5-4B57-A593-2B41EE62AAFD}"
 EndProject
@@ -89,13 +89,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{56D1CBED
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customers.Tests.Test", "Procuratio.Modules.Customers.Tests.Test\Procuratio.Modules.Customers.Tests.Test.csproj", "{FEB461FA-2AF2-4662-8D2A-C231CBFC4E48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customers.API", "Procuratio.Modules.Customers.API\Procuratio.Modules.Customers.API.csproj", "{5AAD0411-1C26-468B-BC9C-1942CBA7B550}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customer.API", "Procuratio.Modules.Customers.API\Procuratio.Modules.Customer.API.csproj", "{5AAD0411-1C26-468B-BC9C-1942CBA7B550}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customers.DataAccess", "Procuratio.Modules.Customers.DataAccess\Procuratio.Modules.Customers.DataAccess.csproj", "{38B14D9D-5D8F-416E-9550-5C6DDCC95BF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customer.DataAccess", "Procuratio.Modules.Customers.DataAccess\Procuratio.Modules.Customer.DataAccess.csproj", "{38B14D9D-5D8F-416E-9550-5C6DDCC95BF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customers.Domain", "Procuratio.Modules.Customers.Domain\Procuratio.Modules.Customers.Domain.csproj", "{F5B068FD-B372-4548-90E0-0F357040AE42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customer.Domain", "Procuratio.Modules.Customers.Domain\Procuratio.Modules.Customer.Domain.csproj", "{F5B068FD-B372-4548-90E0-0F357040AE42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customers.Service", "Procuratio.Modules.Customers.Service\Procuratio.Modules.Customers.Service.csproj", "{6A90FBA6-4654-4CD1-A4DF-44AE7AB76A9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customer.Service", "Procuratio.Modules.Customers.Service\Procuratio.Modules.Customer.Service.csproj", "{6A90FBA6-4654-4CD1-A4DF-44AE7AB76A9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,7 +6,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Orders.Service")]
+[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Order.Service")]
 namespace Procuratio.Modules.Orders.DataAccess
 {
     internal static class Extensions

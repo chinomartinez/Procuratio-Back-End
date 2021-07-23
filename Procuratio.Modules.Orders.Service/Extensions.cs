@@ -8,7 +8,7 @@ using Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Orders.API")]
+[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Order.API")]
 namespace Procuratio.Modules.Orders.Service
 {
     internal static class Extensions
@@ -34,7 +34,7 @@ namespace Procuratio.Modules.Orders.Service
             return services;
         }
 
-        public static IApplicationBuilder AddOrdersApps(this IApplicationBuilder app)
+        public static IApplicationBuilder AddOrderApps(this IApplicationBuilder app)
         {
             app.AddDatabase();
 

@@ -8,16 +8,16 @@ namespace Procuratio.Modules.Menues.API
 {
     internal static class MenuesModule
     {
-        public static IServiceCollection AddMenuesModule(this IServiceCollection services)
+        public static IServiceCollection AddMenuModule(this IServiceCollection services)
         {
-            services.AddMenuesServices();
+            services.AddMenuServices();
 
             return services;
         }
 
-        public static IApplicationBuilder UseMenuesModule(this IApplicationBuilder app)
+        public static IApplicationBuilder UseMenuModule(this IApplicationBuilder app)
         {
-            app.AddMenuesApps();
+            app.AddMenuApps();
 
             return app;
         }

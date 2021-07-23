@@ -8,16 +8,16 @@ namespace Procuratio.Modules.Orders.API
 {
     internal static class OrdersModule
     {
-        public static IServiceCollection AddOrdersModule(this IServiceCollection services)
+        public static IServiceCollection AddOrderModule(this IServiceCollection services)
         {
             services.AddOrderServices();
 
             return services;
         }
 
-        public static IApplicationBuilder UseOrdersModule(this IApplicationBuilder app)
+        public static IApplicationBuilder UseOrderModule(this IApplicationBuilder app)
         {
-            app.AddOrdersApps();
+            app.AddOrderApps();
 
             return app;
         }

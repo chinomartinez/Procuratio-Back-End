@@ -14,7 +14,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Securities.Service")]
+[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Security.Service")]
 namespace Procuratio.Modules.Securities.DataAccess
 {
     internal static class Extensions

@@ -45,7 +45,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<short?> GetLastNumberAsync()
         {
-            return await Task.FromResult(_table.OrderByDescending(x => x.Number).FirstOrDefaultAsync(x => TGRID.BranchID == x.BranchID).Result.Number);
+            return await Task.FromResult(_table.Where(x => TGRID.BranchID == x.BranchID).MaxAsync<Table, short?>(x => x.Number)).Result;
         }
 
         public async Task UpdateAsync(Table toUpdate)
