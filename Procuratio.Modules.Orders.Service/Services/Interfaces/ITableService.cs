@@ -7,6 +7,6 @@ namespace Procuratio.Modules.Orders.Service.Services.Interfaces
 {
     public interface ITableService : IBaseServiceOperations<TableDTO, UpdateTableDTO, AddTableDTO, int>
     {
-        Task<ActionResult<int>> GetLastTableNumberAsync();
+        Task<short> GetLastNumberAsync();
     }
 }

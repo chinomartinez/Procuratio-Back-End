@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Procuratio.Modules.Customers.API\Procuratio.Modules.Customers.API.csproj" />
-    <ProjectReference Include="..\Procuratio.Modules.Menues.API\Procuratio.Modules.Menues.API.csproj" />
-    <ProjectReference Include="..\Procuratio.Modules.Order.API\Procuratio.Modules.Orders.API.csproj" />
-    <ProjectReference Include="..\Procuratio.Modules.Restaurants.API\Procuratio.Modules.Restaurants.API.csproj" />
-    <ProjectReference Include="..\Procuratio.Modules.Securities.API\Procuratio.Modules.Securities.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Customers.API\Procuratio.Modules.Customer.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Menues.API\Procuratio.Modules.Menu.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Order.API\Procuratio.Modules.Order.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Restaurants.API\Procuratio.Modules.Restaurant.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Securities.API\Procuratio.Modules.Security.API.csproj" />
   </ItemGroup>
 
 </Project>

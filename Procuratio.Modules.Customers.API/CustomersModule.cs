@@ -8,16 +8,16 @@ namespace Procuratio.Modules.Customers.API
 {
     internal static class CustomersModule
     {
-        public static IServiceCollection AddCustomersModule(this IServiceCollection services)
+        public static IServiceCollection AddCustomerModule(this IServiceCollection services)
         {
-            services.AddCustomersServices();
+            services.AddCustomerServices();
 
             return services;
         }
 
-        public static IApplicationBuilder UseCustomersModule(this IApplicationBuilder app)
+        public static IApplicationBuilder UseCustomerModule(this IApplicationBuilder app)
         {
-            app.AddCustomersApps();
+            app.AddCustomerApps();
 
             return app;
         }

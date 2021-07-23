@@ -60,15 +60,15 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         public async Task DeleteAsync(int id)
         {
-            User table = await GetUserAsync(id);
-            await _userRepository.DeleteAsync(table);
+            User user = await GetUserAsync(id);
+            await _userRepository.DeleteAsync(user);
         }
 
         public async Task<UserDTO> GetAsync(int id)
         {
-            User table = await GetUserAsync(id);
+            User user = await GetUserAsync(id);
 
-            return _mapper.Map<UserDTO>(table);
+            return _mapper.Map<UserDTO>(user);
         }
 
         public async Task UpdateAsync(UpdateUserDTO updateDTO)

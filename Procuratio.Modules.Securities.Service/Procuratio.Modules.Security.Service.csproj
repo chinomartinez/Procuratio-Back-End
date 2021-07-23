@@ -11,13 +11,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Procuratio.Modules.Customers.DataAccess\Procuratio.Modules.Customers.DataAccess.csproj" />
+		<ProjectReference Include="..\Procuratio.Modules.Securities.DataAccess\Procuratio.Modules.Security.DataAccess.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Exceptions\" />
 		<Folder Include="Repositories\" />
 	</ItemGroup>
 

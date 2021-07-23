@@ -11,7 +11,7 @@ namespace Procuratio.Modules.Securities.Service
 {
     public static class Extensions
     {
-        public static IServiceCollection AddSecuritiesServices(this IServiceCollection services)
+        public static IServiceCollection AddSecurityServices(this IServiceCollection services)
         {
             services.AddScoped<IRoleClaimService, RoleClaimService>();
             services.AddScoped<IRoleService, RoleService>();
@@ -22,14 +22,14 @@ namespace Procuratio.Modules.Securities.Service
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
 
-            services.AddSingleton<IValidateChangeStateUser, ValidateChangeStateUser>();
+            services.AddScoped<IValidateChangeStateUser, ValidateChangeStateUser>();
 
             services.AddDatabase();
 
             return services;
         }
 
-        public static IApplicationBuilder AddSecuritiesApps(this IApplicationBuilder app)
+        public static IApplicationBuilder AddSecurityApps(this IApplicationBuilder app)
         {
             app.AddDatabase();
 

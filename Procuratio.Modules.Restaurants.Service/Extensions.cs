@@ -6,12 +6,12 @@ using Procuratio.Modules.Restaurants.Service.Repositories.Interfaces;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Restaurants.API")]
+[assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Restaurant.API")]
 namespace Procuratio.Modules.Restaurants.Service
 {
     internal static class Extensions
     {
-        public static IServiceCollection AddRestaurantsServices(this IServiceCollection services)
+        public static IServiceCollection AddRestaurantServices(this IServiceCollection services)
         {
             services.AddScoped<IRestaruantService, RestaruantService>();
             services.AddScoped<IBranchService, BranchService>();
@@ -23,7 +23,7 @@ namespace Procuratio.Modules.Restaurants.Service
             return services;
         }
 
-        public static IApplicationBuilder AddRestaurantsApps(this IApplicationBuilder app)
+        public static IApplicationBuilder AddRestaurantApps(this IApplicationBuilder app)
         {
             app.AddDatabase();
 

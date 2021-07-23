@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Menues.Service
 {
     public static class Extensions
     {
-        public static IServiceCollection AddMenuesServices(this IServiceCollection services)
+        public static IServiceCollection AddMenuServices(this IServiceCollection services)
         {
             services.AddScoped<ICategoryItemService, CategoryItemService>();
             services.AddScoped<IItemService, ItemService>();
@@ -19,7 +19,7 @@ namespace Procuratio.Modules.Menues.Service
             return services;
         }
 
-        public static IApplicationBuilder AddMenuesApps(this IApplicationBuilder app)
+        public static IApplicationBuilder AddMenuApps(this IApplicationBuilder app)
         {
             app.AddDatabase();
 

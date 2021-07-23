@@ -37,14 +37,14 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         [HttpGet("{id:int}")]
         public async Task<ActionResult<UserDTO>> GetAsync(int id)
         {
-            ActionResult<UserDTO> dinerInDetailsDTO = await _userService.GetAsync(id);
+            UserDTO userDTO = await _userService.GetAsync(id);
 
-            if (dinerInDetailsDTO is null)
+            if (userDTO is null)
             {
                 return NotFound();
             }
 
-            return Ok(dinerInDetailsDTO);
+            return Ok(userDTO);
         }
 
         [HttpPut]

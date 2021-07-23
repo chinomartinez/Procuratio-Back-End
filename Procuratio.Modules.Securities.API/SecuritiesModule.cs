@@ -8,17 +8,17 @@ namespace Procuratio.Modules.Securities.API
 {
     internal static class SecuritiesModule
     {
-        public static IServiceCollection AddSecuritiesModule(this IServiceCollection services)
+        public static IServiceCollection AddSecurityModule(this IServiceCollection services)
         {
-            services.AddSecuritiesServices();
+            services.AddSecurityServices();
 
             return services;
         }
 
-        public static IApplicationBuilder UseSecuritiesModule(this IApplicationBuilder app)
+        public static IApplicationBuilder UseSecurityModule(this IApplicationBuilder app)
         {
             app.UseAuthentication();
-            app.AddSecuritiesApps();
+            app.AddSecurityApps();
 
             return app;
         }
