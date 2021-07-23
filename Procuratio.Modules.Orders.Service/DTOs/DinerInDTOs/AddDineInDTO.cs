@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Orders.DTO.OrderDTOs;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.ModelBinder;
 using System.Collections.Generic;
 
 namespace Procuratio.Modules.Orders.Service.DTOs.DinerInDTOs
 {
-    public class AddDineInDTO
+    public class AddDineInDTO : IAddDTO
     {
 
         [ModelBinder(binderType: typeof(TypeBinder<List<int>>))]

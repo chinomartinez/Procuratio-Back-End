@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Securities.Service.DTOs.UserDTOs
 {
-    public class UpdateUserDTO
+    public class UpdateUserDTO : IUpdateDTO
     {
         [Required]
         public string UserName { get; set; }

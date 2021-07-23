@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Orders.DTO.OrderDTOs
 {
-    public class OrderDTO
+    public class OrderDTO : IDTO
     {
         [Required]
         public int ChefID { get; set; }
