@@ -54,9 +54,9 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AuthenticationResponseDTO>> Login([FromBody] UserCredentialsDTO userCredentialsDTO)
+        public async Task<ActionResult<AuthenticationResponseDTO>> LoginAsync([FromBody] UserCredentialsDTO userCredentialsDTO)
         {
-            ActionResult<AuthenticationResponseDTO> authenticationResponseDTO = await _userService.Login(userCredentialsDTO);
+            AuthenticationResponseDTO authenticationResponseDTO = await _userService.LoginAsync(userCredentialsDTO);
 
             if (authenticationResponseDTO is not null)
             {

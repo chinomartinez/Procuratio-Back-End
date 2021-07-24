@@ -14,12 +14,14 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
         private readonly SecurityDbContext _securitiesDbContext;
         private readonly DbSet<User> _user;
         private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public UserRepository(SecurityDbContext securitiesDbContext, UserManager<User> userManager)
+        public UserRepository(SecurityDbContext securitiesDbContext, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _securitiesDbContext = securitiesDbContext;
             _user = _securitiesDbContext.Users;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IReadOnlyList<User>> BrowseAsync()
@@ -27,11 +29,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
             return await _user.Where(x => x.BranchID == TGRID.BranchID).AsNoTracking().ToListAsync();
         }
 
-        public async Task AddAsync(User toCreate)
+        public async Task AddAsync(User toAdd)
         {
-            toCreate.BranchID = TGRID.BranchID;
+            toAdd.BranchID = TGRID.BranchID;
 
-            await _userManager.CreateAsync(toCreate, toCreate.Password);
+            await _userManager.CreateAsync(toAdd, toAdd.Password);
         }
 
         public async Task DeleteAsync(User entity)
@@ -47,6 +49,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
         public async Task UpdateAsync(User toUpdate)
         {
             await _userManager.UpdateAsync(toUpdate);
+        }
+
+        public async Task<SignInResult> Loginasync(string userName, string password)
+        {
+            return await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
         }
     }
 }

@@ -19,11 +19,11 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             _table = ordersDbContext.Table;
         }
 
-        public async Task AddAsync(Table toCreate)
+        public async Task AddAsync(Table toAdd)
         {
-            toCreate.BranchID = TGRID.BranchID;
+            toAdd.BranchID = TGRID.BranchID;
 
-            await _table.AddAsync(toCreate);
+            await _table.AddAsync(toAdd);
 
             await _ordersDbContext.SaveChangesAsync();
         }

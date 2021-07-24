@@ -24,17 +24,15 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
-        private readonly SignInManager<User> _signInManager;
         private readonly IValidateChangeStateUser _validateChangeStateUser;
 
         public UserService(IUserRepository userRepository, IMapper mapper, UserManager<User> userManager,
-            IConfiguration configuration, SignInManager<User> signInManager, IValidateChangeStateUser validateChangeStateUser)
+            IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
-            _signInManager = signInManager;
             _validateChangeStateUser = validateChangeStateUser;
         }
 
@@ -92,12 +90,11 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             return user;
         }
 
-        public async Task<ActionResult<AuthenticationResponseDTO>> Login(UserCredentialsDTO userCredentialsDTO)
+        public async Task<AuthenticationResponseDTO> LoginAsync(UserCredentialsDTO userCredentialsDTO)
         {
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(userCredentialsDTO.UserName,
-                userCredentialsDTO.Password, isPersistent: false, lockoutOnFailure: false);
+            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.Loginasync(userCredentialsDTO.UserName, userCredentialsDTO.Password);
 
-            if (result.Succeeded)
+            if (signInresult.Succeeded)
             {
                 return await BuildToken(userCredentialsDTO);
             }
