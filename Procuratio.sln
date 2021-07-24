@@ -15,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Shared.Abstracti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Shared.Infrastructure", "Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj", "{E21DC584-C8C4-45BB-AB18-D94385D7831C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{A56E8AEA-BF05-47F2-82D7-4CA75DE34D36}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{A56E8AEA-BF05-47F2-82D7-4CA75DE34D36}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Order.API", "Procuratio.Modules.Order.API\Procuratio.Modules.Order.API.csproj", "{8B13C2FB-1AC4-4582-969C-3171038C3C79}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Securities", "Securities", "{A12988B0-0BE8-451E-8E9D-BFFF3A656DD3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{A12988B0-0BE8-451E-8E9D-BFFF3A656DD3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Menues", "Menues", "{6CE38684-E7F2-4066-A769-B3FAC6EF3108}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Menu", "Menu", "{6CE38684-E7F2-4066-A769-B3FAC6EF3108}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Order.Service", "Procuratio.Modules.Orders.Service\Procuratio.Modules.Order.Service.csproj", "{6551F8CD-2599-42CB-AC3D-6B1596DC1297}"
 EndProject
@@ -69,7 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1714F9B0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.ProcuratioFramework.Tests.Test", "Procuratio.ProcuratioFramework.Tests.Test\Procuratio.ProcuratioFramework.Tests.Test.csproj", "{060CAD82-C3DE-4356-8E10-4A0D97C60D16}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Restaurants", "Restaurants", "{17281B92-8A00-4429-A048-8A486FC59D18}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Restaurant", "Restaurant", "{17281B92-8A00-4429-A048-8A486FC59D18}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A2BC0CA8-76EC-4801-9680-8CB0B28B266B}"
 EndProject
@@ -83,7 +83,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaura
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurant.Service", "Procuratio.Modules.Restaurants.Service\Procuratio.Modules.Restaurant.Service.csproj", "{A9AF8F6C-2837-44DF-B01D-FE39113E7E7C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customers", "Customers", "{920D2DA1-B6D5-4B57-A593-2B41EE62AAFD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customer", "Customer", "{920D2DA1-B6D5-4B57-A593-2B41EE62AAFD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{56D1CBED-3F23-4E8C-9B28-BFFB56D3F034}"
 EndProject
