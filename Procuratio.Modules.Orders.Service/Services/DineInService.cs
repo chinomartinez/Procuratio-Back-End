@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
@@ -34,11 +35,11 @@ namespace Procuratio.Modules.Orders.Service.Services
             return _mapper.Map<DineInDTO>(dinerIn);
         }
 
-        public async Task<IReadOnlyList<DineInDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<DineInForListDTO>> BrowseAsync()
         {
             IReadOnlyList<DineIn> DinersIn = await _dinerInRepository.BrowseAsync();
 
-            return _mapper.Map<IReadOnlyList<DineInDTO>>(DinersIn);
+            return _mapper.Map<IReadOnlyList<DineInForListDTO>>(DinersIn);
         }
 
         public async Task UpdateAsync(UpdateDineInDTO dineInUpdateDTO)
@@ -83,7 +84,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         private void SetOrderToDineIn(DineIn newDineIn)
         {
-            Order order = new();
+            Domain.Entities.Order order = new();
 
             _validateChangeStateOrder.ValidateAndSetStateBeforeCreate(order);
 

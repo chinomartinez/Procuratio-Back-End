@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
 using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.DTOs.DinerInDTOs;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.API.Controllers
 {
-    internal class DineInController : BaseController, IBaseControllerOperations<DineInDTO, UpdateDineInDTO, AddDineInDTO, int>
+    internal class DineInController : BaseController, IBaseControllerOperations<DineInDTO, DineInForListDTO, UpdateDineInDTO, AddDineInDTO, int>
     {
         private readonly IDineInService _dinerInService;
 
@@ -40,7 +41,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<DineInDTO>>> BrowseAsync() => Ok(await _dinerInService.BrowseAsync());
+        public async Task<ActionResult<IReadOnlyList<DineInForListDTO>>> BrowseAsync() => Ok(await _dinerInService.BrowseAsync());
 
         [HttpPut]
         public async Task UpdateAsync([FromBody] UpdateDineInDTO dineInUpdateDTO)

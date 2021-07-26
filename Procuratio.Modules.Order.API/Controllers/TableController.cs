@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Procuratio.Modules.Order.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.API.Controllers
 {
-    internal class TableController : BaseController, IBaseControllerOperations<TableDTO, UpdateTableDTO, AddTableDTO, int>
+    internal class TableController : BaseController, IBaseControllerOperations<TableDTO, TableForListDTO, UpdateTableDTO, AddTableDTO, int>
     {
         private readonly ITableService _tableService;
 
@@ -25,7 +26,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<TableDTO>>> BrowseAsync() => Ok(await _tableService.BrowseAsync());
+        public async Task<ActionResult<IReadOnlyList<TableForListDTO>>> BrowseAsync() => Ok(await _tableService.BrowseAsync());
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteAsync(int id)

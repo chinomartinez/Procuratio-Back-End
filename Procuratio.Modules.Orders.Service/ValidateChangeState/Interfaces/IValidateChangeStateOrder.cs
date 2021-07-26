@@ -3,7 +3,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.ValidateChangeStateBase
 
 namespace Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces
 {
-    internal interface IValidateChangeStateOrder : IValidateChangeStateBase<Order>
+    internal interface IValidateChangeStateOrder : IValidateChangeStateBase<Domain.Entities.Order>
     {
     }
 }

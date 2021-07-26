@@ -2,13 +2,14 @@
 using Procuratio.Modules.Securities.API.Controllers.Base;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
+using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
 {
-    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UpdateUserDTO, AddUserDTO, int>
+    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UserForListDTO, UpdateUserDTO, AddUserDTO, int>
     {
         private readonly IUserService _userService;
 
@@ -25,7 +26,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<UserDTO>>> BrowseAsync() => Ok(await _userService.BrowseAsync());
+        public async Task<ActionResult<IReadOnlyList<UserForListDTO>>> BrowseAsync() => Ok(await _userService.BrowseAsync());
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteAsync(int id)

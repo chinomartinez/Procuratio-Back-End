@@ -9,6 +9,7 @@ using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Exceptions;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
+using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,11 +37,11 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             _validateChangeStateUser = validateChangeStateUser;
         }
 
-        public async Task<IReadOnlyList<UserDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<UserForListDTO>> BrowseAsync()
         {
             IReadOnlyList<User> users = await _userRepository.BrowseAsync();
 
-            return _mapper.Map<IReadOnlyList<UserDTO>>(users);
+            return _mapper.Map<IReadOnlyList<UserForListDTO>>(users);
         }
 
         public async Task AddAsync(AddUserDTO addDTO)

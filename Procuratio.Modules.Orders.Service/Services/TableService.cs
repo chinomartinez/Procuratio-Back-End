@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Procuratio.Modules.Order.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
@@ -37,11 +38,11 @@ namespace Procuratio.Modules.Orders.Service.Services
             await _tableRepository.AddAsync(newTable);
         }
 
-        public async Task<IReadOnlyList<TableDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<TableForListDTO>> BrowseAsync()
         {
             IReadOnlyList<Table> tables = await _tableRepository.BrowseAsync();
 
-            return _mapper.Map<IReadOnlyList<TableDTO>>(tables);
+            return _mapper.Map<IReadOnlyList<TableForListDTO>>(tables);
         }
 
         public async Task<TableDTO> GetAsync(int id)

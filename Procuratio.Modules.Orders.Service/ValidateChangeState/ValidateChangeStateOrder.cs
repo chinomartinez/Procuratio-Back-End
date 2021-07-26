@@ -16,14 +16,14 @@ namespace Procuratio.Modules.Orders.Service.ValidateChangeState
             _orderRepository = orderRepository;
         }
 
-        public void ValidateAndSetStateBeforeCreate(Order newEntity)
+        public void ValidateAndSetStateBeforeCreate(Domain.Entities.Order newEntity)
         {
             SetFromwithoutStateToWithoutOrdering(newEntity);
         }
 
-        public async void ValidateAndSetStateBeforeUpdate(Order currentEntity)
+        public async void ValidateAndSetStateBeforeUpdate(Domain.Entities.Order currentEntity)
         {
-            Order entityInDatabase = await GetOrderAsync(currentEntity.ID);
+            Domain.Entities.Order entityInDatabase = await GetOrderAsync(currentEntity.ID);
 
             if (IsNewEntity(currentEntity.ID))
             {
@@ -35,7 +35,7 @@ namespace Procuratio.Modules.Orders.Service.ValidateChangeState
             }
         }
 
-        private void SetFromwithoutStateToWithoutOrdering(Order newEntity)
+        private void SetFromwithoutStateToWithoutOrdering(Domain.Entities.Order newEntity)
         {
             if (!IsNewEntity(newEntity.ID))
             {
@@ -45,9 +45,9 @@ namespace Procuratio.Modules.Orders.Service.ValidateChangeState
             newEntity.OrderStateID = (short)OrderState.State.WithoutOrdering;
         }
 
-        private async Task<Order> GetOrderAsync(int id)
+        private async Task<Domain.Entities.Order> GetOrderAsync(int id)
         {
-            Order order = await _orderRepository.GetAsync(id);
+            Domain.Entities.Order order = await _orderRepository.GetAsync(id);
 
             if (order is null)
             {
