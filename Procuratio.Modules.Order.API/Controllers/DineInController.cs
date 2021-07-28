@@ -2,7 +2,6 @@
 using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
 using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
-using Procuratio.Modules.Orders.Service.DTOs.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.API.Controllers
 {
-    internal class DineInController : BaseController, IBaseControllerOperations<DineInDTO, DineInForListDTO, UpdateDineInDTO, AddDineInDTO, int>
+    internal class DineInController : BaseController, IBaseControllerOperations<DineInDTO, DineInListDTO, DineInFromFormDTO, int>
     {
         private readonly IDineInService _dinerInService;
 
@@ -33,7 +32,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync([FromBody] AddDineInDTO dineInCreationDTO)
+        public async Task<ActionResult> AddAsync([FromBody] DineInFromFormDTO dineInCreationDTO)
         {
             await _dinerInService.AddAsync(dineInCreationDTO);
             return NoContent();
@@ -41,12 +40,12 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<DineInForListDTO>>> BrowseAsync() => Ok(await _dinerInService.BrowseAsync());
+        public async Task<ActionResult<IReadOnlyList<DineInListDTO>>> BrowseAsync() => Ok(await _dinerInService.BrowseAsync());
 
         [HttpPut]
-        public async Task UpdateAsync([FromBody] UpdateDineInDTO dineInUpdateDTO)
+        public async Task UpdateAsync([FromBody] DineInFromFormDTO dineInUpdateDTO, int ID)
         {
-            await _dinerInService.UpdateAsync(dineInUpdateDTO);
+            await _dinerInService.UpdateAsync(dineInUpdateDTO, ID);
         }
 
         [HttpDelete("{id:int}")]

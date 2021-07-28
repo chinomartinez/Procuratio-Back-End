@@ -25,7 +25,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             _validateChangeStateTable = validateChangeStateTable;
         }
 
-        public async Task AddAsync(AddTableDTO createDTO)
+        public async Task AddAsync([FromBody] TableFromFormDTO createDTO)
         {
             Table newTable = new();
 
@@ -38,11 +38,11 @@ namespace Procuratio.Modules.Orders.Service.Services
             await _tableRepository.AddAsync(newTable);
         }
 
-        public async Task<IReadOnlyList<TableForListDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<TableListDTO>> BrowseAsync()
         {
             IReadOnlyList<Table> tables = await _tableRepository.BrowseAsync();
 
-            return _mapper.Map<IReadOnlyList<TableForListDTO>>(tables);
+            return _mapper.Map<IReadOnlyList<TableListDTO>>(tables);
         }
 
         public async Task<TableDTO> GetAsync(int id)
@@ -52,9 +52,9 @@ namespace Procuratio.Modules.Orders.Service.Services
             return _mapper.Map<TableDTO>(table);
         }
 
-        public async Task UpdateAsync(UpdateTableDTO updateDTO)
+        public async Task UpdateAsync([FromBody] TableFromFormDTO updateDTO, int ID)
         {
-            Table table = await GetTableAsync(updateDTO.ID);
+            Table table = await GetTableAsync(ID);
 
             table = _mapper.Map(updateDTO, table);
 
@@ -69,11 +69,11 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task<short> GetLastNumberAsync()
         {
-            short? lastNumber = await Task.FromResult(_tableRepository.GetLastNumberAsync().Result);
+            short? lastNumber = await _tableRepository.GetLastNumberAsync();
 
-            const short lastNumberIfNull = 0;
+            const short lastNumberIfThereIsNoTableCreated = 0;
 
-            if (lastNumber == null) { return lastNumberIfNull; }
+            if (lastNumber == null) { return lastNumberIfThereIsNoTableCreated; }
 
             return (short)lastNumber;
         }

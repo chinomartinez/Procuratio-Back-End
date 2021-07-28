@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
 {
-    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UserForListDTO, UpdateUserDTO, AddUserDTO, int>
+    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UserListDTO, UserFromFormDTO, int>
     {
         private readonly IUserService _userService;
 
@@ -19,14 +19,14 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult> AddAsync([FromBody] AddUserDTO createDTO)
+        public async Task<ActionResult> AddAsync([FromBody] UserFromFormDTO createDTO)
         {
             await _userService.AddAsync(createDTO);
             return NoContent();
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<UserForListDTO>>> BrowseAsync() => Ok(await _userService.BrowseAsync());
+        public async Task<ActionResult<IReadOnlyList<UserListDTO>>> BrowseAsync() => Ok(await _userService.BrowseAsync());
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteAsync(int id)
@@ -49,9 +49,9 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPut]
-        public async Task UpdateAsync([FromBody] UpdateUserDTO updateDTO)
+        public async Task UpdateAsync([FromBody] UserFromFormDTO updateDTO, int ID)
         {
-            await _userService.UpdateAsync(updateDTO);
+            await _userService.UpdateAsync(updateDTO, ID);
         }
 
         [HttpPost("login")]

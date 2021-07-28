@@ -37,14 +37,14 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             _validateChangeStateUser = validateChangeStateUser;
         }
 
-        public async Task<IReadOnlyList<UserForListDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<UserListDTO>> BrowseAsync()
         {
             IReadOnlyList<User> users = await _userRepository.BrowseAsync();
 
-            return _mapper.Map<IReadOnlyList<UserForListDTO>>(users);
+            return _mapper.Map<IReadOnlyList<UserListDTO>>(users);
         }
 
-        public async Task AddAsync(AddUserDTO addDTO)
+        public async Task AddAsync([FromBody] UserFromFormDTO addDTO)
         {
             User user = new();
 
@@ -70,9 +70,9 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task UpdateAsync(UpdateUserDTO updateDTO)
+        public async Task UpdateAsync([FromBody] UserFromFormDTO updateDTO, int ID)
         {
-            User user = await GetUserAsync(updateDTO.Id);
+            User user = await GetUserAsync(ID);
 
             user = _mapper.Map(updateDTO, user);
 

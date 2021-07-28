@@ -9,23 +9,21 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     /// To be implemented at each concrete interface of each controller, provide bases method
     /// </summary>
     /// <typeparam name="T">Base DTO of the entity</typeparam>
-    /// <typeparam name="TForListDTO">DTO of the entity for load </typeparam>
-    /// <typeparam name="TUpdate">Update DTO of the entity</typeparam>
-    /// <typeparam name="TAdd">Create DTO of the entity</typeparam>
+    /// <typeparam name="TListDTO">DTO of the entity for load </typeparam>
+    /// <typeparam name="TFromFormDTO">TFromFormDTO DTO of the entity for creation or updating</typeparam>
     /// <typeparam name="TKey">Type of key of the entity</typeparam>
-    public interface IBaseControllerOperations<T, TForListDTO, TUpdate, TAdd, TKey>
+    public interface IBaseControllerOperations<T, TListDTO, TFromFormDTO, TKey>
         where T : IDTO
-        where TForListDTO : IForListDTO
-        where TUpdate : IUpdateDTO
-        where TAdd : IAddDTO
+        where TListDTO : IListDTO
+        where TFromFormDTO : IFromFormDTO
     {
         Task<ActionResult<T>> GetAsync(TKey id);
 
-        Task<ActionResult> AddAsync([FromBody] TAdd addDTO);
+        Task<ActionResult> AddAsync([FromBody] TFromFormDTO addDTO);
 
-        Task<ActionResult<IReadOnlyList<TForListDTO>>> BrowseAsync();
+        Task<ActionResult<IReadOnlyList<TListDTO>>> BrowseAsync();
 
-        Task UpdateAsync([FromBody] TUpdate updateDTO);
+        Task UpdateAsync([FromBody] TFromFormDTO updateDTO, TKey ID);
 
         Task<ActionResult> DeleteAsync(TKey id);
     }

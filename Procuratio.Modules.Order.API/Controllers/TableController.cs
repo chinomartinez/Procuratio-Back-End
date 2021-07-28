@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.API.Controllers
 {
-    internal class TableController : BaseController, IBaseControllerOperations<TableDTO, TableForListDTO, UpdateTableDTO, AddTableDTO, int>
+    internal class TableController : BaseController, IBaseControllerOperations<TableDTO, TableListDTO, TableFromFormDTO, int>
     {
         private readonly ITableService _tableService;
 
@@ -19,14 +19,14 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync([FromBody] AddTableDTO createDTO)
+        public async Task<ActionResult> AddAsync([FromBody] TableFromFormDTO createDTO)
         {
             await _tableService.AddAsync(createDTO);
             return NoContent();
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<TableForListDTO>>> BrowseAsync() => Ok(await _tableService.BrowseAsync());
+        public async Task<ActionResult<IReadOnlyList<TableListDTO>>> BrowseAsync() => Ok(await _tableService.BrowseAsync());
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteAsync(int id)
@@ -49,9 +49,9 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpPut]
-        public async Task UpdateAsync([FromBody] UpdateTableDTO updateDTO)
+        public async Task UpdateAsync([FromBody] TableFromFormDTO updateDTO, int ID)
         {
-            await _tableService.UpdateAsync(updateDTO);
+            await _tableService.UpdateAsync(updateDTO, ID);
         }
 
         [HttpGet("last-number")]

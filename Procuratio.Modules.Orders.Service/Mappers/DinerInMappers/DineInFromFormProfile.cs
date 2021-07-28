@@ -1,21 +1,24 @@
-﻿using AutoMapper;
+﻿using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.intermediate;
-using Procuratio.Modules.Orders.Service.DTOs.DinerInDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 
-namespace Procuratio.Modules.Orders.Service.Mappers.DinerInMappers
+namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
 {
-    internal class AddDineInProfile : Profile
+    public class DineInFromFormProfile : Profile
     {
-        public AddDineInProfile()
+        public DineInFromFormProfile()
         {
-            CreateMap<AddDineInDTO, DineIn>()
+            CreateMap<DineInFromFormDTO, DineIn>()
                 .ForMember(x => x.TableXDinerIn, options => options.MapFrom(MapTableXDinerIn));
         }
 
-        private List<TableXDinerIn> MapTableXDinerIn(AddDineInDTO dineInCreationDTO, DineIn dineIn)
+        private List<TableXDinerIn> MapTableXDinerIn(DineInFromFormDTO dineInCreationDTO, DineIn dineIn)
         {
             var result = new List<TableXDinerIn>();
 

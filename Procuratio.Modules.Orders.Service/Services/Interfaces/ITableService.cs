@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Services.Interfaces
 {
-    public interface ITableService : IBaseServiceOperations<TableDTO, TableForListDTO, UpdateTableDTO, AddTableDTO, int>
+    public interface ITableService : IBaseServiceOperations<TableDTO, TableListDTO, TableFromFormDTO, int>
     {
         Task<short> GetLastNumberAsync();
     }

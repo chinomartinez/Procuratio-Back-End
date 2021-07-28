@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
-using Procuratio.Modules.Orders.Service.DTOs.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces;
@@ -35,23 +35,23 @@ namespace Procuratio.Modules.Orders.Service.Services
             return _mapper.Map<DineInDTO>(dinerIn);
         }
 
-        public async Task<IReadOnlyList<DineInForListDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<DineInListDTO>> BrowseAsync()
         {
             IReadOnlyList<DineIn> DinersIn = await _dinerInRepository.BrowseAsync();
 
-            return _mapper.Map<IReadOnlyList<DineInForListDTO>>(DinersIn);
+            return _mapper.Map<IReadOnlyList<DineInListDTO>>(DinersIn);
         }
 
-        public async Task UpdateAsync(UpdateDineInDTO dineInUpdateDTO)
+        public async Task UpdateAsync([FromBody] DineInFromFormDTO dineInUpdateDTO, int ID)
         {
-            DineIn dineIn = await GetDineInAsync(dineInUpdateDTO.ID);
+            DineIn dineIn = await GetDineInAsync(ID);
 
             dineIn = _mapper.Map(dineInUpdateDTO, dineIn);
 
             await _dinerInRepository.UpdateAsync(dineIn);
         }
 
-        public async Task AddAsync(AddDineInDTO dineInCreationDTO)
+        public async Task AddAsync([FromBody] DineInFromFormDTO dineInCreationDTO)
         {
             DineIn dineIn = new();
 

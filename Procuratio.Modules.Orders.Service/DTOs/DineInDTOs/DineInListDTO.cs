@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Order.Service.DTOs.TableDTOs
+namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
 {
-    public class TableForListDTO : IForListDTO
+    public class DineInListDTO : IListDTO
     {
     }
 }
