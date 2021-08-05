@@ -70,6 +70,16 @@ namespace Procuratio.Modules.Orders.Service.Services
             await _dinerInRepository.DeleteAsync(dineIn);
         }
 
+        public async Task<DineInCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<DineInEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int ID)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private async Task<DineIn> GetDineInAsync(int id)
         {
             DineIn dineIn = await _dinerInRepository.GetAsync(id);

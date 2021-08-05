@@ -15,5 +15,5 @@ namespace Procuratio.Modules.Security.Service.Mappers.UserMappers
         {
             CreateMap<UserFromFormDTO, User>();
         }
-    }
+    } 
 }

@@ -11,11 +11,6 @@ namespace Procuratio.Modules.Orders.Service.DTOs.TableDTOs
 
         public int Capacity { get; set; }
 
-        public List<TableXReserve> TableXReserve { get; set; }
-
-        public List<TableXDinerIn> TableXDinerIn { get; set; }
-
         public int TableStateID { get; set; }
-        public TableState TableState { get; set; }
     }
 }

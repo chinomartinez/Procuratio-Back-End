@@ -10,10 +10,12 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     /// <typeparam name="T">Base DTO of the entity</typeparam>
     /// <typeparam name="TFromFormDTO">TFromFormDTO DTO of the entity for creation or updating</typeparam>
     /// <typeparam name="TKey">Type of key of the entity</typeparam>
-    public interface IBaseServiceOperations<T, TListDTO, TFromFormDTO, TKey>
+    public interface IBaseServiceOperations<T, TListDTO, TFromFormDTO, TEntityCreationFormInitializerDTO, TEntityEditionFormInitializerDTO, TKey>
         where T : IDTO
         where TListDTO : IListDTO
         where TFromFormDTO : IFromFormDTO
+        where TEntityCreationFormInitializerDTO : IEntityCreationFormInitializerDTO
+        where TEntityEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
     {
         Task<T> GetAsync(TKey id);
 
@@ -24,5 +26,9 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
         Task AddAsync(TFromFormDTO addDTO);
 
         Task DeleteAsync(TKey id);
+
+        Task<TEntityCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync();
+
+        Task<TEntityEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(TKey ID);
     }
 }

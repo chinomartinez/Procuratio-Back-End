@@ -31,7 +31,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             newTable = _mapper.Map(createDTO, newTable);
 
-            newTable.Number = await SetTableNumber();
+            newTable.Number = await GetNextTableNumber();
 
             _validateChangeStateTable.ValidateAndSetStateBeforeCreate(newTable);
 
@@ -67,15 +67,22 @@ namespace Procuratio.Modules.Orders.Service.Services
             await _tableRepository.DeleteAsync(table);
         }
 
-        public async Task<short> GetLastNumberAsync()
+        public async Task<TableCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync()
         {
-            short? lastNumber = await _tableRepository.GetLastNumberAsync();
+            TableCreationFormInitializerDTO tableCreationFormInitializerDTO = new TableCreationFormInitializerDTO();
 
-            const short lastNumberIfThereIsNoTableCreated = 0;
+            tableCreationFormInitializerDTO.NextTableNumber = await GetNextTableNumber();
 
-            if (lastNumber == null) { return lastNumberIfThereIsNoTableCreated; }
+            return tableCreationFormInitializerDTO;
+        }
 
-            return (short)lastNumber;
+        public async Task<TableEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int ID)
+        {
+            TableEditionFormInitializerDTO tableEditionFormInitializerDTO = new TableEditionFormInitializerDTO();
+
+            
+
+            return tableEditionFormInitializerDTO;
         }
 
         private async Task<Table> GetTableAsync(int id)
@@ -90,7 +97,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             return table;
         }
 
-        private async Task<short> SetTableNumber()
+        private async Task<short> GetNextTableNumber()
         {
             short? lastNumber = await _tableRepository.GetLastNumberAsync();
 
