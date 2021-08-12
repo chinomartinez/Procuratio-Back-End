@@ -91,6 +91,16 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             return user;
         }
 
+        public async Task<UserCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<UserEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<AuthenticationResponseDTO> LoginAsync(UserCredentialsDTO userCredentialsDTO)
         {
             Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.Loginasync(userCredentialsDTO.UserName, userCredentialsDTO.Password);

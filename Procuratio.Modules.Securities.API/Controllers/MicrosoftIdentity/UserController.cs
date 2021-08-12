@@ -3,13 +3,14 @@ using Procuratio.Modules.Securities.API.Controllers.Base;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
+using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
 {
-    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UserListDTO, UserFromFormDTO, int>
+    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UserListDTO, UserFromFormDTO, UserCreationFormInitializerDTO, UserEditionFormInitializerDTO, int>
     {
         private readonly IUserService _userService;
 
@@ -18,7 +19,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             _userService = userService;
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<ActionResult> AddAsync([FromBody] UserFromFormDTO createDTO)
         {
             await _userService.AddAsync(createDTO);
@@ -52,6 +53,18 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         public async Task UpdateAsync([FromBody] UserFromFormDTO updateDTO, int ID)
         {
             await _userService.UpdateAsync(updateDTO, ID);
+        }
+
+        [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
+        public async Task<ActionResult<UserCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
+        public async Task<ActionResult<UserEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int ID)
+        {
+            throw new System.NotImplementedException();
         }
 
         [HttpPost("login")]

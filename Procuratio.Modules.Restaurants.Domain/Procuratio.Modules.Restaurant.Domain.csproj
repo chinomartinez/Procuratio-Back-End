@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.ProcuratioFramework.ProcuratioFramework.csproj" />
+    <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.Shared.ProcuratioFramework.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     /// <typeparam name="TKey">Type of key of the entity</typeparam>
     public interface IBaseRepositoryOperations<T, TKey> where T : class
     {
-        Task<T> GetAsync(TKey id);
+        Task<T> GetAsync(TKey ID);
 
         Task<IReadOnlyList<T>> BrowseAsync();
 

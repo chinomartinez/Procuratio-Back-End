@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework
 {
-    public class BasicStringsForControllers
+    public static class BasicStringsForControllers
     {
-        public const string EntityCreationFormInitializer = "";
-        public const string EntityEditionFormInitializer = "";
+        public const string EntityCreationFormInitializer = "Entity-Creation-Form-Initializer";
+        public const string EntityEditionFormInitializer = "Entity-Edition-Form-Initializer" + "/" + IntParameter;
 
         public const string IntParameter = "{ID:int}";
     }
