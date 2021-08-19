@@ -35,14 +35,14 @@ namespace Procuratio.Modules.Orders.Service.Services
             return _mapper.Map<DineInDTO>(dinerIn);
         }
 
-        public async Task<IReadOnlyList<DineInListDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<DineInForListDTO>> BrowseAsync()
         {
             IReadOnlyList<DineIn> DinersIn = await _dinerInRepository.BrowseAsync();
-
-            return _mapper.Map<IReadOnlyList<DineInListDTO>>(DinersIn);
+            throw new System.NotImplementedException();
+            //return _mapper.Map<IReadOnlyList<DineInForListDTO>>(DinersIn);
         }
 
-        public async Task UpdateAsync([FromBody] DineInFromFormDTO dineInUpdateDTO, int ID)
+        public async Task UpdateAsync([FromForm] DineInFromFormDTO dineInUpdateDTO, int ID)
         {
             DineIn dineIn = await GetDineInAsync(ID);
 
@@ -51,7 +51,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             await _dinerInRepository.UpdateAsync(dineIn);
         }
 
-        public async Task AddAsync([FromBody] DineInFromFormDTO dineInCreationDTO)
+        public async Task AddAsync([FromForm] DineInFromFormDTO dineInCreationDTO)
         {
             DineIn dineIn = new();
 

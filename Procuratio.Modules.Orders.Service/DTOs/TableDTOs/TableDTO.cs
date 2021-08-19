@@ -7,10 +7,10 @@ namespace Procuratio.Modules.Orders.Service.DTOs.TableDTOs
 {
     public class TableDTO : IDTO
     {
+        public int ID { get; set; }
+
         public short Number { get; set; }
 
         public int Capacity { get; set; }
-
-        public int TableStateID { get; set; }
     }
 }

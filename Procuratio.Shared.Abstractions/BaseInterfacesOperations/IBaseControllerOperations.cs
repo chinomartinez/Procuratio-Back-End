@@ -23,11 +23,11 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     {
         Task<ActionResult<T>> GetAsync(TKey ID);
 
-        Task<ActionResult> AddAsync([FromBody] TFromFormDTO addDTO);
+        Task<ActionResult> AddAsync([FromForm] TFromFormDTO addDTO);
 
         Task<ActionResult<IReadOnlyList<TListDTO>>> BrowseAsync();
 
-        Task UpdateAsync([FromBody] TFromFormDTO updateDTO, TKey ID);
+        Task<ActionResult> UpdateAsync(TKey ID, [FromForm] TFromFormDTO updateDTO);
 
         Task<ActionResult> DeleteAsync(TKey ID);
 

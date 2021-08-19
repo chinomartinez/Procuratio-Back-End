@@ -50,5 +50,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         {
             await Task.FromResult(_dineIn.Remove(entity));
         }
+
+        public Task<DineIn> GetEntityEditionFormInitializerAsync(int ID)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

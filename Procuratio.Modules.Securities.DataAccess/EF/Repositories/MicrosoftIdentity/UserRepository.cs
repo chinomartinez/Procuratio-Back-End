@@ -55,5 +55,10 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
         {
             return await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
         }
+
+        public Task<User> GetEntityEditionFormInitializerAsync(int ID)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

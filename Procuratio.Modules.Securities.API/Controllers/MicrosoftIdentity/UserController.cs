@@ -20,7 +20,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync([FromBody] UserFromFormDTO createDTO)
+        public async Task<ActionResult> AddAsync([FromForm] UserFromFormDTO createDTO)
         {
             await _userService.AddAsync(createDTO);
             return NoContent();
@@ -29,14 +29,14 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<UserListDTO>>> BrowseAsync() => Ok(await _userService.BrowseAsync());
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> DeleteAsync(int id)
         {
             await _userService.DeleteAsync(id);
             return NoContent();
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult<UserDTO>> GetAsync(int id)
         {
             UserDTO userDTO = await _userService.GetAsync(id);
@@ -50,9 +50,10 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPut]
-        public async Task UpdateAsync([FromBody] UserFromFormDTO updateDTO, int ID)
+        public async Task<ActionResult> UpdateAsync(int ID, [FromForm] UserFromFormDTO updateDTO)
         {
             await _userService.UpdateAsync(updateDTO, ID);
+            return NoContent();
         }
 
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
@@ -68,7 +69,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AuthenticationResponseDTO>> LoginAsync([FromBody] UserCredentialsDTO userCredentialsDTO)
+        public async Task<ActionResult<AuthenticationResponseDTO>> LoginAsync([FromForm] UserCredentialsDTO userCredentialsDTO)
         {
             AuthenticationResponseDTO authenticationResponseDTO = await _userService.LoginAsync(userCredentialsDTO);
 

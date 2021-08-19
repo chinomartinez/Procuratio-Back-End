@@ -4,7 +4,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperation
 
 namespace Procuratio.Modules.Orders.Service.Services.Interfaces
 {
-    public interface IDineInService : IBaseServiceOperations<DineInDTO, DineInListDTO, DineInFromFormDTO, DineInCreationFormInitializerDTO, DineInEditionFormInitializerDTO, int>
+    public interface IDineInService : IBaseServiceOperations<DineInDTO, DineInForListDTO, DineInFromFormDTO, DineInCreationFormInitializerDTO, DineInEditionFormInitializerDTO, int>
     {
     }
 }

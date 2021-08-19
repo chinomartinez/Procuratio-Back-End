@@ -19,5 +19,7 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
         Task AddAsync(T toAdd);
 
         Task DeleteAsync(T entity);
+
+        Task<T> GetEntityEditionFormInitializerAsync(TKey ID);
     }
 }

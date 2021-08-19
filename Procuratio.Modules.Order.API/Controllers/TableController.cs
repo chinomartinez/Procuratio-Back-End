@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.API.Controllers
 {
-    internal class TableController : BaseController, IBaseControllerOperations<TableDTO, TableListDTO, TableFromFormDTO, TableCreationFormInitializerDTO, TableEditionFormInitializerDTO, int>
+    internal class TableController : BaseController, IBaseControllerOperations<TableDTO, TableForListDTO, TableFromFormDTO, TableCreationFormInitializerDTO, TableEditionFormInitializerDTO, int>
     {
         private readonly ITableService _tableService;
 
@@ -20,14 +20,14 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync([FromBody] TableFromFormDTO createDTO)
+        public async Task<ActionResult> AddAsync([FromForm] TableFromFormDTO createDTO)
         {
             await _tableService.AddAsync(createDTO);
             return NoContent();
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<TableListDTO>>> BrowseAsync() => Ok(await _tableService.BrowseAsync());
+        public async Task<ActionResult<IReadOnlyList<TableForListDTO>>> BrowseAsync() => Ok(await _tableService.BrowseAsync());
 
         [HttpDelete(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> DeleteAsync(int ID)
@@ -49,22 +49,23 @@ namespace Procuratio.Modules.Orders.API.Controllers
             return Ok(tableDTO);
         }
 
-        [HttpPut]
-        public async Task UpdateAsync([FromBody] TableFromFormDTO updateDTO, int ID)
+        [HttpPut(BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult> UpdateAsync(int ID, [FromForm] TableFromFormDTO updateDTO)
         {
             await _tableService.UpdateAsync(updateDTO, ID);
+            return NoContent();
         }
 
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
         public async Task<ActionResult<TableCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync()
         {
-            return await _tableService.GetEntityCreationFormInitializerAsync();
+            return Ok(await _tableService.GetEntityCreationFormInitializerAsync());
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
         public async Task<ActionResult<TableEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int ID)
         {
-            return await _tableService.GetEntityEditionFormInitializerAsync(ID);
+            return Ok(await _tableService.GetEntityEditionFormInitializerAsync(ID));
         }
     }
 }

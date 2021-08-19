@@ -43,6 +43,11 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             return await _order.SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
         }
 
+        public Task<Order> GetEntityEditionFormInitializerAsync(int ID)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task UpdateAsync(Order toUpdate)
         {
             _order.Update(toUpdate);

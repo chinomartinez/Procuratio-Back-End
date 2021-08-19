@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Services.Interfaces
 {
-    public interface ITableService : IBaseServiceOperations<TableDTO, TableListDTO, TableFromFormDTO, TableCreationFormInitializerDTO, TableEditionFormInitializerDTO, int> { }
+    public interface ITableService : IBaseServiceOperations<TableDTO, TableForListDTO, TableFromFormDTO, TableCreationFormInitializerDTO, TableEditionFormInitializerDTO, int> { }
 }

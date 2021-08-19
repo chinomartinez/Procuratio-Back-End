@@ -40,11 +40,11 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         public async Task<IReadOnlyList<UserListDTO>> BrowseAsync()
         {
             IReadOnlyList<User> users = await _userRepository.BrowseAsync();
-
-            return _mapper.Map<IReadOnlyList<UserListDTO>>(users);
+            throw new System.NotImplementedException();
+            //return _mapper.Map<IReadOnlyList<UserListDTO>>(users);
         }
 
-        public async Task AddAsync([FromBody] UserFromFormDTO addDTO)
+        public async Task AddAsync([FromForm] UserFromFormDTO addDTO)
         {
             User user = new();
 
@@ -70,7 +70,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task UpdateAsync([FromBody] UserFromFormDTO updateDTO, int ID)
+        public async Task UpdateAsync([FromForm] UserFromFormDTO updateDTO, int ID)
         {
             User user = await GetUserAsync(ID);
 

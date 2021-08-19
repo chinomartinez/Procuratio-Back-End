@@ -25,7 +25,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             _validateChangeStateTable = validateChangeStateTable;
         }
 
-        public async Task AddAsync([FromBody] TableFromFormDTO createDTO)
+        public async Task AddAsync([FromForm] TableFromFormDTO createDTO)
         {
             Table newTable = new();
 
@@ -38,11 +38,11 @@ namespace Procuratio.Modules.Orders.Service.Services
             await _tableRepository.AddAsync(newTable);
         }
 
-        public async Task<IReadOnlyList<TableListDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<TableForListDTO>> BrowseAsync()
         {
             IReadOnlyList<Table> tables = await _tableRepository.BrowseAsync();
 
-            return _mapper.Map<IReadOnlyList<TableListDTO>>(tables);
+            return _mapper.Map<IReadOnlyList<TableForListDTO>>(tables);
         }
 
         public async Task<TableDTO> GetAsync(int id)
@@ -52,7 +52,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             return _mapper.Map<TableDTO>(table);
         }
 
-        public async Task UpdateAsync([FromBody] TableFromFormDTO updateDTO, int ID)
+        public async Task UpdateAsync([FromForm] TableFromFormDTO updateDTO, int ID)
         {
             Table table = await GetTableAsync(ID);
 
@@ -61,9 +61,9 @@ namespace Procuratio.Modules.Orders.Service.Services
             await _tableRepository.UpdateAsync(table);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int ID)
         {
-            Table table = await GetTableAsync(id);
+            Table table = await GetTableAsync(ID);
             await _tableRepository.DeleteAsync(table);
         }
 
@@ -78,11 +78,9 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task<TableEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int ID)
         {
-            TableEditionFormInitializerDTO tableEditionFormInitializerDTO = new TableEditionFormInitializerDTO();
+            Table table = await _tableRepository.GetEntityEditionFormInitializerAsync(ID);
 
-            
-
-            return tableEditionFormInitializerDTO;
+            return _mapper.Map<TableEditionFormInitializerDTO>(table);
         }
 
         private async Task<Table> GetTableAsync(int id)

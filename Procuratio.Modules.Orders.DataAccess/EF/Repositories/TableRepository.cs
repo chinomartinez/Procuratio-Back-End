@@ -30,7 +30,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<IReadOnlyList<Table>> BrowseAsync()
         {
-            return await _table.Where(x => x.BranchID == TGRID.BranchID).AsNoTracking().ToListAsync();
+            return await _table.Include(x => x.TableState).Where(x => x.BranchID == TGRID.BranchID).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<Table> GetEntityEditionFormInitializerAsync(int ID)
+        {
+            return await _table.Include(x => x.TableState).AsNoTracking().SingleOrDefaultAsync(x => x.ID == ID && TGRID.BranchID == x.BranchID);
         }
 
         public async Task DeleteAsync(Table entity)
@@ -38,9 +43,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             await Task.FromResult(_table.Remove(entity));
         }
 
-        public async Task<Table> GetAsync(int id)
+        public async Task<Table> GetAsync(int ID)
         {
-            return await _table.SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
+            return await _table.SingleOrDefaultAsync(x => x.ID == ID && TGRID.BranchID == x.BranchID);
         }
 
         public async Task<short?> GetLastNumberAsync()

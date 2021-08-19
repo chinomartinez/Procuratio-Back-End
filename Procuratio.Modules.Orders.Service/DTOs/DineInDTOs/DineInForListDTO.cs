@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
 {
-    public class DineInListDTO : IListDTO
+    public class DineInForListDTO : IListDTO
     {
     }
 }
