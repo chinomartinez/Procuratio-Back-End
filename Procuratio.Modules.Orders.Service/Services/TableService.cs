@@ -25,7 +25,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             _validateChangeStateTable = validateChangeStateTable;
         }
 
-        public async Task AddAsync([FromForm] TableFromFormDTO createDTO)
+        public async Task AddAsync(TableFromFormDTO createDTO)
         {
             Table newTable = new();
 
@@ -52,7 +52,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             return _mapper.Map<TableDTO>(table);
         }
 
-        public async Task UpdateAsync([FromForm] TableFromFormDTO updateDTO, int ID)
+        public async Task UpdateAsync(TableFromFormDTO updateDTO, int ID)
         {
             Table table = await GetTableAsync(ID);
 

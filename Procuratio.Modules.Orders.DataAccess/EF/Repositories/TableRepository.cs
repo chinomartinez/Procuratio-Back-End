@@ -10,12 +10,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 {
     internal class TableRepository : ITableRepository
     {
-        private readonly OrderDbContext _ordersDbContext;
+        private readonly OrderDbContext _orderDbContext;
         private readonly DbSet<Table> _table;
 
         public TableRepository(OrderDbContext ordersDbContext)
         {
-            _ordersDbContext = ordersDbContext;
+            _orderDbContext = ordersDbContext;
             _table = ordersDbContext.Table;
         }
 
@@ -25,7 +25,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
             await _table.AddAsync(toAdd);
 
-            await _ordersDbContext.SaveChangesAsync();
+            await _orderDbContext.SaveChangesAsync();
         }
 
         public async Task<IReadOnlyList<Table>> BrowseAsync()
@@ -40,7 +40,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task DeleteAsync(Table entity)
         {
-            await Task.FromResult(_table.Remove(entity));
+            _table.Remove(entity);
+
+            await _orderDbContext.SaveChangesAsync();
         }
 
         public async Task<Table> GetAsync(int ID)
@@ -57,7 +59,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         {
             _table.Update(toUpdate);
 
-            await _ordersDbContext.SaveChangesAsync();
+            await _orderDbContext.SaveChangesAsync();
         }
     }
 }

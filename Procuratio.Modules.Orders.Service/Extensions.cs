@@ -25,6 +25,7 @@ namespace Procuratio.Modules.Orders.Service
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
 
+            // Ver de cambiar a una clase estatica
             services.AddScoped<IValidateChangeStateDineIn, ValidateChangeStateDineIn>();
             services.AddScoped<IValidateChangeStateOrder, ValidateChangeStateOrder>();
             services.AddScoped<IValidateChangeStateTable, ValidateChangeStateTable>();
