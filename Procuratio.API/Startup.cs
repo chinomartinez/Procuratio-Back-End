@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,6 +38,8 @@ namespace Procuratio.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Procuratio.API", Version = "v1" });
             });
+
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
             services.AddInfrastructure();
 
