@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Order.Service.DTOs.TableDTOs
+namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
 {
-    public class IndividualTableForListDTO
+    public class DineInEditionFormInitializerProfile
     {
-
     }
 }

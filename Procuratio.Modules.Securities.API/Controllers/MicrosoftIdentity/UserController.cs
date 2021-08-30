@@ -3,8 +3,8 @@ using Procuratio.Modules.Securities.API.Controllers.Base;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
+using Procuratio.Shared.Infrastructure.Controllers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -50,7 +50,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync(int ID, [FromForm] UserFromFormDTO updateDTO)
+        public async Task<ActionResult> UpdateAsync([FromForm] UserFromFormDTO updateDTO, int ID)
         {
             await _userService.UpdateAsync(updateDTO, ID);
             return NoContent();

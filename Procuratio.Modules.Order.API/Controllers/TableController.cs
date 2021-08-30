@@ -5,6 +5,7 @@ using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
+using Procuratio.Shared.Infrastructure.Controllers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -30,16 +31,16 @@ namespace Procuratio.Modules.Orders.API.Controllers
         public async Task<ActionResult<IReadOnlyList<TableForListDTO>>> BrowseAsync() => Ok(await _tableService.BrowseAsync());
 
         [HttpDelete(BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult> DeleteAsync(int ID)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            await _tableService.DeleteAsync(ID);
+            await _tableService.DeleteAsync(id);
             return NoContent();
         }
 
         [HttpGet(BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult<TableDTO>> GetAsync(int ID)
+        public async Task<ActionResult<TableDTO>> GetAsync(int id)
         {
-            ActionResult<TableDTO> tableDTO = await _tableService.GetAsync(ID);
+            ActionResult<TableDTO> tableDTO = await _tableService.GetAsync(id);
 
             if (tableDTO is null)
             {
@@ -50,9 +51,9 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpPut(BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult> UpdateAsync(int ID, [FromForm] TableFromFormDTO updateDTO)
+        public async Task<ActionResult> UpdateAsync([FromForm] TableFromFormDTO updateDTO, int id)
         {
-            await _tableService.UpdateAsync(updateDTO, ID);
+            await _tableService.UpdateAsync(updateDTO, id);
             return NoContent();
         }
 
@@ -63,9 +64,9 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
-        public async Task<ActionResult<TableEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<ActionResult<TableEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id)
         {
-            return Ok(await _tableService.GetEntityEditionFormInitializerAsync(ID));
+            return Ok(await _tableService.GetEntityEditionFormInitializerAsync(id));
         }
     }
 }

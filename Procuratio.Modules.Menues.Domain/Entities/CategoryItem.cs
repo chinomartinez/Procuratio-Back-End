@@ -11,8 +11,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
         public short CategoryItemStateID { get; set; }
         public CategoryItemState CategoryItemState { get; set; }
 
-        public List<Item> Items { get; set; }
-
         public List<SubCategoryItem> SubCategoryItems { get; set; }
     }
 }

@@ -1,12 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
+using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
+using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces;
+using Procuratio.ProcuratioFramework.ProcuratioFramework;
+using Procuratio.Shared.ProcuratioFramework.DTO;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,14 +21,16 @@ namespace Procuratio.Modules.Orders.Service.Services
     internal class DineInService : IDineInService
     {
         private readonly IDineInRepository _dinerInRepository;
+        private readonly ITableRepository _tableRepository;
         private readonly IMapper _mapper;
         private readonly IValidateChangeStateDineIn _validateChangeStateDineInState;
         private readonly IValidateChangeStateOrder _validateChangeStateOrder;
 
-        public DineInService(IDineInRepository dinerInRepository, IMapper mapper,
+        public DineInService(IDineInRepository dinerInRepository, ITableRepository tableRepository, IMapper mapper,
             IValidateChangeStateDineIn validateChangeStateDineInState, IValidateChangeStateOrder validateChangeStateOrder)
         {
             _dinerInRepository = dinerInRepository;
+            _tableRepository = tableRepository;
             _mapper = mapper;
             _validateChangeStateDineInState = validateChangeStateDineInState;
             _validateChangeStateOrder = validateChangeStateOrder;
@@ -37,31 +45,32 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task<IReadOnlyList<DineInForListDTO>> BrowseAsync()
         {
-            IReadOnlyList<DineIn> DinersIn = await _dinerInRepository.BrowseAsync();
-            throw new System.NotImplementedException();
-            //return _mapper.Map<IReadOnlyList<DineInForListDTO>>(DinersIn);
+            IReadOnlyList<DineIn> dinersIn = await _dinerInRepository.BrowseAsync();
+
+            return _mapper.Map<IReadOnlyList<DineInForListDTO>>(dinersIn);
         }
 
-        public async Task UpdateAsync([FromForm] DineInFromFormDTO dineInUpdateDTO, int ID)
+        public async Task UpdateAsync(DineInFromFormDTO dineInUpdateDTO, int id)
         {
-            DineIn dineIn = await GetDineInAsync(ID);
+            DineIn dineIn = await GetDineInAsync(id);
 
             dineIn = _mapper.Map(dineInUpdateDTO, dineIn);
 
             await _dinerInRepository.UpdateAsync(dineIn);
         }
 
-        public async Task AddAsync([FromForm] DineInFromFormDTO dineInCreationDTO)
+        public async Task AddAsync(DineInFromFormDTO dineInCreationDTO)
         {
             DineIn dineIn = new();
 
             dineIn = _mapper.Map(dineInCreationDTO, dineIn);
 
-            SetOrderToDineIn(dineIn);
+            InitializeAndSetOrderToDineIn(dineIn);
 
             _validateChangeStateDineInState.ValidateAndSetStateBeforeCreate(dineIn);
 
             await _dinerInRepository.AddAsync(dineIn);
+            await _tableRepository.SetTablesStateAsync(dineInCreationDTO.TablesIds, TableState.State.Ocuped);
         }
 
         public async Task DeleteAsync(int id)
@@ -72,10 +81,16 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task<DineInCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync()
         {
-            throw new System.NotImplementedException();
+            DineInCreationFormInitializerDTO dineInCreationFormInitializerDTO = new DineInCreationFormInitializerDTO();
+
+            List<Table> availablesTables = await _tableRepository.GetAvailablesTablesAsync();
+
+            availablesTables.ForEach(x => dineInCreationFormInitializerDTO.Tables.Add(new SelectListItemDTO<int>() { ID = x.ID, Description = $"Numero {x.Number}" }));
+
+            return dineInCreationFormInitializerDTO;
         }
 
-        public async Task<DineInEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<DineInEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int id)
         {
             throw new System.NotImplementedException();
         }
@@ -92,11 +107,15 @@ namespace Procuratio.Modules.Orders.Service.Services
             return dineIn;
         }
 
-        private void SetOrderToDineIn(DineIn newDineIn)
+        private void InitializeAndSetOrderToDineIn(DineIn newDineIn)
         {
             Domain.Entities.Order order = new();
 
             _validateChangeStateOrder.ValidateAndSetStateBeforeCreate(order);
+
+            order.WaiterID = TGRID.UserID;
+            order.CustomerID = TGRID.CustomerID;
+            order.Date = DateTime.Now;
 
             newDineIn.Order = order;
         }

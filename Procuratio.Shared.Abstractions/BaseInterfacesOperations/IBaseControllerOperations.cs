@@ -21,18 +21,18 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
         where TEntityCreationFormInitializerDTO : IEntityCreationFormInitializerDTO
         where TEntityEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
     {
-        Task<ActionResult<T>> GetAsync(TKey ID);
+        Task<ActionResult<T>> GetAsync(TKey id);
 
         Task<ActionResult> AddAsync([FromForm] TFromFormDTO addDTO);
 
         Task<ActionResult<IReadOnlyList<TListDTO>>> BrowseAsync();
 
-        Task<ActionResult> UpdateAsync(TKey ID, [FromForm] TFromFormDTO updateDTO);
+        Task<ActionResult> UpdateAsync([FromForm] TFromFormDTO updateDTO, TKey id);
 
-        Task<ActionResult> DeleteAsync(TKey ID);
+        Task<ActionResult> DeleteAsync(TKey id);
 
         Task<ActionResult<TEntityCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync();
 
-        Task<ActionResult<TEntityEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(TKey ID);
+        Task<ActionResult<TEntityEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(TKey id);
     }
 }

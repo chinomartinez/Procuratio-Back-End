@@ -10,7 +10,7 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     /// <typeparam name="TKey">Type of key of the entity</typeparam>
     public interface IBaseRepositoryOperations<T, TKey> where T : class
     {
-        Task<T> GetAsync(TKey ID);
+        Task<T> GetAsync(TKey id);
 
         Task<IReadOnlyList<T>> BrowseAsync();
 
@@ -20,6 +20,8 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
 
         Task DeleteAsync(T entity);
 
-        Task<T> GetEntityEditionFormInitializerAsync(TKey ID);
+        Task<T> GetEntityEditionFormInitializerAsync(TKey id);
+
+        Task<List<T>> GetByIdsAsync(List<TKey> ids);
     }
 }

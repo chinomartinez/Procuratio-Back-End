@@ -9,5 +9,14 @@ namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
 {
     public class DineInForListDTO : IListDTO
     {
+        public int ID { get; set; }
+
+        public string WaitersName { get; set; }
+
+        public short DinerInStateID { get; set; }
+
+        public string StateName { get; set; }
+
+        public List<string> TableNumbers { get; set; }
     }
 }

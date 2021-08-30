@@ -56,9 +56,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
             return await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
         }
 
-        public Task<User> GetEntityEditionFormInitializerAsync(int ID)
+        public Task<User> GetEntityEditionFormInitializerAsync(int id)
         {
             throw new System.NotImplementedException();
         }
+
+        public async Task<List<User>> GetByIdsAsync(List<int> ids) => await _user.Where(x => TGRID.BranchID == x.BranchID && ids.Contains(x.Id)).ToListAsync();
     }
 }

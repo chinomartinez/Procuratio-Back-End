@@ -57,6 +57,6 @@ namespace Procuratio.Modules.Orders.Service.ValidateChangeState
             return dineIn;
         }
 
-        private static bool IsNewEntity(int ID) => ID == 0;
+        private static bool IsNewEntity(int id) => id == 0;
     }
 }

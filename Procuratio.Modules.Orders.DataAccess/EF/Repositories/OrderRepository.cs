@@ -43,7 +43,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             return await _order.SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
         }
 
-        public Task<Order> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<List<Order>> GetByIdsAsync(List<int> ids) => await _order.Where(x => TGRID.BranchID == x.BranchID && ids.Contains(x.ID)).ToListAsync();
+
+        public Task<Order> GetEntityEditionFormInitializerAsync(int id)
         {
             throw new System.NotImplementedException();
         }

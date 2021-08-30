@@ -4,6 +4,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperation
 using Procuratio.ProcuratioFramework.ProcuratioFramework.ModelBinder;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,8 @@ namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
 {
     public class DineInFromFormDTO : IFromFormDTO
     {
-        [ModelBinder(binderType: typeof(TypeBinder<List<int>>))]
+        [Required]
+        [ModelBinder(typeof(TypeBinder<List<int>>))]
         public List<int> TablesIds { get; set; }
-
-        public OrderDTO Order { get; set; }
     }
 }

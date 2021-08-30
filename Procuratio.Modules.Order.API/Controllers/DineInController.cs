@@ -3,13 +3,14 @@ using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
 using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
+using Procuratio.Shared.Infrastructure.Controllers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.API.Controllers
 {
+    [Route(template: BasePath + "/dine-in")]
     internal class DineInController : BaseController, IBaseControllerOperations<DineInDTO, DineInForListDTO, DineInFromFormDTO, DineInCreationFormInitializerDTO, DineInEditionFormInitializerDTO, int>
     {
         private readonly IDineInService _dinerInService;
@@ -20,9 +21,9 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpGet(BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult<DineInDTO>> GetAsync(int ID)
+        public async Task<ActionResult<DineInDTO>> GetAsync(int id)
         {
-            ActionResult<DineInDTO> dinerInDetailsDTO = await _dinerInService.GetAsync(ID);
+            ActionResult<DineInDTO> dinerInDetailsDTO = await _dinerInService.GetAsync(id);
 
             if (dinerInDetailsDTO is null)
             {
@@ -44,29 +45,29 @@ namespace Procuratio.Modules.Orders.API.Controllers
         public async Task<ActionResult<IReadOnlyList<DineInForListDTO>>> BrowseAsync() => Ok(await _dinerInService.BrowseAsync());
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync(int ID, [FromForm] DineInFromFormDTO dineInUpdateDTO)
+        public async Task<ActionResult> UpdateAsync([FromForm] DineInFromFormDTO dineInUpdateDTO, int id)
         {
-            await _dinerInService.UpdateAsync(dineInUpdateDTO, ID);
+            await _dinerInService.UpdateAsync(dineInUpdateDTO, id);
             return NoContent();
         }
 
         [HttpDelete(BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult> DeleteAsync(int ID)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            await _dinerInService.DeleteAsync(ID);
+            await _dinerInService.DeleteAsync(id);
             return NoContent();
         }
 
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
         public async Task<ActionResult<DineInCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync()
         {
-            throw new System.NotImplementedException();
+            return Ok(await _dinerInService.GetEntityCreationFormInitializerAsync());
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
         public async Task<ActionResult<DineInEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int ID)
         {
-            throw new System.NotImplementedException();
+            return Ok(await _dinerInService.GetEntityEditionFormInitializerAsync(ID));
         }
     }
 }

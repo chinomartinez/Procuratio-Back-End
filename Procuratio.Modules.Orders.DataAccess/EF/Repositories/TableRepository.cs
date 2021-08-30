@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
+using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,5 +62,23 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
             await _orderDbContext.SaveChangesAsync();
         }
+
+        public async Task<List<Table>> GetAvailablesTablesAsync()
+        {
+            return await _table.Where(x => TGRID.BranchID == x.BranchID && x.TableStateID == (short)TableState.State.Available).AsNoTracking().ToListAsync();
+        }
+
+        public async Task SetTablesStateAsync(List<int> tablesIds, TableState.State newState)
+        {
+            List<Table> tables = await GetByIdsAsync(tablesIds);
+
+            tables.ForEach(x => x.TableStateID = (short)newState);
+
+            _table.UpdateRange(tables);
+
+            await _orderDbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<Table>> GetByIdsAsync(List<int> ids) => await _table.Where(x => TGRID.BranchID == x.BranchID && ids.Contains(x.ID)).ToListAsync();
     }
 }

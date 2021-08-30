@@ -6,9 +6,6 @@ namespace Procuratio.Modules.Orders.DTO.OrderDTOs
     public class OrderDTO : IDTO
     {
         [Required]
-        public int ChefID { get; set; }
-
-        [Required]
         public int WaiterID { get; set; }
 
         [Required]

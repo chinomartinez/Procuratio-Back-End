@@ -52,18 +52,18 @@ namespace Procuratio.Modules.Orders.Service.Services
             return _mapper.Map<TableDTO>(table);
         }
 
-        public async Task UpdateAsync(TableFromFormDTO updateDTO, int ID)
+        public async Task UpdateAsync(TableFromFormDTO updateDTO, int id)
         {
-            Table table = await GetTableAsync(ID);
+            Table table = await GetTableAsync(id);
 
             table = _mapper.Map(updateDTO, table);
 
             await _tableRepository.UpdateAsync(table);
         }
 
-        public async Task DeleteAsync(int ID)
+        public async Task DeleteAsync(int id)
         {
-            Table table = await GetTableAsync(ID);
+            Table table = await GetTableAsync(id);
             await _tableRepository.DeleteAsync(table);
         }
 
@@ -76,9 +76,9 @@ namespace Procuratio.Modules.Orders.Service.Services
             return tableCreationFormInitializerDTO;
         }
 
-        public async Task<TableEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<TableEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int id)
         {
-            Table table = await _tableRepository.GetEntityEditionFormInitializerAsync(ID);
+            Table table = await _tableRepository.GetEntityEditionFormInitializerAsync(id);
 
             return _mapper.Map<TableEditionFormInitializerDTO>(table);
         }

@@ -14,8 +14,6 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public short OrderStateID { get; set; }
         public OrderState OrderState { get; set; }
 
-        public int ChefID { get; set; }
-
         public int WaiterID { get; set; }
 
         public int CustomerID { get; set; }

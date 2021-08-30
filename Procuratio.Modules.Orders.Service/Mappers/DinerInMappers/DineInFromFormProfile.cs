@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Procuratio.ProcuratioFramework.ProcuratioFramework;
 
 namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
 {
@@ -20,14 +21,11 @@ namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
 
         private List<TableXDinerIn> MapTableXDinerIn(DineInFromFormDTO dineInCreationDTO, DineIn dineIn)
         {
-            var result = new List<TableXDinerIn>();
+            List<TableXDinerIn> result = new List<TableXDinerIn>();
 
             if (dineInCreationDTO.TablesIds == null || dineInCreationDTO.TablesIds.Count() <= 0) { return result; }
 
-            foreach (int tableID in dineInCreationDTO.TablesIds)
-            {
-                result.Add(new TableXDinerIn() { TableID = tableID });
-            }
+            dineInCreationDTO.TablesIds.ForEach(x => result.Add(new TableXDinerIn() { TableID = x, BranchID = TGRID.BranchID }));
 
             return result;
         }

@@ -12,19 +12,16 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.ModelBinder
             string PropertyName = bindingContext.ModelName;
             ValueProviderResult value = bindingContext.ValueProvider.GetValue(PropertyName);
 
-            if (value == ValueProviderResult.None)
-            {
-                return Task.CompletedTask;
-            }
+            if (value == ValueProviderResult.None) { return Task.CompletedTask; }
 
             try
             {
                 var DeserializedValue = JsonConvert.DeserializeObject<T>(value.FirstValue);
                 bindingContext.Result = ModelBindingResult.Success(DeserializedValue);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                bindingContext.ModelState.TryAddModelError(PropertyName, "El valor dado no es del tipo adecuado");
+                bindingContext.ModelState.TryAddModelError(PropertyName, $"Value type not found. Message error: {e.Message}");
             }
 
             return Task.CompletedTask;
