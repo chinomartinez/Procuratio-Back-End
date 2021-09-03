@@ -6,6 +6,8 @@ namespace Procuratio.Modules.Orders.DTO.DinerInDTOs
 {
     public class DineInDTO : IDTO
     {
+        public int ID { get; set; }
+
         public int OrderID { get; set; }
 
         public short DinerInStateID { get; set; }

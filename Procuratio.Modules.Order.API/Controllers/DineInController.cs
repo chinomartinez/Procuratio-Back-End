@@ -65,9 +65,9 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
-        public async Task<ActionResult<DineInEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<ActionResult<DineInEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id)
         {
-            return Ok(await _dinerInService.GetEntityEditionFormInitializerAsync(ID));
+            return Ok(await _dinerInService.GetEntityEditionFormInitializerAsync(id));
         }
     }
 }

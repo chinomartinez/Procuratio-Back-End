@@ -9,7 +9,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
 
         public enum State : short
         {
-            WithoutOrdering = 1,
+            Pending = 1,
             InProgress,
             ForDelivery,
             Delivered

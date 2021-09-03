@@ -42,7 +42,7 @@ namespace Procuratio.Modules.Orders.Service.ValidateChangeState
                 throw new InvalidOrderStateException("No se puede asignar de sin estado a en progreso, en una entidad ya creada");
             }
 
-            newEntity.OrderStateID = (short)OrderState.State.WithoutOrdering;
+            newEntity.OrderStateID = (short)OrderState.State.Pending;
         }
 
         private async Task<Domain.Entities.Order> GetOrderAsync(int id)

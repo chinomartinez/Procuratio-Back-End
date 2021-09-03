@@ -21,11 +21,11 @@ namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
 
         private List<TableXDinerIn> MapTableXDinerIn(DineInFromFormDTO dineInCreationDTO, DineIn dineIn)
         {
-            List<TableXDinerIn> result = new List<TableXDinerIn>();
+            List<TableXDinerIn> result = new();
 
             if (dineInCreationDTO.TablesIds == null || dineInCreationDTO.TablesIds.Count() <= 0) { return result; }
 
-            dineInCreationDTO.TablesIds.ForEach(x => result.Add(new TableXDinerIn() { TableID = x, BranchID = TGRID.BranchID }));
+            dineInCreationDTO.TablesIds.ForEach(x => result.Add(new() { TableID = x, BranchID = TGRID.BranchID }));
 
             return result;
         }

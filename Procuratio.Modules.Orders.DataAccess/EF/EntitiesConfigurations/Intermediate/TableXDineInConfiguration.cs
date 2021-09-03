@@ -11,7 +11,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations.Interme
         {
             builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
-            builder.HasKey(x => new { x.DinnerInID, x.TableID });
+            builder.HasKey(x => new { x.DineInID, x.TableID });
         }
     }
 }

@@ -14,6 +14,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.Shared.ProcuratioFramework.DTO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Services
@@ -85,14 +86,26 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             List<Table> availablesTables = await _tableRepository.GetAvailablesTablesAsync();
 
-            availablesTables.ForEach(x => dineInCreationFormInitializerDTO.Tables.Add(new SelectListItemDTO<int>() { ID = x.ID, Description = $"Numero {x.Number}" }));
+            availablesTables.ForEach(x => dineInCreationFormInitializerDTO.Tables.Add(new SelectListItemDTO<int>() { ID = x.ID, Description = x.Number.ToString() }));
 
             return dineInCreationFormInitializerDTO;
         }
 
         public async Task<DineInEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int id)
         {
-            throw new System.NotImplementedException();
+            DineInEditionFormInitializerDTO dineInEditionFormInitializerDTO = new();
+
+            DineIn dineInToEdit = await _dinerInRepository.GetEntityEditionFormInitializerAsync(id);
+            dineInToEdit.TableXDinerIn.ForEach(x => 
+            {
+                dineInEditionFormInitializerDTO.Tables.SelectedOptionsIds.Add(x.TableID);
+                dineInEditionFormInitializerDTO.Tables.Items.Add(new SelectListItemDTO<int>() { ID = x.TableID, Description = x.Table.Number.ToString() });
+            });
+
+            List<Table> availablesTables = await _tableRepository.GetAvailablesTablesAsync();
+            availablesTables.ForEach(x => dineInEditionFormInitializerDTO.Tables.Items.Add(new SelectListItemDTO<int>() { ID = x.ID, Description = x.Number.ToString() }));
+
+            return dineInEditionFormInitializerDTO;
         }
 
         private async Task<DineIn> GetDineInAsync(int id)
