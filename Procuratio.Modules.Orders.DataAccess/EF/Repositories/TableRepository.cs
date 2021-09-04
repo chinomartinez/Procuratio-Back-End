@@ -42,7 +42,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         public async Task DeleteAsync(Table entity)
         {
             _table.Remove(entity);
-
             await _orderDbContext.SaveChangesAsync();
         }
 

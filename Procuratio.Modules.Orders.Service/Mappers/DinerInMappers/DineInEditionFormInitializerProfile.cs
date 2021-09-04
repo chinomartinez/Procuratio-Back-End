@@ -13,7 +13,8 @@ namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
     {
         public DineInEditionFormInitializerProfile()
         {
-            CreateMap<DineIn, DineInEditionFormInitializerDTO>();
+            CreateMap<DineIn, DineInEditionFormInitializerDTO>()
+                .ForMember(x => x.DineIn, x => x.MapFrom(x => x));
         }
     }
 }

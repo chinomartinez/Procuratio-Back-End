@@ -44,7 +44,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<DineInForListDTO>>> BrowseAsync() => Ok(await _dinerInService.BrowseAsync());
 
-        [HttpPut]
+        [HttpPut(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> UpdateAsync([FromForm] DineInFromFormDTO dineInUpdateDTO, int id)
         {
             await _dinerInService.UpdateAsync(dineInUpdateDTO, id);

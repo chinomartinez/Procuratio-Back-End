@@ -53,11 +53,17 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task UpdateAsync(DineInFromFormDTO dineInUpdateDTO, int id)
         {
-            DineIn dineIn = await GetDineInAsync(id);
+            DineIn dineInToUpdate = await _dinerInRepository.GetWithTableXDinerInAsync(id);
 
-            dineIn = _mapper.Map(dineInUpdateDTO, dineIn);
+            if (dineInToUpdate is null) { throw new DineInNotFoundException(); }
 
-            await _dinerInRepository.UpdateAsync(dineIn);
+            List<int> changeTableStateAsAvailable = dineInToUpdate.TableXDinerIn.Select(x => x.TableID).Except(dineInUpdateDTO.TablesIds).ToList();
+
+            dineInToUpdate = _mapper.Map(dineInUpdateDTO, dineInToUpdate);
+
+            await _dinerInRepository.UpdateAsync(dineInToUpdate);
+            await _tableRepository.SetTablesStateAsync(changeTableStateAsAvailable, TableState.State.Available);
+            await _tableRepository.SetTablesStateAsync(dineInToUpdate.TableXDinerIn.Select(x => x.TableID).ToList(), TableState.State.Ocuped);
         }
 
         public async Task AddAsync(DineInFromFormDTO dineInCreationDTO)
@@ -96,6 +102,11 @@ namespace Procuratio.Modules.Orders.Service.Services
             DineInEditionFormInitializerDTO dineInEditionFormInitializerDTO = new();
 
             DineIn dineInToEdit = await _dinerInRepository.GetEntityEditionFormInitializerAsync(id);
+
+            dineInEditionFormInitializerDTO = _mapper.Map<DineInEditionFormInitializerDTO>(dineInToEdit);
+
+            if (dineInToEdit is null) { throw new DineInNotFoundException(); }
+
             dineInToEdit.TableXDinerIn.ForEach(x => 
             {
                 dineInEditionFormInitializerDTO.Tables.SelectedOptionsIds.Add(x.TableID);
@@ -112,10 +123,7 @@ namespace Procuratio.Modules.Orders.Service.Services
         {
             DineIn dineIn = await _dinerInRepository.GetAsync(id);
 
-            if (dineIn is null)
-            {
-                throw new DineInNotFoundException();
-            }
+            if (dineIn is null) { throw new DineInNotFoundException(); }
 
             return dineIn;
         }

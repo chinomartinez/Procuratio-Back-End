@@ -25,6 +25,11 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             return await _dineIn.SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
         }
 
+        public async Task<DineIn> GetWithTableXDinerInAsync(int id)
+        {
+            return await _dineIn.Include(x => x.TableXDinerIn).SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
+        }
+
         public async Task<IReadOnlyList<DineIn>> BrowseAsync()
         {
             return await _dineIn.Where(x => x.BranchID == TGRID.BranchID && x.DinerInStateID == (short)DineInState.State.InProgress)
@@ -37,7 +42,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         public async Task UpdateAsync(DineIn dineIn)
         {
             _dineIn.Update(dineIn);
-
             await _ordersDbContext.SaveChangesAsync();
         }
 
@@ -53,13 +57,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task DeleteAsync(DineIn entity)
         {
-            await Task.FromResult(_dineIn.Remove(entity));
+            _dineIn.Remove(entity);
+            await _ordersDbContext.SaveChangesAsync();
         }
 
-        public async Task<DineIn> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<DineIn> GetEntityEditionFormInitializerAsync(int id)
         {
             return await _dineIn.Include(x => x.TableXDinerIn).ThenInclude(x => x.Table)
-                .AsNoTracking().SingleOrDefaultAsync(x => x.ID == ID && TGRID.BranchID == x.BranchID);
+                .AsNoTracking().SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
         }
 
         public async Task<List<DineIn>> GetByIdsAsync(List<int> ids) => await _dineIn.Where(x => TGRID.BranchID == x.BranchID && ids.Contains(x.ID)).ToListAsync();

@@ -19,13 +19,15 @@ namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
                 .ForMember(x => x.TableXDinerIn, options => options.MapFrom(MapTableXDinerIn));
         }
 
-        private List<TableXDinerIn> MapTableXDinerIn(DineInFromFormDTO dineInCreationDTO, DineIn dineIn)
+        private List<TableXDinerIn> MapTableXDinerIn(DineInFromFormDTO dineInFromFormDTO, DineIn dineIn)
         {
             List<TableXDinerIn> result = new();
 
-            if (dineInCreationDTO.TablesIds == null || dineInCreationDTO.TablesIds.Count() <= 0) { return result; }
+            if (dineInFromFormDTO.TablesIds is null || dineInFromFormDTO.TablesIds.Count() <= 0) { return result; }
 
-            dineInCreationDTO.TablesIds.ForEach(x => result.Add(new() { TableID = x, BranchID = TGRID.BranchID }));
+            if (dineIn.TableXDinerIn is not null) { dineIn.TableXDinerIn.Clear(); }
+
+            dineInFromFormDTO.TablesIds.ForEach(x => result.Add(new() { TableID = x, BranchID = TGRID.BranchID }));
 
             return result;
         }
