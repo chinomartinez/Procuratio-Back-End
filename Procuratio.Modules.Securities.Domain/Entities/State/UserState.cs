@@ -4,10 +4,8 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Securities.Domain.Entities.State
 {
-    public class UserState : StateBaseEntity
+    public class UserState : StateBaseEntity<User>
     {
-        public List<User> Users { get; set; }
-
         public enum State : short
         {
             Active = 1,

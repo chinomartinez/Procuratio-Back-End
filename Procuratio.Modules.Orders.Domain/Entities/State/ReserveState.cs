@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Orders.Domain.Entities.State
 {
-    public class ReserveState : StateBaseEntity
+    public class ReserveState : StateBaseEntity<Reserve>
     {
-        public List<Reserve> Reserve { get; set; }
-
         public enum State : short
         {
             Pending = 1,

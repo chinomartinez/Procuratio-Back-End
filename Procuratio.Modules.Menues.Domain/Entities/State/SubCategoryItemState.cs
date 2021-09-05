@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Menues.Domain.Entities.State
 {
-    public class SubCategoryItemState : StateBaseEntity
+    public class SubCategoryItemState : StateBaseEntity<SubCategoryItem>
     {
-        public List<SubCategoryItem> SubCategoryItem { get; set; }
-
         public enum State : short
         {
             Available = 1,

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Orders.Domain.Entities.State
 {
-    public class DeliveryState : StateBaseEntity
+    public class DeliveryState : StateBaseEntity<Delivery>
     {
-        public List<Delivery> Deliveries { get; set; }
-
         public enum State : short
         {
             Completed = 1,

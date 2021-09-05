@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Orders.Domain.Entities.State
 {
-    public class TakeAwayState : StateBaseEntity
+    public class TakeAwayState : StateBaseEntity<TakeAway>
     {
-        public List<TakeAway> TakeAways { get; set; }
-
         public enum State : short
         {
             InProgress = 1,
