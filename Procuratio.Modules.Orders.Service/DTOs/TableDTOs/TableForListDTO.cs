@@ -11,7 +11,5 @@ namespace Procuratio.Modules.Order.Service.DTOs.TableDTOs
     public class TableForListDTO : IListDTO
     {
         public TableDTO Table { get; set; } = new TableDTO();
-
-        public string StateName { get; set; }
     }
 }

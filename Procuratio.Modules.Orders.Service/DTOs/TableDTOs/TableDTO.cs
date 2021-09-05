@@ -12,7 +12,5 @@ namespace Procuratio.Modules.Orders.Service.DTOs.TableDTOs
         public short Number { get; set; }
 
         public int Capacity { get; set; }
-
-        public short TableStateID { get; set; }
     }
 }

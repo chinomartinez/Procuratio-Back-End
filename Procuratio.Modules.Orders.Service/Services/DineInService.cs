@@ -57,8 +57,6 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             if (dineInToUpdate is null) { throw new DineInNotFoundException(); }
 
-            List<int> changeTableStateAsAvailable = dineInToUpdate.TableXDinerIn.Select(x => x.TableID).Except(dineInUpdateDTO.TablesIds).ToList();
-
             dineInToUpdate = _mapper.Map(dineInUpdateDTO, dineInToUpdate);
 
             await _dinerInRepository.UpdateAsync(dineInToUpdate);
