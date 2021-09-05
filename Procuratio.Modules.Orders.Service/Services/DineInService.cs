@@ -62,8 +62,6 @@ namespace Procuratio.Modules.Orders.Service.Services
             dineInToUpdate = _mapper.Map(dineInUpdateDTO, dineInToUpdate);
 
             await _dinerInRepository.UpdateAsync(dineInToUpdate);
-            await _tableRepository.SetTablesStateAsync(changeTableStateAsAvailable, TableState.State.Available);
-            await _tableRepository.SetTablesStateAsync(dineInToUpdate.TableXDinerIn.Select(x => x.TableID).ToList(), TableState.State.Ocuped);
         }
 
         public async Task AddAsync(DineInFromFormDTO dineInCreationDTO)
@@ -77,7 +75,6 @@ namespace Procuratio.Modules.Orders.Service.Services
             _validateChangeStateDineInState.ValidateAndSetStateBeforeCreate(dineIn);
 
             await _dinerInRepository.AddAsync(dineIn);
-            await _tableRepository.SetTablesStateAsync(dineInCreationDTO.TablesIds, TableState.State.Ocuped);
         }
 
         public async Task DeleteAsync(int id)
@@ -103,9 +100,9 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             DineIn dineInToEdit = await _dinerInRepository.GetEntityEditionFormInitializerAsync(id);
 
-            dineInEditionFormInitializerDTO = _mapper.Map<DineInEditionFormInitializerDTO>(dineInToEdit);
-
             if (dineInToEdit is null) { throw new DineInNotFoundException(); }
+
+            dineInEditionFormInitializerDTO = _mapper.Map<DineInEditionFormInitializerDTO>(dineInToEdit);
 
             dineInToEdit.TableXDinerIn.ForEach(x => 
             {

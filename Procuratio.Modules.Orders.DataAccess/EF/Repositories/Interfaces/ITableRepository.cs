@@ -11,7 +11,5 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces
         Task<short?> GetLastNumberAsync();
 
         Task<List<Table>> GetAvailablesTablesAsync();
-
-        Task SetTablesStateAsync(List<int> tablesIds, TableState.State newState);
     }
 }

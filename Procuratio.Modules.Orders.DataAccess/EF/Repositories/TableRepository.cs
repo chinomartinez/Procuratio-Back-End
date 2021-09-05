@@ -64,18 +64,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<List<Table>> GetAvailablesTablesAsync()
         {
-            return await _table.Where(x => TGRID.BranchID == x.BranchID && x.TableStateID == (short)TableState.State.Available).AsNoTracking().ToListAsync();
-        }
-
-        public async Task SetTablesStateAsync(List<int> tablesIds, TableState.State newState)
-        {
-            List<Table> tables = await GetByIdsAsync(tablesIds);
-
-            tables.ForEach(x => x.TableStateID = (short)newState);
-
-            _table.UpdateRange(tables);
-
-            await _orderDbContext.SaveChangesAsync();
+            return await _table.Include(x => x.TableXDinerIn).ThenInclude(x => x.DineIn)
+                .Include(x => x.TableXReserve).ThenInclude(x => x.Reserve)
+                .Where(x => 
+                TGRID.BranchID == x.BranchID 
+                && !x.TableXDinerIn.Any(x => x.DineIn.DinerInStateID == (short)DineInState.State.InProgress)
+                && !x.TableXReserve.Any(x => x.Reserve.ReserveStateID == (short)ReserveState.State.InProgress))
+                .AsNoTracking().ToListAsync();
         }
 
         public async Task<List<Table>> GetByIdsAsync(List<int> ids) => await _table.Where(x => TGRID.BranchID == x.BranchID && ids.Contains(x.ID)).ToListAsync();
