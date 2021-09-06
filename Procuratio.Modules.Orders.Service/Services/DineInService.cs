@@ -57,6 +57,8 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             if (dineInToUpdate is null) { throw new DineInNotFoundException(); }
 
+            dineInToUpdate.TableXDinerIn.Clear();
+
             dineInToUpdate = _mapper.Map(dineInUpdateDTO, dineInToUpdate);
 
             await _dinerInRepository.UpdateAsync(dineInToUpdate);

@@ -15,6 +15,6 @@ namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
     {
         [Required]
         [ModelBinder(typeof(TypeBinder<List<int>>))]
-        public List<int> TablesIds { get; set; }
+        public List<int> TablesIds { get; set; } = new List<int>();
     }
 }

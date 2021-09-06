@@ -69,7 +69,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task<TableCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync()
         {
-            TableCreationFormInitializerDTO tableCreationFormInitializerDTO = new TableCreationFormInitializerDTO();
+            TableCreationFormInitializerDTO tableCreationFormInitializerDTO = new();
 
             tableCreationFormInitializerDTO.NextTableNumber = await GetNextTableNumber();
 
