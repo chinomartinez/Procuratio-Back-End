@@ -24,7 +24,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public TakeAway TakeAway { get; set; }
 
-        public DineIn DinerIn { get; set; }
+        public DineIn DineIn { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
     }

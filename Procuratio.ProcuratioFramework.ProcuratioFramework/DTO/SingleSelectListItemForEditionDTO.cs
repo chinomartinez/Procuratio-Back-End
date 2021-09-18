@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Procuratio.Shared.ProcuratioFramework.DTO
 {
     /// <summary>
-    /// DTO to fill a multiple selection option with the selected option
+    /// DTO to fill a single selection option with the selected option
     /// </summary>
     /// <typeparam name="TKey">Type of key</typeparam>
-    public class MultipleSelectListItemForEditionDTO<TKey>
+    public class SingleSelectListItemForEditionDTO<TKey>
     {
         /// <summary>
         /// List of items for load the select list item
@@ -18,8 +18,8 @@ namespace Procuratio.Shared.ProcuratioFramework.DTO
         public List<SelectListItemDTO<TKey>> Items { get; set; } = new List<SelectListItemDTO<TKey>>();
 
         /// <summary>
-        /// Ids of the already selected options
+        /// Id of the already selected option
         /// </summary>
-        public List<TKey> SelectedOptionsIds { get; set; } = new List<TKey>();
+        public TKey SelectedOptionId { get; set; }
     }
 }

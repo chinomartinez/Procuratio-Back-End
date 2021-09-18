@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Order.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
+using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
-using Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,13 +16,11 @@ namespace Procuratio.Modules.Orders.Service.Services
     {
         private readonly ITableRepository _tableRepository;
         private readonly IMapper _mapper;
-        private readonly IValidateChangeStateTable _validateChangeStateTable;
 
-        public TableService(ITableRepository tableRepository, IMapper mapper, IValidateChangeStateTable validateChangeStateTable)
+        public TableService(ITableRepository tableRepository, IMapper mapper)
         {
             _tableRepository = tableRepository;
             _mapper = mapper;
-            _validateChangeStateTable = validateChangeStateTable;
         }
 
         public async Task AddAsync(TableFromFormDTO createDTO)
@@ -32,8 +30,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             newTable = _mapper.Map(createDTO, newTable);
 
             newTable.Number = await GetNextTableNumber();
-
-            _validateChangeStateTable.ValidateAndSetStateBeforeCreate(newTable);
+            newTable.TableStateID = (short)TableState.State.Available;
 
             await _tableRepository.AddAsync(newTable);
         }

@@ -69,5 +69,11 @@ namespace Procuratio.Modules.Orders.API.Controllers
         {
             return Ok(await _dinerInService.GetEntityEditionFormInitializerAsync(id));
         }
+
+        [HttpGet("in-progress")]
+        public async Task<ActionResult<DineInInProgressDTO>> GetDineInInProgressAsync()
+        {
+            return Ok(await _dinerInService.GetDineInInProgressAsync());
+        }
     }
 }
