@@ -68,5 +68,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         }
 
         public async Task<List<DineIn>> GetByIdsAsync(List<int> ids) => await _dineIn.Where(x => TGRID.BranchID == x.BranchID && ids.Contains(x.ID)).ToListAsync();
+
+        public async Task<IReadOnlyList<DineIn>> GetDineInInProgressAsync()
+        {
+            return await _dineIn.Include(x => x.TableXDinerIn).ThenInclude(x => x.Table)
+                .Include(x => x.Order).ThenInclude(x => x.OrderState)
+                .Where(x => x.BranchID == TGRID.BranchID && x.DinerInStateID == (short)DineInState.State.InProgress)
+                .AsNoTracking().ToListAsync();
+        }
     }
 }

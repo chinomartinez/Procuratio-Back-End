@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Order.Service.Services;
+using Procuratio.Modules.Order.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Service.Services;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
-using Procuratio.Modules.Orders.Service.ValidateChangeState;
-using Procuratio.Modules.Orders.Service.ValidateChangeState.Interfaces;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -17,18 +17,12 @@ namespace Procuratio.Modules.Orders.Service
         {
             services.AddScoped<IDeliveryService, DeliveryService>();
             services.AddScoped<IDineInService, DineInService>();
-            services.AddScoped<IOrderDetailService, OrderDetailService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IReserveService, ReserveService>();
             services.AddScoped<ITableService, TableService>();
             services.AddScoped<ITakeAwayService, TakeAwayService>();
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
-
-            // Ver de cambiar a una clase estatica
-            services.AddScoped<IValidateChangeStateDineIn, ValidateChangeStateDineIn>();
-            services.AddScoped<IValidateChangeStateOrder, ValidateChangeStateOrder>();
-            services.AddScoped<IValidateChangeStateTable, ValidateChangeStateTable>();
 
             services.AddDatabase();
 

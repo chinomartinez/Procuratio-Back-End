@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
+using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
@@ -59,15 +60,12 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
-        public async Task<ActionResult<DineInCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync()
-        {
-            return Ok(await _dinerInService.GetEntityCreationFormInitializerAsync());
-        }
+        public async Task<ActionResult<DineInCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync() => Ok(await _dinerInService.GetEntityCreationFormInitializerAsync());
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
-        public async Task<ActionResult<DineInEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id)
-        {
-            return Ok(await _dinerInService.GetEntityEditionFormInitializerAsync(id));
-        }
+        public async Task<ActionResult<DineInEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id) => Ok(await _dinerInService.GetEntityEditionFormInitializerAsync(id));
+
+        [HttpGet("in-progress")]
+        public async Task<ActionResult<IReadOnlyList<DineInInProgressDTO>>> GetDineInInProgressAsync() => Ok(await _dinerInService.GetDineInInProgressAsync());
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Procuratio.Modules.Orders.DTO.OrderDTOs;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.ModelBinder;
 using System;

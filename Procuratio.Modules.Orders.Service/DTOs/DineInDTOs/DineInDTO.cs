@@ -1,5 +1,4 @@
-﻿using Procuratio.Modules.Orders.DTO.OrderDTOs;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 using System.Collections.Generic;
 
 namespace Procuratio.Modules.Orders.DTO.DinerInDTOs

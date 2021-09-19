@@ -1,17 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
-using Procuratio.Modules.Orders.Domain.Entities;
+using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
+using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
+namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
 {
     internal class OrderRepository : IOrderRepository
     {
         private readonly OrderDbContext _ordersDbContext;
-        private readonly DbSet<Order> _order;
+        private readonly DbSet<Orders.Domain.Entities.Order> _order;
 
         public OrderRepository(OrderDbContext ordersDbContext)
         {
@@ -19,42 +21,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             _order = ordersDbContext.Order;
         }
 
-        public async Task AddAsync(Order toAdd)
+        public async Task<Orders.Domain.Entities.Order> GetDineInOrderDetailAsync(int orderId)
         {
-            toAdd.BranchID = TGRID.BranchID;
-
-            await _order.AddAsync(toAdd);
-
-            await _ordersDbContext.SaveChangesAsync();
+            return await BaseRelationsForGetAnOrderDetail().Include(x => x.DineIn)
+                .FirstOrDefaultAsync(x => x.BranchID == TGRID.BranchID && x.DineIn.OrderID == orderId);
         }
 
-        public async Task<IReadOnlyList<Order>> BrowseAsync()
-        {
-            return await _order.Where(x => x.BranchID == TGRID.BranchID).AsNoTracking().ToListAsync();
-        }
-
-        public async Task DeleteAsync(Order entity)
-        {
-            await Task.FromResult(_order.Remove(entity));
-        }
-
-        public async Task<Order> GetAsync(int id)
-        {
-            return await _order.SingleOrDefaultAsync(x => x.ID == id && TGRID.BranchID == x.BranchID);
-        }
-
-        public async Task<List<Order>> GetByIdsAsync(List<int> ids) => await _order.Where(x => TGRID.BranchID == x.BranchID && ids.Contains(x.ID)).ToListAsync();
-
-        public Task<Order> GetEntityEditionFormInitializerAsync(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task UpdateAsync(Order toUpdate)
-        {
-            _order.Update(toUpdate);
-
-            await _ordersDbContext.SaveChangesAsync();
-        }
+        private IQueryable<Orders.Domain.Entities.Order> BaseRelationsForGetAnOrderDetail() => _order.Include(x => x.OrderDetails).Include(x => x.OrderState).AsQueryable();
     }
 }

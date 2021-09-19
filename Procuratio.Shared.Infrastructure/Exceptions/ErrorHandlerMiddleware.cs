@@ -12,7 +12,7 @@ namespace Procuratio.Shared.Infrastructure.Exceptions
 {
     internal class ErrorHandlerMiddleware : IMiddleware
     {
-        private readonly ConcurrentDictionary<Type, string> _codes = new ConcurrentDictionary<Type, string>();
+        private readonly ConcurrentDictionary<Type, string> _codes = new();
         private readonly ILogger<ErrorHandlerMiddleware> _logger;
 
         public ErrorHandlerMiddleware(ILogger<ErrorHandlerMiddleware> logger)
