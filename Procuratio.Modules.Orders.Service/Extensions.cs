@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Order.Service.Services;
+using Procuratio.Modules.Order.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Service.Services;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
@@ -15,7 +17,7 @@ namespace Procuratio.Modules.Orders.Service
         {
             services.AddScoped<IDeliveryService, DeliveryService>();
             services.AddScoped<IDineInService, DineInService>();
-            services.AddScoped<IOrderDetailService, OrderDetailService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IReserveService, ReserveService>();
             services.AddScoped<ITableService, TableService>();
             services.AddScoped<ITakeAwayService, TakeAwayService>();

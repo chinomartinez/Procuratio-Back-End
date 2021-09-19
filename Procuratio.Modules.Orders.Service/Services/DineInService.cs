@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
+using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
@@ -111,9 +112,9 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task<IReadOnlyList<DineInInProgressDTO>> GetDineInInProgressAsync()
         {
-            IReadOnlyList<DineIn> dineIns = await _dinerInRepository.GetDineInInProgressAsync();
+            IReadOnlyList<DineIn> dinesIn = await _dinerInRepository.GetDineInInProgressAsync();
 
-            return _mapper.Map<IReadOnlyList<DineInInProgressDTO>>(dineIns);
+            return _mapper.Map<IReadOnlyList<DineInInProgressDTO>>(dinesIn);
         }
 
         private async Task<DineIn> GetDineInAsync(int id)
@@ -125,7 +126,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             return dineIn;
         }
 
-        private void InitializeAndSetOrderToDineIn(DineIn newDineIn)
+        private static void InitializeAndSetOrderToDineIn(DineIn newDineIn)
         {
             Domain.Entities.Order order = new();
 

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Order.DataAccess.EF.Repositories;
+using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware;
@@ -15,7 +17,7 @@ namespace Procuratio.Modules.Orders.DataAccess
         {
             services.AddScoped<IDeliveryRepository, DeliveryRepository>();
             services.AddScoped<IDineInRepository, DineInRepository>();
-            services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IReserveRepository, ReserveRepository>();
             services.AddScoped<ITableRepository, TableRepository>();
             services.AddScoped<ITakeAwayRepository, TakeAwayRepository>();

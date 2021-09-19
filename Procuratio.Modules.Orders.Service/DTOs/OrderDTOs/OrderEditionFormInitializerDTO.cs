@@ -1,0 +1,16 @@
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs
+{
+    public class OrderEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
+    {
+        public OrderDTO Order { get; set; } = new OrderDTO();
+
+        public string OrderStateName { get; set; }
+    }
+}
