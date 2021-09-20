@@ -96,16 +96,12 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             if (dineInToEdit is null) { throw new DineInNotFoundException(); }
 
-            dineInEditionFormInitializerDTO = _mapper.Map<DineInEditionFormInitializerDTO>(dineInToEdit);
-
-            dineInToEdit.TableXDinerIn.ForEach(x => 
-            {
-                dineInEditionFormInitializerDTO.Tables.SelectedOptionsIds.Add(x.TableID);
-                dineInEditionFormInitializerDTO.Tables.Items.Add(new SelectListItemDTO<int>() { ID = x.TableID, Description = x.Table.Number.ToString() });
-            });
-
             List<Table> availablesTables = await _tableRepository.GetAvailablesTablesAsync();
-            availablesTables.ForEach(x => dineInEditionFormInitializerDTO.Tables.Items.Add(new SelectListItemDTO<int>() { ID = x.ID, Description = x.Number.ToString() }));
+
+            dineInEditionFormInitializerDTO = _mapper.Map<DineInEditionFormInitializerDTO>(dineInToEdit, opt => 
+            {
+                opt.AfterMap((src, dest) => availablesTables.ForEach(x => dest.Tables.Items.Add(new SelectListItemDTO<int>() { ID = x.ID, Description = x.Number.ToString() })));
+            });
 
             return dineInEditionFormInitializerDTO;
         }
