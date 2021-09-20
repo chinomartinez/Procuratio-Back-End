@@ -2,7 +2,7 @@
 using Procuratio.Modules.Orders.DTO.DinerInDTOs;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.ModelBinder;
-using Procuratio.Shared.ProcuratioFramework.DTO;
+using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,6 +16,6 @@ namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
     {
         public DineInDTO DineIn { get; set; }
 
-        public MultipleSelectListItemForEditionDTO<int> Tables { get; set; } = new MultipleSelectListItemForEditionDTO<int>();
+        public MultipleSelectListItemForEditionDTO Tables { get; set; } = new MultipleSelectListItemForEditionDTO();
     }
 }

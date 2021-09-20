@@ -1,6 +1,6 @@
 ﻿using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
-using Procuratio.Shared.ProcuratioFramework.DTO;
+using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,6 @@ namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
 {
     public class DineInCreationFormInitializerDTO : IEntityCreationFormInitializerDTO
     {
-        public List<SelectListItemDTO<int>> Tables { get; set; } = new List<SelectListItemDTO<int>>();
+        public List<SelectListItemDTO> Tables { get; set; } = new List<SelectListItemDTO>();
     }
 }

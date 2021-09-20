@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Shared.ProcuratioFramework.DTO
+namespace Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem
 {
     /// <summary>
     /// DTO to fill a single selection option with the selected option
     /// </summary>
     /// <typeparam name="TKey">Type of key</typeparam>
-    public class SingleSelectListItemForEditionDTO<TKey>
+    public class SingleSelectListItemForEditionDTO
     {
         /// <summary>
         /// List of items for load the select list item
         /// </summary>
-        public List<SelectListItemDTO<TKey>> Items { get; set; } = new List<SelectListItemDTO<TKey>>();
+        public List<SelectListItemDTO> Items { get; set; } = new List<SelectListItemDTO>();
 
         /// <summary>
         /// Id of the already selected option
         /// </summary>
-        public TKey SelectedOptionId { get; set; }
+        public string SelectedOptionId { get; set; }
     }
 }

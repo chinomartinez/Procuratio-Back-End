@@ -11,7 +11,7 @@ using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
-using Procuratio.Shared.ProcuratioFramework.DTO;
+using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,7 +83,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             List<Table> availablesTables = await _tableRepository.GetAvailablesTablesAsync();
 
-            availablesTables.ForEach(x => dineInCreationFormInitializerDTO.Tables.Add(new SelectListItemDTO<int>() { ID = x.ID, Description = x.Number.ToString() }));
+            availablesTables.ForEach(x => dineInCreationFormInitializerDTO.Tables.Add(new SelectListItemDTO() { ID = x.ID.ToString(), Description = x.Number.ToString() }));
 
             return dineInCreationFormInitializerDTO;
         }
@@ -100,7 +100,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             dineInEditionFormInitializerDTO = _mapper.Map<DineInEditionFormInitializerDTO>(dineInToEdit, opt => 
             {
-                opt.AfterMap((src, dest) => availablesTables.ForEach(x => dest.Tables.Items.Add(new SelectListItemDTO<int>() { ID = x.ID, Description = x.Number.ToString() })));
+                opt.AfterMap((src, dest) => availablesTables.ForEach(x => dest.Tables.Items.Add(new SelectListItemDTO() { ID = x.ID.ToString(), Description = x.Number.ToString() })));
             });
 
             return dineInEditionFormInitializerDTO;

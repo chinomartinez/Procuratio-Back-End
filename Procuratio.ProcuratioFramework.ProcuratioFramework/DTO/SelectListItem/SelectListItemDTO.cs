@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Shared.ProcuratioFramework.DTO
+namespace Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem
 {
     /// <summary>
     /// DTO to fill a single selection option
     /// </summary>
-    /// <typeparam name="TKey">Type of key</typeparam>
-    public class SelectListItemDTO<TKey> 
+    public class SelectListItemDTO
     {
-        public TKey ID { get; set; }
+        public string ID { get; set; }
 
         public string Description { get; set; }
     }

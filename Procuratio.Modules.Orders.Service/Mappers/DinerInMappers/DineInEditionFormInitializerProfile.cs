@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
-using Procuratio.Shared.ProcuratioFramework.DTO;
+using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +19,14 @@ namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
                 .ForMember(x => x.Tables, options => options.MapFrom(MapMultipleSelectOfTables));
         }
 
-        private MultipleSelectListItemForEditionDTO<int> MapMultipleSelectOfTables(DineIn dineIn, DineInEditionFormInitializerDTO dineInFromFormDTO)
+        private MultipleSelectListItemForEditionDTO MapMultipleSelectOfTables(DineIn dineIn, DineInEditionFormInitializerDTO dineInFromFormDTO)
         {
-            MultipleSelectListItemForEditionDTO<int> result = new();
+            MultipleSelectListItemForEditionDTO result = new();
 
             dineIn.TableXDinerIn.ForEach(x =>
             {
-                result.SelectedOptionsIds.Add(x.TableID);
-                result.Items.Add(new SelectListItemDTO<int>() { ID = x.TableID, Description = x.Table.Number.ToString() });
+                result.SelectedOptionsIds.Add(x.TableID.ToString());
+                result.Items.Add(new SelectListItemDTO() { ID = x.TableID.ToString(), Description = x.Table.Number.ToString() });
             });
 
             return result;
