@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public List<TableXReserve> TableXReserve { get; set; }
 
-        public List<TableXDinerIn> TableXDinerIn { get; set; }
+        public List<TableXWithoutReserve> TableXWithoutReserve { get; set; }
 
         public short TableStateID { get; set; }
         public TableState TableState { get; set; }

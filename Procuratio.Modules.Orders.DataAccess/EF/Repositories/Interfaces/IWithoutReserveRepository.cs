@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces
 {
-    public interface IDineInRepository : IBaseRepositoryOperations<DineIn, int>
+    public interface IWithoutReserveRepository : IBaseRepositoryOperations<WithoutReserve, int>
     {
-        Task<DineIn> GetWithTableXDinerInAsync(int id);
+        Task<WithoutReserve> GetWithTableXWithoutReserveAsync(int id);
 
-        Task<IReadOnlyList<DineIn>> GetDineInInProgressAsync();
+        Task<IReadOnlyList<WithoutReserve>> GetInProgressAsync();
     }
 }

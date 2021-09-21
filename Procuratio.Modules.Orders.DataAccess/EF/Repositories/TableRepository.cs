@@ -64,11 +64,11 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<List<Table>> GetAvailablesTablesAsync()
         {
-            return await _table.Include(x => x.TableXDinerIn).ThenInclude(x => x.DineIn)
+            return await _table.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.WithoutReserve)
                 .Include(x => x.TableXReserve).ThenInclude(x => x.Reserve)
                 .Where(x => 
                 TGRID.BranchID == x.BranchID 
-                && !x.TableXDinerIn.Any(x => x.DineIn.DinerInStateID == (short)DineInState.State.InProgress)
+                && !x.TableXWithoutReserve.Any(x => x.WithoutReserve.WithoutReserveStateID == (short)WithoutReserveState.State.InProgress)
                 && !x.TableXReserve.Any(x => x.Reserve.ReserveStateID == (short)ReserveState.State.InProgress))
                 .AsNoTracking().ToListAsync();
         }

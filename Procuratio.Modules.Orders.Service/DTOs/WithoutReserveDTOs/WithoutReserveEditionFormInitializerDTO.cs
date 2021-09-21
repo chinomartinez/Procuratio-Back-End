@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Procuratio.Modules.Orders.DTO.DinerInDTOs;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.ModelBinder;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
@@ -10,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
+namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 {
-    public class DineInEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
+    public class WithoutReserveEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
     {
-        public DineInDTO DineIn { get; set; }
+        public WithoutReserveDTO WithoutReserve { get; set; }
 
         public MultipleSelectListItemForEditionDTO Tables { get; set; } = new MultipleSelectListItemForEditionDTO();
     }

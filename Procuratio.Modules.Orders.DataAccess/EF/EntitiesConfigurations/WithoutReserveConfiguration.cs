@@ -5,9 +5,9 @@ using Procuratio.Modules.Orders.Domain.Entities;
 
 namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
 {
-    internal class DineInConfiguration : IEntityTypeConfiguration<DineIn>
+    internal class WithoutReserveConfiguration : IEntityTypeConfiguration<WithoutReserve>
     {
-        public void Configure(EntityTypeBuilder<DineIn> builder)
+        public void Configure(EntityTypeBuilder<WithoutReserve> builder)
         {
             builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         }

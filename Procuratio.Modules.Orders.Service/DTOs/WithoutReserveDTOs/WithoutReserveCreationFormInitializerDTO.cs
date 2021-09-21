@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
+namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 {
-    public class DineInCreationFormInitializerDTO : IEntityCreationFormInitializerDTO
+    public class WithoutReserveCreationFormInitializerDTO : IEntityCreationFormInitializerDTO
     {
         public List<SelectListItemDTO> Tables { get; set; } = new List<SelectListItemDTO>();
     }

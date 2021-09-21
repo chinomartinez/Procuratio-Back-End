@@ -1,14 +1,14 @@
 ﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 using System.Collections.Generic;
 
-namespace Procuratio.Modules.Orders.DTO.DinerInDTOs
+namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 {
-    public class DineInDTO : IDTO
+    public class WithoutReserveDTO : IDTO
     {
         public int ID { get; set; }
 
         public int OrderID { get; set; }
 
-        public short DinerInStateID { get; set; }
+        public short WithoutReserveStateID { get; set; }
     }
 }

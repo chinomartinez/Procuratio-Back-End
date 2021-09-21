@@ -9,13 +9,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds
             ProductionEnviromentSeeds(ordersDbContext);
             TestingSeeds(ordersDbContext);
 
-            ordersDbContext.SaveChanges();
+            ordersDbContext.SaveChangesAsync();
         }
 
         private static void ProductionEnviromentSeeds(OrderDbContext ordersDbContext)
         {
             DeliveryStateSeed.StartDeliveryStateSeed(ordersDbContext.DeliveryState);
-            DinerInStateSeed.StartDineInStateSeed(ordersDbContext.DineInState);
+            WithoutReserveStateSeed.StartWithoutReserveStateSeed(ordersDbContext.WithoutReserveState);
             OrderStateSeed.StartOrderStateSeed(ordersDbContext.OrderState);
             ReserveStateSeed.StartReserveStateSeed(ordersDbContext.ReserveState);
             TableStateSeed.StartTableStateSeed(ordersDbContext.TableState);

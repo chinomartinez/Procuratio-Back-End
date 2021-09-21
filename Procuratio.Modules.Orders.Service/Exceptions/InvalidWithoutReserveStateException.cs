@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Exceptions
 {
-    internal class InvalidDineInStateException : CustomExceptionBase
+    internal class InvalidWithoutReserveStateException : CustomExceptionBase
     {
-        public InvalidDineInStateException(string exceptionDetailmessage) : base(message: exceptionDetailmessage) { }
+        public InvalidWithoutReserveStateException(string exceptionDetailmessage) : base(message: exceptionDetailmessage) { }
     }
 }

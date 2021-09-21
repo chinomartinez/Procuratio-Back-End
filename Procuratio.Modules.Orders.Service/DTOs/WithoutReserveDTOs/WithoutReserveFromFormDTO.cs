@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
+namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 {
-    public class DineInFromFormDTO : IFromFormDTO
+    public class WithoutReserveFromFormDTO : IFromFormDTO
     {
         [Required]
         [ModelBinder(typeof(TypeBinder<List<int>>))]

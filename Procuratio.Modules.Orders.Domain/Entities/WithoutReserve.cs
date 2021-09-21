@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
-    public class DineIn : BaseEntity<int>
+    public class WithoutReserve : BaseEntity<int>
     {
         public int OrderID { get; set; }
         public Order Order { get; set; }
 
-        public short DinerInStateID { get; set; }
-        public DineInState DinerInState { get; set; }
+        public short WithoutReserveStateID { get; set; }
+        public WithoutReserveState WithoutReserveState { get; set; }
 
-        public List<TableXDinerIn> TableXDinerIn { get; set; }
+        public List<TableXWithoutReserve> TableXWithoutReserve { get; set; }
     }
 }

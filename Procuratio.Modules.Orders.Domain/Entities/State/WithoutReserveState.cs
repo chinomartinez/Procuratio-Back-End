@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Orders.Domain.Entities.State
 {
-    public class DineInState : StateBaseEntity<DineIn>
+    public class WithoutReserveState : StateBaseEntity<WithoutReserve>
     {
         public enum State : short
         {

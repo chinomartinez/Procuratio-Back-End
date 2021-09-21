@@ -10,13 +10,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (orderStateDbSet.Any()) return;
 
-            orderStateDbSet.Add(new OrderState() { ID = (short)OrderState.State.Pending, StateName = "Pendiente" });
+            orderStateDbSet.AddAsync(new OrderState() { ID = (short)OrderState.State.Pending, StateName = "Pendiente" });
 
-            orderStateDbSet.Add(new OrderState() { ID = (short)OrderState.State.InProgress, StateName = "En proceso" });
+            orderStateDbSet.AddAsync(new OrderState() { ID = (short)OrderState.State.InProgress, StateName = "En proceso" });
 
-            orderStateDbSet.Add(new OrderState() { ID = (short)OrderState.State.ForDelivery, StateName = "Para entrega" });
+            orderStateDbSet.AddAsync(new OrderState() { ID = (short)OrderState.State.ForDelivery, StateName = "Para entrega" });
 
-            orderStateDbSet.Add(new OrderState() { ID = (short)OrderState.State.Delivered, StateName = "Entregado" });
+            orderStateDbSet.AddAsync(new OrderState() { ID = (short)OrderState.State.Delivered, StateName = "Entregado" });
         }
     }
 }
