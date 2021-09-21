@@ -10,15 +10,15 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (reserveStateDbSet.Any()) return;
 
-            reserveStateDbSet.Add(new ReserveState() { ID = (short)ReserveState.State.Pending, StateName = "Pendiente" });
+            reserveStateDbSet.AddAsync(new ReserveState() { ID = (short)ReserveState.State.Pending, StateName = "Pendiente" });
 
-            reserveStateDbSet.Add(new ReserveState() { ID = (short)ReserveState.State.Unconfirmed, StateName = "Sin confirmar" });
+            reserveStateDbSet.AddAsync(new ReserveState() { ID = (short)ReserveState.State.Unconfirmed, StateName = "Sin confirmar" });
 
-            reserveStateDbSet.Add(new ReserveState() { ID = (short)ReserveState.State.InProgress, StateName = "En curso" });
+            reserveStateDbSet.AddAsync(new ReserveState() { ID = (short)ReserveState.State.InProgress, StateName = "En curso" });
 
-            reserveStateDbSet.Add(new ReserveState() { ID = (short)ReserveState.State.Completed, StateName = "Completada" });
+            reserveStateDbSet.AddAsync(new ReserveState() { ID = (short)ReserveState.State.Completed, StateName = "Completada" });
 
-            reserveStateDbSet.Add(new ReserveState() { ID = (int)ReserveState.State.DidNotCome, StateName = "No vino" });
+            reserveStateDbSet.AddAsync(new ReserveState() { ID = (int)ReserveState.State.DidNotCome, StateName = "No vino" });
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Procuratio.Modules.Order.Service.DTOs.DineInDTOs;
+using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
@@ -8,22 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Order.Service.Mappers.DinerInMappers
+namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
 {
-    public class DineInEditionFormInitializerProfile : Profile
+    public class WithoutReserveEditionFormInitializerProfile : Profile
     {
-        public DineInEditionFormInitializerProfile()
+        public WithoutReserveEditionFormInitializerProfile()
         {
-            CreateMap<DineIn, DineInEditionFormInitializerDTO>()
-                .ForMember(x => x.DineIn, x => x.MapFrom(x => x))
+            CreateMap<WithoutReserve, WithoutReserveEditionFormInitializerDTO>()
+                .ForMember(x => x.WithoutReserve, x => x.MapFrom(x => x))
                 .ForMember(x => x.Tables, options => options.MapFrom(MapMultipleSelectOfTables));
         }
 
-        private MultipleSelectListItemForEditionDTO MapMultipleSelectOfTables(DineIn dineIn, DineInEditionFormInitializerDTO dineInFromFormDTO)
+        private MultipleSelectListItemForEditionDTO MapMultipleSelectOfTables(WithoutReserve withoutReserve, WithoutReserveEditionFormInitializerDTO withoutReserveFromFormDTO)
         {
             MultipleSelectListItemForEditionDTO result = new();
 
-            dineIn.TableXDinerIn.ForEach(x =>
+            withoutReserve.TableXWithoutReserve.ForEach(x =>
             {
                 result.SelectedOptionsIds.Add(x.TableID.ToString());
                 result.Items.Add(new SelectListItemDTO() { ID = x.TableID.ToString(), Description = x.Table.Number.ToString() });

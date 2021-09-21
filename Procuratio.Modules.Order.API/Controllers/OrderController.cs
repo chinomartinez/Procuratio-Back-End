@@ -20,6 +20,6 @@ namespace Procuratio.Modules.Order.API.Controllers
         }
 
         [HttpGet("dine-in-order-detail/" + "{orderId:int}")]
-        public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetDineInOrderDetailAsync(int orderId) => Ok(await _orderService.GetDineInOrderDetailAsync(orderId));
+        public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetWithoutReserveOrderDetailAsync(int orderId) => Ok(await _orderService.GetWithoutReserveOrderDetailAsync(orderId));
     }
 }

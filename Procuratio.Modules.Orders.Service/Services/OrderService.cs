@@ -22,9 +22,9 @@ namespace Procuratio.Modules.Order.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<OrderEditionFormInitializerDTO> GetDineInOrderDetailAsync(int orderId)
+        public async Task<OrderEditionFormInitializerDTO> GetWithoutReserveOrderDetailAsync(int orderId)
         {
-            Orders.Domain.Entities.Order order = await _orderRepository.GetDineInOrderDetailAsync(orderId);
+            Orders.Domain.Entities.Order order = await _orderRepository.GetWithoutReserveOrderDetailAsync(orderId);
 
             if (order is null) { throw new OrderNotFoundException(); }
 

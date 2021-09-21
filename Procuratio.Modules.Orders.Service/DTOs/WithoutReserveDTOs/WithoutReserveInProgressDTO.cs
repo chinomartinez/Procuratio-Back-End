@@ -1,15 +1,14 @@
-﻿using Procuratio.Modules.Orders.DTO.DinerInDTOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
+namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 {
-    public class DineInInProgressDTO
+    public class WithoutReserveInProgressDTO
     {
-        public DineInDTO DineIn { get; set; }
+        public WithoutReserveDTO WithoutReserve { get; set; }
 
         public string WaitersName { get; set; }
 
@@ -19,6 +18,6 @@ namespace Procuratio.Modules.Order.Service.DTOs.DineInDTOs
 
         public string OrderStateName { get; set; }
 
-        public List<string> DineInTableNumbers { get; set; } = new List<string>();
+        public List<string> WithoutReserveTableNumbers { get; set; } = new List<string>();
     }
 }

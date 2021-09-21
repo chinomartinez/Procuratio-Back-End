@@ -16,7 +16,7 @@ namespace Procuratio.Modules.Orders.Service
         public static IServiceCollection AddOrderServices(this IServiceCollection services)
         {
             services.AddScoped<IDeliveryService, DeliveryService>();
-            services.AddScoped<IDineInService, DineInService>();
+            services.AddScoped<IWithoutReserveService, WithoutReserveService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IReserveService, ReserveService>();
             services.AddScoped<ITableService, TableService>();

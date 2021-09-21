@@ -10,9 +10,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (tableStateDbSet.Any()) return;
 
-            tableStateDbSet.Add(new TableState() { ID = (short)TableState.State.Available, StateName = "Disponible" });
+            tableStateDbSet.AddAsync(new TableState() { ID = (short)TableState.State.Available, StateName = "Disponible" });
 
-            tableStateDbSet.Add(new TableState() { ID = (short)TableState.State.Ocuped, StateName = "Ocupada" });
+            tableStateDbSet.AddAsync(new TableState() { ID = (short)TableState.State.Ocuped, StateName = "Ocupada" });
         }
     }
 }

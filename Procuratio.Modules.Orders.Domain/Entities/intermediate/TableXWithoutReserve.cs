@@ -2,10 +2,10 @@
 
 namespace Procuratio.Modules.Orders.Domain.Entities.intermediate
 {
-    public class TableXDinerIn : IntermediateBaseEntity
+    public class TableXWithoutReserve : IntermediateBaseEntity
     {
-        public int DineInID { get; set; }
-        public DineIn DineIn { get; set; }
+        public int WithoutReserveID { get; set; }
+        public WithoutReserve WithoutReserve { get; set; }
 
         public int TableID { get; set; }
         public Table Table { get; set; }
