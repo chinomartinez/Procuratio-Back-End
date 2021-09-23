@@ -4,6 +4,6 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain
 {
     public abstract class BaseEntity<TKey> : BaseIdentity<TKey>, IRestaurant
     {
-        public int BranchID { get; set; }
+        public int BranchId { get; set; }
     }
 }

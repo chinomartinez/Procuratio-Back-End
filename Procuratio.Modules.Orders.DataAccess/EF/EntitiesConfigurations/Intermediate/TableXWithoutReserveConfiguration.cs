@@ -9,7 +9,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations.Interme
     {
         public void Configure(EntityTypeBuilder<TableXWithoutReserve> builder)
         {
-            builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
             builder.HasKey(x => new { x.WithoutReserveID, x.TableID });
         }

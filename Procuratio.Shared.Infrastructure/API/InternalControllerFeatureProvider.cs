@@ -5,7 +5,6 @@ using System.Reflection;
 
 namespace Procuratio.Shared.Infrastructure.API
 {
-    // Protege que los metodos no sean llamados desde otros modulos
     internal class InternalControllerFeatureProvider : ControllerFeatureProvider
     {
         protected override bool IsController(TypeInfo typeInfo)

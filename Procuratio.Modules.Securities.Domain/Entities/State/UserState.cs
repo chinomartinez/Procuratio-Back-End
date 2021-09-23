@@ -1,6 +1,5 @@
 ﻿using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
-using System.Collections.Generic;
 
 namespace Procuratio.Modules.Securities.Domain.Entities.State
 {

@@ -2,11 +2,7 @@
 using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
 {
@@ -16,7 +12,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
         {
             CreateMap<WithoutReserve, WithoutReserveInProgressDTO>()
                 .ForMember(x => x.WithoutReserve, x => x.MapFrom(x => x))
-                .ForMember(x => x.OrderID, x => x.MapFrom(x => x.Order.ID))
+                .ForMember(x => x.OrderID, x => x.MapFrom(x => x.Order.Id))
                 .ForMember(x => x.OrderStateID, x => x.MapFrom(x => x.Order.OrderStateID))
                 .ForMember(x => x.OrderStateName, x => x.MapFrom(x => x.Order.OrderState.StateName))
                 .ForMember(x => x.WaitersName, x => x.MapFrom(x => TGRID.WaitersName))

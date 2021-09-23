@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
+using Procuratio.Modules.Orders.Domain.Entities;
 
 namespace Procuratio.Modules.Orders.Service.Mappers.WithoutReserveMappers
 {

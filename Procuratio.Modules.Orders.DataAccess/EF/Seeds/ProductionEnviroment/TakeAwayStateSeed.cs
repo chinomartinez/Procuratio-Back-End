@@ -10,11 +10,11 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (takeAwayStateDbSet.Any()) return;
 
-            takeAwayStateDbSet.AddAsync(new TakeAwayState() { ID = (short)TakeAwayState.State.InProgress, StateName = "En curso" });
+            takeAwayStateDbSet.AddAsync(new TakeAwayState() { Id = (short)TakeAwayState.State.InProgress, StateName = "En curso" });
 
-            takeAwayStateDbSet.AddAsync(new TakeAwayState() { ID = (short)TakeAwayState.State.Completed, StateName = "Completado" });
+            takeAwayStateDbSet.AddAsync(new TakeAwayState() { Id = (short)TakeAwayState.State.Completed, StateName = "Completado" });
 
-            takeAwayStateDbSet.AddAsync(new TakeAwayState() { ID = (short)TakeAwayState.State.DidNotCome, StateName = "No vino" });
+            takeAwayStateDbSet.AddAsync(new TakeAwayState() { Id = (short)TakeAwayState.State.DidNotCome, StateName = "No vino" });
         }
     }
 }

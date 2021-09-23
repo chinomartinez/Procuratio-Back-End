@@ -10,7 +10,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess
         internal const string RestaurantSchemeName = "Restaurant";
 
         #region DbSet of entities
-        public DbSet<Restaurant> Restaurant { get; set; }
+        public DbSet<Domain.Entities.Restaurant> Restaurant { get; set; }
         public DbSet<Branch> Branch { get; set; }
         #endregion
 

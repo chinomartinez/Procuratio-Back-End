@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Securities.DataAccess;
 
-namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
+namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
 {
     [DbContext(typeof(SecurityDbContext))]
     partial class SecurityDbContextModelSnapshot : ModelSnapshot
@@ -252,7 +252,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.State.UserState", b =>
                 {
-                    b.Property<short>("ID")
+                    b.Property<short>("Id")
                         .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
@@ -260,7 +260,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("UserState");
                 });
@@ -277,7 +277,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", b =>
                 {
                     b.HasOne("Procuratio.Modules.Securities.Domain.Entities.State.UserState", "UserState")
-                        .WithMany("Users")
+                        .WithMany("CollectionNavigationProperty")
                         .HasForeignKey("UserStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -329,7 +329,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.State.UserState", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("CollectionNavigationProperty");
                 });
 #pragma warning restore 612, 618
         }

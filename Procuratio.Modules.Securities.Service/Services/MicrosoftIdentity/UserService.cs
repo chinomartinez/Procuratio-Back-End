@@ -70,9 +70,9 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task UpdateAsync([FromForm] UserFromFormDTO updateDTO, int ID)
+        public async Task UpdateAsync([FromForm] UserFromFormDTO updateDTO, int Id)
         {
-            User user = await GetUserAsync(ID);
+            User user = await GetUserAsync(Id);
 
             user = _mapper.Map(updateDTO, user);
 
@@ -96,7 +96,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             throw new NotImplementedException();
         }
 
-        public async Task<UserEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<UserEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int Id)
         {
             throw new NotImplementedException();
         }

@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Orders.DataAccess;
 
-namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
+namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    [Migration("20210822215717_DeletingChefIDFromOrder")]
-    partial class DeletingChefIDFromOrder
+    [Migration("20210923224518_Order_Module_init")]
+    partial class Order_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,12 +24,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Delivery", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<short>("DeliveryStateID")
@@ -43,7 +43,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<int>("OrderID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("DeliveryStateID");
 
@@ -53,40 +53,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.ToTable("Delivery");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DineIn", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BranchID")
-                        .HasColumnType("int");
-
-                    b.Property<short>("DinerInStateID")
-                        .HasColumnType("smallint");
-
-                    b.Property<int>("OrderID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("DinerInStateID");
-
-                    b.HasIndex("OrderID")
-                        .IsUnique();
-
-                    b.ToTable("DineIn");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Order", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<int>("CustomerID")
@@ -104,7 +78,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<int>("WaiterID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("OrderStateID");
 
@@ -113,12 +87,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.OrderDetail", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<int>("ItemID")
@@ -133,7 +107,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<int>("QuantityInKitchen")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("OrderID");
 
@@ -142,12 +116,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Reserve", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<int>("CustomerID")
@@ -165,7 +139,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<short>("ReserveStateID")
                         .HasColumnType("smallint");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("OrderID")
                         .IsUnique()
@@ -178,7 +152,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.DeliveryState", b =>
                 {
-                    b.Property<short>("ID")
+                    b.Property<short>("Id")
                         .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
@@ -186,29 +160,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("DeliveryState");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.DineInState", b =>
-                {
-                    b.Property<short>("ID")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("StateName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("DineInState");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.OrderState", b =>
                 {
-                    b.Property<short>("ID")
+                    b.Property<short>("Id")
                         .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
@@ -216,14 +175,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("OrderState");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.ReserveState", b =>
                 {
-                    b.Property<short>("ID")
+                    b.Property<short>("Id")
                         .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
@@ -231,14 +190,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("ReserveState");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.TableState", b =>
                 {
-                    b.Property<short>("ID")
+                    b.Property<short>("Id")
                         .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
@@ -246,14 +205,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("TableState");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.TakeAwayState", b =>
                 {
-                    b.Property<short>("ID")
+                    b.Property<short>("Id")
                         .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
@@ -261,19 +220,34 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("TakeAwayState");
                 });
 
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.WithoutReserveState", b =>
+                {
+                    b.Property<short>("Id")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("StateName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WithoutReserveState");
+                });
+
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Table", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<int>("Capacity")
@@ -285,7 +259,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<short>("TableStateID")
                         .HasColumnType("smallint");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("TableStateID");
 
@@ -294,12 +268,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.TakeAway", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<int>("OrderID")
@@ -308,7 +282,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<short>("TakeAwayStateID")
                         .HasColumnType("smallint");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("OrderID")
                         .IsUnique();
@@ -318,22 +292,30 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.ToTable("TakeAway");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXDinerIn", b =>
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.WithoutReserve", b =>
                 {
-                    b.Property<int>("DinnerInID")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TableID")
+                    b.Property<int>("OrderID")
                         .HasColumnType("int");
 
-                    b.Property<int>("BranchID")
-                        .HasColumnType("int");
+                    b.Property<short>("WithoutReserveStateID")
+                        .HasColumnType("smallint");
 
-                    b.HasKey("DinnerInID", "TableID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("TableID");
+                    b.HasIndex("OrderID")
+                        .IsUnique();
 
-                    b.ToTable("TableXDineIn");
+                    b.HasIndex("WithoutReserveStateID");
+
+                    b.ToTable("WithoutReserve");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXReserve", b =>
@@ -344,7 +326,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Property<int>("TableID")
                         .HasColumnType("int");
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.HasKey("ReserveID", "TableID");
@@ -354,10 +336,28 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.ToTable("TableXReserve");
                 });
 
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXWithoutReserve", b =>
+                {
+                    b.Property<int>("WithoutReserveID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
+
+                    b.HasKey("WithoutReserveID", "TableID");
+
+                    b.HasIndex("TableID");
+
+                    b.ToTable("TableXWithoutReserve");
+                });
+
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Delivery", b =>
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.DeliveryState", "DeliveryState")
-                        .WithMany("Deliveries")
+                        .WithMany("CollectionNavigationProperty")
                         .HasForeignKey("DeliveryStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -373,29 +373,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DineIn", b =>
-                {
-                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.DineInState", "DinerInState")
-                        .WithMany("DinerIn")
-                        .HasForeignKey("DinerInStateID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
-                        .WithOne("DinerIn")
-                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.DineIn", "OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DinerInState");
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Order", b =>
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.OrderState", "OrderState")
-                        .WithMany("Orders")
+                        .WithMany("CollectionNavigationProperty")
                         .HasForeignKey("OrderStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -421,7 +402,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.Reserve", "OrderID");
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.ReserveState", "ReserveState")
-                        .WithMany("Reserve")
+                        .WithMany("CollectionNavigationProperty")
                         .HasForeignKey("ReserveStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -434,7 +415,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Table", b =>
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.TableState", "TableState")
-                        .WithMany("Table")
+                        .WithMany("CollectionNavigationProperty")
                         .HasForeignKey("TableStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -451,7 +432,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.TakeAwayState", "TakeAwayState")
-                        .WithMany("TakeAways")
+                        .WithMany("CollectionNavigationProperty")
                         .HasForeignKey("TakeAwayStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -461,23 +442,23 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Navigation("TakeAwayState");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXDinerIn", b =>
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.WithoutReserve", b =>
                 {
-                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.DineIn", "DinnerIn")
-                        .WithMany("TableXDinerIn")
-                        .HasForeignKey("DinnerInID")
+                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
+                        .WithOne("WithoutReserve")
+                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.WithoutReserve", "OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Table", "Table")
-                        .WithMany("TableXDinerIn")
-                        .HasForeignKey("TableID")
+                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.WithoutReserveState", "WithoutReserveState")
+                        .WithMany("CollectionNavigationProperty")
+                        .HasForeignKey("WithoutReserveStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DinnerIn");
+                    b.Navigation("Order");
 
-                    b.Navigation("Table");
+                    b.Navigation("WithoutReserveState");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXReserve", b =>
@@ -499,22 +480,36 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
                     b.Navigation("Table");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.DineIn", b =>
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXWithoutReserve", b =>
                 {
-                    b.Navigation("TableXDinerIn");
+                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Table", "Table")
+                        .WithMany("TableXWithoutReserve")
+                        .HasForeignKey("TableID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Procuratio.Modules.Orders.Domain.Entities.WithoutReserve", "WithoutReserve")
+                        .WithMany("TableXWithoutReserve")
+                        .HasForeignKey("WithoutReserveID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Table");
+
+                    b.Navigation("WithoutReserve");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Order", b =>
                 {
                     b.Navigation("Delivery");
 
-                    b.Navigation("DinerIn");
-
                     b.Navigation("OrderDetails");
 
                     b.Navigation("Reserve");
 
                     b.Navigation("TakeAway");
+
+                    b.Navigation("WithoutReserve");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Reserve", b =>
@@ -524,39 +519,44 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.DeliveryState", b =>
                 {
-                    b.Navigation("Deliveries");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.DineInState", b =>
-                {
-                    b.Navigation("DinerIn");
+                    b.Navigation("CollectionNavigationProperty");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.OrderState", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("CollectionNavigationProperty");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.ReserveState", b =>
                 {
-                    b.Navigation("Reserve");
+                    b.Navigation("CollectionNavigationProperty");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.TableState", b =>
                 {
-                    b.Navigation("Table");
+                    b.Navigation("CollectionNavigationProperty");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.TakeAwayState", b =>
                 {
-                    b.Navigation("TakeAways");
+                    b.Navigation("CollectionNavigationProperty");
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.WithoutReserveState", b =>
+                {
+                    b.Navigation("CollectionNavigationProperty");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Table", b =>
                 {
-                    b.Navigation("TableXDinerIn");
-
                     b.Navigation("TableXReserve");
+
+                    b.Navigation("TableXWithoutReserve");
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.WithoutReserve", b =>
+                {
+                    b.Navigation("TableXWithoutReserve");
                 });
 #pragma warning restore 612, 618
         }

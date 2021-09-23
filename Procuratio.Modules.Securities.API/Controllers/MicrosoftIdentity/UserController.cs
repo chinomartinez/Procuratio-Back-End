@@ -50,9 +50,9 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromForm] UserFromFormDTO updateDTO, int ID)
+        public async Task<ActionResult> UpdateAsync([FromForm] UserFromFormDTO updateDTO, int Id)
         {
-            await _userService.UpdateAsync(updateDTO, ID);
+            await _userService.UpdateAsync(updateDTO, Id);
             return NoContent();
         }
 
@@ -63,7 +63,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
-        public async Task<ActionResult<UserEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<ActionResult<UserEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int Id)
         {
             throw new System.NotImplementedException();
         }

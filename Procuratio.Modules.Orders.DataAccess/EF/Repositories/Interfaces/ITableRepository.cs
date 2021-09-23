@@ -1,5 +1,4 @@
 ﻿using Procuratio.Modules.Orders.Domain.Entities;
-using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using System.Collections.Generic;
 using System.Threading.Tasks;

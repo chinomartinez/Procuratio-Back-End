@@ -1,19 +1,14 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
-using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
-using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Services
@@ -82,7 +77,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             List<Table> availablesTables = await _tableRepository.GetAvailablesTablesAsync();
 
-            availablesTables.ForEach(x => withoutReserveCreationFormInitializerDTO.Tables.Add(new SelectListItemDTO() { ID = x.ID.ToString(), Description = x.Number.ToString() }));
+            availablesTables.ForEach(x => withoutReserveCreationFormInitializerDTO.Tables.Add(new SelectListItemDTO() { Id = x.Id.ToString(), Description = x.Number.ToString() }));
 
             return withoutReserveCreationFormInitializerDTO;
         }
@@ -97,9 +92,9 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             List<Table> availablesTables = await _tableRepository.GetAvailablesTablesAsync();
 
-            withoutReserveEditionFormInitializerDTO = _mapper.Map<WithoutReserveEditionFormInitializerDTO>(withoutReserveToEdit, opt => 
+            withoutReserveEditionFormInitializerDTO = _mapper.Map<WithoutReserveEditionFormInitializerDTO>(withoutReserveToEdit, opt =>
             {
-                opt.AfterMap((src, dest) => availablesTables.ForEach(x => dest.Tables.Items.Add(new SelectListItemDTO() { ID = x.ID.ToString(), Description = x.Number.ToString() })));
+                opt.AfterMap((src, dest) => availablesTables.ForEach(x => dest.Tables.Items.Add(new SelectListItemDTO() { Id = x.Id.ToString(), Description = x.Number.ToString() })));
             });
 
             return withoutReserveEditionFormInitializerDTO;
@@ -126,8 +121,8 @@ namespace Procuratio.Modules.Orders.Service.Services
             Domain.Entities.Order order = new();
 
             order.OrderStateID = (short)OrderState.State.Pending;
-            order.WaiterID = TGRID.UserID;
-            order.CustomerID = TGRID.CustomerID;
+            order.WaiterID = TGRID.UserId;
+            order.CustomerID = TGRID.CustomerId;
             order.Date = DateTime.Now;
 
             newWithoutReserve.Order = order;

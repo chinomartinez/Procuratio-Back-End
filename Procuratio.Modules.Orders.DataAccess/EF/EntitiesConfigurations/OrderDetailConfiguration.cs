@@ -9,7 +9,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<OrderDetail> builder)
         {
-            builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         }
     }
 }

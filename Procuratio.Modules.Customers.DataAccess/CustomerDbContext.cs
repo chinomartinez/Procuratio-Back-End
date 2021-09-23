@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Customers.DataAccess.EF.Seeds;
-using Procuratio.Modules.Customers.Domain.Entities;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 
 namespace Procuratio.Modules.Customers.DataAccess
@@ -10,7 +9,7 @@ namespace Procuratio.Modules.Customers.DataAccess
         internal const string CustomerSchemeName = "Customer";
 
         #region DbSet of entities
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Domain.Entities.Customer> Customer { get; set; }
         #endregion
 
         #region DbSet of intermediate entities

@@ -1,13 +1,9 @@
-﻿using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
+﻿using AutoMapper;
+using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.intermediate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
+using System.Collections.Generic;
 
 namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
 {
@@ -25,7 +21,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
 
             if (withoutReserveFromFormDTO.TablesIds is null) { return result; }
 
-            withoutReserveFromFormDTO.TablesIds.ForEach(x => result.Add(new() { TableID = x, BranchID = TGRID.BranchID }));
+            withoutReserveFromFormDTO.TablesIds.ForEach(x => result.Add(new() { TableID = x, BranchId = TGRID.BranchId }));
 
             return result;
         }

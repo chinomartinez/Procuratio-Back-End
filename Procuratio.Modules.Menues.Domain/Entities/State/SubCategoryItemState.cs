@@ -1,5 +1,4 @@
 ﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
-using System.Collections.Generic;
 
 namespace Procuratio.Modules.Menues.Domain.Entities.State
 {
