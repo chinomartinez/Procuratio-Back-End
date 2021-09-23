@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Securities.DataAccess;
 
-namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
+namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
 {
     [DbContext(typeof(SecurityDbContext))]
-    [Migration("20210721231301_Security_Module_init")]
+    [Migration("20210923224742_Security_Module_init")]
     partial class Security_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -254,7 +254,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.State.UserState", b =>
                 {
-                    b.Property<short>("ID")
+                    b.Property<short>("Id")
                         .HasColumnType("smallint");
 
                     b.Property<string>("StateName")
@@ -262,7 +262,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("UserState");
                 });
@@ -279,7 +279,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.User", b =>
                 {
                     b.HasOne("Procuratio.Modules.Securities.Domain.Entities.State.UserState", "UserState")
-                        .WithMany("Users")
+                        .WithMany("CollectionNavigationProperty")
                         .HasForeignKey("UserStateID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -331,7 +331,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.State.UserState", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("CollectionNavigationProperty");
                 });
 #pragma warning restore 612, 618
         }

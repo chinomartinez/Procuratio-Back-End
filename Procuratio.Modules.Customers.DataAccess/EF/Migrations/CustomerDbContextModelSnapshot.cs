@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Customers.DataAccess;
 
-namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
+namespace Procuratio.Modules.Customer.DataAccess.EF.Migrations
 {
     [DbContext(typeof(CustomerDbContext))]
     partial class CustomerDbContextModelSnapshot : ModelSnapshot
@@ -21,12 +21,12 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Customers.Domain.Entities.Customer", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -44,7 +44,7 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Customer");
                 });

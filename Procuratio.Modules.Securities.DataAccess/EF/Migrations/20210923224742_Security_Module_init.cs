@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
+namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
 {
     public partial class Security_Module_init : Migration
     {
@@ -31,12 +31,12 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                 schema: "Security",
                 columns: table => new
                 {
-                    ID = table.Column<short>(type: "smallint", nullable: false),
+                    Id = table.Column<short>(type: "smallint", nullable: false),
                     StateName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserState", x => x.ID);
+                    table.PrimaryKey("PK_UserState", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,7 +96,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Migrations
                         column: x => x.UserStateID,
                         principalSchema: "Security",
                         principalTable: "UserState",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

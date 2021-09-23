@@ -3,7 +3,6 @@ using Procuratio.Modules.Order.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using Procuratio.Shared.Infrastructure.Controllers;
 using System.Collections.Generic;

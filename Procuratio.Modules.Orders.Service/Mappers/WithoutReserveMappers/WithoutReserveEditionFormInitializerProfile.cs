@@ -2,11 +2,6 @@
 using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
 {
@@ -26,7 +21,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
             withoutReserve.TableXWithoutReserve.ForEach(x =>
             {
                 result.SelectedOptionsIds.Add(x.TableID.ToString());
-                result.Items.Add(new SelectListItemDTO() { ID = x.TableID.ToString(), Description = x.Table.Number.ToString() });
+                result.Items.Add(new SelectListItemDTO() { Id = x.TableID.ToString(), Description = x.Table.Number.ToString() });
             });
 
             return result;

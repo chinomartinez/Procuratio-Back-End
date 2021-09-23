@@ -5,6 +5,6 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain
     public abstract class ManualBaseIdentity<TKey>
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public TKey ID { get; set; }
+        public TKey Id { get; set; }
     }
 }

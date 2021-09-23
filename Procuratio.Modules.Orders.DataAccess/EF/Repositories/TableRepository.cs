@@ -22,7 +22,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task AddAsync(Table toAdd)
         {
-            toAdd.BranchID = TGRID.BranchID;
+            toAdd.BranchId = TGRID.BranchId;
 
             await _table.AddAsync(toAdd);
 
@@ -31,12 +31,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<IReadOnlyList<Table>> BrowseAsync()
         {
-            return await _table.Where(x => x.BranchID == TGRID.BranchID).AsNoTracking().ToListAsync();
+            return await _table.Where(x => x.BranchId == TGRID.BranchId).AsNoTracking().ToListAsync();
         }
 
-        public async Task<Table> GetEntityEditionFormInitializerAsync(int ID)
+        public async Task<Table> GetEntityEditionFormInitializerAsync(int Id)
         {
-            return await _table.Include(x => x.TableState).AsNoTracking().SingleOrDefaultAsync(x => x.ID == ID && TGRID.BranchID == x.BranchID);
+            return await _table.Include(x => x.TableState).AsNoTracking().SingleOrDefaultAsync(x => x.Id == Id && TGRID.BranchId == x.BranchId);
         }
 
         public async Task DeleteAsync(Table entity)
@@ -45,14 +45,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             await _orderDbContext.SaveChangesAsync();
         }
 
-        public async Task<Table> GetAsync(int ID)
+        public async Task<Table> GetAsync(int Id)
         {
-            return await _table.SingleOrDefaultAsync(x => x.ID == ID && TGRID.BranchID == x.BranchID);
+            return await _table.SingleOrDefaultAsync(x => x.Id == Id && TGRID.BranchId == x.BranchId);
         }
 
         public async Task<short?> GetLastNumberAsync()
         {
-            return await Task.FromResult(_table.Where(x => TGRID.BranchID == x.BranchID).MaxAsync<Table, short?>(x => x.Number)).Result;
+            return await Task.FromResult(_table.Where(x => TGRID.BranchId == x.BranchId).MaxAsync<Table, short?>(x => x.Number)).Result;
         }
 
         public async Task UpdateAsync(Table toUpdate)
@@ -66,13 +66,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         {
             return await _table.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.WithoutReserve)
                 .Include(x => x.TableXReserve).ThenInclude(x => x.Reserve)
-                .Where(x => 
-                TGRID.BranchID == x.BranchID 
+                .Where(x =>
+                TGRID.BranchId == x.BranchId
                 && !x.TableXWithoutReserve.Any(x => x.WithoutReserve.WithoutReserveStateID == (short)WithoutReserveState.State.InProgress)
                 && !x.TableXReserve.Any(x => x.Reserve.ReserveStateID == (short)ReserveState.State.InProgress))
                 .AsNoTracking().ToListAsync();
         }
 
-        public async Task<List<Table>> GetByIdsAsync(List<int> ids) => await _table.Where(x => TGRID.BranchID == x.BranchID && ids.Contains(x.ID)).ToListAsync();
+        public async Task<List<Table>> GetByIdsAsync(List<int> ids) => await _table.Where(x => TGRID.BranchId == x.BranchId && ids.Contains(x.Id)).ToListAsync();
     }
 }

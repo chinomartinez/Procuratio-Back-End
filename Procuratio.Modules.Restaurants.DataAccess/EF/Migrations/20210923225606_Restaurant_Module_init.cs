@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
+namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
 {
     public partial class Restaurant_Module_init : Migration
     {
@@ -15,13 +15,13 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
                 schema: "Restaurant",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Slogan = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Restaurant", x => x.ID);
+                    table.PrimaryKey("PK_Restaurant", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -29,7 +29,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
                 schema: "Restaurant",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     RestaurantID = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Withdrawn = table.Column<int>(type: "int", nullable: true),
@@ -37,13 +37,13 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Branch", x => x.ID);
+                    table.PrimaryKey("PK_Branch", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Branch_Restaurant_RestaurantID",
                         column: x => x.RestaurantID,
                         principalSchema: "Restaurant",
                         principalTable: "Restaurant",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

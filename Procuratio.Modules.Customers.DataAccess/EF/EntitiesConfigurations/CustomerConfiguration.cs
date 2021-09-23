@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Procuratio.Modules.Customers.Domain.Entities;
 
 namespace Procuratio.Modules.Customers.DataAccess.EF.EntitiesConfigurations
 {
-    internal class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+    internal class CustomerConfiguration : IEntityTypeConfiguration<Domain.Entities.Customer>
     {
-        public void Configure(EntityTypeBuilder<Customer> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.Customer> builder)
         {
-            builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired(true);
 

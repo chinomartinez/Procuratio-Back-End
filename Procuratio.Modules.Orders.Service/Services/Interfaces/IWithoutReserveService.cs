@@ -1,5 +1,4 @@
 ﻿using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
-using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using System.Collections.Generic;
 using System.Threading.Tasks;

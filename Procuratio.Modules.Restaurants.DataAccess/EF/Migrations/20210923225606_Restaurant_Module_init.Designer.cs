@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Restaurants.DataAccess;
 
-namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
+namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20210721231202_Restaurant_Module_init")]
+    [Migration("20210923225606_Restaurant_Module_init")]
     partial class Restaurant_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Restaurants.Domain.Entities.Branch", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
@@ -41,7 +41,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
                     b.Property<int?>("Withdrawn")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("RestaurantID");
 
@@ -50,7 +50,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
 
             modelBuilder.Entity("Procuratio.Modules.Restaurants.Domain.Entities.Restaurant", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -63,7 +63,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("Name")
                         .IsUnique();

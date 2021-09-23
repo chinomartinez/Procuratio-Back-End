@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Procuratio.Modules.Restaurants.Domain.Entities;
 
 namespace Procuratio.Modules.Restaurants.DataAccess.EF.EntitiesConfigurations
 {
-    internal class RestaruantConfiguration : IEntityTypeConfiguration<Restaurant>
+    internal class RestaruantConfiguration : IEntityTypeConfiguration<Domain.Entities.Restaurant>
     {
-        public void Configure(EntityTypeBuilder<Restaurant> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.Restaurant> builder)
         {
             builder.Property(x => x.Name).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 

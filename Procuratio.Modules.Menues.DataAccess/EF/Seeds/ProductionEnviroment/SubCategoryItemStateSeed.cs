@@ -10,9 +10,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds.ProductionEnviroment
         {
             if (subCategoryItemStateDbSet.Any()) return;
 
-            subCategoryItemStateDbSet.Add(new SubCategoryItemState() { ID = (short)SubCategoryItemState.State.Available, StateName = "Disponible" });
+            subCategoryItemStateDbSet.Add(new SubCategoryItemState() { Id = (short)SubCategoryItemState.State.Available, StateName = "Disponible" });
 
-            subCategoryItemStateDbSet.Add(new SubCategoryItemState() { ID = (short)SubCategoryItemState.State.Deleted, StateName = "Eliminado" });
+            subCategoryItemStateDbSet.Add(new SubCategoryItemState() { Id = (short)SubCategoryItemState.State.Deleted, StateName = "Eliminado" });
         }
     }
 }
