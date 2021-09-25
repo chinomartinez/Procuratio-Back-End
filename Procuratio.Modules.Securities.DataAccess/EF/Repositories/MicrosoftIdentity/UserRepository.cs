@@ -26,12 +26,12 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task<IReadOnlyList<User>> BrowseAsync()
         {
-            return await _user.Where(x => x.BranchID == TGRID.BranchId).AsNoTracking().ToListAsync();
+            return await _user.Where(x => x.BranchId == TGRID.BranchId).AsNoTracking().ToListAsync();
         }
 
         public async Task AddAsync(User toAdd)
         {
-            toAdd.BranchID = TGRID.BranchId;
+            toAdd.BranchId = TGRID.BranchId;
 
             await _userManager.CreateAsync(toAdd, toAdd.Password);
         }
@@ -43,7 +43,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task<User> GetAsync(int id)
         {
-            return await _user.SingleOrDefaultAsync(x => x.Id == id && TGRID.BranchId == x.BranchID);
+            return await _user.SingleOrDefaultAsync(x => x.Id == id && TGRID.BranchId == x.BranchId);
         }
 
         public async Task UpdateAsync(User toUpdate)
@@ -61,6 +61,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
             throw new System.NotImplementedException();
         }
 
-        public async Task<List<User>> GetByIdsAsync(List<int> ids) => await _user.Where(x => TGRID.BranchId == x.BranchID && ids.Contains(x.Id)).ToListAsync();
+        public async Task<List<User>> GetByIdsAsync(List<int> ids) => await _user.Where(x => TGRID.BranchId == x.BranchId && ids.Contains(x.Id)).ToListAsync();
     }
 }

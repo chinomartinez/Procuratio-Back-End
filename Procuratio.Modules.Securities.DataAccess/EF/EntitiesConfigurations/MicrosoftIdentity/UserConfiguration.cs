@@ -11,7 +11,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
         {
             builder.ToTable(nameof(User), SecurityDbContext.SecuritySchemeName);
 
-            builder.Property(x => x.BranchID).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
             builder.Property(x => x.UserName).IsRequired();
 

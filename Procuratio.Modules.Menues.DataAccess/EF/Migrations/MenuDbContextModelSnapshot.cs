@@ -30,7 +30,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<short>("CategoryItemStateID")
+                    b.Property<short>("CategoryItemStateId")
                         .HasColumnType("smallint");
 
                     b.Property<string>("Name")
@@ -40,7 +40,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryItemStateID");
+                    b.HasIndex("CategoryItemStateId");
 
                     b.ToTable("CategoryItem");
                 });
@@ -72,7 +72,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<short>("ItemStateID")
+                    b.Property<short>("ItemStateId")
                         .HasColumnType("smallint");
 
                     b.Property<string>("Name")
@@ -91,14 +91,14 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                         .HasPrecision(19, 4)
                         .HasColumnType("decimal(19,4)");
 
-                    b.Property<int>("SubCategoryItemID")
+                    b.Property<int>("SubCategoryItemId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemStateID");
+                    b.HasIndex("ItemStateId");
 
-                    b.HasIndex("SubCategoryItemID");
+                    b.HasIndex("SubCategoryItemId");
 
                     b.ToTable("Item");
                 });
@@ -158,7 +158,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -169,14 +169,14 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<short>("SubCategoryItemStateID")
+                    b.Property<short>("SubCategoryItemStateId")
                         .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("SubCategoryItemStateID");
+                    b.HasIndex("SubCategoryItemStateId");
 
                     b.ToTable("SubCategoryItem");
                 });
@@ -185,7 +185,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.CategoryItemState", "CategoryItemState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("CategoryItemStateID")
+                        .HasForeignKey("CategoryItemStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -196,13 +196,13 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.ItemState", "ItemState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("ItemStateID")
+                        .HasForeignKey("ItemStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Menues.Domain.Entities.SubCategoryItem", "SubCategoryItem")
                         .WithMany("Items")
-                        .HasForeignKey("SubCategoryItemID")
+                        .HasForeignKey("SubCategoryItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -215,13 +215,13 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Menues.Domain.Entities.CategoryItem", "Category")
                         .WithMany("SubCategoryItems")
-                        .HasForeignKey("CategoryID")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.SubCategoryItemState", "SubCategoryItemState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("SubCategoryItemStateID")
+                        .HasForeignKey("SubCategoryItemStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

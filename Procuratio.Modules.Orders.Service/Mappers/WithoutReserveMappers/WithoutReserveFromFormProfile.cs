@@ -21,7 +21,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
 
             if (withoutReserveFromFormDTO.TablesIds is null) { return result; }
 
-            withoutReserveFromFormDTO.TablesIds.ForEach(x => result.Add(new() { TableID = x, BranchId = TGRID.BranchId }));
+            withoutReserveFromFormDTO.TablesIds.ForEach(x => result.Add(new() { TableId = x, BranchId = TGRID.BranchId }));
 
             return result;
         }

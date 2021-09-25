@@ -29,7 +29,7 @@ namespace Procuratio.Modules.Orders.Service.Services
             newTable = _mapper.Map(createDTO, newTable);
 
             newTable.Number = await GetNextTableNumber();
-            newTable.TableStateID = (short)TableState.State.Available;
+            newTable.TableStateId = (short)TableState.State.Available;
 
             await _tableRepository.AddAsync(newTable);
         }

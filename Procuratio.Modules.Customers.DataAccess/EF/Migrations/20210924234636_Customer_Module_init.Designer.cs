@@ -9,7 +9,7 @@ using Procuratio.Modules.Customers.DataAccess;
 namespace Procuratio.Modules.Customer.DataAccess.EF.Migrations
 {
     [DbContext(typeof(CustomerDbContext))]
-    [Migration("20210923224941_Customer_Module_init")]
+    [Migration("20210924234636_Customer_Module_init")]
     partial class Customer_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

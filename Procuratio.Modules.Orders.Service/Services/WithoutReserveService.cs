@@ -56,7 +56,7 @@ namespace Procuratio.Modules.Orders.Service.Services
         public async Task AddAsync(WithoutReserveFromFormDTO withoutReserveCreationDTO)
         {
             WithoutReserve withoutReserve = new();
-            withoutReserve.WithoutReserveStateID = (short)WithoutReserveState.State.InProgress;
+            withoutReserve.WithoutReserveStateId = (short)WithoutReserveState.State.InProgress;
 
             withoutReserve = _mapper.Map(withoutReserveCreationDTO, withoutReserve);
 
@@ -120,9 +120,9 @@ namespace Procuratio.Modules.Orders.Service.Services
         {
             Domain.Entities.Order order = new();
 
-            order.OrderStateID = (short)OrderState.State.Pending;
-            order.WaiterID = TGRID.UserId;
-            order.CustomerID = TGRID.CustomerId;
+            order.OrderStateId = (short)OrderState.State.Pending;
+            order.WaiterId = TGRID.UserId;
+            order.CustomerId = TGRID.CustomerId;
             order.Date = DateTime.Now;
 
             newWithoutReserve.Order = order;

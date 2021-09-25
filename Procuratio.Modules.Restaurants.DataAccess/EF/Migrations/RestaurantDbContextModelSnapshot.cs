@@ -33,7 +33,7 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                     b.Property<DateTime?>("DateWithdrawn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RestaurantID")
+                    b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Withdrawn")
@@ -41,7 +41,7 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestaurantID");
+                    b.HasIndex("RestaurantId");
 
                     b.ToTable("Branch");
                 });
@@ -73,7 +73,7 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Restaurants.Domain.Entities.Restaurant", "Restaurant")
                         .WithMany("Branches")
-                        .HasForeignKey("RestaurantID")
+                        .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

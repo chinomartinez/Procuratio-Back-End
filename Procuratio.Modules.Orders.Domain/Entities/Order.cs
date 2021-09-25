@@ -11,12 +11,12 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public string KitchenNote { get; set; }
 
-        public short OrderStateID { get; set; }
+        public short OrderStateId { get; set; }
         public OrderState OrderState { get; set; }
 
-        public int WaiterID { get; set; }
+        public int WaiterId { get; set; }
 
-        public int CustomerID { get; set; }
+        public int CustomerId { get; set; }
 
         public Delivery Delivery { get; set; }
 

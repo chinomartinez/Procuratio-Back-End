@@ -15,7 +15,7 @@ namespace Procuratio.Modules.Securities.Service.ValidateChangeState
                 // Throw exception
             }
 
-            user.UserStateID = (short)UserState.State.Active;
+            user.UserStateId = (short)UserState.State.Active;
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
 {
@@ -69,10 +69,10 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BranchID = table.Column<int>(type: "int", nullable: false),
+                    BranchId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserStateID = table.Column<short>(type: "smallint", nullable: false),
+                    UserStateId = table.Column<short>(type: "smallint", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -92,8 +92,8 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_User_UserState_UserStateID",
-                        column: x => x.UserStateID,
+                        name: "FK_User_UserState_UserStateId",
+                        column: x => x.UserStateId,
                         principalSchema: "Security",
                         principalTable: "UserState",
                         principalColumn: "Id",
@@ -107,6 +107,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    BranchId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -130,7 +131,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                 {
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    BranchID = table.Column<int>(type: "int", nullable: false),
+                    BranchId = table.Column<int>(type: "int", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -154,7 +155,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    BranchID = table.Column<int>(type: "int", nullable: false),
+                    BranchId = table.Column<int>(type: "int", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -176,7 +177,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
-                    BranchID = table.Column<int>(type: "int", nullable: false)
+                    BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -224,10 +225,10 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_UserStateID",
+                name: "IX_User_UserStateId",
                 schema: "Security",
                 table: "User",
-                column: "UserStateID");
+                column: "UserStateId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",

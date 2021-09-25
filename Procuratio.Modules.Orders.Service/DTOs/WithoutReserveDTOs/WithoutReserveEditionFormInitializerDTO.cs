@@ -3,9 +3,9 @@ using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 
 namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 {
-    public class WithoutReserveEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
+    public class WithoutReserveEditionFormInitializerDTO : IEntityEditionFormInitializerDTO<WithoutReserveDTO>
     {
-        public WithoutReserveDTO WithoutReserve { get; set; }
+        public WithoutReserveDTO BaseProperties { get; set; }
 
         public MultipleSelectListItemForEditionDTO Tables { get; set; } = new MultipleSelectListItemForEditionDTO();
     }

@@ -10,7 +10,7 @@ using Procuratio.Modules.Securities.DataAccess;
 namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
 {
     [DbContext(typeof(SecurityDbContext))]
-    [Migration("20210923224742_Security_Module_init")]
+    [Migration("20210924234440_Security_Module_init")]
     partial class Security_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,7 +86,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -144,7 +144,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<short>("UserStateID")
+                    b.Property<short>("UserStateId")
                         .HasColumnType("smallint");
 
                     b.HasKey("Id");
@@ -159,7 +159,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.HasIndex("UserStateID");
+                    b.HasIndex("UserStateId");
 
                     b.ToTable("User", "Security");
                 });
@@ -170,6 +170,9 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -195,7 +198,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                     b.Property<string>("ProviderKey")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProviderDisplayName")
@@ -222,7 +225,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -242,7 +245,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BranchID")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
@@ -280,7 +283,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Securities.Domain.Entities.State.UserState", "UserState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("UserStateID")
+                        .HasForeignKey("UserStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

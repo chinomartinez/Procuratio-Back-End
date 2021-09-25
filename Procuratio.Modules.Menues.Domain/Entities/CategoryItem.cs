@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Menues.Domain.Entities
     {
         public string Name { get; set; }
 
-        public short CategoryItemStateID { get; set; }
+        public short CategoryItemStateId { get; set; }
         public CategoryItemState CategoryItemState { get; set; }
 
         public List<SubCategoryItem> SubCategoryItems { get; set; }

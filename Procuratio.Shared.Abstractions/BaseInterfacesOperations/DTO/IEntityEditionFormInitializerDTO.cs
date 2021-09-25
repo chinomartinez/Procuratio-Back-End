@@ -1,4 +1,7 @@
 ﻿namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO
 {
-    public interface IEntityEditionFormInitializerDTO { }
+    public interface IEntityEditionFormInitializerDTO<TDTO> where TDTO : IDTO
+    {
+        public TDTO BaseProperties { get; set; }
+    }
 }

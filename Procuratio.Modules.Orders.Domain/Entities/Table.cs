@@ -15,7 +15,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public List<TableXWithoutReserve> TableXWithoutReserve { get; set; }
 
-        public short TableStateID { get; set; }
+        public short TableStateId { get; set; }
         public TableState TableState { get; set; }
     }
 }

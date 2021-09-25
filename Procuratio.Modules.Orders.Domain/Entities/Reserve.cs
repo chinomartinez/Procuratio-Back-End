@@ -12,13 +12,13 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public short NumberOfDiners { get; set; }
 
-        public int? OrderID { get; set; }
+        public int? OrderId { get; set; }
         public Order Order { get; set; }
 
-        public short ReserveStateID { get; set; }
+        public short ReserveStateId { get; set; }
         public ReserveState ReserveState { get; set; }
 
-        public int CustomerID { get; set; }
+        public int CustomerId { get; set; }
 
         public List<TableXReserve> TableXReserve { get; set; }
     }

@@ -3,8 +3,8 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperation
 
 namespace Procuratio.Modules.Order.Service.DTOs.TableDTOs
 {
-    public class TableForListDTO : IListDTO
+    public class TableForListDTO : IListDTO<TableDTO>
     {
-        public TableDTO Table { get; set; } = new TableDTO();
+        public TableDTO BaseProperties { get; set; } = new TableDTO();
     }
 }

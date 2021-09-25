@@ -8,9 +8,9 @@ namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 
         public string WaitersName { get; set; }
 
-        public int OrderID { get; set; }
+        public int OrderId { get; set; }
 
-        public short OrderStateID { get; set; }
+        public short OrderStateId { get; set; }
 
         public string OrderStateName { get; set; }
 

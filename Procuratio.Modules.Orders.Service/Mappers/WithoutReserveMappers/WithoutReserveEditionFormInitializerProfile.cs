@@ -10,7 +10,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
         public WithoutReserveEditionFormInitializerProfile()
         {
             CreateMap<WithoutReserve, WithoutReserveEditionFormInitializerDTO>()
-                .ForMember(x => x.WithoutReserve, x => x.MapFrom(x => x))
+                .ForMember(x => x.BaseProperties, x => x.MapFrom(x => x))
                 .ForMember(x => x.Tables, options => options.MapFrom(MapMultipleSelectOfTables));
         }
 
@@ -20,8 +20,8 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
 
             withoutReserve.TableXWithoutReserve.ForEach(x =>
             {
-                result.SelectedOptionsIds.Add(x.TableID.ToString());
-                result.Items.Add(new SelectListItemDTO() { Id = x.TableID.ToString(), Description = x.Table.Number.ToString() });
+                result.SelectedOptionsIds.Add(x.TableId.ToString());
+                result.Items.Add(new SelectListItemDTO() { Id = x.TableId.ToString(), Description = x.Table.Number.ToString() });
             });
 
             return result;

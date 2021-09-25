@@ -1,4 +1,5 @@
-﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+﻿using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.Modules.Security.Service.DTOs.UserDTOs

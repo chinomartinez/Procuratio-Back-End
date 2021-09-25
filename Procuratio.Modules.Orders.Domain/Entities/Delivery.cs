@@ -7,10 +7,10 @@ namespace Procuratio.Modules.Orders.Domain.Entities
     {
         public string DestinyDirection { get; set; }
 
-        public int OrderID { get; set; }
+        public int OrderId { get; set; }
         public Order Order { get; set; }
 
-        public short DeliveryStateID { get; set; }
+        public short DeliveryStateId { get; set; }
         public DeliveryState DeliveryState { get; set; }
     }
 }

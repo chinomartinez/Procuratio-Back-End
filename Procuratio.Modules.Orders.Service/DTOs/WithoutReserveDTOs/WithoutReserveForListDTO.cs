@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 {
-    public class WithoutReserveForListDTO : IListDTO
+    public class WithoutReserveForListDTO : IListDTO<WithoutReserveDTO>
     {
-        public WithoutReserveDTO WithoutReserve { get; set; } = new WithoutReserveDTO();
+        public WithoutReserveDTO BaseProperties { get; set; } = new WithoutReserveDTO();
 
-        public short OrderStateID { get; set; }
+        public short OrderStateId { get; set; }
 
         public string WaitersName { get; set; }
 

@@ -2,9 +2,9 @@
 
 namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs
 {
-    public class OrderEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
+    public class OrderEditionFormInitializerDTO : IEntityEditionFormInitializerDTO<OrderDTO>
     {
-        public OrderDTO Order { get; set; } = new OrderDTO();
+        public OrderDTO BaseProperties { get; set; } = new OrderDTO();
 
         public string OrderStateName { get; set; }
     }
