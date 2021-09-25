@@ -12,8 +12,8 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
         {
             CreateMap<WithoutReserve, WithoutReserveInProgressDTO>()
                 .ForMember(x => x.WithoutReserve, x => x.MapFrom(x => x))
-                .ForMember(x => x.OrderID, x => x.MapFrom(x => x.Order.Id))
-                .ForMember(x => x.OrderStateID, x => x.MapFrom(x => x.Order.OrderStateID))
+                .ForMember(x => x.OrderId, x => x.MapFrom(x => x.Order.Id))
+                .ForMember(x => x.OrderStateId, x => x.MapFrom(x => x.Order.OrderStateId))
                 .ForMember(x => x.OrderStateName, x => x.MapFrom(x => x.Order.OrderState.StateName))
                 .ForMember(x => x.WaitersName, x => x.MapFrom(x => TGRID.WaitersName))
                 .ForMember(x => x.WithoutReserveTableNumbers, options => options.MapFrom(MapWithoutReserveTableNumbers));

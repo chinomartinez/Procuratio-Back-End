@@ -5,10 +5,10 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class TakeAway : BaseEntity<int>
     {
-        public int OrderID { get; set; }
+        public int OrderId { get; set; }
         public Order Order { get; set; }
 
-        public short TakeAwayStateID { get; set; }
+        public short TakeAwayStateId { get; set; }
         public TakeAwayState TakeAwayState { get; set; }
     }
 }

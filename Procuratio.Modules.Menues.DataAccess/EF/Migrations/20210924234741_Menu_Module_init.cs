@@ -56,15 +56,15 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CategoryItemStateID = table.Column<short>(type: "smallint", nullable: false),
+                    CategoryItemStateId = table.Column<short>(type: "smallint", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CategoryItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CategoryItem_CategoryItemState_CategoryItemStateID",
-                        column: x => x.CategoryItemStateID,
+                        name: "FK_CategoryItem_CategoryItemState_CategoryItemStateId",
+                        column: x => x.CategoryItemStateId,
                         principalSchema: "Menu",
                         principalTable: "CategoryItemState",
                         principalColumn: "Id",
@@ -80,23 +80,23 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Order = table.Column<int>(type: "int", nullable: false),
-                    SubCategoryItemStateID = table.Column<short>(type: "smallint", nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: false),
+                    SubCategoryItemStateId = table.Column<short>(type: "smallint", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SubCategoryItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SubCategoryItem_CategoryItem_CategoryID",
-                        column: x => x.CategoryID,
+                        name: "FK_SubCategoryItem_CategoryItem_CategoryId",
+                        column: x => x.CategoryId,
                         principalSchema: "Menu",
                         principalTable: "CategoryItem",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SubCategoryItem_SubCategoryItemState_SubCategoryItemStateID",
-                        column: x => x.SubCategoryItemStateID,
+                        name: "FK_SubCategoryItem_SubCategoryItemState_SubCategoryItemStateId",
+                        column: x => x.SubCategoryItemStateId,
                         principalSchema: "Menu",
                         principalTable: "SubCategoryItemState",
                         principalColumn: "Id",
@@ -118,23 +118,23 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     PriceInsideRestaurant = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: true),
                     PriceOutsideRestaurant = table.Column<decimal>(type: "decimal(19,4)", precision: 19, scale: 4, nullable: true),
                     Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    ItemStateID = table.Column<short>(type: "smallint", nullable: false),
-                    SubCategoryItemID = table.Column<int>(type: "int", nullable: false),
+                    ItemStateId = table.Column<short>(type: "smallint", nullable: false),
+                    SubCategoryItemId = table.Column<int>(type: "int", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Item", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Item_ItemState_ItemStateID",
-                        column: x => x.ItemStateID,
+                        name: "FK_Item_ItemState_ItemStateId",
+                        column: x => x.ItemStateId,
                         principalSchema: "Menu",
                         principalTable: "ItemState",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Item_SubCategoryItem_SubCategoryItemID",
-                        column: x => x.SubCategoryItemID,
+                        name: "FK_Item_SubCategoryItem_SubCategoryItemId",
+                        column: x => x.SubCategoryItemId,
                         principalSchema: "Menu",
                         principalTable: "SubCategoryItem",
                         principalColumn: "Id",
@@ -142,34 +142,34 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryItem_CategoryItemStateID",
+                name: "IX_CategoryItem_CategoryItemStateId",
                 schema: "Menu",
                 table: "CategoryItem",
-                column: "CategoryItemStateID");
+                column: "CategoryItemStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_ItemStateID",
+                name: "IX_Item_ItemStateId",
                 schema: "Menu",
                 table: "Item",
-                column: "ItemStateID");
+                column: "ItemStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_SubCategoryItemID",
+                name: "IX_Item_SubCategoryItemId",
                 schema: "Menu",
                 table: "Item",
-                column: "SubCategoryItemID");
+                column: "SubCategoryItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategoryItem_CategoryID",
+                name: "IX_SubCategoryItem_CategoryId",
                 schema: "Menu",
                 table: "SubCategoryItem",
-                column: "CategoryID");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategoryItem_SubCategoryItemStateID",
+                name: "IX_SubCategoryItem_SubCategoryItemStateId",
                 schema: "Menu",
                 table: "SubCategoryItem",
-                column: "SubCategoryItemStateID");
+                column: "SubCategoryItemStateId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

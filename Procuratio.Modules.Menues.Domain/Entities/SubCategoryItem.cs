@@ -12,10 +12,10 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public List<Item> Items { get; set; }
 
-        public short SubCategoryItemStateID { get; set; }
+        public short SubCategoryItemStateId { get; set; }
         public SubCategoryItemState SubCategoryItemState { get; set; }
 
-        public int CategoryID { get; set; }
+        public int CategoryId { get; set; }
         public CategoryItem Category { get; set; }
     }
 }

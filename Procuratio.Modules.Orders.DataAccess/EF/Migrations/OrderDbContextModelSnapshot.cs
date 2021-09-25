@@ -30,7 +30,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<short>("DeliveryStateID")
+                    b.Property<short>("DeliveryStateId")
                         .HasColumnType("smallint");
 
                     b.Property<string>("DestinyDirection")
@@ -38,14 +38,14 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("OrderID")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeliveryStateID");
+                    b.HasIndex("DeliveryStateId");
 
-                    b.HasIndex("OrderID")
+                    b.HasIndex("OrderId")
                         .IsUnique();
 
                     b.ToTable("Delivery");
@@ -61,7 +61,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -70,15 +70,15 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<string>("KitchenNote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<short>("OrderStateID")
+                    b.Property<short>("OrderStateId")
                         .HasColumnType("smallint");
 
-                    b.Property<int>("WaiterID")
+                    b.Property<int>("WaiterId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderStateID");
+                    b.HasIndex("OrderStateId");
 
                     b.ToTable("Order");
                 });
@@ -93,10 +93,10 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ItemID")
+                    b.Property<int>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderID")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -107,7 +107,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderID");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -122,7 +122,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -131,19 +131,19 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<short>("NumberOfDiners")
                         .HasColumnType("smallint");
 
-                    b.Property<int?>("OrderID")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<short>("ReserveStateID")
+                    b.Property<short>("ReserveStateId")
                         .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderID")
+                    b.HasIndex("OrderId")
                         .IsUnique()
-                        .HasFilter("[OrderID] IS NOT NULL");
+                        .HasFilter("[OrderId] IS NOT NULL");
 
-                    b.HasIndex("ReserveStateID");
+                    b.HasIndex("ReserveStateId");
 
                     b.ToTable("Reserve");
                 });
@@ -254,12 +254,12 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<short>("Number")
                         .HasColumnType("smallint");
 
-                    b.Property<short>("TableStateID")
+                    b.Property<short>("TableStateId")
                         .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TableStateID");
+                    b.HasIndex("TableStateId");
 
                     b.ToTable("Table");
                 });
@@ -274,18 +274,18 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderID")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<short>("TakeAwayStateID")
+                    b.Property<short>("TakeAwayStateId")
                         .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderID")
+                    b.HasIndex("OrderId")
                         .IsUnique();
 
-                    b.HasIndex("TakeAwayStateID");
+                    b.HasIndex("TakeAwayStateId");
 
                     b.ToTable("TakeAway");
                 });
@@ -300,54 +300,54 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderID")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<short>("WithoutReserveStateID")
+                    b.Property<short>("WithoutReserveStateId")
                         .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderID")
+                    b.HasIndex("OrderId")
                         .IsUnique();
 
-                    b.HasIndex("WithoutReserveStateID");
+                    b.HasIndex("WithoutReserveStateId");
 
                     b.ToTable("WithoutReserve");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXReserve", b =>
                 {
-                    b.Property<int>("ReserveID")
+                    b.Property<int>("ReserveId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TableID")
+                    b.Property<int>("TableId")
                         .HasColumnType("int");
 
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.HasKey("ReserveID", "TableID");
+                    b.HasKey("ReserveId", "TableId");
 
-                    b.HasIndex("TableID");
+                    b.HasIndex("TableId");
 
                     b.ToTable("TableXReserve");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.intermediate.TableXWithoutReserve", b =>
                 {
-                    b.Property<int>("WithoutReserveID")
+                    b.Property<int>("WithoutReserveId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TableID")
+                    b.Property<int>("TableId")
                         .HasColumnType("int");
 
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.HasKey("WithoutReserveID", "TableID");
+                    b.HasKey("WithoutReserveId", "TableId");
 
-                    b.HasIndex("TableID");
+                    b.HasIndex("TableId");
 
                     b.ToTable("TableXWithoutReserve");
                 });
@@ -356,13 +356,13 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.DeliveryState", "DeliveryState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("DeliveryStateID")
+                        .HasForeignKey("DeliveryStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
                         .WithOne("Delivery")
-                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.Delivery", "OrderID")
+                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.Delivery", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -375,7 +375,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.OrderState", "OrderState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("OrderStateID")
+                        .HasForeignKey("OrderStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -386,7 +386,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderID")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -397,11 +397,11 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
                         .WithOne("Reserve")
-                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.Reserve", "OrderID");
+                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.Reserve", "OrderId");
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.ReserveState", "ReserveState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("ReserveStateID")
+                        .HasForeignKey("ReserveStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -414,7 +414,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.TableState", "TableState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("TableStateID")
+                        .HasForeignKey("TableStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -425,13 +425,13 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
                         .WithOne("TakeAway")
-                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.TakeAway", "OrderID")
+                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.TakeAway", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.TakeAwayState", "TakeAwayState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("TakeAwayStateID")
+                        .HasForeignKey("TakeAwayStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -444,13 +444,13 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Order", "Order")
                         .WithOne("WithoutReserve")
-                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.WithoutReserve", "OrderID")
+                        .HasForeignKey("Procuratio.Modules.Orders.Domain.Entities.WithoutReserve", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.State.WithoutReserveState", "WithoutReserveState")
                         .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("WithoutReserveStateID")
+                        .HasForeignKey("WithoutReserveStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -463,13 +463,13 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Reserve", "Reserve")
                         .WithMany("TableXReserve")
-                        .HasForeignKey("ReserveID")
+                        .HasForeignKey("ReserveId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Table", "Table")
                         .WithMany("TableXReserve")
-                        .HasForeignKey("TableID")
+                        .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -482,13 +482,13 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.Table", "Table")
                         .WithMany("TableXWithoutReserve")
-                        .HasForeignKey("TableID")
+                        .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Procuratio.Modules.Orders.Domain.Entities.WithoutReserve", "WithoutReserve")
                         .WithMany("TableXWithoutReserve")
-                        .HasForeignKey("WithoutReserveID")
+                        .HasForeignKey("WithoutReserveId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

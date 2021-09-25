@@ -7,10 +7,10 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 {
     public class WithoutReserve : BaseEntity<int>
     {
-        public int OrderID { get; set; }
+        public int OrderId { get; set; }
         public Order Order { get; set; }
 
-        public short WithoutReserveStateID { get; set; }
+        public short WithoutReserveStateId { get; set; }
         public WithoutReserveState WithoutReserveState { get; set; }
 
         public List<TableXWithoutReserve> TableXWithoutReserve { get; set; }

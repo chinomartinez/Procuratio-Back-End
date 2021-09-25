@@ -8,9 +8,9 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public int QuantityInKitchen { get; set; }
 
-        public int ItemID { get; set; }
+        public int ItemId { get; set; }
 
-        public int OrderID { get; set; }
+        public int OrderId { get; set; }
         public Order Order { get; set; }
     }
 }

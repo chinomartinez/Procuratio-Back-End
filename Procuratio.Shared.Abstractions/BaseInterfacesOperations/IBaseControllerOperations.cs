@@ -16,10 +16,10 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     /// <typeparam name="TKey">Type of key of the entity</typeparam>
     public interface IBaseControllerOperations<T, TListDTO, TFromFormDTO, TEntityCreationFormInitializerDTO, TEntityEditionFormInitializerDTO, TKey>
         where T : IDTO
-        where TListDTO : IListDTO
+        where TListDTO : IListDTO<T>
         where TFromFormDTO : IFromFormDTO
         where TEntityCreationFormInitializerDTO : IEntityCreationFormInitializerDTO
-        where TEntityEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
+        where TEntityEditionFormInitializerDTO : IEntityEditionFormInitializerDTO<T>
     {
         Task<ActionResult<T>> GetAsync(TKey id);
 

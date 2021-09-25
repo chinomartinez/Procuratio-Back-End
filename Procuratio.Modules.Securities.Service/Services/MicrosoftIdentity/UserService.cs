@@ -119,7 +119,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             List<Claim> claims = new()
             {
-                new Claim("restaurantid", user.BranchID.ToString()),
+                new Claim("restaurantid", user.BranchId.ToString()),
                 new Claim("username", user.UserName)
             };
 

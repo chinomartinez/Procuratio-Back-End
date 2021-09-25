@@ -3,9 +3,9 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperation
 
 namespace Procuratio.Modules.Order.Service.DTOs.TableDTOs
 {
-    public class TableEditionFormInitializerDTO : IEntityEditionFormInitializerDTO
+    public class TableEditionFormInitializerDTO : IEntityEditionFormInitializerDTO<TableDTO>
     {
-        public TableDTO Table { get; set; }
+        public TableDTO BaseProperties { get; set; }
 
         public string StateName { get; set; }
     }

@@ -5,7 +5,7 @@ namespace Procuratio.Modules.Restaurants.Domain.Entities
 {
     public class Branch : ManualBaseIdentity<int>
     {
-        public int RestaurantID { get; set; }
+        public int RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }
 
         public string Address { get; set; }

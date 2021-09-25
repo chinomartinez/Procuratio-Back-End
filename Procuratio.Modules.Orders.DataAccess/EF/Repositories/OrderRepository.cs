@@ -21,7 +21,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         public async Task<Orders.Domain.Entities.Order> GetWithoutReserveOrderDetailAsync(int orderId)
         {
             return await BaseRelationsForGetAnOrderDetail().Include(x => x.WithoutReserve)
-                .FirstOrDefaultAsync(x => x.BranchId == TGRID.BranchId && x.WithoutReserve.OrderID == orderId);
+                .FirstOrDefaultAsync(x => x.BranchId == TGRID.BranchId && x.WithoutReserve.OrderId == orderId);
         }
 
         private IQueryable<Orders.Domain.Entities.Order> BaseRelationsForGetAnOrderDetail() => _order.Include(x => x.OrderDetails).Include(x => x.OrderState).AsQueryable();

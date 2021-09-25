@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
 {
@@ -30,7 +30,7 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    RestaurantID = table.Column<int>(type: "int", nullable: false),
+                    RestaurantId = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Withdrawn = table.Column<int>(type: "int", nullable: true),
                     DateWithdrawn = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -39,8 +39,8 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                 {
                     table.PrimaryKey("PK_Branch", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Branch_Restaurant_RestaurantID",
-                        column: x => x.RestaurantID,
+                        name: "FK_Branch_Restaurant_RestaurantId",
+                        column: x => x.RestaurantId,
                         principalSchema: "Restaurant",
                         principalTable: "Restaurant",
                         principalColumn: "Id",
@@ -48,10 +48,10 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Branch_RestaurantID",
+                name: "IX_Branch_RestaurantId",
                 schema: "Restaurant",
                 table: "Branch",
-                column: "RestaurantID");
+                column: "RestaurantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Restaurant_Name",

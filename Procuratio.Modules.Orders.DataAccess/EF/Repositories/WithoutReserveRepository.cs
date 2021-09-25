@@ -32,7 +32,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<IReadOnlyList<WithoutReserve>> BrowseAsync()
         {
-            return await _withoutReserve.Where(x => x.BranchId == TGRID.BranchId && x.WithoutReserveStateID == (short)WithoutReserveState.State.InProgress)
+            return await _withoutReserve.Where(x => x.BranchId == TGRID.BranchId && x.WithoutReserveStateId == (short)WithoutReserveState.State.InProgress)
                 .Include(x => x.Order)
                 .Include(x => x.WithoutReserveState)
                 .Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
@@ -73,7 +73,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         {
             return await _withoutReserve.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
                 .Include(x => x.Order).ThenInclude(x => x.OrderState)
-                .Where(x => x.BranchId == TGRID.BranchId && x.WithoutReserveStateID == (short)WithoutReserveState.State.InProgress)
+                .Where(x => x.BranchId == TGRID.BranchId && x.WithoutReserveStateId == (short)WithoutReserveState.State.InProgress)
                 .AsNoTracking().ToListAsync();
         }
     }

@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
 {
@@ -97,17 +97,17 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     KitchenNote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderStateID = table.Column<short>(type: "smallint", nullable: false),
-                    WaiterID = table.Column<int>(type: "int", nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    OrderStateId = table.Column<short>(type: "smallint", nullable: false),
+                    WaiterId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_OrderState_OrderStateID",
-                        column: x => x.OrderStateID,
+                        name: "FK_Order_OrderState_OrderStateId",
+                        column: x => x.OrderStateId,
                         principalSchema: "Order",
                         principalTable: "OrderState",
                         principalColumn: "Id",
@@ -123,15 +123,15 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<short>(type: "smallint", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    TableStateID = table.Column<short>(type: "smallint", nullable: false),
+                    TableStateId = table.Column<short>(type: "smallint", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Table", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Table_TableState_TableStateID",
-                        column: x => x.TableStateID,
+                        name: "FK_Table_TableState_TableStateId",
+                        column: x => x.TableStateId,
                         principalSchema: "Order",
                         principalTable: "TableState",
                         principalColumn: "Id",
@@ -146,23 +146,23 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DestinyDirection = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    OrderID = table.Column<int>(type: "int", nullable: false),
-                    DeliveryStateID = table.Column<short>(type: "smallint", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    DeliveryStateId = table.Column<short>(type: "smallint", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Delivery", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Delivery_DeliveryState_DeliveryStateID",
-                        column: x => x.DeliveryStateID,
+                        name: "FK_Delivery_DeliveryState_DeliveryStateId",
+                        column: x => x.DeliveryStateId,
                         principalSchema: "Order",
                         principalTable: "DeliveryState",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Delivery_Order_OrderID",
-                        column: x => x.OrderID,
+                        name: "FK_Delivery_Order_OrderId",
+                        column: x => x.OrderId,
                         principalSchema: "Order",
                         principalTable: "Order",
                         principalColumn: "Id",
@@ -178,16 +178,16 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     QuantityInKitchen = table.Column<int>(type: "int", nullable: false),
-                    ItemID = table.Column<int>(type: "int", nullable: false),
-                    OrderID = table.Column<int>(type: "int", nullable: false),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderDetail", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetail_Order_OrderID",
-                        column: x => x.OrderID,
+                        name: "FK_OrderDetail_Order_OrderId",
+                        column: x => x.OrderId,
                         principalSchema: "Order",
                         principalTable: "Order",
                         principalColumn: "Id",
@@ -203,24 +203,24 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumberOfDiners = table.Column<short>(type: "smallint", nullable: false),
-                    OrderID = table.Column<int>(type: "int", nullable: true),
-                    ReserveStateID = table.Column<short>(type: "smallint", nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: true),
+                    ReserveStateId = table.Column<short>(type: "smallint", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reserve", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reserve_Order_OrderID",
-                        column: x => x.OrderID,
+                        name: "FK_Reserve_Order_OrderId",
+                        column: x => x.OrderId,
                         principalSchema: "Order",
                         principalTable: "Order",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reserve_ReserveState_ReserveStateID",
-                        column: x => x.ReserveStateID,
+                        name: "FK_Reserve_ReserveState_ReserveStateId",
+                        column: x => x.ReserveStateId,
                         principalSchema: "Order",
                         principalTable: "ReserveState",
                         principalColumn: "Id",
@@ -234,23 +234,23 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderID = table.Column<int>(type: "int", nullable: false),
-                    TakeAwayStateID = table.Column<short>(type: "smallint", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    TakeAwayStateId = table.Column<short>(type: "smallint", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TakeAway", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TakeAway_Order_OrderID",
-                        column: x => x.OrderID,
+                        name: "FK_TakeAway_Order_OrderId",
+                        column: x => x.OrderId,
                         principalSchema: "Order",
                         principalTable: "Order",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TakeAway_TakeAwayState_TakeAwayStateID",
-                        column: x => x.TakeAwayStateID,
+                        name: "FK_TakeAway_TakeAwayState_TakeAwayStateId",
+                        column: x => x.TakeAwayStateId,
                         principalSchema: "Order",
                         principalTable: "TakeAwayState",
                         principalColumn: "Id",
@@ -264,23 +264,23 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderID = table.Column<int>(type: "int", nullable: false),
-                    WithoutReserveStateID = table.Column<short>(type: "smallint", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    WithoutReserveStateId = table.Column<short>(type: "smallint", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WithoutReserve", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WithoutReserve_Order_OrderID",
-                        column: x => x.OrderID,
+                        name: "FK_WithoutReserve_Order_OrderId",
+                        column: x => x.OrderId,
                         principalSchema: "Order",
                         principalTable: "Order",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_WithoutReserve_WithoutReserveState_WithoutReserveStateID",
-                        column: x => x.WithoutReserveStateID,
+                        name: "FK_WithoutReserve_WithoutReserveState_WithoutReserveStateId",
+                        column: x => x.WithoutReserveStateId,
                         principalSchema: "Order",
                         principalTable: "WithoutReserveState",
                         principalColumn: "Id",
@@ -292,23 +292,23 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 schema: "Order",
                 columns: table => new
                 {
-                    ReserveID = table.Column<int>(type: "int", nullable: false),
-                    TableID = table.Column<int>(type: "int", nullable: false),
+                    ReserveId = table.Column<int>(type: "int", nullable: false),
+                    TableId = table.Column<int>(type: "int", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TableXReserve", x => new { x.ReserveID, x.TableID });
+                    table.PrimaryKey("PK_TableXReserve", x => new { x.ReserveId, x.TableId });
                     table.ForeignKey(
-                        name: "FK_TableXReserve_Reserve_ReserveID",
-                        column: x => x.ReserveID,
+                        name: "FK_TableXReserve_Reserve_ReserveId",
+                        column: x => x.ReserveId,
                         principalSchema: "Order",
                         principalTable: "Reserve",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TableXReserve_Table_TableID",
-                        column: x => x.TableID,
+                        name: "FK_TableXReserve_Table_TableId",
+                        column: x => x.TableId,
                         principalSchema: "Order",
                         principalTable: "Table",
                         principalColumn: "Id",
@@ -320,23 +320,23 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 schema: "Order",
                 columns: table => new
                 {
-                    WithoutReserveID = table.Column<int>(type: "int", nullable: false),
-                    TableID = table.Column<int>(type: "int", nullable: false),
+                    WithoutReserveId = table.Column<int>(type: "int", nullable: false),
+                    TableId = table.Column<int>(type: "int", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TableXWithoutReserve", x => new { x.WithoutReserveID, x.TableID });
+                    table.PrimaryKey("PK_TableXWithoutReserve", x => new { x.WithoutReserveId, x.TableId });
                     table.ForeignKey(
-                        name: "FK_TableXWithoutReserve_Table_TableID",
-                        column: x => x.TableID,
+                        name: "FK_TableXWithoutReserve_Table_TableId",
+                        column: x => x.TableId,
                         principalSchema: "Order",
                         principalTable: "Table",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TableXWithoutReserve_WithoutReserve_WithoutReserveID",
-                        column: x => x.WithoutReserveID,
+                        name: "FK_TableXWithoutReserve_WithoutReserve_WithoutReserveId",
+                        column: x => x.WithoutReserveId,
                         principalSchema: "Order",
                         principalTable: "WithoutReserve",
                         principalColumn: "Id",
@@ -344,87 +344,87 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Delivery_DeliveryStateID",
+                name: "IX_Delivery_DeliveryStateId",
                 schema: "Order",
                 table: "Delivery",
-                column: "DeliveryStateID");
+                column: "DeliveryStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Delivery_OrderID",
+                name: "IX_Delivery_OrderId",
                 schema: "Order",
                 table: "Delivery",
-                column: "OrderID",
+                column: "OrderId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_OrderStateID",
+                name: "IX_Order_OrderStateId",
                 schema: "Order",
                 table: "Order",
-                column: "OrderStateID");
+                column: "OrderStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_OrderID",
+                name: "IX_OrderDetail_OrderId",
                 schema: "Order",
                 table: "OrderDetail",
-                column: "OrderID");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reserve_OrderID",
+                name: "IX_Reserve_OrderId",
                 schema: "Order",
                 table: "Reserve",
-                column: "OrderID",
+                column: "OrderId",
                 unique: true,
-                filter: "[OrderID] IS NOT NULL");
+                filter: "[OrderId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reserve_ReserveStateID",
+                name: "IX_Reserve_ReserveStateId",
                 schema: "Order",
                 table: "Reserve",
-                column: "ReserveStateID");
+                column: "ReserveStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Table_TableStateID",
+                name: "IX_Table_TableStateId",
                 schema: "Order",
                 table: "Table",
-                column: "TableStateID");
+                column: "TableStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TableXReserve_TableID",
+                name: "IX_TableXReserve_TableId",
                 schema: "Order",
                 table: "TableXReserve",
-                column: "TableID");
+                column: "TableId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TableXWithoutReserve_TableID",
+                name: "IX_TableXWithoutReserve_TableId",
                 schema: "Order",
                 table: "TableXWithoutReserve",
-                column: "TableID");
+                column: "TableId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TakeAway_OrderID",
+                name: "IX_TakeAway_OrderId",
                 schema: "Order",
                 table: "TakeAway",
-                column: "OrderID",
+                column: "OrderId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_TakeAway_TakeAwayStateID",
+                name: "IX_TakeAway_TakeAwayStateId",
                 schema: "Order",
                 table: "TakeAway",
-                column: "TakeAwayStateID");
+                column: "TakeAwayStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WithoutReserve_OrderID",
+                name: "IX_WithoutReserve_OrderId",
                 schema: "Order",
                 table: "WithoutReserve",
-                column: "OrderID",
+                column: "OrderId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_WithoutReserve_WithoutReserveStateID",
+                name: "IX_WithoutReserve_WithoutReserveStateId",
                 schema: "Order",
                 table: "WithoutReserve",
-                column: "WithoutReserveStateID");
+                column: "WithoutReserveStateId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

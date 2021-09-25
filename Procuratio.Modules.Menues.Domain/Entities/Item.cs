@@ -21,10 +21,10 @@ namespace Procuratio.Modules.Menues.Domain.Entities
 
         public string Code { get; set; }
 
-        public short ItemStateID { get; set; }
+        public short ItemStateId { get; set; }
         public ItemState ItemState { get; set; }
 
-        public int SubCategoryItemID { get; set; }
+        public int SubCategoryItemId { get; set; }
         public SubCategoryItem SubCategoryItem { get; set; }
     }
 }
