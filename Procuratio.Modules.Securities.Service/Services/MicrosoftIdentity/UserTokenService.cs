@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 {
-    internal class UserTokenService : IUserTokenService
+    internal sealed class UserTokenService : IUserTokenService
     {
         public UserTokenService()
         {

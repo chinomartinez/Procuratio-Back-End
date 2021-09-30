@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Orders.Service.Services
 {
-    internal class TakeAwayService : ITakeAwayService
+    internal sealed class TakeAwayService : ITakeAwayService
     {
         public TakeAwayService()
         {

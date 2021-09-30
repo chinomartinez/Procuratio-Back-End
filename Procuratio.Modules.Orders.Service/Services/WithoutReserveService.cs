@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Services
 {
-    internal class WithoutReserveService : IWithoutReserveService
+    internal sealed class WithoutReserveService : IWithoutReserveService
     {
         private readonly IWithoutReserveRepository _withoutReserveRepository;
         private readonly ITableRepository _tableRepository;

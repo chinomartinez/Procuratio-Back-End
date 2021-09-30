@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 {
-    internal class UserService : IUserService
+    internal sealed class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;

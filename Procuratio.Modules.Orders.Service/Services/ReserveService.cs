@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Orders.Service.Services
 {
-    internal class ReserveService : IReserveService
+    internal sealed class ReserveService : IReserveService
     {
         public ReserveService()
         {

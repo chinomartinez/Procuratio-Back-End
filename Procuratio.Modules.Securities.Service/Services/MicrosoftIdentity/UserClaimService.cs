@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 {
-    internal class UserClaimService : IUserClaimService
+    internal sealed class UserClaimService : IUserClaimService
     {
         public UserClaimService()
         {

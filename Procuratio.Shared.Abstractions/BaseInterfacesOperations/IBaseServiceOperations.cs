@@ -13,11 +13,11 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOpera
     /// <typeparam name="TEntityEditionFormInitializerDTO">DTO for inicializing a edit entity form</typeparam>
     /// <typeparam name="TKey">Type of key of the entity</typeparam>
     public interface IBaseServiceOperations<T, TListDTO, TFromFormDTO, TEntityCreationFormInitializerDTO, TEntityEditionFormInitializerDTO, TKey>
-        where T : IDTO
-        where TListDTO : IListDTO<T>
-        where TFromFormDTO : IFromFormDTO
-        where TEntityCreationFormInitializerDTO : IEntityCreationFormInitializerDTO
-        where TEntityEditionFormInitializerDTO : IEntityEditionFormInitializerDTO<T>
+        where T : class, IDTO
+        where TListDTO : class, IListDTO<T>
+        where TFromFormDTO : class, IFromFormDTO
+        where TEntityCreationFormInitializerDTO : class, IEntityCreationFormInitializerDTO
+        where TEntityEditionFormInitializerDTO : class, IEntityEditionFormInitializerDTO<T>
     {
         Task<T> GetAsync(TKey id);
 

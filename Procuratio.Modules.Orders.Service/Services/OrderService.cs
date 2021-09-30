@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.Service.Services
 {
-    internal class OrderService : IOrderService
+    internal sealed class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;

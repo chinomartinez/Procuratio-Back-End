@@ -2,7 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Shared.Infrastructure.API;
+using Procuratio.Shared.Infrastructure.Events;
 using Procuratio.Shared.Infrastructure.Exceptions;
+using Procuratio.Shared.Infrastructure.Messaging;
+using Procuratio.Shared.Infrastructure.Modules;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System.Runtime.CompilerServices;
 
@@ -21,6 +24,9 @@ namespace Procuratio.Shared.Infrastructure
 
             services.AddSingleton<ErrorHandlerMiddleware>();
             services.AddSQLServer();
+            services.AddEvents();
+            services.AddMessaging();
+            services.AddModuleRequests();
 
             return services;
         }
@@ -37,7 +43,7 @@ namespace Procuratio.Shared.Infrastructure
             using ServiceProvider serviceProvider = services.BuildServiceProvider();
             IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
             IConfiguration section = configuration.GetSection(sectionName);
-            T options = new T();
+            T options = new();
 
             section.Bind(options);
 
