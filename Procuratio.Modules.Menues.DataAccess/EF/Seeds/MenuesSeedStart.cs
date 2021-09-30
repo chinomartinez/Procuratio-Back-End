@@ -1,4 +1,5 @@
-﻿using Procuratio.Modules.Menues.DataAccess.EF.Seeds.ProductionEnviroment;
+﻿using Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing;
+using Procuratio.Modules.Menues.DataAccess.EF.Seeds.ProductionEnviroment;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
 {
@@ -7,6 +8,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
         internal static void CreateSeeds(MenuDbContext menuesDbContext)
         {
             ProductionEnviromentSeeds(menuesDbContext);
+
+            menuesDbContext.SaveChanges();
+
             TestingSeeds(menuesDbContext);
 
             menuesDbContext.SaveChanges();
@@ -21,6 +25,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
 
         private static void TestingSeeds(MenuDbContext menuesDbContext)
         {
+            CategoryItemSeed.StartCategoryItemSSeed(menuesDbContext.CategoryItem);
         }
     }
 }

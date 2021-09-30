@@ -11,10 +11,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="EF\Seeds\Testing\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\Procuratio.Modules.Menues.Domain\Procuratio.Modules.Menu.Domain.csproj" />
 	  <ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
 	</ItemGroup>
