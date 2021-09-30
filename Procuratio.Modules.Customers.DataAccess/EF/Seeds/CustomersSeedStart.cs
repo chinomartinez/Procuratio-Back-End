@@ -7,16 +7,16 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.Seeds
         {
             ProductionEnviromentSeeds(customersDbContext);
             TestingSeeds(customersDbContext);
-
-            customersDbContext.SaveChanges();
         }
 
         private static void ProductionEnviromentSeeds(CustomerDbContext customersDbContext)
         {
+            customersDbContext.SaveChanges();
         }
 
         private static void TestingSeeds(CustomerDbContext customersDbContext)
         {
+            customersDbContext.SaveChanges();
         }
     }
 }

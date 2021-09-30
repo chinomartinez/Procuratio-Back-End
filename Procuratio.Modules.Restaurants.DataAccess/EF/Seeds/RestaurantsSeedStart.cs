@@ -8,17 +8,17 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Seeds
         {
             ProductionEnviromentSeeds(restaurantsDbContext);
             TestingSeeds(restaurantsDbContext);
-
-            restaurantsDbContext.SaveChanges();
         }
 
         private static void ProductionEnviromentSeeds(RestaurantDbContext restaurantsDbContext)
         {
-            RestaurantSeed.StartRestaurantSeed(restaurantsDbContext.Restaurant);
+            restaurantsDbContext.SaveChanges();
         }
 
-        private static void TestingSeeds(RestaurantDbContext ordersDbContext)
+        private static void TestingSeeds(RestaurantDbContext restaurantsDbContext)
         {
+            RestaurantSeed.StartRestaurantSeed(restaurantsDbContext.Restaurant);
+            restaurantsDbContext.SaveChanges();
         }
     }
 }

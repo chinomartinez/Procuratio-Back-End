@@ -8,8 +8,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds
         {
             ProductionEnviromentSeeds(ordersDbContext);
             TestingSeeds(ordersDbContext);
-
-            ordersDbContext.SaveChangesAsync();
         }
 
         private static void ProductionEnviromentSeeds(OrderDbContext ordersDbContext)
@@ -20,10 +18,13 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds
             ReserveStateSeed.StartReserveStateSeed(ordersDbContext.ReserveState);
             TableStateSeed.StartTableStateSeed(ordersDbContext.TableState);
             TakeAwayStateSeed.StartTakeAwayStateSeed(ordersDbContext.TakeAwayState);
+
+            ordersDbContext.SaveChanges();
         }
 
         private static void TestingSeeds(OrderDbContext ordersDbContext)
         {
+            ordersDbContext.SaveChanges();
         }
     }
 }

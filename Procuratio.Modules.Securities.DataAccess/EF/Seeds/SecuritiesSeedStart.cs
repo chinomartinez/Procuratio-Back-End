@@ -7,13 +7,18 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Seeds
         internal static void CreateSeeds(SecurityDbContext securitiesDbContext)
         {
             ProductionEnviromentSeeds(securitiesDbContext);
-
-            securitiesDbContext.SaveChanges();
+            TestingSeeds(securitiesDbContext);
         }
 
         private static void ProductionEnviromentSeeds(SecurityDbContext securitiesDbContext)
         {
+            securitiesDbContext.SaveChanges();
+        }
+
+        private static void TestingSeeds(SecurityDbContext securitiesDbContext)
+        {
             UserStateSeed.StartUserStateSeed(securitiesDbContext.UserState);
+            securitiesDbContext.SaveChanges();
         }
     }
 }
