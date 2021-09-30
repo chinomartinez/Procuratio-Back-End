@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Orders.Service.Services
 {
-    internal class DeliveryService : IDeliveryService
+    internal sealed class DeliveryService : IDeliveryService
     {
         public DeliveryService()
         {

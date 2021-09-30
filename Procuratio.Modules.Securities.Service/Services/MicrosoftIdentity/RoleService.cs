@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 {
-    internal class RoleService : IRoleService
+    internal sealed class RoleService : IRoleService
     {
         public RoleService()
         {

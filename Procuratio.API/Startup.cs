@@ -39,15 +39,20 @@ namespace Procuratio.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Procuratio.API", Version = "v1" });
             });
 
-            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+            services.AddMvc(options =>
+            {
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
 
-            services.AddInfrastructure();
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
             services.AddOrderModule();
             services.AddMenuModule();
             services.AddCustomerModule();
             services.AddRestaurantModule();
             services.AddSecurityModule();
+
+            services.AddInfrastructure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

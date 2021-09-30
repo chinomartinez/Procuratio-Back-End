@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Services
 {
-    internal class TableService : ITableService
+    internal sealed class TableService : ITableService
     {
         private readonly ITableRepository _tableRepository;
         private readonly IMapper _mapper;
