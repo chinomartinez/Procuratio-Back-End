@@ -17,6 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="DTOs\Externals\" />
 	  <Folder Include="Events\External\Handlers\" />
 	</ItemGroup>
 

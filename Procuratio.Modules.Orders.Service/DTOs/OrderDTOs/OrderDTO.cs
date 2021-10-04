@@ -5,6 +5,8 @@ namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs
 {
     public class OrderDTO : IDTO
     {
+        public int Id { get; set; }
+
         public DateTime Date { get; set; }
 
         public string KitchenNote { get; set; }

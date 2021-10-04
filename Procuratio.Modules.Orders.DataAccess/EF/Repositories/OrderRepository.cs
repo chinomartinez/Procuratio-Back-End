@@ -9,19 +9,26 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
 {
     internal class OrderRepository : IOrderRepository
     {
-        private readonly OrderDbContext _ordersDbContext;
+        private readonly OrderDbContext _orderDbContext;
         private readonly DbSet<Orders.Domain.Entities.Order> _order;
 
-        public OrderRepository(OrderDbContext ordersDbContext)
+        public OrderRepository(OrderDbContext orderDbContext)
         {
-            _ordersDbContext = ordersDbContext;
-            _order = ordersDbContext.Order;
+            _orderDbContext = orderDbContext;
+            _order = orderDbContext.Order;
         }
 
         public async Task<Orders.Domain.Entities.Order> GetWithoutReserveOrderDetailAsync(int orderId)
         {
             return await BaseRelationsForGetAnOrderDetail().Include(x => x.WithoutReserve)
                 .FirstOrDefaultAsync(x => x.BranchId == TGRID.BranchId && x.WithoutReserve.OrderId == orderId);
+        }
+
+        public async Task UpdateAsync(Orders.Domain.Entities.Order toUpdate)
+        {
+            _order.Update(toUpdate);
+
+            await _orderDbContext.SaveChangesAsync();
         }
 
         private IQueryable<Orders.Domain.Entities.Order> BaseRelationsForGetAnOrderDetail() => _order.Include(x => x.OrderDetails).Include(x => x.OrderState).AsQueryable();

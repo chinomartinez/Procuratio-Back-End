@@ -5,5 +5,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
     public interface IOrderRepository
     {
         Task<Orders.Domain.Entities.Order> GetWithoutReserveOrderDetailAsync(int orderId);
+
+        Task UpdateAsync(Orders.Domain.Entities.Order toUpdate);
     }
 }

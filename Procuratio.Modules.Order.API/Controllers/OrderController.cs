@@ -15,7 +15,14 @@ namespace Procuratio.Modules.Order.API.Controllers
             _orderService = orderService;
         }
 
-        [HttpGet("dine-in-order-detail/" + "{orderId:int}")]
+        [HttpGet("without-reserve-order-detail/" + "{orderId:int}")]
         public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetWithoutReserveOrderDetailAsync(int orderId) => Ok(await _orderService.GetWithoutReserveOrderDetailAsync(orderId));
+
+        [HttpPut("without-reserve")]
+        public async Task<ActionResult> UpdateWithoutReserveAsync([FromForm] OrderFromFormDTO updateDTO, int id)
+        {
+            await _orderService.UpdateWithoutReserveAsync(updateDTO, id);
+            return NoContent();
+        }
     }
 }

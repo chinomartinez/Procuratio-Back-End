@@ -6,5 +6,7 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
     public interface IOrderService
     {
         Task<OrderEditionFormInitializerDTO> GetWithoutReserveOrderDetailAsync(int orderId);
+
+        Task UpdateWithoutReserveAsync(OrderFromFormDTO updateDTO, int id);
     }
 }
