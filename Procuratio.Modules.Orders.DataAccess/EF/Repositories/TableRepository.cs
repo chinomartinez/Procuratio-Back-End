@@ -14,10 +14,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         private readonly OrderDbContext _orderDbContext;
         private readonly DbSet<Table> _table;
 
-        public TableRepository(OrderDbContext ordersDbContext)
+        public TableRepository(OrderDbContext orderDbContext)
         {
-            _orderDbContext = ordersDbContext;
-            _table = ordersDbContext.Table;
+            _orderDbContext = orderDbContext;
+            _table = orderDbContext.Table;
         }
 
         public async Task AddAsync(Table toAdd)
@@ -29,10 +29,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             await _orderDbContext.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<Table>> BrowseAsync()
-        {
-            return await _table.Where(x => x.BranchId == TGRID.BranchId).AsNoTracking().ToListAsync();
-        }
+        public async Task<IReadOnlyList<Table>> BrowseAsync() => await _table.Where(x => x.BranchId == TGRID.BranchId).AsNoTracking().ToListAsync();
 
         public async Task<Table> GetEntityEditionFormInitializerAsync(int Id)
         {
@@ -45,10 +42,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             await _orderDbContext.SaveChangesAsync();
         }
 
-        public async Task<Table> GetAsync(int Id)
-        {
-            return await _table.SingleOrDefaultAsync(x => x.Id == Id && TGRID.BranchId == x.BranchId);
-        }
+        public async Task<Table> GetAsync(int Id) => await _table.SingleOrDefaultAsync(x => x.Id == Id && TGRID.BranchId == x.BranchId);
 
         public async Task<short?> GetLastNumberAsync()
         {

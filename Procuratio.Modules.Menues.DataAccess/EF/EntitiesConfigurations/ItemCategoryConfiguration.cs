@@ -5,9 +5,9 @@ using Procuratio.Modules.Menues.Domain.Entities;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
 {
-    internal class CategoryItemConfiguration : IEntityTypeConfiguration<CategoryItem>
+    internal class ItemCategoryConfiguration : IEntityTypeConfiguration<ItemCategory>
     {
-        public void Configure(EntityTypeBuilder<CategoryItem> builder)
+        public void Configure(EntityTypeBuilder<ItemCategory> builder)
         {
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
 

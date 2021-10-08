@@ -4,13 +4,15 @@ using System.Collections.Generic;
 
 namespace Procuratio.Modules.Menues.Domain.Entities
 {
-    public class CategoryItem : BaseEntity<int>
+    public class ItemCategory : BaseEntity<int>
     {
         public string Name { get; set; }
 
-        public short CategoryItemStateId { get; set; }
-        public CategoryItemState CategoryItemState { get; set; }
+        public int Order { get; set; }
 
-        public List<SubCategoryItem> SubCategoryItems { get; set; }
+        public short ItemCategoryStateId { get; set; }
+        public ItemCategoryState ItemCategoryState { get; set; }
+
+        public List<ItemSubCategory> ItemSubCategories { get; set; }
     }
 }

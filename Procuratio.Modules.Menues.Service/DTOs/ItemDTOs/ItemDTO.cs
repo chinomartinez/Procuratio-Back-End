@@ -1,10 +1,16 @@
-﻿using Procuratio.Modules.Menues.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Menues.Domain.Entities
+namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
 {
-    public class Item : BaseEntity<int>
+    public class ItemDTO : IDTO
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -22,9 +28,7 @@ namespace Procuratio.Modules.Menues.Domain.Entities
         public string Code { get; set; }
 
         public short ItemStateId { get; set; }
-        public ItemState ItemState { get; set; }
 
         public int ItemSubCategoryId { get; set; }
-        public ItemSubCategory ItemSubCategory { get; set; }
     }
 }

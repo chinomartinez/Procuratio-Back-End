@@ -2,9 +2,9 @@
 
 namespace Procuratio.Modules.Menues.API.Controllers
 {
-    internal class CategoryItemController : BaseController
+    internal class ItemSubCategoryController : BaseController
     {
-        public CategoryItemController()
+        public ItemSubCategoryController()
         {
 
         }

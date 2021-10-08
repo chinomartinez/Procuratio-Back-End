@@ -10,24 +10,24 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
 {
-    internal static class CategoryItemSeed
+    internal static class ItemCategorySeed
     {
-        internal static void StartCategoryItemSSeed(DbSet<CategoryItem> categoryItemDbSet)
+        internal static void StartItemCategorySeed(DbSet<ItemCategory> itemCategoryDbSet)
         {
-            if (categoryItemDbSet.Any()) return;
+            if (itemCategoryDbSet.Any()) return;
 
-            categoryItemDbSet.AddRange(new CategoryItem()
+            itemCategoryDbSet.AddRange(new ItemCategory()
             {
                 Name = "Bebidas",
-                CategoryItemStateId = (short)CategoryItemState.State.Available,
+                ItemCategoryStateId = (short)ItemCategoryState.State.Available,
                 BranchId = TGRID.BranchId,
-                SubCategoryItems = new List<SubCategoryItem>()
+                ItemSubCategories = new List<ItemSubCategory>()
                 {
-                    new SubCategoryItem()
+                    new ItemSubCategory()
                     {
                         Name = "Gaseosas",
                         Order = 1,
-                        SubCategoryItemStateId = (short)SubCategoryItemState.State.Available,
+                        ItemSubCategoryStateId = (short)ItemSubCategoryState.State.Available,
                         BranchId = TGRID.BranchId,
                         Items = new List<Item>()
                         {
@@ -48,18 +48,18 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                     }
                 }
             }, 
-            new CategoryItem()
+            new ItemCategory()
             {
                 Name = "Pastas",
-                CategoryItemStateId = (short)CategoryItemState.State.Available,
+                ItemCategoryStateId = (short)ItemCategoryState.State.Available,
                 BranchId = TGRID.BranchId,
-                SubCategoryItems = new List<SubCategoryItem>()
+                ItemSubCategories = new List<ItemSubCategory>()
                 {
-                    new SubCategoryItem()
+                    new ItemSubCategory()
                     {
                         Name = "Tallarines",
                         Order = 1,
-                        SubCategoryItemStateId = (short)SubCategoryItemState.State.Available,
+                        ItemSubCategoryStateId = (short)ItemSubCategoryState.State.Available,
                         BranchId = TGRID.BranchId,
                         Items = new List<Item>()
                         {

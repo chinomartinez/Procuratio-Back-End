@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces
 {
-    public interface IItemRepository : IBaseRepositoryOperations<Item, int>
+    public interface IItemCategoryRepository : IBaseRepositoryOperations<ItemCategory, int>
     {
-        Task<IReadOnlyList<Item>> GetMenuAsync();
     }
 }

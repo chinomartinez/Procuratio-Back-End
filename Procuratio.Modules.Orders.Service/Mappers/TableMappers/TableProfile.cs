@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Orders.Service.Mappers.TableMappers
     {
         public TableProfile()
         {
-            CreateMap<Table, TableDTO>().ReverseMap();
+            CreateMap<Table, TableDTO>();
         }
     }
 }

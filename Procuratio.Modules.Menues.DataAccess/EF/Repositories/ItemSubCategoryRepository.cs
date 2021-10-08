@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 {
-    internal class CategoryItemRepository : ICategoryItemRepository
+    internal class ItemSubCategoryRepository : IItemSubCategoryRepository
     {
     }
 }

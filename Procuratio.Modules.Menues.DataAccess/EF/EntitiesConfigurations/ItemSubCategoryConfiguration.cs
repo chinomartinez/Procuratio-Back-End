@@ -5,9 +5,9 @@ using Procuratio.Modules.Menues.Domain.Entities;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
 {
-    internal class SubCategoryItemConfiguration : IEntityTypeConfiguration<SubCategoryItem>
+    internal class ItemSubCategoryConfiguration : IEntityTypeConfiguration<ItemSubCategory>
     {
-        public void Configure(EntityTypeBuilder<SubCategoryItem> builder)
+        public void Configure(EntityTypeBuilder<ItemSubCategory> builder)
         {
             builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 

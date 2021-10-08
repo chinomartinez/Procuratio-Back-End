@@ -2,9 +2,9 @@
 
 namespace Procuratio.Modules.Menues.Service.Services
 {
-    internal class SubCategoryItemService : ISubCategoryItemService
+    internal class ItemSubCategoryService : IItemSubCategoryService
     {
-        public SubCategoryItemService()
+        public ItemSubCategoryService()
         {
 
         }
