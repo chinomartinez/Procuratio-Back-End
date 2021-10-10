@@ -18,20 +18,23 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                 .ForMember(x => x.OrderDetails, options => options.MapFrom(MapOrderDetail));
         }
 
-        // The order is created with the type of order so, it is always an update
-        private List<OrderDetail> MapOrderDetail(OrderFromFormDTO orderFromFormDTO, Orders.Domain.Entities.Order order)
+        private static List<OrderDetail> MapOrderDetail(OrderFromFormDTO orderFromFormDTO, Orders.Domain.Entities.Order order)
         {
-            List<int> itemIdsFromDTO = orderFromFormDTO.Items.Select(x => x.ItemId).ToList();
+            List<OrderDetail> result = new();
 
-            order.OrderDetails = order.OrderDetails.Where(x => itemIdsFromDTO.Contains(x.ItemId)).ToList();
+            result.AddRange(order.OrderDetails);
 
-            List<int> itemsAlreadyInDatabase = order.OrderDetails.Select(x => x.ItemId).ToList();
+            result = result.Where(x => orderFromFormDTO.Items.Select(x => x.ItemId).ToList().Contains(x.ItemId)).ToList();
 
-            orderFromFormDTO.Items.ForEach(x =>
+            List<int> itemsAlreadyInDatabase = result.Select(x => x.ItemId).ToList();
+
+            foreach (ItemForOrderFormDTO element in orderFromFormDTO.Items)
             {
-                if (itemsAlreadyInDatabase.Contains(x.ItemId))
+                if (itemsAlreadyInDatabase.Contains(element.ItemId))
                 {
-                    // editar...
+                    OrderDetail currentOrderDetail = result.First(x => x.ItemId == element.ItemId);
+
+                    SetQuantity(element, currentOrderDetail);
                 }
                 else
                 {
@@ -39,25 +42,29 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
 
                     orderDetail.OrderId = order.Id;
                     orderDetail.BranchId = TGRID.BranchId;
-                    orderDetail.ItemId = x.ItemId;
+                    orderDetail.ItemId = element.ItemId;
 
-                    if (x.ForKitchen)
-                    {
-                        orderDetail.QuantityInKitchen = x.Quantity;
-                        orderDetail.Quantity = 0;
-                    }
-                    else
-                    {
-                        orderDetail.Quantity = x.Quantity;
-                        orderDetail.QuantityInKitchen = 0;
-                    }
+                    SetQuantity(element, orderDetail);
 
-
-                    order.OrderDetails.Add(orderDetail);
+                    result.Add(orderDetail);
                 }
-            });
+            }
 
-            return order.OrderDetails;
+            return result;
+        }
+
+        private static void SetQuantity(ItemForOrderFormDTO itemForOrderFormDTO, OrderDetail orderDetail)
+        {
+            if (itemForOrderFormDTO.ForKitchen)
+            {
+                orderDetail.QuantityInKitchen = itemForOrderFormDTO.Quantity;
+                orderDetail.Quantity = 0;
+            }
+            else
+            {
+                orderDetail.Quantity = itemForOrderFormDTO.Quantity;
+                orderDetail.QuantityInKitchen = 0;
+            }
         }
     }
 }

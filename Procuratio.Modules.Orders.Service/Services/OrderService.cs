@@ -2,7 +2,9 @@
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
+using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
+using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,62 +28,7 @@ namespace Procuratio.Modules.Order.Service.Services
 
             if (order is null) { throw new OrderNotFoundException(); }
 
-            //List<OrderDetailForListItemsDTO> items = new()
-            //{
-            //    new OrderDetailForListItemsDTO()
-            //    {
-            //        ItemId = 1,
-            //        Name = "Espagueti",
-            //        Description = null,
-            //        ForKitchen = false,
-            //        Image = null,
-            //        PriceInsideRestaurant = 350,
-            //        PriceOutsideRestaurant = 275,
-            //        Quantity = 2,
-            //        QuantityInKitchen = 2
-            //    },
-            //    new OrderDetailForListItemsDTO()
-            //    {
-            //        ItemId = 2,
-            //        Name = "Coca cola 500 ml",
-            //        Description = null,
-            //        ForKitchen = false,
-            //        Image = null,
-            //        PriceInsideRestaurant = 200,
-            //        PriceOutsideRestaurant = 150,
-            //        Quantity = 4,
-            //        QuantityInKitchen = 4
-            //    },
-            //    new OrderDetailForListItemsDTO()
-            //    {
-            //        ItemId = 3,
-            //        Name = "Papas fritas",
-            //        Description = null,
-            //        ForKitchen = false,
-            //        Image = null,
-            //        PriceInsideRestaurant = 235,
-            //        PriceOutsideRestaurant = 150,
-            //        Quantity = 3,
-            //        QuantityInKitchen = 0
-            //    },
-            //    new OrderDetailForListItemsDTO()
-            //    {
-            //        ItemId = 4,
-            //        Name = "Milanesa",
-            //        Description = null,
-            //        ForKitchen = false,
-            //        Image = null,
-            //        PriceInsideRestaurant = 50,
-            //        PriceOutsideRestaurant = 170,
-            //        Quantity = 1,
-            //        QuantityInKitchen = 0
-            //    }
-            //};
-
-            OrderEditionFormInitializerDTO temp = _mapper.Map<OrderEditionFormInitializerDTO>(order);
-            //temp.Items.AddRange(items);
-
-            return temp;
+            return _mapper.Map<OrderEditionFormInitializerDTO>(order);
         }
 
         public async Task UpdateWithoutReserveAsync(OrderFromFormDTO updateDTO, int id) 
@@ -92,7 +39,16 @@ namespace Procuratio.Modules.Order.Service.Services
 
             order = _mapper.Map(updateDTO, order);
 
+            if (updateDTO.Items.Exists(x => x.ForKitchen)) { order.OrderStateId = (short)OrderState.State.InProgress; }
+
             await _orderRepository.UpdateAsync(order);
+        }
+
+        public async Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressAsync()
+        {
+            IReadOnlyList<Orders.Domain.Entities.Order> orders = await _orderRepository.GetOrdersInProgressAsync();
+
+            return _mapper.Map<IReadOnlyList<OrderListForKitchenDTO>>(orders);
         }
     }
 }

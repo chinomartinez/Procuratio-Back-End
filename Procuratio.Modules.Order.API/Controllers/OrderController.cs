@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
+using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Shared.Infrastructure.Controllers;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.API.Controllers
@@ -26,5 +28,8 @@ namespace Procuratio.Modules.Order.API.Controllers
             await _orderService.UpdateWithoutReserveAsync(updateDTO, id);
             return NoContent();
         }
+
+        [HttpGet("order-in-progress")]
+        public async Task<ActionResult<IReadOnlyList<OrderListForKitchenDTO>>> GetOrdersInProgressAsync() => Ok(await _orderService.GetOrdersInProgressAsync());
     }
 }
