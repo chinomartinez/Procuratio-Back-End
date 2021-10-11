@@ -12,15 +12,14 @@ namespace Procuratio.Modules.Order.API.Controllers
     internal class OrderController : BaseController
     {
         private readonly IOrderService _orderService;
-        private const string OrderIdTemplate = "{orderId:int}";
 
         public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
         }
 
-        [HttpGet("without-reserve-order-detail/" + OrderIdTemplate)]
-        public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetWithoutReserveOrderDetailAsync(int orderId) => Ok(await _orderService.GetWithoutReserveOrderDetailAsync(orderId));
+        [HttpGet("without-reserve-order-detail/" + BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetWithoutReserveOrderDetailAsync(int id) => Ok(await _orderService.GetWithoutReserveOrderDetailAsync(id));
 
         [HttpPut("without-reserve/" + BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> UpdateWithoutReserveAsync([FromForm] OrderFromFormDTO updateDTO, int id)
@@ -31,5 +30,19 @@ namespace Procuratio.Modules.Order.API.Controllers
 
         [HttpGet("order-in-progress")]
         public async Task<ActionResult<IReadOnlyList<OrderListForKitchenDTO>>> GetOrdersInProgressAsync() => Ok(await _orderService.GetOrdersInProgressAsync());
+
+        [HttpPut("for-delivery/" + BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult> OrderForDeliverAsync(int id)
+        {
+            await _orderService.OrderForDeliverAsync(id);
+            return NoContent();
+        }
+
+        [HttpPut("deliver/" + BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult> DeliverOrderAsync(int id)
+        {
+            await _orderService.DeliverOrderAsync(id);
+            return NoContent();
+        }
     }
 }

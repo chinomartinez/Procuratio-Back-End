@@ -5,10 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\Procuratio.Modules.Menues.Service\Procuratio.Modules.Menu.Service.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />

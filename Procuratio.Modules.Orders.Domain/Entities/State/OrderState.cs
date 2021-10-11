@@ -9,7 +9,9 @@ namespace Procuratio.Modules.Orders.Domain.Entities.State
             Pending = 1,
             InProgress,
             ForDelivery,
-            Delivered
+            Delivered,
+            WaitingForPayment,
+            Paid
         }
     }
 }

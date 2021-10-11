@@ -14,7 +14,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
                 new OrderState() { Id = (short)OrderState.State.Pending, StateName = "Pendiente" },
                 new OrderState() { Id = (short)OrderState.State.InProgress, StateName = "En proceso" },
                 new OrderState() { Id = (short)OrderState.State.ForDelivery, StateName = "Para entrega" },
-                new OrderState() { Id = (short)OrderState.State.Delivered, StateName = "Entregado" });
+                new OrderState() { Id = (short)OrderState.State.Delivered, StateName = "Entregado" },
+                new OrderState() { Id = (short)OrderState.State.WaitingForPayment, StateName = "Esperando el pago" },
+                new OrderState() { Id = (short)OrderState.State.Paid, StateName = "Pagado" });
         }
     }
 }

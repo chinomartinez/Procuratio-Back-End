@@ -9,8 +9,6 @@ namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs
 
         public DateTime Date { get; set; }
 
-        public string KitchenNote { get; set; }
-
         public short OrderStateId { get; set; }
 
         public int WaiterId { get; set; }

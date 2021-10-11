@@ -4,6 +4,7 @@ using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
+using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using System.Collections.Generic;
@@ -22,9 +23,9 @@ namespace Procuratio.Modules.Order.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<OrderEditionFormInitializerDTO> GetWithoutReserveOrderDetailAsync(int orderId)
+        public async Task<OrderEditionFormInitializerDTO> GetWithoutReserveOrderDetailAsync(int id)
         {
-            Orders.Domain.Entities.Order order = await _orderRepository.GetWithoutReserveOrderDetailAsync(orderId);
+            Orders.Domain.Entities.Order order = await _orderRepository.GetWithoutReserveOrderDetailAsync(id);
 
             if (order is null) { throw new OrderNotFoundException(); }
 
@@ -49,6 +50,34 @@ namespace Procuratio.Modules.Order.Service.Services
             IReadOnlyList<Orders.Domain.Entities.Order> orders = await _orderRepository.GetOrdersInProgressAsync();
 
             return _mapper.Map<IReadOnlyList<OrderListForKitchenDTO>>(orders);
+        }
+
+        public async Task OrderForDeliverAsync(int id)
+        {
+            Orders.Domain.Entities.Order order = await _orderRepository.GetWithOrderDetailAsync(id);
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            order.OrderStateId = (short)OrderState.State.ForDelivery;
+
+            await _orderRepository.UpdateAsync(order);
+        }
+
+        public async Task DeliverOrderAsync(int id)
+        {
+            Orders.Domain.Entities.Order order = await _orderRepository.GetWithOrderDetailAsync(id);
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            foreach (OrderDetail element in order.OrderDetails)
+            {
+                element.Quantity += element.QuantityInKitchen;
+                element.QuantityInKitchen = 0;
+            }
+
+            order.OrderStateId = (short)OrderState.State.Delivered;
+
+            await _orderRepository.UpdateAsync(order);
         }
     }
 }
