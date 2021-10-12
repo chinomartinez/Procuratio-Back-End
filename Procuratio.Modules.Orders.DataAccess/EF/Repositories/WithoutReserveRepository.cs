@@ -36,6 +36,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
                 .Include(x => x.Order)
                 .Include(x => x.WithoutReserveState)
                 .Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
+                .OrderByDescending(x => x.Order.Date)
                 .AsNoTracking().ToListAsync();
         }
 
