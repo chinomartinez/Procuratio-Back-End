@@ -44,5 +44,19 @@ namespace Procuratio.Modules.Order.API.Controllers
             await _orderService.DeliverOrderAsync(id);
             return NoContent();
         }
+
+        [HttpPut("waiting-for-payment/" + BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult> WaitingForPaymentAsync(int id)
+        {
+            await _orderService.WaitingForPaymentAsync(id);
+            return NoContent();
+        }
+
+        [HttpPut("paid/" + BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult> PaidAsync(int id)
+        {
+            await _orderService.PaidAsync(id);
+            return NoContent();
+        }
     }
 }

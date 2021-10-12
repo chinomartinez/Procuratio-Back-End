@@ -16,5 +16,9 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
         Task OrderForDeliverAsync(int id);
 
         Task DeliverOrderAsync(int id);
+
+        Task WaitingForPaymentAsync(int id);
+
+        Task PaidAsync(int id);
     }
 }

@@ -79,5 +79,27 @@ namespace Procuratio.Modules.Order.Service.Services
 
             await _orderRepository.UpdateAsync(order);
         }
+
+        public async Task WaitingForPaymentAsync(int id)
+        {
+            Orders.Domain.Entities.Order order = await _orderRepository.GetWithOrderDetailAsync(id);
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            order.OrderStateId = (short)OrderState.State.WaitingForPayment;
+
+            await _orderRepository.UpdateAsync(order);
+        }
+
+        public async Task PaidAsync(int id)
+        {
+            Orders.Domain.Entities.Order order = await _orderRepository.GetWithOrderDetailAsync(id);
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            order.OrderStateId = (short)OrderState.State.Paid;
+
+            await _orderRepository.UpdateAsync(order);
+        }
     }
 }
