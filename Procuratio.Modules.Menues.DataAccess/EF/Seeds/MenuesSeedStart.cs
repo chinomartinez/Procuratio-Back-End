@@ -18,14 +18,14 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
 
         private static void ProductionEnviromentSeeds(MenuDbContext menuesDbContext)
         {
-            CategoryItemStateSeed.StartCategoryItemStateSeed(menuesDbContext.CategoryItemState);
+            ItemCategoryStateSeed.StartItemCategoryStateSeed(menuesDbContext.ItemCategoryState);
             ItemStateSeed.StartItemStateSeed(menuesDbContext.ItemState);
-            SubCategoryItemStateSeed.StartSubCategoryItemStateSeed(menuesDbContext.SubCategoryItemState);
+            ItemSubCategoryStateSeed.StartItemSubCategoryStateSeed(menuesDbContext.ItemSubCategoryState);
         }
 
         private static void TestingSeeds(MenuDbContext menuesDbContext)
         {
-            CategoryItemSeed.StartCategoryItemSSeed(menuesDbContext.CategoryItem);
+            ItemCategorySeed.StartItemCategorySeed(menuesDbContext.ItemCategory);
         }
     }
 }

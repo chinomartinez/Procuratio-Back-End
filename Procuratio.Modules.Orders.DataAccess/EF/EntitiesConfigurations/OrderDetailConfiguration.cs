@@ -10,6 +10,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<OrderDetail> builder)
         {
             builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+
+            builder.HasIndex(x => new { x.BranchId, x.ItemId, x.OrderId }).IsUnique();
+
+            builder.Property(x => x.Note).HasMaxLength(200);
         }
     }
 }

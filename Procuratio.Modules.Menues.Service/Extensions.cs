@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Menues.DataAccess;
 using Procuratio.Modules.Menues.Service.Services;
 using Procuratio.Modules.Menues.Service.Services.Interfaces;
+using System.Reflection;
 
 namespace Procuratio.Modules.Menues.Service
 {
@@ -10,9 +11,11 @@ namespace Procuratio.Modules.Menues.Service
     {
         public static IServiceCollection AddMenuServices(this IServiceCollection services)
         {
-            services.AddScoped<ICategoryItemService, CategoryItemService>();
+            services.AddScoped<IItemCategoryService, ItemCategoryService>();
             services.AddScoped<IItemService, ItemService>();
-            services.AddScoped<ISubCategoryItemService, SubCategoryItemService>();
+            services.AddScoped<IItemSubCategoryService, ItemSubCategoryService>();
+
+            services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
 
             services.AddDatabase();
 

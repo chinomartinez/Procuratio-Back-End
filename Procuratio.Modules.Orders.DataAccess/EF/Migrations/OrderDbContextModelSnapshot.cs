@@ -67,9 +67,6 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("KitchenNote")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<short>("OrderStateId")
                         .HasColumnType("smallint");
 
@@ -96,6 +93,10 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Note")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -108,6 +109,9 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("BranchId", "ItemId", "OrderId")
+                        .IsUnique();
 
                     b.ToTable("OrderDetail");
                 });

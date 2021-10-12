@@ -46,8 +46,6 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             if (withoutReserveToUpdate is null) { throw new WithoutReserveNotFoundException(); }
 
-            withoutReserveToUpdate.TableXWithoutReserve.Clear();
-
             withoutReserveToUpdate = _mapper.Map(withoutReserveUpdateDTO, withoutReserveToUpdate);
 
             await _withoutReserveRepository.UpdateAsync(withoutReserveToUpdate);

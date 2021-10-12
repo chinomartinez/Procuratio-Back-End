@@ -73,7 +73,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         {
             return await _withoutReserve.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
                 .Include(x => x.Order).ThenInclude(x => x.OrderState)
-                .Where(x => x.BranchId == TGRID.BranchId && x.WithoutReserveStateId == (short)WithoutReserveState.State.InProgress)
+                .Where(x => x.BranchId == TGRID.BranchId && x.Order.OrderStateId != (short)OrderState.State.Paid)
                 .AsNoTracking().ToListAsync();
         }
     }

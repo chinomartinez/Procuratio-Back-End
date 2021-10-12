@@ -23,7 +23,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
 
             builder.Property(x => x.PriceOutsideRestaurant).HasPrecision(19, 4);
 
-            builder.HasIndex(x => new { x.BranchId, x.Order, x.SubCategoryItemId }).IsUnique();
+            builder.HasIndex(x => new { x.BranchId, x.Order, x.ItemSubCategoryId }).IsUnique();
         }
     }
 }

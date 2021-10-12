@@ -11,17 +11,18 @@ namespace Procuratio.Modules.Menues.DataAccess
         internal const string MenuSchemeName = "Menu";
 
         #region DbSet of entities
-        public DbSet<CategoryItem> CategoryItem { get; set; }
-        public DbSet<SubCategoryItem> SubCategoryItem { get; set; }
+        public DbSet<Item> Item { get; set; }
+        public DbSet<ItemCategory> ItemCategory { get; set; }
+        public DbSet<ItemSubCategory> ItemSubCategory { get; set; }
         #endregion
 
         #region DbSet of intermediate entities
         #endregion
 
         #region DbSet of state entities
-        public DbSet<CategoryItemState> CategoryItemState { get; set; }
+        public DbSet<ItemCategoryState> ItemCategoryState { get; set; }
         public DbSet<ItemState> ItemState { get; set; }
-        public DbSet<SubCategoryItemState> SubCategoryItemState { get; set; }
+        public DbSet<ItemSubCategoryState> ItemSubCategoryState { get; set; }
         #endregion
 
         public MenuDbContext(DbContextOptions<MenuDbContext> options) : base(options) { }
