@@ -13,5 +13,7 @@ namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs
         public int Quantity { get; set; }
 
         public bool ForKitchen { get; set; }
+
+        public string Note { get; set; }
     }
 }

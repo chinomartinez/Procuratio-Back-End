@@ -33,6 +33,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                 if (itemsAlreadyInDatabase.Contains(element.ItemId))
                 {
                     OrderDetail currentOrderDetail = result.First(x => x.ItemId == element.ItemId);
+                    currentOrderDetail.Note = element.Note;
 
                     SetQuantity(element, currentOrderDetail);
                 }
@@ -43,6 +44,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                     orderDetail.OrderId = order.Id;
                     orderDetail.BranchId = TGRID.BranchId;
                     orderDetail.ItemId = element.ItemId;
+                    orderDetail.Note = element.Note;
 
                     SetQuantity(element, orderDetail);
 
