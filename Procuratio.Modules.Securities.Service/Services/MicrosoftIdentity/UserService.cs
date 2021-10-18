@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Procuratio.Modules.Securities.DataAccess.EF.JWT;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
@@ -10,6 +12,7 @@ using Procuratio.Modules.Securities.Service.Exceptions;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
+using Procuratio.Shared.ProcuratioFramework.JWT;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -26,15 +29,17 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IValidateChangeStateUser _validateChangeStateUser;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserService(IUserRepository userRepository, IMapper mapper, UserManager<User> userManager,
-            IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser)
+            IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser, IHttpContextAccessor httpContextAccessor)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
             _validateChangeStateUser = validateChangeStateUser;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IReadOnlyList<UserListDTO>> BrowseAsync()
@@ -103,7 +108,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         public async Task<AuthenticationResponseDTO> LoginAsync(UserCredentialsDTO userCredentialsDTO)
         {
-            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.Loginasync(userCredentialsDTO.UserName, userCredentialsDTO.Password);
+            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.Loginasync(userCredentialsDTO.User, userCredentialsDTO.Password);
 
             if (signInresult.Succeeded)
             {
@@ -115,19 +120,22 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         private async Task<AuthenticationResponseDTO> BuildToken(UserCredentialsDTO credentials)
         {
-            User user = await _userManager.FindByNameAsync(credentials.UserName);
+            User user = await _userManager.FindByNameAsync(credentials.User);
 
             List<Claim> claims = new()
             {
-                new Claim("restaurantid", user.BranchId.ToString()),
-                new Claim("username", user.UserName)
+                new Claim(JWTClaimNames.BranchId, user.BranchId.ToString()),
+                new Claim(JWTClaimNames.UserFullName, $"{user.Name} {user.Surname}"),
+                new Claim(JWTClaimNames.Rol, "Admin")
             };
 
             IList<Claim> claimsDB = await _userManager.GetClaimsAsync(user);
 
             claims.AddRange(claimsDB);
 
-            SymmetricSecurityKey symmetricSecurityKey = new(Encoding.UTF8.GetBytes(_configuration["JWTKey"]));
+            JWTOptions options = _configuration.GetSection("JWT").Get<JWTOptions>();
+
+            SymmetricSecurityKey symmetricSecurityKey = new(Encoding.UTF8.GetBytes(options.JWTKey));
             SigningCredentials credential = new(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             DateTime expiration = DateTime.UtcNow.AddDays(1);

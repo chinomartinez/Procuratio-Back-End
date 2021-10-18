@@ -56,20 +56,6 @@ namespace Procuratio.Modules.Securities.DataAccess
             .AddEntityFrameworkStores<SecurityDbContext>()
             .AddDefaultTokenProviders();
 
-            JWTOptions options = services.GetOptions<JWTOptions>(sectionName: "JWTKey");
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opciones =>
-                opciones.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.JWTKey)),
-                    ClockSkew = TimeSpan.Zero
-                });
-
             return services;
         }
 

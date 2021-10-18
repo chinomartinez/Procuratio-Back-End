@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Securities.API.Controllers.Base;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
@@ -69,6 +70,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<ActionResult<AuthenticationResponseDTO>> LoginAsync([FromForm] UserCredentialsDTO userCredentialsDTO)
         {
             AuthenticationResponseDTO authenticationResponseDTO = await _userService.LoginAsync(userCredentialsDTO);
