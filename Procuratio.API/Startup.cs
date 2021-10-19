@@ -76,19 +76,24 @@ namespace Procuratio.API
 
             services.AddHttpContextAccessor();
 
-            JWTOptions options = services.GetOptions<JWTOptions>(sectionName: "JWT");
+            JWTOptions JWToptions = services.GetOptions<JWTOptions>(sectionName: "JWT");
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opciones =>
-                opciones.TokenValidationParameters = new TokenValidationParameters
+                .AddJwtBearer(options =>
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.JWTKey)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWToptions.JWTKey)),
                     ClockSkew = TimeSpan.Zero
                 });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsAdmin", policy => policy.RequireClaim("role", "Admin"));
+            });
 
             services.AddOrderModule();
             services.AddMenuModule();
