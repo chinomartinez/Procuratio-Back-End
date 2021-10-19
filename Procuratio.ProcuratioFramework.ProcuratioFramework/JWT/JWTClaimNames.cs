@@ -13,6 +13,6 @@ namespace Procuratio.Shared.ProcuratioFramework.JWT
 	{
 		public const string BranchId = "branch_id";
 		public const string UserFullName = "user_full_name";
-		public const string Rol = "rol";
+		public const string Role = "role";
 	}
 }

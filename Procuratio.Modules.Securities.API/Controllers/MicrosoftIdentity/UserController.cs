@@ -21,6 +21,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> AddAsync([FromForm] UserFromFormDTO createDTO)
         {
             await _userService.AddAsync(createDTO);

@@ -108,7 +108,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         public async Task<AuthenticationResponseDTO> LoginAsync(UserCredentialsDTO userCredentialsDTO)
         {
-            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.Loginasync(userCredentialsDTO.User, userCredentialsDTO.Password);
+            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.Loginasync(userCredentialsDTO.UserName, userCredentialsDTO.Password);
 
             if (signInresult.Succeeded)
             {
@@ -120,13 +120,12 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         private async Task<AuthenticationResponseDTO> BuildToken(UserCredentialsDTO credentials)
         {
-            User user = await _userManager.FindByNameAsync(credentials.User);
+            User user = await _userManager.FindByNameAsync(credentials.UserName);
 
             List<Claim> claims = new()
             {
                 new Claim(JWTClaimNames.BranchId, user.BranchId.ToString()),
                 new Claim(JWTClaimNames.UserFullName, $"{user.Name} {user.Surname}"),
-                new Claim(JWTClaimNames.Rol, "Admin")
             };
 
             IList<Claim> claimsDB = await _userManager.GetClaimsAsync(user);
