@@ -49,7 +49,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             //return _mapper.Map<IReadOnlyList<UserListDTO>>(users);
         }
 
-        public async Task AddAsync([FromForm] UserFromFormDTO addDTO)
+        public async Task AddAsync([FromBody] UserFromFormDTO addDTO)
         {
             User user = new();
 
@@ -75,7 +75,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task UpdateAsync([FromForm] UserFromFormDTO updateDTO, int Id)
+        public async Task UpdateAsync([FromBody] UserFromFormDTO updateDTO, int Id)
         {
             User user = await GetUserAsync(Id);
 
@@ -106,7 +106,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             throw new NotImplementedException();
         }
 
-        public async Task<AuthenticationResponseDTO> LoginAsync(UserCredentialsDTO userCredentialsDTO)
+        public async Task<AuthenticationResponseDTO> LoginAsync([FromBody] UserCredentialsDTO userCredentialsDTO)
         {
             Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.Loginasync(userCredentialsDTO.UserName, userCredentialsDTO.Password);
 

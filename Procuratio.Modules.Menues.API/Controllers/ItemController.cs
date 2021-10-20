@@ -20,7 +20,7 @@ namespace Procuratio.Modules.Menues.API.Controllers
         }
 
         [HttpPost]
-        public Task<ActionResult> AddAsync([FromForm] ItemFromFormDTO addDTO)
+        public Task<ActionResult> AddAsync([FromBody] ItemFromFormDTO addDTO)
         {
             throw new System.NotImplementedException();
         }
@@ -56,7 +56,7 @@ namespace Procuratio.Modules.Menues.API.Controllers
         }
 
         [HttpPut(BasicStringsForControllers.IntParameter)]
-        public Task<ActionResult> UpdateAsync([FromForm] ItemFromFormDTO updateDTO, int id)
+        public Task<ActionResult> UpdateAsync([FromBody] ItemFromFormDTO updateDTO, int id)
         {
             throw new System.NotImplementedException();
         }

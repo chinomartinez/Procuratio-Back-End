@@ -22,7 +22,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> AddAsync([FromForm] UserFromFormDTO createDTO)
+        public async Task<ActionResult> AddAsync([FromBody] UserFromFormDTO createDTO)
         {
             await _userService.AddAsync(createDTO);
             return NoContent();
@@ -52,7 +52,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromForm] UserFromFormDTO updateDTO, int Id)
+        public async Task<ActionResult> UpdateAsync([FromBody] UserFromFormDTO updateDTO, int Id)
         {
             await _userService.UpdateAsync(updateDTO, Id);
             return NoContent();
@@ -72,7 +72,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<AuthenticationResponseDTO>> LoginAsync([FromForm] UserCredentialsDTO userCredentialsDTO)
+        public async Task<ActionResult<AuthenticationResponseDTO>> LoginAsync([FromBody] UserCredentialsDTO userCredentialsDTO)
         {
             AuthenticationResponseDTO authenticationResponseDTO = await _userService.LoginAsync(userCredentialsDTO);
 
