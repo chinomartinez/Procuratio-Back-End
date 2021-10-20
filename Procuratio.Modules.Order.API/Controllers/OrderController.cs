@@ -22,7 +22,7 @@ namespace Procuratio.Modules.Order.API.Controllers
         public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetWithoutReserveOrderDetailAsync(int id) => Ok(await _orderService.GetWithoutReserveOrderDetailAsync(id));
 
         [HttpPut("without-reserve/" + BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult> UpdateWithoutReserveAsync([FromForm] OrderFromFormDTO updateDTO, int id)
+        public async Task<ActionResult> UpdateWithoutReserveAsync([FromBody] OrderFromFormDTO updateDTO, int id)
         {
             await _orderService.UpdateWithoutReserveAsync(updateDTO, id);
             return NoContent();

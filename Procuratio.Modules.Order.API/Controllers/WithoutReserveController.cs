@@ -33,7 +33,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync([FromForm] WithoutReserveFromFormDTO withoutReserveCreationDTO)
+        public async Task<ActionResult> AddAsync([FromBody] WithoutReserveFromFormDTO withoutReserveCreationDTO)
         {
             await _withoutReserveService.AddAsync(withoutReserveCreationDTO);
             return NoContent();
@@ -44,7 +44,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
         public async Task<ActionResult<IReadOnlyList<WithoutReserveForListDTO>>> BrowseAsync() => Ok(await _withoutReserveService.BrowseAsync());
 
         [HttpPut(BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult> UpdateAsync([FromForm] WithoutReserveFromFormDTO withoutReserveUpdateDTO, int id)
+        public async Task<ActionResult> UpdateAsync([FromBody] WithoutReserveFromFormDTO withoutReserveUpdateDTO, int id)
         {
             await _withoutReserveService.UpdateAsync(withoutReserveUpdateDTO, id);
             return NoContent();

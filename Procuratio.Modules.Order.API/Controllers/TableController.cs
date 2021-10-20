@@ -20,7 +20,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync([FromForm] TableFromFormDTO createDTO)
+        public async Task<ActionResult> AddAsync([FromBody] TableFromFormDTO createDTO)
         {
             await _tableService.AddAsync(createDTO);
             return NoContent();
@@ -50,7 +50,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
         }
 
         [HttpPut(BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult> UpdateAsync([FromForm] TableFromFormDTO updateDTO, int id)
+        public async Task<ActionResult> UpdateAsync([FromBody] TableFromFormDTO updateDTO, int id)
         {
             await _tableService.UpdateAsync(updateDTO, id);
             return NoContent();
