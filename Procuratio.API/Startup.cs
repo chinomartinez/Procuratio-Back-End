@@ -46,11 +46,11 @@ namespace Procuratio.API
                 var jwtSecurityScheme = new OpenApiSecurityScheme
                 {
                     Scheme = "bearer",
-                    BearerFormat = "JWT",
-                    Name = "JWT Authentication",
+                    BearerFormat = "Json Web Token",
+                    Name = "Json Web Token Authentication",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
-                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+                    Description = "Put **_ONLY_** your Json Web Token Bearer on textbox below!",
 
                     Reference = new OpenApiReference
                     {
@@ -76,7 +76,7 @@ namespace Procuratio.API
 
             services.AddHttpContextAccessor();
 
-            JWTOptions JWToptions = services.GetOptions<JWTOptions>(sectionName: "JWT");
+            JsonWebToken JWToptions = services.GetOptions<JsonWebToken>(sectionName: nameof(JsonWebToken));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -86,7 +86,7 @@ namespace Procuratio.API
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWToptions.JWTKey)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWToptions.Key)),
                     ClockSkew = TimeSpan.Zero
                 });
 

@@ -132,9 +132,9 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             claims.AddRange(claimsDB);
 
-            JWTOptions options = _configuration.GetSection("JWT").Get<JWTOptions>();
+            JsonWebToken options = _configuration.GetSection(nameof(JsonWebToken)).Get<JsonWebToken>();
 
-            SymmetricSecurityKey symmetricSecurityKey = new(Encoding.UTF8.GetBytes(options.JWTKey));
+            SymmetricSecurityKey symmetricSecurityKey = new(Encoding.UTF8.GetBytes(options.Key));
             SigningCredentials credential = new(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             DateTime expiration = DateTime.UtcNow.AddDays(1);

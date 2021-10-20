@@ -1,7 +1,7 @@
 ﻿namespace Procuratio.Modules.Securities.DataAccess.EF.JWT
 {
-    internal class JWTOptions
+    internal class JsonWebToken
     {
-        public string JWTKey { get; set; }
+        public string Key { get; set; }
     }
 }
