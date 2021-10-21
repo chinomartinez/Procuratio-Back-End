@@ -7,6 +7,7 @@ using Procuratio.Modules.Order.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -40,7 +41,11 @@ namespace Procuratio.Modules.Order.Service.Services
 
             order = _mapper.Map(updateDTO, order);
 
-            if (updateDTO.Items.Exists(x => x.ForKitchen)) { order.OrderStateId = (short)OrderState.State.InProgress; }
+            if (updateDTO.Items.Exists(x => x.ForKitchen)) 
+            { 
+                order.OrderStateId = (short)OrderState.State.InProgress;
+                order.WaitingTimeForKitchen = DateTime.Now;
+            }
 
             await _orderRepository.UpdateAsync(order);
         }
@@ -59,6 +64,7 @@ namespace Procuratio.Modules.Order.Service.Services
             if (order is null) { throw new OrderNotFoundException(); }
 
             order.OrderStateId = (short)OrderState.State.ForDelivery;
+            order.WaitingTimeForKitchen = null;
 
             await _orderRepository.UpdateAsync(order);
         }

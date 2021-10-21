@@ -9,6 +9,8 @@ namespace Procuratio.Modules.Orders.Domain.Entities
     {
         public DateTime Date { get; set; }
 
+        public DateTime? WaitingTimeForKitchen { get; set; }
+
         public short OrderStateId { get; set; }
         public OrderState OrderState { get; set; }
 
