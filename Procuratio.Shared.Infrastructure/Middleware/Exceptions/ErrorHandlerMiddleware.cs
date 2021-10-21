@@ -29,8 +29,8 @@ namespace Procuratio.Shared.Infrastructure.Exceptions
             catch (Exception exception)
             {
                 int statusCode = (int)HttpStatusCode.InternalServerError;
-                string code = "error";
-                string errorMessage = "Hubo un error.";
+                string code = "internal_server_error";
+                string errorMessage = exception.Message;
 
                 _logger.LogError(exception, exception.Message);
 
@@ -53,7 +53,7 @@ namespace Procuratio.Shared.Infrastructure.Exceptions
                 }
 
                 context.Response.StatusCode = statusCode;
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new { code, errorMessage }));
+                await context.Response.WriteAsJsonAsync(new { code, errorMessage });
             }
         }
     }
