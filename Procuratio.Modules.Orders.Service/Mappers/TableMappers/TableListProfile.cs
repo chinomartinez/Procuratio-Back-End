@@ -8,8 +8,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.TableMappers
     {
         public TableListProfile()
         {
-            CreateMap<Table, TableForListDTO>()
-                .ForMember(x => x.BaseProperties, x => x.MapFrom(x => x.Id));
+            CreateMap<Table, TableForListDTO>().ForMember(x => x.BaseProperties, x => x.MapFrom(x => x));
         }
     }
 }

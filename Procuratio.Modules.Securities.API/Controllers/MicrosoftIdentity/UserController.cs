@@ -82,7 +82,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             }
             else
             {
-                return BadRequest("Login incorrecto");
+                return BadRequest("Inicio de sesión incorrecto");
             }
         }
     }
