@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using Procuratio.Modules.Customers.API;
 using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
+using Procuratio.Modules.Report.API;
 using Procuratio.Modules.Restaurants.API;
 using Procuratio.Modules.Securities.API;
 using Procuratio.Shared.Infrastructure;
@@ -99,6 +100,7 @@ namespace Procuratio.API
             services.AddMenuModule();
             services.AddCustomerModule();
             services.AddRestaurantModule();
+            services.AddReportModule();
             services.AddSecurityModule();
 
             services.AddInfrastructure();
@@ -130,6 +132,7 @@ namespace Procuratio.API
             app.UseMenuModule();
             app.UseCustomerModule();
             app.UseRestaurantModule();
+            app.UseReportModule();
             app.UseSecurityModule();
 
             app.UseAuthorization();
