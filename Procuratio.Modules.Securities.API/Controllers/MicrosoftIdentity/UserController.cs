@@ -70,11 +70,11 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             throw new System.NotImplementedException();
         }
 
-        [HttpPost("login")]
+        [HttpPost("auth")]
         [AllowAnonymous]
-        public async Task<ActionResult<AuthenticationResponseDTO>> LoginAsync([FromBody] UserCredentialsDTO userCredentialsDTO)
+        public async Task<ActionResult<AuthenticationResponseDTO>> AuthAsync([FromBody] UserCredentialsDTO userCredentialsDTO)
         {
-            AuthenticationResponseDTO authenticationResponseDTO = await _userService.LoginAsync(userCredentialsDTO);
+            AuthenticationResponseDTO authenticationResponseDTO = await _userService.AuthAsync(userCredentialsDTO);
 
             if (authenticationResponseDTO is not null)
             {
@@ -82,7 +82,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             }
             else
             {
-                return BadRequest("Inicio de sesión incorrecto");
+                return BadRequest("Inicio de sesión invalido");
             }
         }
     }

@@ -51,7 +51,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
             await _userManager.UpdateAsync(toUpdate);
         }
 
-        public async Task<SignInResult> Loginasync(string userName, string password)
+        public async Task<SignInResult> AuthAsync(string userName, string password)
         {
             return await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
         }

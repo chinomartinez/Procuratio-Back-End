@@ -7,6 +7,6 @@ namespace Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIde
 {
     public interface IUserService : IBaseServiceOperations<UserDTO, UserListDTO, UserFromFormDTO, UserCreationFormInitializerDTO, UserEditionFormInitializerDTO, int>
     {
-        public Task<AuthenticationResponseDTO> LoginAsync(UserCredentialsDTO userCredentialsDTO);
+        public Task<AuthenticationResponseDTO> AuthAsync(UserCredentialsDTO userCredentialsDTO);
     }
 }

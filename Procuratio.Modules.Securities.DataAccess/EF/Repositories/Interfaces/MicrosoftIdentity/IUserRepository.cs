@@ -7,6 +7,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.Mi
 {
     public interface IUserRepository : IBaseRepositoryOperations<User, int>
     {
-        Task<SignInResult> Loginasync(string userName, string password);
+        Task<SignInResult> AuthAsync(string userName, string password);
     }
 }
