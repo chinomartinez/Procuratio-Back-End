@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Procuratio.Modules.Customers.API\Procuratio.Modules.Customer.API.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Menues.API\Procuratio.Modules.Menu.API.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Order.API\Procuratio.Modules.Order.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Report.API\Procuratio.Modules.Report.API.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Restaurants.API\Procuratio.Modules.Restaurant.API.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Securities.API\Procuratio.Modules.Security.API.csproj" />
   </ItemGroup>
