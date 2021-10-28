@@ -146,11 +146,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
                 expires: expiration,
                 signingCredentials: credential);
 
-            return new AuthenticationResponseDTO()
-            {
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expiration = expiration
-            };
+            return new AuthenticationResponseDTO() { Token = new JwtSecurityTokenHandler().WriteToken(token) };
         }
     }
 }
