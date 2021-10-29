@@ -110,10 +110,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         {
             Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.AuthAsync(userCredentialsDTO.UserName, userCredentialsDTO.Password);
 
-            if (signInresult.Succeeded)
-            {
-                return await BuildToken(userCredentialsDTO);
-            }
+            if (signInresult.Succeeded) { return await BuildToken(userCredentialsDTO); }
 
             return null;
         }
