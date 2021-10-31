@@ -23,7 +23,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         public async Task<Orders.Domain.Entities.Order> GetWithoutReserveOrderDetailAsync(int id)
         {
             return await BaseRelationsForGetAnOrderDetail().Include(x => x.WithoutReserve)
-                .FirstOrDefaultAsync(x => x.BranchId == TGRID.BranchId && x.WithoutReserve.OrderId == id);
+                .FirstOrDefaultAsync(x => x.WithoutReserve.OrderId == id);
         }
 
         public async Task UpdateAsync(Orders.Domain.Entities.Order toUpdate)
@@ -35,13 +35,13 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
 
         public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressAsync()
         {
-            return await _order.Include(x => x.OrderDetails).Where(x => x.BranchId == TGRID.BranchId && x.OrderStateId == (short)OrderState.State.InProgress)
+            return await _order.Include(x => x.OrderDetails).Where(x => x.OrderStateId == (short)OrderState.State.InProgress)
                 .AsNoTracking().ToListAsync();
         }
 
         public async Task<Orders.Domain.Entities.Order> GetWithOrderDetailAsync(int Id)
         {
-            return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == Id && TGRID.BranchId == x.BranchId);
+            return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == Id);
         }
 
         private IQueryable<Orders.Domain.Entities.Order> BaseRelationsForGetAnOrderDetail() => _order.Include(x => x.OrderDetails).Include(x => x.OrderState).AsQueryable();

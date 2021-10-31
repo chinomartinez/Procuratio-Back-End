@@ -29,17 +29,15 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IValidateChangeStateUser _validateChangeStateUser;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserService(IUserRepository userRepository, IMapper mapper, UserManager<User> userManager,
-            IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser, IHttpContextAccessor httpContextAccessor)
+            IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
             _validateChangeStateUser = validateChangeStateUser;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IReadOnlyList<UserListDTO>> BrowseAsync()

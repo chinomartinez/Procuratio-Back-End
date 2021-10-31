@@ -20,7 +20,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
             {
                 Name = "Bebidas",
                 ItemCategoryStateId = (short)ItemCategoryState.State.Available,
-                BranchId = TGRID.BranchId,
+                BranchId = 1,
                 Order = 1,
                 ItemSubCategories = new List<ItemSubCategory>()
                 {
@@ -29,7 +29,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                         Name = "Gaseosas",
                         Order = 1,
                         ItemSubCategoryStateId = (short)ItemSubCategoryState.State.Available,
-                        BranchId = TGRID.BranchId,
+                        BranchId = 1,
                         Items = new List<Item>()
                         {
                             new Item()
@@ -43,7 +43,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                                 PriceOutsideRestaurant = 150,
                                 Code = "0001",
                                 ItemStateId = (short)ItemState.State.Available,
-                                BranchId = TGRID.BranchId
+                                BranchId = 1
                             },
                             new Item()
                             {
@@ -56,7 +56,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                                 PriceOutsideRestaurant = 150,
                                 Code = "0003",
                                 ItemStateId = (short)ItemState.State.Available,
-                                BranchId = TGRID.BranchId
+                                BranchId = 1
                             },
                             new Item()
                             {
@@ -69,7 +69,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                                 PriceOutsideRestaurant = 250,
                                 Code = "0004",
                                 ItemStateId = (short)ItemState.State.Available,
-                                BranchId = TGRID.BranchId
+                                BranchId = 1
                             }
                         }
                     }
@@ -79,7 +79,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
             {
                 Name = "Pastas",
                 ItemCategoryStateId = (short)ItemCategoryState.State.Available,
-                BranchId = TGRID.BranchId,
+                BranchId = 1,
                 Order = 2,
                 ItemSubCategories = new List<ItemSubCategory>()
                 {
@@ -88,7 +88,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                         Name = "Tallarines",
                         Order = 1,
                         ItemSubCategoryStateId = (short)ItemSubCategoryState.State.Available,
-                        BranchId = TGRID.BranchId,
+                        BranchId = 1,
                         Items = new List<Item>()
                         {
                             new Item()
@@ -102,7 +102,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                                 PriceOutsideRestaurant = 275,
                                 Code = "0002",
                                 ItemStateId = (short)ItemState.State.Available,
-                                BranchId = TGRID.BranchId
+                                BranchId = 1
                             },
                             new Item()
                             {
@@ -115,7 +115,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                                 PriceOutsideRestaurant = 225,
                                 Code = "0005",
                                 ItemStateId = (short)ItemState.State.Available,
-                                BranchId = TGRID.BranchId
+                                BranchId = 1
                             },
                             new Item()
                             {
@@ -128,7 +128,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                                 PriceOutsideRestaurant = 125,
                                 Code = "0006",
                                 ItemStateId = (short)ItemState.State.Available,
-                                BranchId = TGRID.BranchId
+                                BranchId = 1
                             }
                         }
                     }

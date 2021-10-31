@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Shared.ProcuratioFramework.JWT
+namespace Procuratio.Shared.Abstractions.Tenant
 {
-    public static class JWTClaims
+    public interface ITenantService
     {
-        
+        public int GetBranchId();
     }
 }
