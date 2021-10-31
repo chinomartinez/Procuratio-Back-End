@@ -42,7 +42,6 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                     OrderDetail orderDetail = new();
 
                     orderDetail.OrderId = order.Id;
-                    orderDetail.BranchId = TGRID.BranchId;
                     orderDetail.ItemId = element.ItemId;
                     orderDetail.Note = element.Note;
 

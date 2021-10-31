@@ -10,6 +10,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Item> builder)
         {
             builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.HasQueryFilter(x => x.BranchId == MenuDbContext.BranchId);
 
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
 

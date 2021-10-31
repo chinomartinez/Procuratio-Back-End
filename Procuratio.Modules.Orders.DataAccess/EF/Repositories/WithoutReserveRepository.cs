@@ -22,17 +22,17 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<WithoutReserve> GetAsync(int id)
         {
-            return await _withoutReserve.SingleOrDefaultAsync(x => x.Id == id && TGRID.BranchId == x.BranchId);
+            return await _withoutReserve.SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<WithoutReserve> GetWithTableXWithoutReserveAsync(int id)
         {
-            return await _withoutReserve.Include(x => x.TableXWithoutReserve).SingleOrDefaultAsync(x => x.Id == id && TGRID.BranchId == x.BranchId);
+            return await _withoutReserve.Include(x => x.TableXWithoutReserve).SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IReadOnlyList<WithoutReserve>> BrowseAsync()
         {
-            return await _withoutReserve.Where(x => x.BranchId == TGRID.BranchId && x.WithoutReserveStateId == (short)WithoutReserveState.State.InProgress)
+            return await _withoutReserve.Where(x => x.WithoutReserveStateId == (short)WithoutReserveState.State.InProgress)
                 .Include(x => x.Order)
                 .Include(x => x.WithoutReserveState)
                 .Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
@@ -48,9 +48,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task AddAsync(WithoutReserve toCreate)
         {
-            toCreate.BranchId = TGRID.BranchId;
-            toCreate.Order.BranchId = TGRID.BranchId;
-
             await _withoutReserve.AddAsync(toCreate);
 
             await _ordersDbContext.SaveChangesAsync();
@@ -65,16 +62,16 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         public async Task<WithoutReserve> GetEntityEditionFormInitializerAsync(int id)
         {
             return await _withoutReserve.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
-                .AsNoTracking().SingleOrDefaultAsync(x => x.Id == id && TGRID.BranchId == x.BranchId);
+                .AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<WithoutReserve>> GetByIdsAsync(List<int> ids) => await _withoutReserve.Where(x => TGRID.BranchId == x.BranchId && ids.Contains(x.Id)).ToListAsync();
+        public async Task<List<WithoutReserve>> GetByIdsAsync(List<int> ids) => await _withoutReserve.Where(x => ids.Contains(x.Id)).ToListAsync();
 
         public async Task<IReadOnlyList<WithoutReserve>> GetInProgressAsync()
         {
             return await _withoutReserve.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
                 .Include(x => x.Order).ThenInclude(x => x.OrderState)
-                .Where(x => x.BranchId == TGRID.BranchId && x.Order.OrderStateId != (short)OrderState.State.Paid)
+                .Where(x => x.Order.OrderStateId != (short)OrderState.State.Paid)
                 .AsNoTracking().ToListAsync();
         }
     }

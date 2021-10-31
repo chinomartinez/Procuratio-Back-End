@@ -45,7 +45,7 @@ namespace Procuratio.Modules.Orders.API.Controllers
             {
                 return NotFound();
             }
-
+            
             return Ok(tableDTO);
         }
 

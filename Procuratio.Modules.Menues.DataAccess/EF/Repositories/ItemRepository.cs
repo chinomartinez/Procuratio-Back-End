@@ -40,7 +40,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             throw new System.NotImplementedException();
         }
 
-        public async Task<List<Item>> GetByIdsAsync(List<int> ids) => await _item.Where(x => TGRID.BranchId == x.BranchId && ids.Contains(x.Id)).ToListAsync();
+        public async Task<List<Item>> GetByIdsAsync(List<int> ids) => await _item.Where(x => ids.Contains(x.Id)).ToListAsync();
 
         public async Task<Item> GetEntityEditionFormInitializerAsync(int id)
         {
@@ -55,8 +55,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
         public async Task<IReadOnlyList<Item>> GetMenuAsync()
         {
             return await _item.Include(x => x.ItemSubCategory).ThenInclude(x => x.ItemCategory)
-                .Where(x => x.ItemStateId == (short)ItemState.State.Available && x.BranchId == TGRID.BranchId
-                && x.ItemSubCategory.ItemSubCategoryStateId == (short)ItemSubCategoryState.State.Available
+                .Where(x => x.ItemStateId == (short)ItemState.State.Available && x.ItemSubCategory.ItemSubCategoryStateId == (short)ItemSubCategoryState.State.Available
                 && x.ItemSubCategory.ItemCategory.ItemCategoryStateId == (short)ItemCategoryState.State.Available)
                 .OrderByDescending(x => x.ItemSubCategory.ItemCategory.Order)
                 .ThenByDescending(x => x.ItemSubCategory.Order).ThenByDescending(x => x.Order)

@@ -22,7 +22,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
 
             if (withoutReserve.Id != 0) withoutReserve.TableXWithoutReserve.Clear();
 
-            withoutReserveFromFormDTO.TablesIds.ForEach(x => result.Add(new() { TableId = x, BranchId = TGRID.BranchId }));
+            withoutReserveFromFormDTO.TablesIds.ForEach(x => result.Add(new() { TableId = x }));
 
             return result;
         }

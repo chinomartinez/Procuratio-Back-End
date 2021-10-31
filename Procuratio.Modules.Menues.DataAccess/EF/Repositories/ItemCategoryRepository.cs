@@ -22,14 +22,12 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
         public async Task AddAsync(ItemCategory toAdd)
         {
-            toAdd.BranchId = TGRID.BranchId;
-
             await _itemCategory.AddAsync(toAdd);
 
             await _menuDbContext.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<ItemCategory>> BrowseAsync() => await _itemCategory.Where(x => x.BranchId == TGRID.BranchId).AsNoTracking().ToListAsync();
+        public async Task<IReadOnlyList<ItemCategory>> BrowseAsync() => await _itemCategory.AsNoTracking().ToListAsync();
 
         public async Task DeleteAsync(ItemCategory entity)
         {
@@ -37,9 +35,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             await _menuDbContext.SaveChangesAsync();
         }
 
-        public async Task<ItemCategory> GetAsync(int id) => await _itemCategory.SingleOrDefaultAsync(x => x.Id == id && TGRID.BranchId == x.BranchId);
+        public async Task<ItemCategory> GetAsync(int id) => await _itemCategory.SingleOrDefaultAsync(x => x.Id == id);
 
-        public async Task<List<ItemCategory>> GetByIdsAsync(List<int> ids) => await _itemCategory.Where(x => TGRID.BranchId == x.BranchId && ids.Contains(x.Id)).ToListAsync();
+        public async Task<List<ItemCategory>> GetByIdsAsync(List<int> ids) => await _itemCategory.Where(x => ids.Contains(x.Id)).ToListAsync();
 
         public async Task<ItemCategory> GetEntityEditionFormInitializerAsync(int id)
         {

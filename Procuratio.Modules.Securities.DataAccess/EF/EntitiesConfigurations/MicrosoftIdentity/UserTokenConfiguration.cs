@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 
@@ -9,6 +10,8 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
         public void Configure(EntityTypeBuilder<UserToken> builder)
         {
             builder.ToTable(nameof(UserToken), SecurityDbContext.SecuritySchemeName);
+
+            builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
             builder.Property(x => x.Value).IsRequired();
         }

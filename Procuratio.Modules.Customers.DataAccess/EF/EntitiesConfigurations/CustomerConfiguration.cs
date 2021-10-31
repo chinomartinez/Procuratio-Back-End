@@ -9,6 +9,7 @@ namespace Procuratio.Modules.Customers.DataAccess.EF.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Domain.Entities.Customer> builder)
         {
             builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.HasQueryFilter(x => x.BranchId == CustomerDbContext.BranchId);
 
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired(true);
 
