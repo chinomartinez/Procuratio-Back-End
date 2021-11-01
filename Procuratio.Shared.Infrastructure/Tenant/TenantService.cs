@@ -19,7 +19,7 @@ namespace Procuratio.Shared.Infrastructure.Tenant
         {
             _httpContext = contextAccessor.HttpContext;
 
-            if (_httpContext != null)
+            if (_httpContext is not null)
             {
                 if (ItsAnonymousEndPoint()) { return; }
 
