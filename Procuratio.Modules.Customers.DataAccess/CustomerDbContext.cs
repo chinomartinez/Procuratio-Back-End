@@ -27,7 +27,7 @@ namespace Procuratio.Modules.Customers.DataAccess
 
         public CustomerDbContext(DbContextOptions<CustomerDbContext> options, ITenantService tenantService) : base(options) 
         {
-            BranchId = Convert.ToInt32(tenantService.GetBranchId());
+            BranchId = tenantService.GetBranchId();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

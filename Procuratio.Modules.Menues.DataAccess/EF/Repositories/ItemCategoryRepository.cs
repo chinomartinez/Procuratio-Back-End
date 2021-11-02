@@ -39,10 +39,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
         public async Task<List<ItemCategory>> GetByIdsAsync(List<int> ids) => await _itemCategory.Where(x => ids.Contains(x.Id)).ToListAsync();
 
-        public async Task<ItemCategory> GetEntityEditionFormInitializerAsync(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+        public async Task<ItemCategory> GetEntityEditionFormInitializerAsync(int id) => await _itemCategory.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
         public async Task UpdateAsync(ItemCategory toUpdate)
         {

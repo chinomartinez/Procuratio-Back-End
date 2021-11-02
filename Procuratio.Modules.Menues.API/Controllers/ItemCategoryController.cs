@@ -22,43 +22,50 @@ namespace Procuratio.Modules.Menues.API.Controllers
         [HttpPost]
         public async Task<ActionResult> AddAsync([FromBody] ItemCategoryFromFormDTO addDTO)
         {
-            throw new System.NotImplementedException();
+            await _itemCategoryService.AddAsync(addDTO);
+            return NoContent();
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ItemCategoryForListDTO>>> BrowseAsync()
-        {
-            throw new System.NotImplementedException();
-        }
+        public async Task<ActionResult<IReadOnlyList<ItemCategoryForListDTO>>> BrowseAsync() => Ok(await _itemCategoryService.BrowseAsync());
 
         [HttpDelete(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            await _itemCategoryService.DeleteAsync(id);
+            return NoContent();
         }
 
         [HttpGet(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult<ItemCategoryDTO>> GetAsync(int id)
         {
-            throw new System.NotImplementedException();
+            ActionResult<ItemCategoryDTO> itemCategoryDTO = await _itemCategoryService.GetAsync(id);
+
+            if (itemCategoryDTO is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(itemCategoryDTO);
         }
 
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
         public async Task<ActionResult<ItemCategoryCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync()
         {
-            throw new System.NotImplementedException();
+            return Ok(await _itemCategoryService.GetEntityCreationFormInitializerAsync());
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
         public async Task<ActionResult<ItemCategoryEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return Ok(await _itemCategoryService.GetEntityEditionFormInitializerAsync(id));
         }
 
         [HttpPut(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> UpdateAsync([FromBody] ItemCategoryFromFormDTO updateDTO, int id)
         {
-            throw new System.NotImplementedException();
+            await _itemCategoryService.UpdateAsync(updateDTO, id);
+            return NoContent();
         }
     }
 }

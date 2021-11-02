@@ -34,7 +34,7 @@ namespace Procuratio.Modules.Menues.DataAccess
 
         public MenuDbContext(DbContextOptions<MenuDbContext> options, ITenantService tenantService) : base(options) 
         {
-            BranchId = Convert.ToInt32(tenantService.GetBranchId());
+            BranchId = tenantService.GetBranchId();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

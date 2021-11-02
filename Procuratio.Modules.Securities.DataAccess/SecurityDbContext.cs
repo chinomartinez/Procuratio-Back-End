@@ -23,7 +23,7 @@ namespace Procuratio.Modules.Securities.DataAccess
 
         public SecurityDbContext(DbContextOptions<SecurityDbContext> options, ITenantService tenantService) : base(options) 
         {
-            BranchId = Convert.ToInt32(tenantService.GetBranchId());
+            BranchId = tenantService.GetBranchId();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

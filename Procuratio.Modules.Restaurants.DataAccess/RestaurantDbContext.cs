@@ -29,7 +29,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess
 
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options, ITenantService tenantService) : base(options) 
         {
-            BranchId = Convert.ToInt32(tenantService.GetBranchId());
+            BranchId = tenantService.GetBranchId();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
