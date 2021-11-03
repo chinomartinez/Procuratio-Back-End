@@ -11,9 +11,9 @@ namespace Procuratio.Modules.Menues.Service
     {
         public static IServiceCollection AddMenuServices(this IServiceCollection services)
         {
-            services.AddScoped<IItemCategoryService, ItemCategoryService>();
+            services.AddScoped<IMenuCategoryService, MenuCategoryService>();
             services.AddScoped<IItemService, ItemService>();
-            services.AddScoped<IItemSubCategoryService, ItemSubCategoryService>();
+            services.AddScoped<IMenuSubcategoryService, MenuSubCategoryService>();
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
 

@@ -12,6 +12,7 @@ using Procuratio.Modules.Securities.Service.Exceptions;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
+using Procuratio.Shared.Infrastructure.Exceptions;
 using Procuratio.Shared.ProcuratioFramework.JWT;
 using System;
 using System.Collections.Generic;
@@ -116,6 +117,8 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         private async Task<AuthenticationResponseDTO> BuildToken(UserCredentialsDTO credentials)
         {
             User user = await _userManager.FindByNameAsync(credentials.UserName);
+
+            if (user.BranchId <= 0) { throw new BranchIdNotFoundException(); }
 
             List<Claim> claims = new()
             {

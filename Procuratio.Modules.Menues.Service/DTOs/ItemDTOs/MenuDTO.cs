@@ -8,13 +8,13 @@ namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
 {
     public class MenuDTO
     {
-        public int ItemCategoryId { get; set; }
+        public int MenuCategoryId { get; set; }
 
-        public string ItemCategoryName { get; set; }
+        public string MenuCategoryName { get; set; }
 
-        public int ItemSubCategoryId { get; set; }
+        public int MenuSubCategoryId { get; set; }
 
-        public string ItemSubCategoryName { get; set; }
+        public string MenuSubCategoryName { get; set; }
 
         public int ItemId { get; set; }
 

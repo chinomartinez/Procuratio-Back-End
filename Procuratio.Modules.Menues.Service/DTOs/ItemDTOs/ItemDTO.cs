@@ -27,8 +27,8 @@ namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
 
         public string Code { get; set; }
 
-        public short ItemStateId { get; set; }
+        public short MenuStateId { get; set; }
 
-        public int ItemSubCategoryId { get; set; }
+        public int MenuSubCategoryId { get; set; }
     }
 }

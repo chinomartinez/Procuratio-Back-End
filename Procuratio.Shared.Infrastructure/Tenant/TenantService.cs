@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.Exceptions;
 using Procuratio.Shared.ProcuratioFramework.JWT;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,9 @@ namespace Procuratio.Shared.Infrastructure.Tenant
             {
                 if (ItsAnonymousEndPoint()) { return; }
 
-                BranchId = Convert.ToInt32(_httpContext.User.Claims.First(x => x.Type == JWTClaimNames.BranchId).Value);
+                BranchId = Convert.ToInt32(_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId).Value);
+
+                if (BranchId <= 0) { throw new BranchIdNotFoundException(); }
             }
         }
 
@@ -32,6 +35,8 @@ namespace Procuratio.Shared.Infrastructure.Tenant
             const int itsAnonymousEndPoint = -1;
 
             if (ItsAnonymousEndPoint()) { return itsAnonymousEndPoint; }
+
+            if (BranchId <= 0 && _httpContext is not null) { throw new BranchIdNotFoundException(); }
 
             return BranchId;
         }

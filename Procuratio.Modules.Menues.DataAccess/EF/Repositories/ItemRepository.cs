@@ -54,11 +54,11 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
         public async Task<IReadOnlyList<Item>> GetMenuAsync()
         {
-            return await _item.Include(x => x.ItemSubCategory).ThenInclude(x => x.ItemCategory)
-                .Where(x => x.ItemStateId == (short)ItemState.State.Available && x.ItemSubCategory.ItemSubCategoryStateId == (short)ItemSubCategoryState.State.Available
-                && x.ItemSubCategory.ItemCategory.ItemCategoryStateId == (short)ItemCategoryState.State.Available)
-                .OrderByDescending(x => x.ItemSubCategory.ItemCategory.Order)
-                .ThenByDescending(x => x.ItemSubCategory.Order).ThenByDescending(x => x.Order)
+            return await _item.Include(x => x.MenuCategory).ThenInclude(x => x.MenuCategory)
+                .Where(x => x.ItemStateId == (short)ItemState.State.Available && x.MenuCategory.MenuSubCategoryStateId == (short)MenuSubCategoryState.State.Available
+                && x.MenuCategory.MenuCategory.MenuCategoryStateId == (short)MenuCategoryState.State.Available)
+                .OrderByDescending(x => x.MenuCategory.MenuCategory.Order)
+                .ThenByDescending(x => x.MenuCategory.Order).ThenByDescending(x => x.Order)
                 .ThenByDescending(x => x.Order).ToListAsync();
         }
     }
