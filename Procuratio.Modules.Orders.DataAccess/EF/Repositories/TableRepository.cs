@@ -42,9 +42,11 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<Table> GetAsync(int Id) => await _table.SingleOrDefaultAsync(x => x.Id == Id);
 
-        public async Task<short?> GetLastNumberAsync()
+        public async Task<short> GetNextNumberAsync()
         {
-            return await _table.MaxAsync<Table, short?>(x => x.Number);
+            short? lastNumber = await _table.MaxAsync<Table, short?>(x => x.Number);
+
+            return lastNumber == null ? (short)1 : (short)++lastNumber;
         }
 
         public async Task UpdateAsync(Table toUpdate)

@@ -9,5 +9,6 @@ namespace Procuratio.Modules.Menu.Service.DTOs.ItemCategoryDTOs
 {
     public class MenuCategoryFromFormDTO : IFromFormDTO
     {
+        public string Name { get; set; }
     }
 }

@@ -9,6 +9,8 @@ namespace Procuratio.Modules.Menu.Service.DTOs.ItemCategoryDTOs
 {
     public class MenuCategoryDTO : IDTO
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public int Order { get; set; }

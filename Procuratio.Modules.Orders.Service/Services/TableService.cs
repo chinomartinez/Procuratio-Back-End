@@ -28,7 +28,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             newTable = _mapper.Map(createDTO, newTable);
 
-            newTable.Number = await GetNextTableNumber();
+            newTable.Number = await _tableRepository.GetNextNumberAsync();
             newTable.TableStateId = (short)TableState.State.Available;
 
             await _tableRepository.AddAsync(newTable);
@@ -67,7 +67,7 @@ namespace Procuratio.Modules.Orders.Service.Services
         {
             TableCreationFormInitializerDTO tableCreationFormInitializerDTO = new();
 
-            tableCreationFormInitializerDTO.NextTableNumber = await GetNextTableNumber();
+            tableCreationFormInitializerDTO.NextTableNumber = await _tableRepository.GetNextNumberAsync();
 
             return tableCreationFormInitializerDTO;
         }
@@ -89,22 +89,6 @@ namespace Procuratio.Modules.Orders.Service.Services
             }
 
             return table;
-        }
-
-        private async Task<short> GetNextTableNumber()
-        {
-            short? lastNumber = await _tableRepository.GetLastNumberAsync();
-
-            if (lastNumber == null)
-            {
-                const short numberIfItsFirstTable = 1;
-
-                return numberIfItsFirstTable;
-            }
-            else
-            {
-                return (short)(lastNumber + 1);
-            }
         }
     }
 }

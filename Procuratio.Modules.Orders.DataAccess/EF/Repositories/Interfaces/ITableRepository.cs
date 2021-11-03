@@ -7,7 +7,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces
 {
     public interface ITableRepository : IBaseRepositoryOperations<Table, int>
     {
-        Task<short?> GetLastNumberAsync();
+        Task<short> GetNextNumberAsync();
 
         Task<List<Table>> GetAvailablesTablesAsync();
     }

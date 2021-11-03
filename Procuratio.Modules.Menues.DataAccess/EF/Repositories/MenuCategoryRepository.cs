@@ -27,7 +27,8 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             await _menuDbContext.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<MenuCategory>> BrowseAsync() => await _menuCategory.AsNoTracking().ToListAsync();
+        public async Task<IReadOnlyList<MenuCategory>> BrowseAsync() => await _menuCategory.AsNoTracking()
+            .OrderByDescending(x => x.Name).ToListAsync();
 
         public async Task DeleteAsync(MenuCategory entity)
         {
@@ -40,6 +41,13 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
         public async Task<List<MenuCategory>> GetByIdsAsync(List<int> ids) => await _menuCategory.Where(x => ids.Contains(x.Id)).ToListAsync();
 
         public async Task<MenuCategory> GetEntityEditionFormInitializerAsync(int id) => await _menuCategory.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+
+        public async Task<int> GetNextOrder()
+        {
+            int? lastOrder = await _menuCategory.MaxAsync<MenuCategory, int?>(x => x.Order);
+
+            return lastOrder == null ? 1 : (int)++lastOrder;
+        }
 
         public async Task UpdateAsync(MenuCategory toUpdate)
         {

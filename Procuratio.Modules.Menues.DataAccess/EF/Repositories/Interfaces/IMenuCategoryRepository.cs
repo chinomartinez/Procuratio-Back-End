@@ -7,5 +7,6 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces
 {
     public interface IMenuCategoryRepository : IBaseRepositoryOperations<MenuCategory, int>
     {
+        public Task<int> GetNextOrder();
     }
 }
