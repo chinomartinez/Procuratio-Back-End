@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs
+namespace Procuratio.Modules.Menu.Service.DTOs.MenuSubcategoryDTOs
 {
-    public class MenuCategoryForListDTO : IListDTO<MenuCategoryDTO>
+    public class MenuSubcategoryForListDTO : IListDTO<MenuSubcategoryDTO>
     {
-        public MenuCategoryDTO BaseProperties { get; set; }
+        public MenuSubcategoryDTO BaseProperties { get; set; }
     }
 }

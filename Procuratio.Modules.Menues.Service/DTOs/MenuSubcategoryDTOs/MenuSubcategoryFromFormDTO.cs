@@ -5,16 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs
+namespace Procuratio.Modules.Menu.Service.DTOs.MenuSubcategoryDTOs
 {
-    public class MenuCategoryDTO : IDTO
+    public class MenuSubcategoryFromFormDTO : IFromFormDTO
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
-        public int Order { get; set; }
-
-        public short MenuCategoryStateId { get; set; }
+        public int MenuCategoryId { get; set; }
     }
 }

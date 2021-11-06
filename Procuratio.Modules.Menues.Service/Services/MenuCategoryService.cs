@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Procuratio.Modules.Menu.Service.DTOs.ItemCategoryDTOs;
+using Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs;
 using Procuratio.Modules.Menu.Service.Exceptions;
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;

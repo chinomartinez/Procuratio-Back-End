@@ -24,7 +24,10 @@ namespace Procuratio.Shared.Infrastructure.Tenant
             {
                 if (ItsAnonymousEndPoint()) { return; }
 
-                BranchId = Convert.ToInt32(_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId).Value);
+                if (_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId) is not null)
+                {
+                    BranchId = Convert.ToInt32(_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId).Value);
+                }
 
                 if (BranchId <= 0) { throw new BranchIdNotFoundException(); }
             }

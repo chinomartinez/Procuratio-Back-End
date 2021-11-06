@@ -32,8 +32,6 @@ namespace Procuratio.Shared.Infrastructure.Exceptions
                 string code = "internal_server_error";
                 string errorMessage = exception.Message;
 
-                _logger.LogError(exception, exception.Message);
-
                 if (exception is CustomExceptionBase customExceptionBase)
                 {
                     statusCode = (int)HttpStatusCode.BadRequest;
@@ -51,6 +49,13 @@ namespace Procuratio.Shared.Infrastructure.Exceptions
 
                     errorMessage = customExceptionBase.Message;
                 }
+
+                if (exception.Message == exception.Message && exception.InnerException is not null)
+                {
+                    errorMessage = exception.InnerException.Message;
+                }
+
+                _logger.LogError(exception, errorMessage);
 
                 context.Response.StatusCode = statusCode;
                 await context.Response.WriteAsJsonAsync(new { code, errorMessage });

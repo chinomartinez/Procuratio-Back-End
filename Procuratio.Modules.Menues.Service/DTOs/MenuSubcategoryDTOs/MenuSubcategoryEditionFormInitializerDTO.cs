@@ -1,4 +1,5 @@
 ﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,8 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Menu.Service.DTOs.MenuSubcategoryDTOs
 {
-    public class MenuSubcategoryDTO : IDTO
+    public class MenuSubcategoryEditionFormInitializerDTO : IEntityEditionFormInitializerDTO<MenuSubcategoryDTO>
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public int Order { get; set; }
-
-        public short MenuSubCategoryStateId { get; set; }
-
-        public int MenuCategoryId { get; set; }
+        public MenuSubcategoryDTO BaseProperties { get; set; }
     }
 }

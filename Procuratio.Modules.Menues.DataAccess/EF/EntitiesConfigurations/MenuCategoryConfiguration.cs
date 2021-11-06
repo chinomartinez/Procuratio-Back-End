@@ -14,6 +14,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
 
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
 
+            builder.HasIndex(x => new { x.BranchId, x.Name }).IsUnique();
             builder.HasIndex(x => new { x.BranchId, x.Order }).IsUnique();
         }
     }

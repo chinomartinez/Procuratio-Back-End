@@ -25,6 +25,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
         public ItemState ItemState { get; set; }
 
         public int MenuCategoryId { get; set; }
-        public MenuSubCategory MenuCategory { get; set; }
+        public MenuSubcategory MenuCategory { get; set; }
     }
 }
