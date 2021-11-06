@@ -5,15 +5,16 @@ using Procuratio.Modules.Menues.Domain.Entities;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
 {
-    internal class MenuSubCategoryConfiguration : IEntityTypeConfiguration<MenuSubCategory>
+    internal class MenuSubCategoryConfiguration : IEntityTypeConfiguration<MenuSubcategory>
     {
-        public void Configure(EntityTypeBuilder<MenuSubCategory> builder)
+        public void Configure(EntityTypeBuilder<MenuSubcategory> builder)
         {
             builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             builder.HasQueryFilter(x => x.BranchId == MenuDbContext.BranchId);
 
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
 
+            builder.HasIndex(x => new { x.BranchId, x.Name }).IsUnique();
             builder.HasIndex(x => new { x.BranchId, x.Order, x.MenuCategoryId }).IsUnique();
         }
     }

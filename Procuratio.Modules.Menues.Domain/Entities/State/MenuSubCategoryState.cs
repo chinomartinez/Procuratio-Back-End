@@ -2,7 +2,7 @@
 
 namespace Procuratio.Modules.Menues.Domain.Entities.State
 {
-    public class MenuSubCategoryState : StateBaseEntity<MenuSubCategory>
+    public class MenuSubCategoryState : StateBaseEntity<MenuSubcategory>
     {
         public enum State : short
         {

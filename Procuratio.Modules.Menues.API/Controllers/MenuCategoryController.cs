@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Procuratio.Modules.Menu.Service.DTOs.ItemCategoryDTOs;
+using Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs;
 using Procuratio.Modules.Menues.API.Controllers.Base;
 using Procuratio.Modules.Menues.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
@@ -14,9 +14,9 @@ namespace Procuratio.Modules.Menues.API.Controllers
     {
         private readonly IMenuCategoryService _menuCategoryService;
 
-        public MenuCategoryController(IMenuCategoryService itemCategoryService)
+        public MenuCategoryController(IMenuCategoryService menuCategoryService)
         {
-            _menuCategoryService = itemCategoryService;
+            _menuCategoryService = menuCategoryService;
         }
 
         [HttpPost]

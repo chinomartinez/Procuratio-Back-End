@@ -51,7 +51,7 @@ namespace Procuratio.API
                     Name = "Json Web Token Authentication",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
-                    Description = "Put **_ONLY_** your Json Web Token Bearer on textbox below!",
+                    Description = "Put **_ONLY_** your Json Web Token Bearer on the textbox below",
 
                     Reference = new OpenApiReference
                     {

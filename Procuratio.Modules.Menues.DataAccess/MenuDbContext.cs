@@ -20,7 +20,7 @@ namespace Procuratio.Modules.Menues.DataAccess
         #region DbSet of entities
         public DbSet<Item> Item { get; set; }
         public DbSet<MenuCategory> MenuCategory { get; set; }
-        public DbSet<MenuSubCategory> MenuSubCategory { get; set; }
+        public DbSet<MenuSubcategory> MenuSubCategory { get; set; }
         #endregion
 
         #region DbSet of intermediate entities

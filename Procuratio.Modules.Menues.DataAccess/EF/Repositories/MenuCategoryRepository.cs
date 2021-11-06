@@ -42,18 +42,21 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
         public async Task<MenuCategory> GetEntityEditionFormInitializerAsync(int id) => await _menuCategory.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
-        public async Task<int> GetNextOrder()
-        {
-            int? lastOrder = await _menuCategory.MaxAsync<MenuCategory, int?>(x => x.Order);
-
-            return lastOrder == null ? 1 : (int)++lastOrder;
-        }
-
         public async Task UpdateAsync(MenuCategory toUpdate)
         {
             _menuCategory.Update(toUpdate);
 
             await _menuDbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<MenuCategory>> GetAllAsync() => await _menuCategory.ToListAsync();
+
+
+        public async Task<int> GetNextOrder()
+        {
+            int? lastOrder = await _menuCategory.MaxAsync<MenuCategory, int?>(x => x.Order);
+
+            return lastOrder is null ? 1 : (int)++lastOrder;
         }
     }
 }

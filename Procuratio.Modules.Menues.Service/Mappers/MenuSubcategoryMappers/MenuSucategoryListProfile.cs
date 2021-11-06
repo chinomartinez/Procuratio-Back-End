@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Menu.Service.Mappers.MenuSubcategoryMappers
 {
-    public class MenuSubcategoryProfile : Profile
+    public class MenuSucategoryListProfile : Profile
     {
-        public MenuSubcategoryProfile()
+        public MenuSucategoryListProfile()
         {
-            CreateMap<MenuSubcategory, MenuSubcategoryDTO>();
+            CreateMap<MenuSubcategory, MenuSubcategoryForListDTO>().ForMember(x => x.BaseProperties, x => x.MapFrom(x => x));
         }
     }
 }

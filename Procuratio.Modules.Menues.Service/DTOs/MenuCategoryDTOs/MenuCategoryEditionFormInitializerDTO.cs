@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Menu.Service.DTOs.ItemCategoryDTOs
+namespace Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs
 {
     public class MenuCategoryEditionFormInitializerDTO : IEntityEditionFormInitializerDTO<MenuCategoryDTO>
     {
