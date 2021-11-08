@@ -25,12 +25,14 @@ namespace Procuratio.Modules.Menues.Service.Services
         {
             MenuCategory menuCategory = new();
 
+            int nextOrder = await _menuCategoryRepository.GetNextOrderAsync();
+
             menuCategory = _mapper.Map(addDTO, menuCategory, opt =>
             {
-                opt.AfterMap(async (src, dest) =>
+                opt.AfterMap((src, dest) =>
                 {
                     dest.MenuCategoryStateId = (short)MenuCategoryState.State.Available;
-                    dest.Order = await _menuCategoryRepository.GetNextOrder();
+                    dest.Order = nextOrder;
                 });
             });
 

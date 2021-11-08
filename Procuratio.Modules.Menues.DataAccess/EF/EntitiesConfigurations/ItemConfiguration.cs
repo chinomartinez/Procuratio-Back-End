@@ -16,7 +16,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
 
             builder.Property(x => x.Description).HasMaxLength(200).IsRequired(false);
 
-            builder.Property(x => x.Code).HasMaxLength(10).IsRequired();
+            builder.Property(x => x.Code).HasMaxLength(10).IsRequired(false);
 
             builder.Property(x => x.Image).HasMaxLength(200).IsRequired(false);
 
@@ -25,7 +25,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
             builder.Property(x => x.PriceOutsideRestaurant).HasPrecision(19, 4);
 
             builder.HasIndex(x => new { x.BranchId, x.Name }).IsUnique();
-            builder.HasIndex(x => new { x.BranchId, x.Order, x.MenuCategoryId }).IsUnique();
+            builder.HasIndex(x => new { x.BranchId, x.Order, x.MenuSubcategoryId }).IsUnique();
         }
     }
 }

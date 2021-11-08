@@ -51,8 +51,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
         public async Task<List<MenuCategory>> GetAllAsync() => await _menuCategory.ToListAsync();
 
-
-        public async Task<int> GetNextOrder()
+        public async Task<int> GetNextOrderAsync()
         {
             int? lastOrder = await _menuCategory.MaxAsync<MenuCategory, int?>(x => x.Order);
 

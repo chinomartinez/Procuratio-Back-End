@@ -28,7 +28,7 @@ namespace Procuratio.Modules.Menues.Service.Services
         {
             MenuSubcategory menuSubategory = new();
 
-            int nextOrder = await _menuSubcategoryRepository.GetNextOrder(addDTO.MenuCategoryId);
+            int nextOrder = await _menuSubcategoryRepository.GetNextOrderAsync((int)addDTO.MenuCategoryId);
 
             menuSubategory = _mapper.Map(addDTO, menuSubategory, opt =>
             {

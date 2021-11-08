@@ -39,14 +39,14 @@ namespace Procuratio.Modules.Menues.API.Controllers
         [HttpGet(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult<MenuCategoryDTO>> GetAsync(int id)
         {
-            ActionResult<MenuCategoryDTO> itemCategoryDTO = await _menuCategoryService.GetAsync(id);
+            ActionResult<MenuCategoryDTO> menuCategoryDTO = await _menuCategoryService.GetAsync(id);
 
-            if (itemCategoryDTO is null)
+            if (menuCategoryDTO is null)
             {
                 return NotFound();
             }
 
-            return Ok(itemCategoryDTO);
+            return Ok(menuCategoryDTO);
         }
 
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]

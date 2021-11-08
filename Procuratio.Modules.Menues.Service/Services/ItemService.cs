@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Procuratio.Modules.Menu.Service.DTOs.ItemDTOs;
+using Procuratio.Modules.Menu.Service.Exceptions;
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;
+using Procuratio.Modules.Menues.Domain.Entities.State;
 using Procuratio.Modules.Menues.Service.Services.Interfaces;
+using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,51 +15,87 @@ namespace Procuratio.Modules.Menues.Service.Services
     {
         private readonly IItemRepository _itemRepository;
         private readonly IMapper _mapper;
+        private readonly IMenuSubcategoryRepository _menuSubcategoryRepository;
 
-        public ItemService(IItemRepository itemRepository, IMapper mapper)
+        public ItemService(IItemRepository itemRepository, IMapper mapper, IMenuSubcategoryRepository menuSubcategoryRepository)
         {
             _itemRepository = itemRepository;
             _mapper = mapper;
-        }
-
-        public ItemService()
-        {
-
+            _menuSubcategoryRepository = menuSubcategoryRepository;
         }
 
         public async Task AddAsync(ItemFromFormDTO addDTO)
         {
-            throw new System.NotImplementedException();
+            Item item = new();
+
+            int nextOrder = await _itemRepository.GetNextOrderAsync((int)addDTO.MenuSubcategoryId);
+
+            item = _mapper.Map(addDTO, item, opt =>
+            {
+                opt.AfterMap((src, dest) =>
+                {
+                    dest.ItemStateId = (short)ItemState.State.Available;
+                    dest.Order = nextOrder;
+                });
+            });
+
+            await _itemRepository.AddAsync(item);
         }
 
         public async Task<IReadOnlyList<ItemForListDTO>> BrowseAsync()
         {
-            throw new System.NotImplementedException();
+            IReadOnlyList<Item> items = await _itemRepository.BrowseAsync();
+
+            return _mapper.Map<IReadOnlyList<ItemForListDTO>>(items);
         }
 
         public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            Item item = await GetItemAsync(id);
+            await _itemRepository.DeleteAsync(item);
         }
 
         public async Task<ItemDTO> GetAsync(int id)
         {
-            throw new System.NotImplementedException();
+            Item item = await GetItemAsync(id);
+
+            return _mapper.Map<ItemDTO>(item);
         }
 
         public async Task<ItemCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync()
         {
-            throw new System.NotImplementedException();
+            ItemCreationFormInitializerDTO itemCreationFormInitializerDTO = new();
+
+            List<MenuSubcategory> menuSubcategories = await _menuSubcategoryRepository.GetAllAsync();
+
+            menuSubcategories.ForEach(x => itemCreationFormInitializerDTO.MenuSubcategories.Add(new SelectListItemDTO() { Id = x.Id.ToString(), Description = x.Name }));
+
+            return itemCreationFormInitializerDTO;
         }
 
         public async Task<ItemEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int id)
         {
-            throw new System.NotImplementedException();
+            Item item = await _itemRepository.GetEntityEditionFormInitializerAsync(id);
+
+            return _mapper.Map<ItemEditionFormInitializerDTO>(item);
         }
 
         public async Task UpdateAsync(ItemFromFormDTO updateDTO, int id)
         {
-            throw new System.NotImplementedException();
+            Item item = await GetItemAsync(id);
+
+            updateDTO.MenuSubcategoryId = item.MenuSubcategoryId;
+
+            item = _mapper.Map(updateDTO, item);
+
+            await _itemRepository.UpdateAsync(item);
+        }
+
+        public async Task<List<ItemDTO>> GetByIds(List<int> ids)
+        {
+            List<Item> items = await _itemRepository.GetByIdsAsync(ids);
+
+            return _mapper.Map<List<ItemDTO>>(items);
         }
 
         public async Task<IReadOnlyList<MenuDTO>> GetMenuAsync()
@@ -66,11 +105,13 @@ namespace Procuratio.Modules.Menues.Service.Services
             return _mapper.Map<IReadOnlyList<MenuDTO>>(items);
         }
 
-        public async Task<List<ItemDTO>> GetByIds(List<int> ids)
+        private async Task<Item> GetItemAsync(int id)
         {
-            List<Item> items = await _itemRepository.GetByIdsAsync(ids);
+            Item item = await _itemRepository.GetAsync(id);
 
-            return _mapper.Map<List<ItemDTO>>(items);
+            if (item is null) { throw new ItemNotFoundException(); }
+
+            return item;
         }
     }
 }

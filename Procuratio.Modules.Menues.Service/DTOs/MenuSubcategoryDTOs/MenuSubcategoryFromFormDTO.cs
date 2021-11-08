@@ -11,6 +11,6 @@ namespace Procuratio.Modules.Menu.Service.DTOs.MenuSubcategoryDTOs
     {
         public string Name { get; set; }
 
-        public int MenuCategoryId { get; set; }
+        public int? MenuCategoryId { get; set; }
     }
 }
