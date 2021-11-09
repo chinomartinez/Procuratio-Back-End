@@ -47,9 +47,11 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
 
         private IQueryable<Orders.Domain.Entities.Order> BaseRelationsForGetAnOrderDetail() => _order.Include(x => x.OrderDetails).Include(x => x.OrderState).AsQueryable();
 
-        public async Task<List<DateTime>> GetOrderForReport()
+        public async Task<List<DateTime>> GetOrderForReport(int from, int to)
         {
-            return await _order.IgnoreQueryFilters().Where(x => x.OrderStateId == (short)OrderState.State.Paid).Select(x => x.Date).ToListAsync();
+            return await _order.Where(x => x.OrderStateId == (short)OrderState.State.Paid 
+            && x.Date.Year >= from && x.Date.Year <= to)
+                .Select(x => x.Date).ToListAsync();
         }
     }
 }

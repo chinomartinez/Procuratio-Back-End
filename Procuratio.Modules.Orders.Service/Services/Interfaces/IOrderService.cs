@@ -22,6 +22,6 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 
         Task PaidAsync(int id);
 
-        Task<List<MultiDTO>> GetOrderForReport();
+        Task<List<MultiDTO>> GetOrderForReport(int from, int to);
     }
 }

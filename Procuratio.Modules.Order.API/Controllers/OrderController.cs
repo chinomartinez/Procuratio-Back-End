@@ -60,11 +60,10 @@ namespace Procuratio.Modules.Order.API.Controllers
             return NoContent();
         }
 
-        [AllowAnonymous]
-        [HttpGet("report")]
-        public async Task<ActionResult<List<MultiDTO>>> GetOrderForReport()
+        [HttpGet("report/{from:int}/{to:int}")]
+        public async Task<ActionResult<List<MultiDTO>>> GetOrderForReport(int from, int to)
         {
-            return Ok(await _orderService.GetOrderForReport());
+            return Ok(await _orderService.GetOrderForReport(from, to));
         }
     }
 }

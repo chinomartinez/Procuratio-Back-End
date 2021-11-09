@@ -15,6 +15,6 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
 
         Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressAsync();
 
-        Task<List<DateTime>> GetOrderForReport();
+        Task<List<DateTime>> GetOrderForReport(int from, int to);
     }
 }
