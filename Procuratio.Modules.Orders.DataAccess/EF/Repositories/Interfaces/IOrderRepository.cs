@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
@@ -12,5 +14,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
         Task UpdateAsync(Orders.Domain.Entities.Order toUpdate);
 
         Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressAsync();
+
+        Task<List<DateTime>> GetOrderForReport();
     }
 }

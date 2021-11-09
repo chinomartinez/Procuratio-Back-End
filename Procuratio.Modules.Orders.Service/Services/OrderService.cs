@@ -7,7 +7,9 @@ using Procuratio.Modules.Order.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
+using Procuratio.Shared.ProcuratioFramework.Enums;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -106,6 +108,64 @@ namespace Procuratio.Modules.Order.Service.Services
             order.OrderStateId = (short)OrderState.State.Paid;
 
             await _orderRepository.UpdateAsync(order);
+        }
+
+        public async Task<List<MultiDTO>> GetOrderForReport()
+        {
+            List<MultiDTO> multiDTOs = new();
+            //{
+            //    new MultiDTO
+            //    {
+            //        Name = "Enero",
+            //        Series = new List<SeriesDTO>
+            //        {
+            //            new SeriesDTO
+            //            {
+            //                Name = "2021",
+            //                Value = 2
+            //            }
+            //        }
+            //    }
+            //};
+
+            List<DateTime> ordersDateTime = await _orderRepository.GetOrderForReport();
+
+            List<int> years = new();
+
+            ordersDateTime.ForEach(x => { if (!years.Contains(x.Date.Year)) years.Add(x.Year); });
+
+            foreach (object month in Enum.GetValues(typeof(Month)))
+            {
+                MultiDTO currentMultiDTO = new MultiDTO()
+                {
+                    Name = month.ToString(),
+                    Series = new List<SeriesDTO>()
+                };
+
+                foreach (int year in years)
+                {
+                    int totalOrdersPaid = 0;
+
+                    foreach (DateTime item in ordersDateTime)
+                    {
+                        if (item.Date.Month == (int)month && item.Date.Year == year)
+                        {
+                            totalOrdersPaid += 1;
+                            //ordersDateTime.Remove(item);
+                        }
+                    }
+
+                    currentMultiDTO.Series.Add(new SeriesDTO()
+                    {
+                        Name = year.ToString(),
+                        Value = totalOrdersPaid
+                    });
+                }
+
+                multiDTOs.Add(currentMultiDTO);
+            }
+
+            return multiDTOs;
         }
     }
 }

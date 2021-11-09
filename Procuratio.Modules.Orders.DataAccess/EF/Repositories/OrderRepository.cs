@@ -3,6 +3,7 @@ using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,5 +46,10 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         }
 
         private IQueryable<Orders.Domain.Entities.Order> BaseRelationsForGetAnOrderDetail() => _order.Include(x => x.OrderDetails).Include(x => x.OrderState).AsQueryable();
+
+        public async Task<List<DateTime>> GetOrderForReport()
+        {
+            return await _order.IgnoreQueryFilters().Where(x => x.OrderStateId == (short)OrderState.State.Paid).Select(x => x.Date).ToListAsync();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
@@ -57,6 +58,13 @@ namespace Procuratio.Modules.Order.API.Controllers
         {
             await _orderService.PaidAsync(id);
             return NoContent();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("report")]
+        public async Task<ActionResult<List<MultiDTO>>> GetOrderForReport()
+        {
+            return Ok(await _orderService.GetOrderForReport());
         }
     }
 }
