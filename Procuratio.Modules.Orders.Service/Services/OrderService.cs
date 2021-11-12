@@ -4,6 +4,7 @@ using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
+using Procuratio.Modules.Orders.DataAccess.EF.AnonymousTypes;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
@@ -114,11 +115,11 @@ namespace Procuratio.Modules.Order.Service.Services
         {
             List<MultiDTO> multiDTOs = new();
 
-            List<DateTime> ordersDateTime = await _orderRepository.GetOrderForReport(from, to);
+            List<OrderForReport> ordersForReport = await _orderRepository.GetOrderForReport(from, to);
 
             List<int> years = new();
 
-            ordersDateTime.ForEach(x => { if (!years.Contains(x.Date.Year)) years.Add(x.Year); });
+            ordersForReport.ForEach(x => { if (!years.Contains(x.Year)) years.Add(x.Year); });
 
             foreach (object currentMonth in Enum.GetValues(typeof(Month)))
             {
@@ -132,12 +133,11 @@ namespace Procuratio.Modules.Order.Service.Services
                 {
                     int totalOrdersPaid = 0;
 
-                    foreach (DateTime item in ordersDateTime)
+                    if (ordersForReport.Exists(x => x.Month == (int)currentMonth && x.Year == currentYear))
                     {
-                        if (item.Date.Month == (int)currentMonth && item.Date.Year == currentYear)
-                        {
-                            totalOrdersPaid += 1;
-                        }
+                        totalOrdersPaid = ordersForReport.Find(x => x.Month == (int)currentMonth && x.Year == currentYear).Quantity;
+
+                        ordersForReport.RemoveAll(x => x.Month == (int)currentMonth && x.Year == currentYear);
                     }
 
                     currentMultiDTO.Series.Add(new SeriesDTO()
@@ -148,8 +148,6 @@ namespace Procuratio.Modules.Order.Service.Services
                 }
 
                 multiDTOs.Add(currentMultiDTO);
-
-                ordersDateTime.RemoveAll(x => x.Date.Month == (int)currentMonth);
             }
 
             return multiDTOs;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Procuratio.Modules.Orders.DataAccess.EF.AnonymousTypes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,6 +16,6 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
 
         Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressAsync();
 
-        Task<List<DateTime>> GetOrderForReport(int from, int to);
+        Task<List<OrderForReport>> GetOrderForReport(int from, int to);
     }
 }

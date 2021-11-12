@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.DataAccess;
+using Procuratio.Modules.Orders.DataAccess.EF.AnonymousTypes;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System;
@@ -47,11 +48,19 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
 
         private IQueryable<Orders.Domain.Entities.Order> BaseRelationsForGetAnOrderDetail() => _order.Include(x => x.OrderDetails).Include(x => x.OrderState).AsQueryable();
 
-        public async Task<List<DateTime>> GetOrderForReport(int from, int to)
+        public async Task<List<OrderForReport>> GetOrderForReport(int from, int to)
         {
-            return await _order.Where(x => x.OrderStateId == (short)OrderState.State.Paid 
+            return await _order.Where(x => x.OrderStateId == (short)OrderState.State.Paid
             && x.Date.Year >= from && x.Date.Year <= to)
-                .Select(x => x.Date).ToListAsync();
+                .GroupBy(x => new { x.Date.Year, x.Date.Month })
+                .Select(x => new OrderForReport() 
+                { 
+                    Year = x.Key.Year, 
+                    Month = x.Key.Month, 
+                    Quantity = x.Count() 
+                }).AsNoTracking()
+                .OrderByDescending(x => x.Year)
+                .ToListAsync();
         }
     }
 }
