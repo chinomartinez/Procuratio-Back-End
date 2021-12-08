@@ -33,7 +33,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task DeleteAsync(User entity)
         {
-            await Task.FromResult(_user.Remove(entity));
+            await _userManager.DeleteAsync(entity);
         }
 
         public async Task<User> GetAsync(int id)
@@ -43,7 +43,8 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task UpdateAsync(User toUpdate)
         {
-            await _userManager.UpdateAsync(toUpdate);
+            var sdsd = await _userManager.UpdateAsync(toUpdate);
+            var sfdsd = "df";
         }
 
         public async Task<SignInResult> AuthAsync(string userName, string password)
@@ -51,9 +52,9 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
             return await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
         }
 
-        public Task<User> GetEntityEditionFormInitializerAsync(int id)
+        public async Task<User> GetEntityEditionFormInitializerAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await _user.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<User>> GetByIdsAsync(List<int> ids) => await _user.Where(x => ids.Contains(x.Id)).ToListAsync();

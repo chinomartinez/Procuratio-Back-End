@@ -6,8 +6,7 @@ namespace Procuratio.Modules.Security.Service.DTOs.UserDTOs
 {
     public class UserFromFormDTO : IFromFormDTO
     {
-        [Required]
-        public string UserName { get; set; }
+        public string ProfilePicture { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -15,7 +14,8 @@ namespace Procuratio.Modules.Security.Service.DTOs.UserDTOs
         [Required]
         public string Surname { get; set; }
 
-        [Required]
+        public string UserName { get; set; }
+
         public string Password { get; set; }
     }
 }

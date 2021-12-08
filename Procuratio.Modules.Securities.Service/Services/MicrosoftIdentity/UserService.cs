@@ -41,11 +41,10 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             _validateChangeStateUser = validateChangeStateUser;
         }
 
-        public async Task<IReadOnlyList<UserListDTO>> BrowseAsync()
+        public async Task<IReadOnlyList<UserForListDTO>> BrowseAsync()
         {
             IReadOnlyList<User> users = await _userRepository.BrowseAsync();
-            throw new System.NotImplementedException();
-            //return _mapper.Map<IReadOnlyList<UserListDTO>>(users);
+            return _mapper.Map<IReadOnlyList<UserForListDTO>>(users);
         }
 
         public async Task AddAsync(UserFromFormDTO addDTO)
@@ -97,12 +96,16 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         public async Task<UserCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync()
         {
-            throw new NotImplementedException();
+            UserCreationFormInitializerDTO userCreationFormInitializerDTO = new();
+
+            return userCreationFormInitializerDTO;
         }
 
-        public async Task<UserEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int Id)
+        public async Task<UserEditionFormInitializerDTO> GetEntityEditionFormInitializerAsync(int id)
         {
-            throw new NotImplementedException();
+            User user = await _userRepository.GetEntityEditionFormInitializerAsync(id);
+
+            return _mapper.Map<UserEditionFormInitializerDTO>(user);
         }
 
         public async Task<AuthenticationResponseDTO> AuthAsync(UserCredentialsDTO userCredentialsDTO)
@@ -125,10 +128,16 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
                 new Claim(JWTClaimNames.BranchId, user.BranchId.ToString()),
                 new Claim(JWTClaimNames.UserFullName, $"{user.Name} {user.Surname}"),
             };
-
+            
             IList<Claim> claimsDB = await _userManager.GetClaimsAsync(user);
-
             claims.AddRange(claimsDB);
+            
+            IList<string> roles = await _userManager.GetRolesAsync(user);
+
+            foreach (string role in roles)
+            {
+                claims.Add(new Claim(JWTClaimNames.Role, role));
+            }
 
             JsonWebToken options = _configuration.GetSection(nameof(JsonWebToken)).Get<JsonWebToken>();
 

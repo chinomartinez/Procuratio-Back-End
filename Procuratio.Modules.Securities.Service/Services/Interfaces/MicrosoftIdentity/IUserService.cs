@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity
 {
-    public interface IUserService : IBaseServiceOperations<UserDTO, UserListDTO, UserFromFormDTO, UserCreationFormInitializerDTO, UserEditionFormInitializerDTO, int>
+    public interface IUserService : IBaseServiceOperations<UserDTO, UserForListDTO, UserFromFormDTO, UserCreationFormInitializerDTO, UserEditionFormInitializerDTO, int>
     {
         public Task<AuthenticationResponseDTO> AuthAsync(UserCredentialsDTO userCredentialsDTO);
     }
