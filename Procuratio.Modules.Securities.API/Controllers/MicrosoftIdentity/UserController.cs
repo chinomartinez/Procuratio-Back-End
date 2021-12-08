@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
 {
-    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UserListDTO, UserFromFormDTO, UserCreationFormInitializerDTO, UserEditionFormInitializerDTO, int>
+    internal class UserController : BaseController, IBaseControllerOperations<UserDTO, UserForListDTO, UserFromFormDTO, UserCreationFormInitializerDTO, UserEditionFormInitializerDTO, int>
     {
         private readonly IUserService _userService;
 
@@ -21,7 +21,6 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<ActionResult> AddAsync([FromBody] UserFromFormDTO createDTO)
         {
             await _userService.AddAsync(createDTO);
@@ -29,7 +28,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<UserListDTO>>> BrowseAsync() => Ok(await _userService.BrowseAsync());
+        public async Task<ActionResult<IReadOnlyList<UserForListDTO>>> BrowseAsync() => Ok(await _userService.BrowseAsync());
 
         [HttpDelete(BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> DeleteAsync(int id)
@@ -51,23 +50,23 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             return Ok(userDTO);
         }
 
-        [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] UserFromFormDTO updateDTO, int Id)
+        [HttpPut(BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult> UpdateAsync([FromBody] UserFromFormDTO updateDTO, int id)
         {
-            await _userService.UpdateAsync(updateDTO, Id);
+            await _userService.UpdateAsync(updateDTO, id);
             return NoContent();
         }
 
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
         public async Task<ActionResult<UserCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync()
         {
-            throw new System.NotImplementedException();
+            return Ok(await _userService.GetEntityCreationFormInitializerAsync());
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
-        public async Task<ActionResult<UserEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int Id)
+        public async Task<ActionResult<UserEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return Ok(await _userService.GetEntityEditionFormInitializerAsync(id));
         }
 
         [HttpPost("auth")]

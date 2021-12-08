@@ -3,7 +3,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperation
 
 namespace Procuratio.Modules.Security.Service.DTOs.UserDTOs
 {
-    public class UserListDTO : IListDTO<UserDTO>
+    public class UserForListDTO : IListDTO<UserDTO>
     {
         public UserDTO BaseProperties { get; set; }
     }

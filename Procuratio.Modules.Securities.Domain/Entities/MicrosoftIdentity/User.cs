@@ -16,5 +16,7 @@ namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
         public short UserStateId { get; set; }
 
         public string Password { get; set; }
+
+        public string ProfilePicture { get; set; }
     }
 }

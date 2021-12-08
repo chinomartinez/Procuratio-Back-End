@@ -38,7 +38,8 @@ namespace Procuratio.Modules.Securities.DataAccess
                     RequireDigit = false,
                     RequiredLength = 5,
                     RequireNonAlphanumeric = false,
-                    RequireUppercase = false
+                    RequireUppercase = false,
+                    RequireLowercase = false
                 };
 
                 config.Lockout = new LockoutOptions()
