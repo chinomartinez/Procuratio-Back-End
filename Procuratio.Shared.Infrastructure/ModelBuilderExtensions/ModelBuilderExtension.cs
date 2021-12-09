@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Procuratio.Shared.Infrastructure.ModelBuilderExtensions
 {
     public static class ModelBuilderExtension
     {
-        public static void ApplyMultiTenantGlobalQueryFilter<TInterface>(this ModelBuilder modelBuilder, Expression<Func<TInterface, bool>> expression)
+        public static void ApplyGlobalFilters<TInterface>(this ModelBuilder modelBuilder, Expression<Func<TInterface, bool>> expression)
         {
             IEnumerable<Type> entities = GetEntities<TInterface>(modelBuilder);
 
@@ -25,13 +26,17 @@ namespace Procuratio.Shared.Infrastructure.ModelBuilderExtensions
             }
         }
 
-        public static void ApplyMultiTenantGlobalMetadata<TInterface>(this ModelBuilder modelBuilder, string propertyName)
+        public static void ApplyTenantConfiguration(this ModelBuilder modelBuilder, Expression<Func<ITenant, bool>> expression)
         {
-            IEnumerable<Type> entities = GetEntities<TInterface>(modelBuilder);
+            IEnumerable<Type> entities = GetEntities<ITenant>(modelBuilder);
 
             foreach (Type entity in entities)
             {
-                modelBuilder.Entity(entity).Property(propertyName).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+                ParameterExpression newParam = Expression.Parameter(entity);
+                Expression newbody = ReplacingExpressionVisitor.Replace(expression.Parameters.Single(), newParam, expression.Body);
+
+                modelBuilder.Entity(entity).HasQueryFilter(Expression.Lambda(newbody, newParam));
+                modelBuilder.Entity(entity).Property("BranchId").Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             }
         }
 

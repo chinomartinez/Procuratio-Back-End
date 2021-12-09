@@ -14,7 +14,7 @@ namespace Procuratio.Modules.Customers.DataAccess
     internal class CustomerDbContext : DbContext, ISeed
     {
         internal const string CustomerSchemeName = "Customer";
-        internal static int BranchId { get; private set; }
+        private readonly ITenantService _tenantService;
 
         #region DbSet of entities
         public DbSet<Domain.Entities.Customer> Customer { get; set; }
@@ -28,51 +28,50 @@ namespace Procuratio.Modules.Customers.DataAccess
 
         public CustomerDbContext(DbContextOptions<CustomerDbContext> options, ITenantService tenantService) : base(options) 
         {
-            BranchId = tenantService.GetBranchId();
+            _tenantService = tenantService;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema(CustomerSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-            modelBuilder.ApplyMultiTenantGlobalQueryFilter<IRestaurant>(e => e.BranchId == BranchId);
-            modelBuilder.ApplyMultiTenantGlobalMetadata<IRestaurant>(nameof(BranchId));
+            modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
 
             base.OnModelCreating(modelBuilder);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<IRestaurant>().ToList())
+            int branchId = _tenantService.GetBranchId();
+
+            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.BranchId = BranchId;
+                        entry.Entity.BranchId = branchId;
                         break;
                 }
             }
 
-            int result = await base.SaveChangesAsync(cancellationToken);
-
-            return result;
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         public override int SaveChanges()
         {
-            foreach (var entry in ChangeTracker.Entries<IRestaurant>().ToList())
+            int branchId = _tenantService.GetBranchId();
+
+            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.BranchId = BranchId;
+                        entry.Entity.BranchId = branchId;
                         break;
                 }
             }
 
-            int result = base.SaveChanges();
-
-            return result;
+            return base.SaveChanges();
         }
 
         public void Seed() => CustomersSeedStart.CreateSeeds(this);

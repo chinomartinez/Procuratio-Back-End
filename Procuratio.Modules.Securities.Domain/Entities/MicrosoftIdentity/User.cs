@@ -4,7 +4,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interf
 
 namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
 {
-    public class User : IdentityUser<int>, IRestaurant
+    public class User : IdentityUser<int>, ITenant
     {
         public int BranchId { get; set; }
 

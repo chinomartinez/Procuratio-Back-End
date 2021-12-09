@@ -43,8 +43,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task UpdateAsync(User toUpdate)
         {
-            var sdsd = await _userManager.UpdateAsync(toUpdate);
-            var sfdsd = "df";
+            await _userManager.UpdateAsync(toUpdate);
         }
 
         public async Task<SignInResult> AuthAsync(string userName, string password)
