@@ -4,6 +4,7 @@ using Procuratio.Modules.Restaurants.Domain.Entities;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
 using System;
 using System.Linq;
 using System.Threading;
@@ -36,6 +37,8 @@ namespace Procuratio.Modules.Restaurants.DataAccess
         {
             modelBuilder.HasDefaultSchema(RestaurantSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            modelBuilder.ApplyMultiTenantGlobalQueryFilter<IRestaurant>(e => e.BranchId == BranchId);
+            modelBuilder.ApplyMultiTenantGlobalMetadata<IRestaurant>(nameof(BranchId));
 
             base.OnModelCreating(modelBuilder);
         }

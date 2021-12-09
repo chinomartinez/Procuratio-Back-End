@@ -6,6 +6,7 @@ using Procuratio.Modules.Securities.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
 using System;
 using System.Linq;
 using System.Threading;
@@ -33,6 +34,10 @@ namespace Procuratio.Modules.Securities.DataAccess
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+
+            //
+            //modelBuilder.ApplyGlobalFilters<IRestaurant>(e => e.BranchId == BranchId);
+            //modelBuilder.ApplyGlobalMetadata<IRestaurant>(nameof(BranchId));
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

@@ -9,8 +9,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<Reserve> builder)
         {
-            builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
-            builder.HasQueryFilter(x => x.BranchId == OrderDbContext.BranchId);
+
         }
     }
 }

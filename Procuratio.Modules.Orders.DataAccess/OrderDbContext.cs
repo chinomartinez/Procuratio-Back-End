@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Procuratio.Modules.Orders.DataAccess.EF.Seeds;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.intermediate;
@@ -6,8 +7,10 @@ using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -51,6 +54,8 @@ namespace Procuratio.Modules.Orders.DataAccess
         {
             modelBuilder.HasDefaultSchema(OrderSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            modelBuilder.ApplyMultiTenantGlobalQueryFilter<IRestaurant>(e => e.BranchId == BranchId);
+            modelBuilder.ApplyMultiTenantGlobalMetadata<IRestaurant>(nameof(BranchId));
 
             base.OnModelCreating(modelBuilder);
         }
