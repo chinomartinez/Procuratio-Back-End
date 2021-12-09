@@ -1,6 +1,6 @@
 ﻿namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces
 {
-    public interface IRestaurant
+    public interface ITenant
     {
         public int BranchId { get; set; }
     }

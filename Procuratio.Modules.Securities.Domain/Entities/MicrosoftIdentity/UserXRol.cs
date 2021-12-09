@@ -3,7 +3,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interf
 
 namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
 {
-    public class UserXRole : IdentityUserRole<int>, IRestaurant
+    public class UserXRole : IdentityUserRole<int>, ITenant
     {
         public int BranchId { get; set; }
     }

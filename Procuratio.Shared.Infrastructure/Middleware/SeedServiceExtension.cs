@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware
 {
@@ -22,6 +27,24 @@ namespace Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware
             }
 
             return app;
+        }
+
+        private static bool AllMigrationsApplied(this DbContext context)
+        {
+            IEnumerable<string> applied = context.GetService<IHistoryRepository>()
+                .GetAppliedMigrations()
+                .Select(m => m.MigrationId);
+
+            IEnumerable<string> total = context.GetService<IMigrationsAssembly>()
+                .Migrations
+                .Select(m => m.Key);
+
+            return !total.Except(applied).Any();
+        }
+
+        private static void EnsureSeeded(this DbContext dbContext)
+        {
+            if (dbContext is ISeed dbContextSeedToStart) { dbContextSeedToStart.Seed(); }
         }
     }
 }

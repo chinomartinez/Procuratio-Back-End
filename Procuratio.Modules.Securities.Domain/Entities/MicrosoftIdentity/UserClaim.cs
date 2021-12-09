@@ -3,7 +3,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interf
 
 namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
 {
-    public class UserClaim : IdentityUserClaim<int>, IRestaurant
+    public class UserClaim : IdentityUserClaim<int>, ITenant
     {
         public int BranchId { get; set; }
     }

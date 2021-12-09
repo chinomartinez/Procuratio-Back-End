@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain
 {
-    public abstract class IntermediateBaseEntity : IRestaurant
+    public abstract class IntermediateBaseEntity : ITenant
     {
         [Required]
         [Range(1, double.MaxValue)]

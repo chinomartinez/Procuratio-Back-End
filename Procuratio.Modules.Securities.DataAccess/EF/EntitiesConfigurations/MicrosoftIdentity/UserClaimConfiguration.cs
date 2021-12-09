@@ -10,8 +10,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EntitiesConfigurations.Micros
         public void Configure(EntityTypeBuilder<UserClaim> builder)
         {
             builder.ToTable(nameof(UserClaim), SecurityDbContext.SecuritySchemeName);
-
-            builder.Property(x => x.BranchId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         }
     }
 }

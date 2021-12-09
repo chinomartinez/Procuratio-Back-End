@@ -5,6 +5,7 @@ using Procuratio.Modules.Menues.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
 using System;
 using System.Linq;
 using System.Threading;
@@ -15,7 +16,7 @@ namespace Procuratio.Modules.Menues.DataAccess
     internal class MenuDbContext : DbContext, ISeed
     {
         internal const string MenuSchemeName = "Menu";
-        internal static int BranchId { get; private set; }
+        private readonly ITenantService _tenantService;
 
         #region DbSet of entities
         public DbSet<Item> Item { get; set; }
@@ -34,49 +35,50 @@ namespace Procuratio.Modules.Menues.DataAccess
 
         public MenuDbContext(DbContextOptions<MenuDbContext> options, ITenantService tenantService) : base(options) 
         {
-            BranchId = tenantService.GetBranchId();
+            _tenantService = tenantService;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema(MenuSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
 
             base.OnModelCreating(modelBuilder);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<IRestaurant>().ToList())
+            int branchId = _tenantService.GetBranchId();
+
+            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.BranchId = BranchId;
+                        entry.Entity.BranchId = branchId;
                         break;
                 }
             }
 
-            int result = await base.SaveChangesAsync(cancellationToken);
-
-            return result;
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         public override int SaveChanges()
         {
-            foreach (var entry in ChangeTracker.Entries<IRestaurant>().ToList())
+            int branchId = _tenantService.GetBranchId();
+
+            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.BranchId = BranchId;
+                        entry.Entity.BranchId = branchId;
                         break;
                 }
             }
 
-            int result = base.SaveChanges();
-
-            return result;
+            return base.SaveChanges();
         }
 
         public void Seed() => MenuesSeedStart.CreateSeeds(this);

@@ -6,6 +6,7 @@ using Procuratio.Modules.Securities.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
 using System;
 using System.Linq;
 using System.Threading;
@@ -17,13 +18,13 @@ namespace Procuratio.Modules.Securities.DataAccess
                                        UserXRole, UserLogin, RoleClaim, UserToken>, ISeed
     {
         internal const string SecuritySchemeName = "Security";
-        internal static int BranchId { get; private set; }
+        private readonly ITenantService _tenantService;
 
         public DbSet<UserState> UserState { get; set; }
 
         public SecurityDbContext(DbContextOptions<SecurityDbContext> options, ITenantService tenantService) : base(options) 
         {
-            BranchId = tenantService.GetBranchId();
+            _tenantService = tenantService;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,40 +34,43 @@ namespace Procuratio.Modules.Securities.DataAccess
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+
+            // Da problemas ya que no me deja borrar los filtros globales con identity para metodos anonimos
+            //modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<IRestaurant>().ToList())
+            int branchId = _tenantService.GetBranchId();
+
+            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.BranchId = BranchId;
+                        entry.Entity.BranchId = branchId;
                         break;
                 }
             }
 
-            int result = await base.SaveChangesAsync(cancellationToken);
-
-            return result;
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         public override int SaveChanges()
         {
-            foreach (var entry in ChangeTracker.Entries<IRestaurant>().ToList())
+            int branchId = _tenantService.GetBranchId();
+
+            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.BranchId = BranchId;
+                        entry.Entity.BranchId = branchId;
                         break;
                 }
             }
 
-            int result = base.SaveChanges();
-
-            return result;
+            return base.SaveChanges();
         }
 
         public void Seed() => SecuritiesSeedStart.CreateSeeds(this);

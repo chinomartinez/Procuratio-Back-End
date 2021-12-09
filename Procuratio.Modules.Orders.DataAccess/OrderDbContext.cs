@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Procuratio.Modules.Orders.DataAccess.EF.Seeds;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.intermediate;
@@ -6,8 +7,10 @@ using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +19,7 @@ namespace Procuratio.Modules.Orders.DataAccess
     internal class OrderDbContext : DbContext, ISeed
     {
         internal const string OrderSchemeName = "Order";
-        internal static int BranchId { get; private set; }
+        private readonly ITenantService _tenantService;
 
         #region DbSet of entities
         public DbSet<Delivery> Delivery { get; set; }
@@ -44,48 +47,49 @@ namespace Procuratio.Modules.Orders.DataAccess
 
         public OrderDbContext(DbContextOptions<OrderDbContext> options, ITenantService tenantService) : base(options) 
         {
-            BranchId = tenantService.GetBranchId();
+            _tenantService = tenantService;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema(OrderSchemeName);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
 
             base.OnModelCreating(modelBuilder);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<IRestaurant>().ToList())
+            int branchId = _tenantService.GetBranchId();
+
+            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
             {
                 switch (entry.State)
                 {
-                    case EntityState.Added: entry.Entity.BranchId = BranchId;
+                    case EntityState.Added: entry.Entity.BranchId = branchId;
                         break;
                 }
             }
 
-            int result = await base.SaveChangesAsync(cancellationToken);
-
-            return result;
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         public override int SaveChanges()
         {
-            foreach (var entry in ChangeTracker.Entries<IRestaurant>().ToList())
+            int branchId = _tenantService.GetBranchId();
+
+            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.BranchId = BranchId;
+                        entry.Entity.BranchId = branchId;
                         break;
                 }
             }
 
-            int result = base.SaveChanges();
-
-            return result;
+            return base.SaveChanges();
         }
 
         public void Seed() => OrdersSeedStart.CreateSeeds(this);
