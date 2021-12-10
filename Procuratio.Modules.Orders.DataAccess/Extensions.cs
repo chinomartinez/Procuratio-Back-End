@@ -24,8 +24,6 @@ namespace Procuratio.Modules.Orders.DataAccess
             services.AddScoped<ITableRepository, TableRepository>();
             services.AddScoped<ITakeAwayRepository, TakeAwayRepository>();
 
-            services.AddScoped<ITenantService, TenantService>();
-
             services.AddSQLServer<OrderDbContext>();
 
             return services;
