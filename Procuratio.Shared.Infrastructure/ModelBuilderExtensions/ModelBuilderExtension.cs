@@ -47,21 +47,5 @@ namespace Procuratio.Shared.Infrastructure.ModelBuilderExtensions
                 .Where(e => e.ClrType.GetInterface(typeof(TInterface).Name) != null)
                 .Select(e => e.ClrType);
         }
-
-        public static void ApplyTenantConfiguration(this ModelBuilder modelBuilder, int branchId)
-        {
-            IEnumerable<Type> entities = GetEntities<ITenant>(modelBuilder);
-
-            Expression<Func<ITenant, bool>> expression = x => x.BranchId == branchId;
-
-            foreach (Type entity in entities)
-            {
-                ParameterExpression newParam = Expression.Parameter(entity);
-                Expression newbody = ReplacingExpressionVisitor.Replace(expression.Parameters.Single(), newParam, expression.Body);
-
-                modelBuilder.Entity(entity).HasQueryFilter(Expression.Lambda(newbody, newParam));
-                modelBuilder.Entity(entity).Property("BranchId").Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
-            }
-        }
     }
 }
