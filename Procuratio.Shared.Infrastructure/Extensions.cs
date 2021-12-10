@@ -8,6 +8,8 @@ using Procuratio.Shared.Infrastructure.Messaging;
 using Procuratio.Shared.Infrastructure.Modules;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System.Runtime.CompilerServices;
+using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.Tenant;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.API")]
 namespace Procuratio.Shared.Infrastructure
@@ -27,6 +29,7 @@ namespace Procuratio.Shared.Infrastructure
             services.AddEvents();
             services.AddMessaging();
             services.AddModuleRequests();
+            services.AddTenant();
 
             return services;
         }
