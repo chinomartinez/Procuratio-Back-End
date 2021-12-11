@@ -13,33 +13,34 @@ namespace Procuratio.Shared.Infrastructure.Tenant
 {
     public class TenantService : ITenantService
     {
-        private readonly int BranchId;
         private readonly HttpContext _httpContext;
 
         public TenantService(IHttpContextAccessor contextAccessor)
         {
             _httpContext = contextAccessor.HttpContext;
-
-            if (_httpContext is not null)
-            {
-                if (ItsAnonymousEndPoint()) { return; }
-
-                if (_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId) is not null)
-                {
-                    BranchId = Convert.ToInt32(_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId).Value);
-                }
-            }
         }
 
         public int GetBranchId()
         {
-            const int itsAnonymousEndPoint = -1;
+            int branchId = 0;
 
-            if (ItsAnonymousEndPoint()) { return itsAnonymousEndPoint; }
+            if (ItsAnonymousEndPoint()) { return -1; }
 
-            if (BranchId <= 0 && _httpContext is not null) { throw new BranchIdNotFoundException(); }
+            if (_httpContext is not null)
+            {
+                if (_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId) is not null)
+                {
+                    branchId = Convert.ToInt32(_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId).Value);
+                
+                    if (branchId <= 0) { throw new BranchIdNotFoundException(); }
+                }
+                else
+                {
+                    throw new BranchIdNotFoundException();
+                }
+            }
 
-            return BranchId;
+            return branchId;
         }
 
         private bool ItsAnonymousEndPoint()

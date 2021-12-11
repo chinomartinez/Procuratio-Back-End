@@ -44,8 +44,8 @@ namespace Procuratio.Shared.Infrastructure.ModelBuilderExtensions
         {
             return modelBuilder.Model
                 .GetEntityTypes()
-                .Where(e => e.ClrType.GetInterface(typeof(TInterface).Name) != null)
-                .Select(e => e.ClrType);
+                .Where(x => x.ClrType.GetInterface(typeof(TInterface).Name) != null)
+                .Select(x => x.ClrType);
         }
     }
 }
