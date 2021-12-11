@@ -66,17 +66,5 @@ namespace Procuratio.Modules.Securities.DataAccess
 
             return app;
         }
-
-        private static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
-        {
-            using ServiceProvider serviceProvider = services.BuildServiceProvider();
-            IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
-            IConfiguration section = configuration.GetSection(sectionName);
-            T options = new();
-
-            section.Bind(options);
-
-            return options;
-        }
     }
 }

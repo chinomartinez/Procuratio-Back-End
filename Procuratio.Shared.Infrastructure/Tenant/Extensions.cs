@@ -12,7 +12,7 @@ namespace Procuratio.Shared.Infrastructure.Tenant
     {
         public static IServiceCollection AddTenant(this IServiceCollection services)
         {
-            services.AddScoped<ITenantService, TenantService>();
+            services.AddTransient<ITenantService, TenantService>();
 
             return services;
         }

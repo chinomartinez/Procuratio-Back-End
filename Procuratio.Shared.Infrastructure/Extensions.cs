@@ -10,6 +10,7 @@ using Procuratio.Shared.Infrastructure.SQLServer;
 using System.Runtime.CompilerServices;
 using Procuratio.Shared.Abstractions.Tenant;
 using Procuratio.Shared.Infrastructure.Tenant;
+using Microsoft.AspNetCore.Http;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.API")]
 namespace Procuratio.Shared.Infrastructure
@@ -24,6 +25,8 @@ namespace Procuratio.Shared.Infrastructure
                     manager.FeatureProviders.Add(item: new InternalControllerFeatureProvider());
                 });
 
+            // ver si scope o singleton (y ver si el tenant lo dejo con scoped o transient)
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ErrorHandlerMiddleware>();
             services.AddSQLServer();
             services.AddEvents();
