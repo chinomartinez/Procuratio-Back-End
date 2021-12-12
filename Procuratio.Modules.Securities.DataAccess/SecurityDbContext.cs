@@ -34,9 +34,7 @@ namespace Procuratio.Modules.Securities.DataAccess
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
-            // Da problemas ya que no me deja borrar los filtros globales con identity para metodos anonimos
-            //modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
+            modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
