@@ -27,16 +27,13 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IValidateChangeStateUser _validateChangeStateUser;
 
-        public UserService(IUserRepository userRepository, IMapper mapper, UserManager<User> userManager,
-            IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser)
+        public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser)
         {
             _userRepository = userRepository;
             _mapper = mapper;
-            _userManager = userManager;
             _configuration = configuration;
             _validateChangeStateUser = validateChangeStateUser;
         }
@@ -110,17 +107,19 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         public async Task<AuthenticationResponseDTO> AuthAsync(UserCredentialsDTO userCredentialsDTO)
         {
-            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.AuthAsync(userCredentialsDTO.UserName, userCredentialsDTO.Password);
+            User user = await _userRepository.GetByUserNameWithoutQueryFilters(userCredentialsDTO.UserName);
 
-            if (signInresult.Succeeded) { return await BuildToken(userCredentialsDTO); }
+            if (user is null) { return null; }
+
+            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.AuthAsync(user, userCredentialsDTO.Password);
+
+            if (signInresult.Succeeded) { return await BuildToken(userCredentialsDTO, user); }
 
             return null;
         }
 
-        private async Task<AuthenticationResponseDTO> BuildToken(UserCredentialsDTO credentials)
+        private async Task<AuthenticationResponseDTO> BuildToken(UserCredentialsDTO credentials, User user)
         {
-            User user = await _userManager.FindByNameAsync(credentials.UserName);
-
             if (user.BranchId <= 0) { throw new BranchIdNotFoundException(); }
 
             List<Claim> claims = new()
@@ -128,11 +127,11 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
                 new Claim(JWTClaimNames.BranchId, user.BranchId.ToString()),
                 new Claim(JWTClaimNames.UserFullName, $"{user.Name} {user.Surname}"),
             };
-            
-            IList<Claim> claimsDB = await _userManager.GetClaimsAsync(user);
+
+            IList<Claim> claimsDB = await _userRepository.GetClaimsAsync(user);
             claims.AddRange(claimsDB);
-            
-            IList<string> roles = await _userManager.GetRolesAsync(user);
+
+            IList<string> roles = await _userRepository.GetRolesAsync(user);
 
             foreach (string role in roles)
             {

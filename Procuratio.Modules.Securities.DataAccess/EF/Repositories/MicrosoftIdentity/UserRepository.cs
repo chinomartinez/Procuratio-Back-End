@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
+using Procuratio.Modules.Security.DataAccess.EF.CustomMicrosoftIdentityImplementations;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIdentity
@@ -15,13 +17,16 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
         private readonly DbSet<User> _user;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly CustomUserStore _customUserStore;
 
-        public UserRepository(SecurityDbContext securitiesDbContext, UserManager<User> userManager, SignInManager<User> signInManager)
+        public UserRepository(SecurityDbContext securitiesDbContext, UserManager<User> userManager, 
+            SignInManager<User> signInManager, CustomUserStore customUserStore)
         {
             _securitiesDbContext = securitiesDbContext;
             _user = _securitiesDbContext.Users;
             _userManager = userManager;
             _signInManager = signInManager;
+            _customUserStore = customUserStore;
         }
 
         public async Task<IReadOnlyList<User>> BrowseAsync()
@@ -46,10 +51,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
             await _userManager.UpdateAsync(toUpdate);
         }
 
-        public async Task<SignInResult> AuthAsync(string userName, string password)
-        {
-            return await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
-        }
+        public async Task<SignInResult> AuthAsync(User user, string password) => await _signInManager.PasswordSignInAsync(user, password, false, false);
 
         public async Task<User> GetEntityEditionFormInitializerAsync(int id)
         {
@@ -57,5 +59,11 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
         }
 
         public async Task<List<User>> GetByIdsAsync(List<int> ids) => await _user.Where(x => ids.Contains(x.Id)).ToListAsync();
+
+        public async Task<User> GetByUserNameWithoutQueryFilters(string userName) => await _customUserStore.FindByNameAsync(userName);
+
+        public async Task<IList<Claim>> GetClaimsAsync(User user) => await _userManager.GetClaimsAsync(user);
+
+        public async Task<IList<string>> GetRolesAsync(User user) => await _userManager.GetRolesAsync(user);
     }
 }

@@ -8,6 +8,7 @@ using Procuratio.Modules.Securities.DataAccess.EF.JWT;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
+using Procuratio.Modules.Security.DataAccess.EF.CustomMicrosoftIdentityImplementations;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System;
@@ -55,7 +56,10 @@ namespace Procuratio.Modules.Securities.DataAccess
                 };
             })
             .AddEntityFrameworkStores<SecurityDbContext>()
+            .AddUserStore<CustomUserStore>()
             .AddDefaultTokenProviders();
+
+            services.AddScoped<CustomUserStore>();
 
             return services;
         }
