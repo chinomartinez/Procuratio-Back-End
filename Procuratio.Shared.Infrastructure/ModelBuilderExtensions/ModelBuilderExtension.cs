@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
+using Procuratio.Shared.Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace Procuratio.Shared.Infrastructure.ModelBuilderExtensions
 
         public static void ApplyTenantConfiguration(this ModelBuilder modelBuilder, Expression<Func<ITenant, bool>> expression)
         {
+            const string property = "BranchId";
+
+            if (string.IsNullOrEmpty(typeof(ITenant).GetProperty(property).Name)) { throw new PropertyNotFoundException(property); }
+
             IEnumerable<Type> entities = GetEntities<ITenant>(modelBuilder);
 
             foreach (Type entity in entities)
@@ -36,7 +41,7 @@ namespace Procuratio.Shared.Infrastructure.ModelBuilderExtensions
                 Expression newbody = ReplacingExpressionVisitor.Replace(expression.Parameters.Single(), newParam, expression.Body);
 
                 modelBuilder.Entity(entity).HasQueryFilter(Expression.Lambda(newbody, newParam));
-                modelBuilder.Entity(entity).Property("BranchId").Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+                modelBuilder.Entity(entity).Property(property).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             }
         }
 
@@ -44,7 +49,7 @@ namespace Procuratio.Shared.Infrastructure.ModelBuilderExtensions
         {
             return modelBuilder.Model
                 .GetEntityTypes()
-                .Where(x => x.ClrType.GetInterface(typeof(TInterface).Name) != null)
+                .Where(x => x.ClrType.GetInterface(typeof(TInterface).Name) is not null)
                 .Select(x => x.ClrType);
         }
     }

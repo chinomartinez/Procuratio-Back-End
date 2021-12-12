@@ -13,7 +13,6 @@ namespace Procuratio.Modules.Customers.DataAccess
 {
     internal class CustomerDbContext : DbContext, ISeed
     {
-        internal const string CustomerSchemeName = "Customer";
         private readonly ITenantService _tenantService;
 
         #region DbSet of entities
@@ -33,7 +32,7 @@ namespace Procuratio.Modules.Customers.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(CustomerSchemeName);
+            modelBuilder.HasDefaultSchema("Customer");
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
             modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
 
