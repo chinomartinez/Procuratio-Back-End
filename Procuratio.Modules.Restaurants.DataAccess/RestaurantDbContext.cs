@@ -14,7 +14,6 @@ namespace Procuratio.Modules.Restaurants.DataAccess
 {
     internal class RestaurantDbContext : DbContext, ISeed
     {
-        internal const string RestaurantSchemeName = "Restaurant";
         private readonly ITenantService _tenantService;
 
         #region DbSet of entities
@@ -35,7 +34,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(RestaurantSchemeName);
+            modelBuilder.HasDefaultSchema("Restaurant");
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
             modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
 

@@ -38,7 +38,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task<User> GetAsync(int id)
         {
-            return await _user.SingleOrDefaultAsync(x => x.Id == id);
+            return await _userManager.FindByIdAsync(id.ToString());
         }
 
         public async Task UpdateAsync(User toUpdate)

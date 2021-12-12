@@ -18,7 +18,6 @@ namespace Procuratio.Modules.Orders.DataAccess
 {
     internal class OrderDbContext : DbContext, ISeed
     {
-        internal const string OrderSchemeName = "Order";
         private readonly ITenantService _tenantService;
 
         #region DbSet of entities
@@ -52,7 +51,7 @@ namespace Procuratio.Modules.Orders.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(OrderSchemeName);
+            modelBuilder.HasDefaultSchema("Order");
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
             modelBuilder.ApplyTenantConfiguration(x => x.BranchId == _tenantService.GetBranchId());
 
