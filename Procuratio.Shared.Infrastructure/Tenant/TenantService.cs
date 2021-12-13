@@ -28,7 +28,7 @@ namespace Procuratio.Shared.Infrastructure.Tenant
 
             if (_httpContext is not null)
             {
-                if (_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId) is not null)
+                if (_httpContext.User?.Claims?.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId) is not null)
                 {
                     branchId = Convert.ToInt32(_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId).Value);
                 
