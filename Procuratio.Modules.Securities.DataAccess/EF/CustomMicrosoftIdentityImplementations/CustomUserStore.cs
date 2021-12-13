@@ -19,7 +19,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.CustomMicrosoftIdentityImple
         {
         }
 
-        public async Task<User> FindByNameAsyncIgnoringQueryFilters(string normalizedUserName, CancellationToken cancellationToken = default)
+        public async Task<User> FindByNameIgnoringQueryFiltersAsync(string normalizedUserName, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
             ThrowIfDisposed();

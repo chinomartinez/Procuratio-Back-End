@@ -107,7 +107,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
         public async Task<AuthenticationResponseDTO> AuthAsync(UserCredentialsDTO userCredentialsDTO)
         {
-            User user = await _userRepository.GetByUserNameIgnoringQueryFilters(userCredentialsDTO.UserName);
+            User user = await _userRepository.GetByUserNameIgnoringQueryFiltersAsync(userCredentialsDTO.UserName);
 
             if (user is null) return null;
 

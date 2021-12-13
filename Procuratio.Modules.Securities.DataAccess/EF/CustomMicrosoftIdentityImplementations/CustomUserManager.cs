@@ -36,7 +36,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.CustomMicrosoftIdentityImple
             _logger = logger;
         }
 
-        public async Task<User> FindByNameAsyncIgnoringQueryFilters(string userName)
+        public async Task<User> FindByNameIgnoringQueryFiltersAsync(string userName)
         {
             ThrowIfDisposed();
 
@@ -47,7 +47,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.CustomMicrosoftIdentityImple
 
             userName = NormalizeKey(userName);
 
-            User user = await _store.FindByNameAsyncIgnoringQueryFilters(userName, CancellationToken);
+            User user = await _store.FindByNameIgnoringQueryFiltersAsync(userName, CancellationToken);
 
             // Need to potentially check all keys
             if (user == null && Options.Stores.ProtectPersonalData)
