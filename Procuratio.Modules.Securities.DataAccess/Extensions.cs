@@ -56,9 +56,13 @@ namespace Procuratio.Modules.Securities.DataAccess
                 };
             })
             .AddEntityFrameworkStores<SecurityDbContext>()
+            .AddSignInManager<CustomSignInManager>()
+            .AddUserManager<CustomUserManager>()
             .AddUserStore<CustomUserStore>()
             .AddDefaultTokenProviders();
 
+            services.AddScoped<CustomSignInManager>();
+            services.AddScoped<CustomUserManager>();
             services.AddScoped<CustomUserStore>();
 
             return services;
