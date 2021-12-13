@@ -11,7 +11,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.Mi
     {
         Task<SignInResult> AuthAsync(User user, string password);
 
-        Task<User> GetByUserNameWithoutQueryFilters(string userName);
+        Task<User> GetByUserNameIgnoringQueryFilters(string userName);
 
         Task<IList<Claim>> GetClaimsAsync(User user);
 

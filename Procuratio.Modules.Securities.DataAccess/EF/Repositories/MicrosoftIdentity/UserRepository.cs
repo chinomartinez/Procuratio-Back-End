@@ -15,12 +15,12 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
     {
         private readonly SecurityDbContext _securitiesDbContext;
         private readonly DbSet<User> _user;
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly CustomUserManager _userManager;
+        private readonly CustomSignInManager _signInManager;
         private readonly CustomUserStore _customUserStore;
 
-        public UserRepository(SecurityDbContext securitiesDbContext, UserManager<User> userManager, 
-            SignInManager<User> signInManager, CustomUserStore customUserStore)
+        public UserRepository(SecurityDbContext securitiesDbContext, CustomUserManager userManager, 
+            CustomSignInManager signInManager, CustomUserStore customUserStore)
         {
             _securitiesDbContext = securitiesDbContext;
             _user = _securitiesDbContext.Users;
@@ -60,7 +60,7 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task<List<User>> GetByIdsAsync(List<int> ids) => await _user.Where(x => ids.Contains(x.Id)).ToListAsync();
 
-        public async Task<User> GetByUserNameWithoutQueryFilters(string userName) => await _customUserStore.FindByNameAsync(userName);
+        public async Task<User> GetByUserNameIgnoringQueryFilters(string userName) => await _userManager.FindByNameAsyncIgnoringQueryFilters(userName);
 
         public async Task<IList<Claim>> GetClaimsAsync(User user) => await _userManager.GetClaimsAsync(user);
 

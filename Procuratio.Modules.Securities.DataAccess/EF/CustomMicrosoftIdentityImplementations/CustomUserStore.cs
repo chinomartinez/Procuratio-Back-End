@@ -15,21 +15,16 @@ namespace Procuratio.Modules.Security.DataAccess.EF.CustomMicrosoftIdentityImple
     internal class CustomUserStore : UserStore<User, Role, SecurityDbContext, int, UserClaim, UserXRole, UserLogin, 
         UserToken, RoleClaim>
     {
-        private readonly SecurityDbContext context;
-        private readonly IdentityErrorDescriber describer;
-
         public CustomUserStore(SecurityDbContext context, IdentityErrorDescriber describer = null) : base(context, describer)
         {
-            this.context = context;
-            this.describer = describer;
         }
 
-        public override Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken = default)
+        public async Task<User> FindByNameAsyncIgnoringQueryFilters(string normalizedUserName, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
             ThrowIfDisposed();
             
-            return Users.IgnoreQueryFilters().FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedUserName, cancellationToken);
+            return await Users.IgnoreQueryFilters().FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedUserName, cancellationToken);
         }
     }
 }
