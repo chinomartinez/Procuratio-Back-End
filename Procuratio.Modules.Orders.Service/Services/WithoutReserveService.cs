@@ -98,13 +98,6 @@ namespace Procuratio.Modules.Orders.Service.Services
             return withoutReserveEditionFormInitializerDTO;
         }
 
-        public async Task<IReadOnlyList<WithoutReserveInProgressDTO>> GetInProgressAsync()
-        {
-            IReadOnlyList<WithoutReserve> withoutReserves = await _withoutReserveRepository.GetInProgressAsync();
-
-            return _mapper.Map<IReadOnlyList<WithoutReserveInProgressDTO>>(withoutReserves);
-        }
-
         private async Task<WithoutReserve> GetWithoutReserveAsync(int id)
         {
             WithoutReserve withoutReserve = await _withoutReserveRepository.GetAsync(id);

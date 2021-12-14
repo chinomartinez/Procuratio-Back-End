@@ -57,6 +57,13 @@ namespace Procuratio.Modules.Order.Service.Services
             return _mapper.Map<IReadOnlyList<OrderListForKitchenDTO>>(orders);
         }
 
+        public async Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync()
+        {
+            IReadOnlyList<Orders.Domain.Entities.Order> ordersInProgress = await _orderRepository.GetOrderInProgressAsync();
+
+            return _mapper.Map<IReadOnlyList<OrderInProgressDTO>>(ordersInProgress);
+        }
+
         public async Task OrderForDeliverAsync(int id)
         {
             Orders.Domain.Entities.Order order = await _orderRepository.GetWithOrderDetailAsync(id);

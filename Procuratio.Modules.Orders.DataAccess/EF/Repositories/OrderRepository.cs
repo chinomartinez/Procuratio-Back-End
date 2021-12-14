@@ -33,6 +33,16 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
             await _orderDbContext.SaveChangesAsync();
         }
 
+        public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrderInProgressAsync()
+        {
+            return await _order
+                .Include(x => x.WithoutReserve).ThenInclude(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
+                .Include(x => x.Reserve).ThenInclude(x => x.TableXReserve).ThenInclude(x => x.Table)
+                .Include(x => x.OrderState)
+                .Where(x => x.OrderStateId != (short)OrderState.State.Paid)
+                .AsNoTracking().ToListAsync();
+        }
+
         public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressAsync()
         {
             return await _order.Include(x => x.OrderDetails).Where(x => x.OrderStateId == (short)OrderState.State.InProgress)

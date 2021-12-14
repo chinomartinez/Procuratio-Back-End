@@ -66,13 +66,5 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         }
 
         public async Task<List<WithoutReserve>> GetByIdsAsync(List<int> ids) => await _withoutReserve.Where(x => ids.Contains(x.Id)).ToListAsync();
-
-        public async Task<IReadOnlyList<WithoutReserve>> GetInProgressAsync()
-        {
-            return await _withoutReserve.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
-                .Include(x => x.Order).ThenInclude(x => x.OrderState)
-                .Where(x => x.Order.OrderStateId != (short)OrderState.State.Paid)
-                .AsNoTracking().ToListAsync();
-        }
     }
 }

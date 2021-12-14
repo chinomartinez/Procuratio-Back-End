@@ -8,7 +8,5 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces
     public interface IWithoutReserveRepository : IBaseRepositoryOperations<WithoutReserve, int>
     {
         Task<WithoutReserve> GetWithTableXWithoutReserveAsync(int id);
-
-        Task<IReadOnlyList<WithoutReserve>> GetInProgressAsync();
     }
 }

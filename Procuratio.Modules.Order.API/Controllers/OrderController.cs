@@ -58,5 +58,8 @@ namespace Procuratio.Modules.Order.API.Controllers
             await _orderService.PaidAsync(id);
             return NoContent();
         }
+
+        [HttpGet("in-progress")]
+        public async Task<ActionResult<IReadOnlyList<OrderInProgressDTO>>> GetInProgressAsync() => Ok(await _orderService.GetInProgressAsync());
     }
 }

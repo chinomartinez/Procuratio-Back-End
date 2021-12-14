@@ -7,6 +7,5 @@ namespace Procuratio.Modules.Orders.Service.Services.Interfaces
 {
     public interface IWithoutReserveService : IBaseServiceOperations<WithoutReserveDTO, WithoutReserveForListDTO, WithoutReserveFromFormDTO, WithoutReserveCreationFormInitializerDTO, WithoutReserveEditionFormInitializerDTO, int>
     {
-        Task<IReadOnlyList<WithoutReserveInProgressDTO>> GetInProgressAsync();
     }
 }
