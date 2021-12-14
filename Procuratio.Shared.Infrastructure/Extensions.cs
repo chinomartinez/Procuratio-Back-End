@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Shared.Infrastructure.API;
@@ -7,10 +8,8 @@ using Procuratio.Shared.Infrastructure.Exceptions;
 using Procuratio.Shared.Infrastructure.Messaging;
 using Procuratio.Shared.Infrastructure.Modules;
 using Procuratio.Shared.Infrastructure.SQLServer;
-using System.Runtime.CompilerServices;
-using Procuratio.Shared.Abstractions.Tenant;
 using Procuratio.Shared.Infrastructure.Tenant;
-using Microsoft.AspNetCore.Http;
+using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.API")]
 namespace Procuratio.Shared.Infrastructure

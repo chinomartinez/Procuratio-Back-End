@@ -1,4 +1,4 @@
-﻿using Procuratio.Modules.Orders.Domain.Entities.intermediate;
+﻿using Procuratio.Modules.Order.Domain.Entities.intermediate;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System.Collections.Generic;
@@ -11,9 +11,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
 
         public int Capacity { get; set; }
 
-        public List<TableXReserve> TableXReserve { get; set; }
-
-        public List<TableXWithoutReserve> TableXWithoutReserve { get; set; }
+        public List<TableXOrder> TableXOrder { get; set; }
 
         public short TableStateId { get; set; }
         public TableState TableState { get; set; }

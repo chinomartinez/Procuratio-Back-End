@@ -2,7 +2,6 @@
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;
 using Procuratio.Modules.Menues.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -51,7 +50,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
         public async Task<int> GetNextOrderAsync(int menuSubcategoryId)
         {
-            int? lastOrder = await _item.Where(x => x.MenuSubcategoryId  == menuSubcategoryId)
+            int? lastOrder = await _item.Where(x => x.MenuSubcategoryId == menuSubcategoryId)
                 .MaxAsync<Item, int?>(x => x.Order);
 
             return lastOrder is null ? 1 : (int)++lastOrder;

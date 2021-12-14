@@ -1,13 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Procuratio.Shared.Abstractions.Messaging;
 using Procuratio.Shared.Abstractions.Modules;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Procuratio.Shared.Abstractions.Messaging;
 
 namespace Procuratio.Shared.Infrastructure.Messaging
 {
@@ -28,7 +25,7 @@ namespace Procuratio.Shared.Infrastructure.Messaging
         {
             _logger.LogInformation("Running async dispacher job.");
 
-            await foreach(IMessage message in _messageChannel.Reader.ReadAllAsync(stoppingToken))
+            await foreach (IMessage message in _messageChannel.Reader.ReadAllAsync(stoppingToken))
             {
                 try
                 {

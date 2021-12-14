@@ -4,9 +4,8 @@ using Procuratio.Shared.Abstractions.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Procuratio.Shared.Infrastructure.Modules
 {

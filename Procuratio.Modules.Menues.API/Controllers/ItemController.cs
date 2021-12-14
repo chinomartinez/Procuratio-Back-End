@@ -6,7 +6,6 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperation
 using Procuratio.Shared.Infrastructure.Controllers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace Procuratio.Modules.Menues.API.Controllers
 {

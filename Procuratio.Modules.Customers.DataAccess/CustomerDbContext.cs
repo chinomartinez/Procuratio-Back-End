@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Customers.DataAccess.EF.Seeds;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
 using Procuratio.Shared.Infrastructure.DbContextDbContextUtilities;
 using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +23,7 @@ namespace Procuratio.Modules.Customers.DataAccess
         #region DbSet of state entities
         #endregion
 
-        public CustomerDbContext(DbContextOptions<CustomerDbContext> options, ITenantService tenantService) : base(options) 
+        public CustomerDbContext(DbContextOptions<CustomerDbContext> options, ITenantService tenantService) : base(options)
         {
             _tenantService = tenantService;
         }

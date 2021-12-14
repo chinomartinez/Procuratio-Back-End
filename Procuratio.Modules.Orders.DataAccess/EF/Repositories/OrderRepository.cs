@@ -2,7 +2,6 @@
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,8 +35,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrderInProgressAsync()
         {
             return await _order
-                .Include(x => x.WithoutReserve).ThenInclude(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
-                .Include(x => x.Reserve).ThenInclude(x => x.TableXReserve).ThenInclude(x => x.Table)
+                .Include(x => x.TableXOrders).ThenInclude(x => x.Table)
                 .Include(x => x.OrderState)
                 .Where(x => x.OrderStateId != (short)OrderState.State.Paid)
                 .AsNoTracking().ToListAsync();

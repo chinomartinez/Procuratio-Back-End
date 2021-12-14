@@ -58,8 +58,6 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             withoutReserve = _mapper.Map(withoutReserveCreationDTO, withoutReserve);
 
-            InitializeAndSetOrderToWithoutReserve(withoutReserve);
-
             await _withoutReserveRepository.AddAsync(withoutReserve);
         }
 
@@ -105,18 +103,6 @@ namespace Procuratio.Modules.Orders.Service.Services
             if (withoutReserve is null) { throw new WithoutReserveNotFoundException(); }
 
             return withoutReserve;
-        }
-
-        private static void InitializeAndSetOrderToWithoutReserve(WithoutReserve newWithoutReserve)
-        {
-            Domain.Entities.Order order = new();
-
-            order.OrderStateId = (short)OrderState.State.Pending;
-            order.WaiterId = TGRID.UserId;
-            order.CustomerId = TGRID.CustomerId;
-            order.Date = DateTime.Now;
-
-            newWithoutReserve.Order = order;
         }
     }
 }

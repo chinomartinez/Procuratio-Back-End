@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Restaurants.DataAccess.EF.Seeds;
 using Procuratio.Modules.Restaurants.Domain.Entities;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
 using Procuratio.Shared.Infrastructure.DbContextDbContextUtilities;
 using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,7 +25,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess
         #region DbSet of state entities
         #endregion
 
-        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options, ITenantService tenantService) : base(options) 
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options, ITenantService tenantService) : base(options)
         {
             _tenantService = tenantService;
         }

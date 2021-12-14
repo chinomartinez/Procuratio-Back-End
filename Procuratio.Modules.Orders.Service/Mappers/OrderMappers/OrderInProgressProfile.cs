@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
 {
@@ -25,9 +21,9 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
         {
             List<string> result = new();
 
-            //const int maxCharacterTableNumberLenght = 3;
+            const int maxCharacterTableNumberLenght = 3;
 
-            //order.TableXWithoutReserve.ForEach(x => result.Add(x.Table.Number.ToString().PadLeft(maxCharacterTableNumberLenght, '0')));
+            order.TableXOrders.ForEach(x => result.Add(x.Table.Number.ToString().PadLeft(maxCharacterTableNumberLenght, '0')));
 
             return result;
         }

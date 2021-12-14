@@ -2,7 +2,6 @@
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,10 +57,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<List<Table>> GetAvailablesTablesAsync()
         {
-            return await _table.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.WithoutReserve).ThenInclude(x => x.Order)
-                .Include(x => x.TableXReserve).ThenInclude(x => x.Reserve).ThenInclude(x => x.Order)
-                .Where(x => !x.TableXWithoutReserve.Any(x => x.WithoutReserve.Order.OrderStateId != (short)OrderState.State.Paid)
-                && !x.TableXReserve.Any(x => x.Reserve.Order.OrderStateId != (short)OrderState.State.Paid))
+            return await _table
+                //.Include(x => x.TableXOrder).ThenInclude(x => x.Order).ThenInclude(x => x.WithoutReserve)
+                //.Include(x => x.TableXOrder).ThenInclude(x => x.Order).ThenInclude(x => x.Reserve)
+                .Where(x => !x.TableXOrder.Any(x => x.Order.OrderStateId != (short)OrderState.State.Paid))
                 .AsNoTracking().ToListAsync();
         }
 

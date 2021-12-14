@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using Procuratio.Modules.Order.Domain.Entities.intermediate;
 using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
-using Procuratio.Modules.Orders.Domain.Entities.intermediate;
+using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System;
 using System.Collections.Generic;
@@ -13,18 +14,30 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
         public WithoutReserveFromFormProfile()
         {
             CreateMap<WithoutReserveFromFormDTO, WithoutReserve>()
-                .ForMember(x => x.TableXWithoutReserve, options => options.MapFrom(MapTableXWithoutReserve));
+             .ForMember(x => x.Order, options => options.MapFrom(MapOrder));
         }
 
-        private List<TableXWithoutReserve> MapTableXWithoutReserve(WithoutReserveFromFormDTO withoutReserveFromFormDTO, WithoutReserve withoutReserve)
+        private Orders.Domain.Entities.Order MapOrder(WithoutReserveFromFormDTO withoutReserveFromFormDTO, WithoutReserve withoutReserve)
         {
-            List<TableXWithoutReserve> result = new();
+            if (withoutReserve.Id != 0)
+            {
+                withoutReserve.Order.TableXOrders.Clear();
+            }
+            else 
+            {
+                withoutReserve.Order = new Orders.Domain.Entities.Order
+                {
+                    OrderStateId = (short)OrderState.State.Pending,
+                    WaiterId = TGRID.UserId,
+                    CustomerId = TGRID.CustomerId,
+                    Date = DateTime.Now,
+                    TableXOrders = new List<TableXOrder>()
+                };
+            }
 
-            if (withoutReserve.Id != 0) withoutReserve.TableXWithoutReserve.Clear();
+            withoutReserveFromFormDTO.TablesIds.ForEach(x => withoutReserve.Order.TableXOrders.Add(new() { TableId = x }));
 
-            withoutReserveFromFormDTO.TablesIds.ForEach(x => result.Add(new() { TableId = x }));
-
-            return result;
+            return withoutReserve.Order;
         }
     }
 }

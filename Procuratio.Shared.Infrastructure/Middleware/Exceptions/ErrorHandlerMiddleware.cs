@@ -1,7 +1,6 @@
 ﻿using Humanizer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Procuratio.Shared.Abstractions.Exceptions;
 using System;
 using System.Collections.Concurrent;

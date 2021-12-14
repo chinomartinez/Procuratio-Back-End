@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Procuratio.Modules.Securities.Service.DTOs.UserDTOs
+﻿namespace Procuratio.Modules.Securities.Service.DTOs.UserDTOs
 {
     public class AuthenticationResponseDTO
     {

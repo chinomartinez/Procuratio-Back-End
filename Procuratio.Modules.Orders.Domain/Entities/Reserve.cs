@@ -1,8 +1,6 @@
-﻿using Procuratio.Modules.Orders.Domain.Entities.intermediate;
-using Procuratio.Modules.Orders.Domain.Entities.State;
+﻿using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
-using System.Collections.Generic;
 
 namespace Procuratio.Modules.Orders.Domain.Entities
 {
@@ -19,7 +17,5 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public ReserveState ReserveState { get; set; }
 
         public int CustomerId { get; set; }
-
-        public List<TableXReserve> TableXReserve { get; set; }
     }
 }

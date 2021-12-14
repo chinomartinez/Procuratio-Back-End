@@ -2,7 +2,6 @@
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,15 +26,14 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<WithoutReserve> GetWithTableXWithoutReserveAsync(int id)
         {
-            return await _withoutReserve.Include(x => x.TableXWithoutReserve).SingleOrDefaultAsync(x => x.Id == id);
+            return await _withoutReserve.Include(x => x.Order).ThenInclude(x => x.TableXOrders).SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IReadOnlyList<WithoutReserve>> BrowseAsync()
         {
             return await _withoutReserve.Where(x => x.WithoutReserveStateId == (short)WithoutReserveState.State.InProgress)
-                .Include(x => x.Order)
                 .Include(x => x.WithoutReserveState)
-                .Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
+                .Include(x => x.Order).ThenInclude(x => x.TableXOrders).ThenInclude(x => x.Table)
                 .OrderByDescending(x => x.Order.Date)
                 .AsNoTracking().ToListAsync();
         }
@@ -61,7 +59,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<WithoutReserve> GetEntityEditionFormInitializerAsync(int id)
         {
-            return await _withoutReserve.Include(x => x.TableXWithoutReserve).ThenInclude(x => x.Table)
+            return await _withoutReserve.Include(x => x.Order).ThenInclude(x => x.TableXOrders).ThenInclude(x => x.Table)
                 .AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 

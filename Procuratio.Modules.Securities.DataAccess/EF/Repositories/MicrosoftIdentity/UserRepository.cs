@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.Modules.Security.DataAccess.EF.CustomMicrosoftIdentityImplementations;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;

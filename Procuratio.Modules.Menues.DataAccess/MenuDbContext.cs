@@ -2,13 +2,10 @@
 using Procuratio.Modules.Menues.DataAccess.EF.Seeds;
 using Procuratio.Modules.Menues.Domain.Entities;
 using Procuratio.Modules.Menues.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
 using Procuratio.Shared.Infrastructure.DbContextDbContextUtilities;
 using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,7 +30,7 @@ namespace Procuratio.Modules.Menues.DataAccess
         public DbSet<MenuSubCategoryState> MenuSubCategoryState { get; set; }
         #endregion
 
-        public MenuDbContext(DbContextOptions<MenuDbContext> options, ITenantService tenantService) : base(options) 
+        public MenuDbContext(DbContextOptions<MenuDbContext> options, ITenantService tenantService) : base(options)
         {
             _tenantService = tenantService;
         }
