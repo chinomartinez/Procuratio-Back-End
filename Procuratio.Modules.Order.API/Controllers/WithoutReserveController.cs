@@ -62,8 +62,5 @@ namespace Procuratio.Modules.Orders.API.Controllers
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
         public async Task<ActionResult<WithoutReserveEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id) => Ok(await _withoutReserveService.GetEntityEditionFormInitializerAsync(id));
-
-        [HttpGet("in-progress")]
-        public async Task<ActionResult<IReadOnlyList<WithoutReserveInProgressDTO>>> GetInProgressAsync() => Ok(await _withoutReserveService.GetInProgressAsync());
     }
 }

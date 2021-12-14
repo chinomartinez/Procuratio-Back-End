@@ -3,13 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Securities.DataAccess.EF.Seeds;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
 using Procuratio.Shared.Infrastructure.DbContextDbContextUtilities;
 using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,7 +20,7 @@ namespace Procuratio.Modules.Securities.DataAccess
 
         public DbSet<UserState> UserState { get; set; }
 
-        public SecurityDbContext(DbContextOptions<SecurityDbContext> options, ITenantService tenantService) : base(options) 
+        public SecurityDbContext(DbContextOptions<SecurityDbContext> options, ITenantService tenantService) : base(options)
         {
             _tenantService = tenantService;
         }

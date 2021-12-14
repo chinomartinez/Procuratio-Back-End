@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
-using System;
 using System.Collections.Generic;
 
 namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers

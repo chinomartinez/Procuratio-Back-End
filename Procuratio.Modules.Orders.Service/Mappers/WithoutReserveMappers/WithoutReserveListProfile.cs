@@ -22,7 +22,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
         {
             List<string> result = new();
 
-            withoutReserve.TableXWithoutReserve.ForEach(x => result.Add(x.Table.Number.ToString()));
+            withoutReserve.Order.TableXOrders.ForEach(x => result.Add(x.Table.Number.ToString()));
 
             return result;
         }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;
-using Procuratio.Modules.Menues.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

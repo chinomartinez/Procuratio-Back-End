@@ -1,5 +1,4 @@
-﻿using Procuratio.Modules.Orders.Service.DTOs.TableDTOs;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 
 namespace Procuratio.Modules.Order.Service.DTOs.TableDTOs
 {

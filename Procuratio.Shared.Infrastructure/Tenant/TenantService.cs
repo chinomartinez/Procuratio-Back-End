@@ -4,10 +4,7 @@ using Procuratio.Shared.Abstractions.Tenant;
 using Procuratio.Shared.Infrastructure.Exceptions;
 using Procuratio.Shared.ProcuratioFramework.JWT;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Shared.Infrastructure.Tenant
 {
@@ -31,7 +28,7 @@ namespace Procuratio.Shared.Infrastructure.Tenant
                 if (_httpContext.User?.Claims?.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId) is not null)
                 {
                     branchId = Convert.ToInt32(_httpContext.User.Claims.FirstOrDefault(x => x.Type == JWTClaimNames.BranchId).Value);
-                
+
                     if (branchId <= 0) { throw new BranchIdNotFoundException(); }
                 }
                 else

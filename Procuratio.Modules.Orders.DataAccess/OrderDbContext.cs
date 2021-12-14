@@ -1,17 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
+using Procuratio.Modules.Order.Domain.Entities.intermediate;
 using Procuratio.Modules.Orders.DataAccess.EF.Seeds;
 using Procuratio.Modules.Orders.Domain.Entities;
-using Procuratio.Modules.Orders.Domain.Entities.intermediate;
 using Procuratio.Modules.Orders.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
 using Procuratio.Shared.Infrastructure.DbContextDbContextUtilities;
 using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
-using System;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,8 +27,7 @@ namespace Procuratio.Modules.Orders.DataAccess
         #endregion
 
         #region DbSet of intermediate entities
-        public DbSet<TableXWithoutReserve> TableXWithoutReserve { get; set; }
-        public DbSet<TableXReserve> TableXReserve { get; set; }
+        public DbSet<TableXOrder> TableXOrder { get; set; }
         #endregion
 
         #region DbSet of state entities
@@ -45,7 +39,7 @@ namespace Procuratio.Modules.Orders.DataAccess
         public DbSet<TakeAwayState> TakeAwayState { get; set; }
         #endregion
 
-        public OrderDbContext(DbContextOptions<OrderDbContext> options, ITenantService tenantService) : base(options) 
+        public OrderDbContext(DbContextOptions<OrderDbContext> options, ITenantService tenantService) : base(options)
         {
             _tenantService = tenantService;
         }

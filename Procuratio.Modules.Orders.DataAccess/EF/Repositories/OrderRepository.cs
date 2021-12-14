@@ -2,7 +2,6 @@
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,6 +30,15 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
             _order.Update(toUpdate);
 
             await _orderDbContext.SaveChangesAsync();
+        }
+
+        public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrderInProgressAsync()
+        {
+            return await _order
+                .Include(x => x.TableXOrders).ThenInclude(x => x.Table)
+                .Include(x => x.OrderState)
+                .Where(x => x.OrderStateId != (short)OrderState.State.Paid)
+                .AsNoTracking().ToListAsync();
         }
 
         public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressAsync()

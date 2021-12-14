@@ -7,6 +7,8 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 {
     public interface IOrderService
     {
+        Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync();
+
         Task<OrderEditionFormInitializerDTO> GetWithoutReserveOrderDetailAsync(int Id);
 
         Task UpdateWithoutReserveAsync(OrderFromFormDTO updateDTO, int id);

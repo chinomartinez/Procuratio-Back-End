@@ -19,12 +19,6 @@ namespace Procuratio.Shared.Infrastructure.SQLServer
 
             services.AddDbContext<T>(x => x.UseSqlServer(options.defaultConnection));
 
-            // No es necesario mientras este el Middleware Seed
-            //using IServiceScope scope = services.BuildServiceProvider().CreateScope();
-            //T dbContext = scope.ServiceProvider.GetRequiredService<T>();
-
-            //dbContext.Database.Migrate();
-
             return services;
         }
     }

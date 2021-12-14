@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Menues.Domain.Entities;
 using Procuratio.Modules.Menues.Domain.Entities.State;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
 {

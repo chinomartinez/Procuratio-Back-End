@@ -1,5 +1,4 @@
-﻿using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System.Collections.Generic;
 

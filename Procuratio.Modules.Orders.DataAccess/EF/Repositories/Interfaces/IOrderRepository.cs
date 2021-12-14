@@ -5,6 +5,8 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
 {
     public interface IOrderRepository
     {
+        Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrderInProgressAsync();
+
         Task<Orders.Domain.Entities.Order> GetWithOrderDetailAsync(int id);
 
         Task<Orders.Domain.Entities.Order> GetWithoutReserveOrderDetailAsync(int id);

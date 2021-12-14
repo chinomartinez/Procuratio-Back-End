@@ -1,4 +1,5 @@
-﻿using Procuratio.Modules.Orders.Domain.Entities.State;
+﻿using Procuratio.Modules.Order.Domain.Entities.intermediate;
+using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
 using System.Collections.Generic;
@@ -27,5 +28,7 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public WithoutReserve WithoutReserve { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
+
+        public List<TableXOrder> TableXOrders { get; set; }
     }
 }

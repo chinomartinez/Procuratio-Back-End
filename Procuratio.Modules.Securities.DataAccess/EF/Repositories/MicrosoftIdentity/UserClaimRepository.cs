@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
+﻿using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
+﻿namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
 {
     public class MenuDTO
     {
