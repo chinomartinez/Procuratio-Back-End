@@ -4,6 +4,7 @@ using Procuratio.Modules.Restaurants.Domain.Entities;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
+using Procuratio.Shared.Infrastructure.DbContextDbContextUtilities;
 using Procuratio.Shared.Infrastructure.ModelBuilderExtensions;
 using System;
 using System.Linq;
@@ -43,35 +44,13 @@ namespace Procuratio.Modules.Restaurants.DataAccess
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            int branchId = _tenantService.GetBranchId();
-
-            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.BranchId = branchId;
-                        break;
-                }
-            }
-
+            DbContextSupportMethods.BeforeSaveChanges(ChangeTracker, _tenantService);
             return await base.SaveChangesAsync(cancellationToken);
         }
 
         public override int SaveChanges()
         {
-            int branchId = _tenantService.GetBranchId();
-
-            foreach (var entry in ChangeTracker.Entries<ITenant>().ToList())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.BranchId = branchId;
-                        break;
-                }
-            }
-
+            DbContextSupportMethods.BeforeSaveChanges(ChangeTracker, _tenantService);
             return base.SaveChanges();
         }
 
