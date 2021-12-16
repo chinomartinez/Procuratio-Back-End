@@ -18,6 +18,7 @@ namespace Procuratio.Modules.Orders.DataAccess
             services.AddScoped<IDeliveryRepository, DeliveryRepository>();
             services.AddScoped<IWithoutReserveRepository, WithoutReserveRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IReserveRepository, ReserveRepository>();
             services.AddScoped<ITableRepository, TableRepository>();
             services.AddScoped<ITakeAwayRepository, TakeAwayRepository>();

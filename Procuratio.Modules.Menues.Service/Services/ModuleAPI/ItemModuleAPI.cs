@@ -1,0 +1,26 @@
+﻿using Procuratio.Modules.Menu.Shared;
+using Procuratio.Modules.Menu.Shared.DTO;
+using Procuratio.Modules.Menues.Service.Services.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Procuratio.Modules.Menu.Service.Services.ModuleAPI
+{
+    internal sealed class ItemModuleAPI : IItemModuleAPI
+    {
+        private readonly IItemService _itemService;
+
+        public ItemModuleAPI(IItemService itemService)
+        {
+            _itemService = itemService;
+        }
+
+        public async Task<List<MenuForOrderDetailDTO>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn)
+        {
+            return await _itemService.GetMenuForOrderDetailAsync(itemIds, dineIn);
+        }
+    }
+}

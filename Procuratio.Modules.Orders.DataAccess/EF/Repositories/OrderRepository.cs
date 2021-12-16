@@ -19,10 +19,9 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
             _order = orderDbContext.Order;
         }
 
-        public async Task<Orders.Domain.Entities.Order> GetWithoutReserveOrderDetailAsync(int id)
+        public async Task<Orders.Domain.Entities.Order> GetOrderDetailAsync(int id)
         {
-            return await BaseRelationsForGetAnOrderDetail().Include(x => x.WithoutReserve)
-                .FirstOrDefaultAsync(x => x.WithoutReserve.OrderId == id);
+            return await _order.Include(x => x.OrderDetails).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task UpdateAsync(Orders.Domain.Entities.Order toUpdate)
@@ -51,7 +50,5 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         {
             return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == Id);
         }
-
-        private IQueryable<Orders.Domain.Entities.Order> BaseRelationsForGetAnOrderDetail() => _order.Include(x => x.OrderDetails).Include(x => x.OrderState).AsQueryable();
     }
 }

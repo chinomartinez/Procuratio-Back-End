@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;
 using Procuratio.Modules.Menues.Domain.Entities.State;
@@ -64,6 +65,19 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
                 .OrderByDescending(x => x.MenuSubcategory.MenuCategory.Order)
                 .ThenByDescending(x => x.MenuSubcategory.Order).ThenByDescending(x => x.Order)
                 .ThenByDescending(x => x.Order).ToListAsync();
+        }
+
+        public async Task<List<MenuForOrderDetail>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn)
+        {
+            return await _item.Where(x => itemIds.Contains(x.Id))
+                .Select(x => new MenuForOrderDetail
+                {
+                    ItemId = x.Id,
+                    ItemName = x.Name,
+                    ForKitchen = x.ForKitchen,
+                    Price = dineIn ? (decimal)x.PriceInsideRestaurant : (decimal)x.PriceOutsideRestaurant ,
+
+                }).ToListAsync();
         }
     }
 }
