@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Procuratio.Modules.Menu.Shared;
+using Procuratio.Modules.Menu.Shared.DTO;
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
+using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
@@ -16,25 +19,48 @@ namespace Procuratio.Modules.Order.Service.Services
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
+        private readonly IOrderDetailRepository _orderDetailRepository;
+        private readonly IItemModuleAPI _itemModuleAPI;
 
-        public OrderService(IOrderRepository orderRepository, IMapper mapper)
+        public OrderService(IOrderRepository orderRepository, IMapper mapper, IOrderDetailRepository orderDetailRepository, 
+            IItemModuleAPI itemModuleAPI)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
+            _orderDetailRepository = orderDetailRepository;
+            _itemModuleAPI = itemModuleAPI;
         }
 
-        public async Task<OrderEditionFormInitializerDTO> GetWithoutReserveOrderDetailAsync(int id)
+        public async Task<OrderEditionFormInitializerDTO> GetOrderDetailAsync(int id, bool dineIn)
         {
-            Orders.Domain.Entities.Order order = await _orderRepository.GetWithoutReserveOrderDetailAsync(id);
+            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderDetailAsync(id);
 
-            if (order is null) { throw new OrderNotFoundException(); }
+            List<int> itemsIds = new ();
 
-            return _mapper.Map<OrderEditionFormInitializerDTO>(order);
+            foreach (OrderDetail item in order.OrderDetails)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<MenuForOrderDetailDTO> menuForOrderDetailDTOList = await _itemModuleAPI.GetMenuForOrderDetailAsync(itemsIds, dineIn);
+
+            OrderEditionFormInitializerDTO orderEditionFormInitializerDTO = _mapper.Map<OrderEditionFormInitializerDTO>(order);
+
+            foreach (OrderDetailForListItemsDTO item in orderEditionFormInitializerDTO.Items)
+            {
+                MenuForOrderDetailDTO menuForOrderDetailDTO = menuForOrderDetailDTOList.Find(x => x.ItemId == item.ItemId);
+
+                item.Price = menuForOrderDetailDTO.Price;
+                item.Name = menuForOrderDetailDTO.ItemName;
+                item.ForKitchen = menuForOrderDetailDTO.ForKitchen;
+            }
+
+            return orderEditionFormInitializerDTO;
         }
 
         public async Task UpdateWithoutReserveAsync(OrderFromFormDTO updateDTO, int id)
         {
-            Orders.Domain.Entities.Order order = await _orderRepository.GetWithoutReserveOrderDetailAsync(id);
+            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderDetailAsync(id);
 
             if (order is null) { throw new OrderNotFoundException(); }
 

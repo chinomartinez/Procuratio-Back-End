@@ -16,7 +16,6 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                 .ForPath(x => x.OrderStateName, x => x.MapFrom(x => x.OrderState.StateName))
                 .ForPath(x => x.BaseProperties.WaiterId, x => x.MapFrom(x => x.WaiterId))
                 .ForPath(x => x.BaseProperties.CustomerId, x => x.MapFrom(x => x.CustomerId))
-                .ForPath(x => x.Note, x => x.MapFrom(x => string.Empty))
                 .ForMember(x => x.Items, options => options.MapFrom(MapOrderDetailForListItems));
         }
 
@@ -29,11 +28,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                 orderDetailForListItemsDTOs.Add(new OrderDetailForListItemsDTO()
                 {
                     ItemId = x.ItemId,
-                    Name = $"Articulo {orderDetailForListItemsDTOs.Count + 1}", // ver
-                    ForKitchen = false, // ver
-                    Image = null, // ver
-                    PriceInsideRestaurant = 200, // ver
-                    PriceOutsideRestaurant = 300, // ver
+                    Note = x.Note,
                     Quantity = x.Quantity,
                     QuantityInKitchen = x.QuantityInKitchen
                 });

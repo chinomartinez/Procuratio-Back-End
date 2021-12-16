@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 		<Folder Include="Events\External\Handlers\" />
+		<Folder Include="Services\ModuleAPI\" />
 	</ItemGroup>
 
 </Project>

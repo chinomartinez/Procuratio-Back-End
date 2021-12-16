@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Menu.Service.Services.ModuleAPI;
+using Procuratio.Modules.Menu.Shared;
 using Procuratio.Modules.Menues.DataAccess;
 using Procuratio.Modules.Menues.Service.Services;
 using Procuratio.Modules.Menues.Service.Services.Interfaces;
@@ -14,6 +16,8 @@ namespace Procuratio.Modules.Menues.Service
             services.AddScoped<IMenuCategoryService, MenuCategoryService>();
             services.AddScoped<IItemService, ItemService>();
             services.AddScoped<IMenuSubcategoryService, MenuSubCategoryService>();
+
+            services.AddTransient<IItemModuleAPI, ItemModuleAPI>();
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
 

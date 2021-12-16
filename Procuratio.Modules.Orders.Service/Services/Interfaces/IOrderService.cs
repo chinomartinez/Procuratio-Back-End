@@ -9,7 +9,7 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
     {
         Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync();
 
-        Task<OrderEditionFormInitializerDTO> GetWithoutReserveOrderDetailAsync(int Id);
+        Task<OrderEditionFormInitializerDTO> GetOrderDetailAsync(int id, bool dineIn);
 
         Task UpdateWithoutReserveAsync(OrderFromFormDTO updateDTO, int id);
 

@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Procuratio.Modules.Customer.Shared\Procuratio.Modules.Customer.Shared.csproj" />
 		<ProjectReference Include="..\Procuratio.Modules.Customers.DataAccess\Procuratio.Modules.Customer.DataAccess.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
 		<ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
@@ -20,6 +21,7 @@
 		<Folder Include="Events\External\Handlers\" />
 		<Folder Include="Exceptions\" />
 		<Folder Include="Repositories\" />
+		<Folder Include="Services\ModuleAPI\" />
 	</ItemGroup>
 
 </Project>

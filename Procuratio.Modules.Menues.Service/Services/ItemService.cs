@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Menu.Service.DTOs.ItemDTOs;
 using Procuratio.Modules.Menu.Service.Exceptions;
+using Procuratio.Modules.Menu.Shared.DTO;
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;
 using Procuratio.Modules.Menues.Domain.Entities.State;
@@ -103,6 +105,13 @@ namespace Procuratio.Modules.Menues.Service.Services
             IReadOnlyList<Item> items = await _itemRepository.GetMenuAsync();
 
             return _mapper.Map<IReadOnlyList<MenuDTO>>(items);
+        }
+
+        public async Task<List<MenuForOrderDetailDTO>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn)
+        {
+            List<MenuForOrderDetail> menuForOrderDetailList = await _itemRepository.GetMenuForOrderDetailAsync(itemIds, dineIn);
+
+            return _mapper.Map<List<MenuForOrderDetailDTO>>(menuForOrderDetailList);
         }
 
         private async Task<Item> GetItemAsync(int id)

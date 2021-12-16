@@ -4,6 +4,66 @@
     "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj": {}
   },
   "projects": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj",
+        "projectName": "Procuratio.Modules.Menu.Shared",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj",
+        "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -70,7 +130,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.209\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -137,7 +197,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.209\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -201,7 +261,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.209\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -235,6 +295,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj"
+              },
               "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj": {
                 "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj"
               },
@@ -271,7 +334,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.209\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -348,7 +411,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.209\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -426,7 +489,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.209\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -537,7 +600,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.209\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

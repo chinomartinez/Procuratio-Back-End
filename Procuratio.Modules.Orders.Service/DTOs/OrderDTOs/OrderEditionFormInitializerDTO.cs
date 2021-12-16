@@ -11,7 +11,5 @@ namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs
         public List<OrderDetailForListItemsDTO> Items { get; set; } = new();
 
         public string OrderStateName { get; set; }
-
-        public string Note { get; set; }
     }
 }
