@@ -19,7 +19,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
             _order = orderDbContext.Order;
         }
 
-        public async Task<Orders.Domain.Entities.Order> GetOrderDetailAsync(int id)
+        public async Task<Orders.Domain.Entities.Order> GetOrderForUpdateOrderDetailAsync(int id)
         {
             return await _order.Include(x => x.OrderDetails).FirstOrDefaultAsync(x => x.Id == id);
         }
@@ -40,7 +40,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
                 .AsNoTracking().ToListAsync();
         }
 
-        public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressAsync()
+        public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressForKitchenAsync()
         {
             return await _order.Include(x => x.OrderDetails).Where(x => x.OrderStateId == (short)OrderState.State.InProgress)
                 .AsNoTracking().ToListAsync();

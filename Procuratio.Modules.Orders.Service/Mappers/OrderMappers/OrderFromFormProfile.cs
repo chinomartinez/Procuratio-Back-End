@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
+using Procuratio.Modules.Orders.Domain.Entities.State;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,37 +12,68 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
         public OrderFromFormProfile()
         {
             CreateMap<OrderFromFormDTO, Orders.Domain.Entities.Order>()
-                .ForMember(x => x.OrderDetails, options => options.MapFrom(MapOrderDetail));
+                .ForMember(x => x.OrderDetails, options => options.MapFrom(MapOrderDetailAndSetState))
+                .ForMember(x => x.OrderStateId, options => options.MapFrom(MapOrderState));
         }
 
-        private static List<OrderDetail> MapOrderDetail(OrderFromFormDTO orderFromFormDTO, Orders.Domain.Entities.Order order)
+        private static List<OrderDetail> MapOrderDetailAndSetState(OrderFromFormDTO orderFromFormDTO, Orders.Domain.Entities.Order order)
         {
             List<OrderDetail> result = new();
 
             result.AddRange(order.OrderDetails);
 
-            result = result.Where(x => orderFromFormDTO.Items.Select(x => x.ItemId).ToList().Contains(x.ItemId)).ToList();
+            result = result.Where(x => orderFromFormDTO.Items.Select(x => x.ItemId).Contains(x.ItemId)).ToList();
 
             List<int> itemsAlreadyInDatabase = result.Select(x => x.ItemId).ToList();
 
-            foreach (ItemForOrderFormDTO element in orderFromFormDTO.Items)
+            foreach (ItemForOrderFormDTO itemDTO in orderFromFormDTO.Items)
             {
-                if (itemsAlreadyInDatabase.Contains(element.ItemId))
+                if (itemsAlreadyInDatabase.Contains(itemDTO.ItemId))
                 {
-                    OrderDetail currentOrderDetail = result.First(x => x.ItemId == element.ItemId);
-                    currentOrderDetail.Note = element.Note;
+                    OrderDetail currentOrderDetail = result.First(x => x.ItemId == itemDTO.ItemId);
+                    currentOrderDetail.Note = itemDTO.Note;
 
-                    SetQuantity(element, currentOrderDetail);
+                    if (itemDTO.ForKitchen)
+                    {
+                        int currentTotalOfItems = currentOrderDetail.Quantity + currentOrderDetail.QuantityInKitchen;
+                        bool quantityInKitchenReduced = currentTotalOfItems - itemDTO.Quantity > 0 && itemDTO.Quantity > currentOrderDetail.Quantity;
+                        bool quantityInKitchenIncreased = itemDTO.Quantity > currentTotalOfItems;
+                        bool quantityReduced = currentTotalOfItems > itemDTO.Quantity;
+
+                        if (quantityInKitchenIncreased || quantityInKitchenReduced)
+                        {
+                            currentOrderDetail.QuantityInKitchen = itemDTO.Quantity - currentOrderDetail.Quantity;
+                        }
+                        else if (quantityReduced)
+                        {
+                            currentOrderDetail.Quantity = itemDTO.Quantity;
+                            currentOrderDetail.QuantityInKitchen = 0;
+                        }
+                    }
+                    else
+                    {
+                        currentOrderDetail.Quantity = itemDTO.Quantity;
+                        currentOrderDetail.QuantityInKitchen = 0;
+                    }
                 }
                 else
                 {
                     OrderDetail orderDetail = new();
 
                     orderDetail.OrderId = order.Id;
-                    orderDetail.ItemId = element.ItemId;
-                    orderDetail.Note = element.Note;
+                    orderDetail.ItemId = itemDTO.ItemId;
+                    orderDetail.Note = itemDTO.Note;
 
-                    SetQuantity(element, orderDetail);
+                    if (itemDTO.ForKitchen)
+                    {
+                        orderDetail.QuantityInKitchen = itemDTO.Quantity;
+                        orderDetail.Quantity = 0;
+                    }
+                    else
+                    {
+                        orderDetail.Quantity = itemDTO.Quantity;
+                        orderDetail.QuantityInKitchen = 0;
+                    }
 
                     result.Add(orderDetail);
                 }
@@ -50,17 +82,22 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
             return result;
         }
 
-        private static void SetQuantity(ItemForOrderFormDTO itemForOrderFormDTO, OrderDetail orderDetail)
+        private static short MapOrderState(OrderFromFormDTO orderFromFormDTO, Orders.Domain.Entities.Order order)
         {
-            if (itemForOrderFormDTO.ForKitchen)
+            if (order.OrderDetails.Exists(x => x.QuantityInKitchen > 0))
             {
-                orderDetail.QuantityInKitchen = itemForOrderFormDTO.Quantity;
-                orderDetail.Quantity = 0;
+                return (short)OrderState.State.InProgress;
             }
             else
             {
-                orderDetail.Quantity = itemForOrderFormDTO.Quantity;
-                orderDetail.QuantityInKitchen = 0;
+                if (order.OrderDetails.Count == 0)
+                {
+                    return (short)OrderState.State.Pending;
+                }
+                else
+                {
+                    return (short)OrderState.State.Delivered;
+                }
             }
         }
     }

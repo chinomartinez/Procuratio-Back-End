@@ -21,15 +21,15 @@ namespace Procuratio.Modules.Order.API.Controllers
         [HttpGet("edit-order-detail/" + BasicStringsForControllers.IntParameter + "/{dineIn:bool}")]
         public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetOrderDetailAsync(int id, bool dineIn) => Ok(await _orderService.GetOrderDetailAsync(id, dineIn));
 
-        [HttpPut("without-reserve/" + BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult> UpdateWithoutReserveAsync([FromBody] OrderFromFormDTO updateDTO, int id)
+        [HttpPut("order-detail/" + BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult> UpdateOrderDetailAsync([FromBody] OrderFromFormDTO updateDTO, int id)
         {
-            await _orderService.UpdateWithoutReserveAsync(updateDTO, id);
+            await _orderService.UpdateOrderDetailAsync(updateDTO, id);
             return NoContent();
         }
 
-        [HttpGet("order-in-progress")]
-        public async Task<ActionResult<IReadOnlyList<OrderListForKitchenDTO>>> GetOrdersInProgressAsync() => Ok(await _orderService.GetOrdersInProgressAsync());
+        [HttpGet("order-in-progress-for-kitchen")]
+        public async Task<ActionResult<IReadOnlyList<OrderListForKitchenDTO>>> GetOrdersInProgressForKitchenAsync() => Ok(await _orderService.GetOrdersInProgressForKitchenAsync());
 
         [HttpPut("for-delivery/" + BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> OrderForDeliverAsync(int id)
@@ -59,7 +59,7 @@ namespace Procuratio.Modules.Order.API.Controllers
             return NoContent();
         }
 
-        [HttpGet("in-progress")]
+        [HttpGet("dine-in-in-progress")]
         public async Task<ActionResult<IReadOnlyList<OrderInProgressDTO>>> GetInProgressAsync() => Ok(await _orderService.GetInProgressAsync());
     }
 }
