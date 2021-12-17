@@ -11,7 +11,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
 
         Task UpdateAsync(Orders.Domain.Entities.Order toUpdate);
 
-        Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressAsync();
-        Task<Orders.Domain.Entities.Order> GetOrderDetailAsync(int id);
+        Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressForKitchenAsync();
+        Task<Orders.Domain.Entities.Order> GetOrderForUpdateOrderDetailAsync(int id);
     }
 }

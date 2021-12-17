@@ -11,9 +11,9 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 
         Task<OrderEditionFormInitializerDTO> GetOrderDetailAsync(int id, bool dineIn);
 
-        Task UpdateWithoutReserveAsync(OrderFromFormDTO updateDTO, int id);
+        Task UpdateOrderDetailAsync(OrderFromFormDTO updateDTO, int id);
 
-        Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressAsync();
+        Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressForKitchenAsync();
 
         Task OrderForDeliverAsync(int id);
 

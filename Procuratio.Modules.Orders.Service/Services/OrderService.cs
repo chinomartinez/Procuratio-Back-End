@@ -33,7 +33,7 @@ namespace Procuratio.Modules.Order.Service.Services
 
         public async Task<OrderEditionFormInitializerDTO> GetOrderDetailAsync(int id, bool dineIn)
         {
-            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderDetailAsync(id);
+            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderForUpdateOrderDetailAsync(id);
 
             List<int> itemsIds = new ();
 
@@ -58,26 +58,22 @@ namespace Procuratio.Modules.Order.Service.Services
             return orderEditionFormInitializerDTO;
         }
 
-        public async Task UpdateWithoutReserveAsync(OrderFromFormDTO updateDTO, int id)
+        public async Task UpdateOrderDetailAsync(OrderFromFormDTO updateDTO, int id)
         {
-            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderDetailAsync(id);
+            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderForUpdateOrderDetailAsync(id);
 
             if (order is null) { throw new OrderNotFoundException(); }
 
             order = _mapper.Map(updateDTO, order);
 
-            if (updateDTO.Items.Exists(x => x.ForKitchen))
-            {
-                order.OrderStateId = (short)OrderState.State.InProgress;
-                order.WaitingTimeForKitchen = DateTime.Now;
-            }
+            if (order.WaitingTimeForKitchen is null) { order.WaitingTimeForKitchen = DateTime.Now; }
 
             await _orderRepository.UpdateAsync(order);
         }
 
-        public async Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressAsync()
+        public async Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressForKitchenAsync()
         {
-            IReadOnlyList<Orders.Domain.Entities.Order> orders = await _orderRepository.GetOrdersInProgressAsync();
+            IReadOnlyList<Orders.Domain.Entities.Order> orders = await _orderRepository.GetOrdersInProgressForKitchenAsync();
 
             return _mapper.Map<IReadOnlyList<OrderListForKitchenDTO>>(orders);
         }
