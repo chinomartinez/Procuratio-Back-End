@@ -10,11 +10,11 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.EntitiesConfigurations
         {
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
 
-            builder.Property(x => x.Description).HasMaxLength(200).IsRequired(false);
+            builder.Property(x => x.Description).HasMaxLength(200).IsRequired();
 
-            builder.Property(x => x.Code).HasMaxLength(10).IsRequired(false);
+            builder.Property(x => x.Code).HasMaxLength(10).IsRequired();
 
-            builder.Property(x => x.Image).HasMaxLength(200).IsRequired(false);
+            builder.Property(x => x.Image).HasMaxLength(200).IsRequired();
 
             builder.Property(x => x.PriceInsideRestaurant).HasPrecision(19, 4);
 
