@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Metadata file 'C:\Users\tomi_\Desktop\Mis archivos\B_Universidad\O__PP2\App\Back-End\Procuratio\Procuratio.Modules.Order.API\bin\Debug\netcoreapp3.1\Procuratio.Modules.Orders.API.dll' could not be found
+dotnet_diagnostic.CS0006.severity = error

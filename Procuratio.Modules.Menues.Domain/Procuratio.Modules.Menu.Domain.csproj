@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Entities\Intermediate\**" />
+	  <EmbeddedResource Remove="Entities\Intermediate\**" />
+	  <None Remove="Entities\Intermediate\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.Shared.ProcuratioFramework.csproj" />
+	</ItemGroup>
+
+</Project>

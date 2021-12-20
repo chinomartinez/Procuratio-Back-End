@@ -1,0 +1,40 @@
+﻿using AutoMapper;
+using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
+using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
+using System.Collections.Generic;
+
+namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
+{
+    public class OrderEditionFormInitializerProfile : Profile
+    {
+        public OrderEditionFormInitializerProfile()
+        {
+            CreateMap<Orders.Domain.Entities.Order, OrderEditionFormInitializerDTO>()
+                .ForPath(x => x.BaseProperties.Id, x => x.MapFrom(x => x.Id))
+                .ForPath(x => x.BaseProperties.Date, x => x.MapFrom(x => x.Date))
+                .ForPath(x => x.BaseProperties.OrderStateId, x => x.MapFrom(x => x.OrderStateId))
+                .ForPath(x => x.OrderStateName, x => x.MapFrom(x => x.OrderState.StateName))
+                .ForPath(x => x.BaseProperties.WaiterId, x => x.MapFrom(x => x.WaiterId))
+                .ForPath(x => x.BaseProperties.CustomerId, x => x.MapFrom(x => x.CustomerId))
+                .ForMember(x => x.Items, options => options.MapFrom(MapOrderDetailForListItems));
+        }
+
+        private List<OrderDetailForListItemsDTO> MapOrderDetailForListItems(Orders.Domain.Entities.Order order, OrderEditionFormInitializerDTO orderEditionFormInitializerDTO)
+        {
+            List<OrderDetailForListItemsDTO> orderDetailForListItemsDTOs = new();
+
+            order.OrderDetails.ForEach(x =>
+            {
+                orderDetailForListItemsDTOs.Add(new OrderDetailForListItemsDTO()
+                {
+                    ItemId = x.ItemId,
+                    Note = x.Note,
+                    Quantity = x.Quantity,
+                    QuantityInKitchen = x.QuantityInKitchen
+                });
+            });
+
+            return orderDetailForListItemsDTOs;
+        }
+    }
+}

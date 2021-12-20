@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="EF\EntitiesConfigurations\Intermediate\**" />
+	  <EmbeddedResource Remove="EF\EntitiesConfigurations\Intermediate\**" />
+	  <None Remove="EF\EntitiesConfigurations\Intermediate\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Procuratio.Modules.Menues.Domain\Procuratio.Modules.Menu.Domain.csproj" />
+	  <ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>

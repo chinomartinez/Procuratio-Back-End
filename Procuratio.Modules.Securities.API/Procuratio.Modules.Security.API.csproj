@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Procuratio.Modules.Securities.Service\Procuratio.Modules.Security.Service.csproj" />
+		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
+		<ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>

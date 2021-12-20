@@ -2,10 +2,28 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <StartupObject>Procuratio.API.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0-preview.2.21154.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Procuratio.Modules.Customers.API\Procuratio.Modules.Customer.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Menues.API\Procuratio.Modules.Menu.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Order.API\Procuratio.Modules.Order.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Report.API\Procuratio.Modules.Report.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Restaurants.API\Procuratio.Modules.Restaurant.API.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Securities.API\Procuratio.Modules.Security.API.csproj" />
   </ItemGroup>
 
 </Project>

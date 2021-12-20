@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+Procuratio.Shared.Abstractions/obj/Procuratio.Shared.Abstractions.csproj.nuget.dgspec.json
+Procuratio.Shared.Abstractions/obj/project.assets.json
+Procuratio.Shared.Abstractions/obj/project.nuget.cache

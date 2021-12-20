@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="ServicesInterfaces\**" />
+	  <EmbeddedResource Remove="ServicesInterfaces\**" />
+	  <None Remove="ServicesInterfaces\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Events\External\Handlers\" />
+		<Folder Include="Repositories\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Procuratio.Modules.Menu.Shared\Procuratio.Modules.Menu.Shared.csproj" />
+		<ProjectReference Include="..\Procuratio.Modules.Menues.DataAccess\Procuratio.Modules.Menu.DataAccess.csproj" />
+		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
+		<ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="ServicesInterfaces\**" />
+	  <EmbeddedResource Remove="ServicesInterfaces\**" />
+	  <None Remove="ServicesInterfaces\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Procuratio.Modules.Securities.DataAccess\Procuratio.Modules.Security.DataAccess.csproj" />
+		<ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
+		<ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Events\External\Handlers\" />
+		<Folder Include="Services\ModuleAPI\" />
+	</ItemGroup>
+
+</Project>
