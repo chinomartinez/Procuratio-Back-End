@@ -31,6 +31,12 @@ namespace Procuratio.Modules.Order.API.Controllers
         [HttpGet("order-in-progress-for-kitchen")]
         public async Task<ActionResult<IReadOnlyList<OrderListForKitchenDTO>>> GetOrdersInProgressForKitchenAsync() => Ok(await _orderService.GetOrdersInProgressForKitchenAsync());
 
+        [HttpGet("order-detail-for-kitchen/" + BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult<List<OrderWithOrderDetailVM>>> GetOrderDetailForKitchenAsync(int id)
+        {
+            return Ok(await _orderService.GetOrderDetailForKitchenAsync(id));
+        }
+
         [HttpPut("for-delivery/" + BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> OrderForDeliverAsync(int id)
         {

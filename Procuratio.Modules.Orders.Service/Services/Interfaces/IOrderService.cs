@@ -1,4 +1,5 @@
-﻿using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
+﻿using Procuratio.Modules.Menu.Shared.DTO;
+using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -22,5 +23,7 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
         Task WaitingForPaymentAsync(int id);
 
         Task PaidAsync(int id);
+
+        Task<List<OrderWithOrderDetailVM>> GetOrderDetailForKitchenAsync(int id);
     }
 }

@@ -50,5 +50,10 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         {
             return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == Id);
         }
+
+        public async Task<Orders.Domain.Entities.Order> GetOrderDetailForKitchenAsync(int id)
+        {
+            return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == id);
+        }
     }
 }
