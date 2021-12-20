@@ -13,5 +13,7 @@ namespace Procuratio.Modules.Menues.Service.Services.Interfaces
         Task<List<ItemDTO>> GetByIds(List<int> Ids);
 
         Task<List<MenuForOrderDetailDTO>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn);
+
+        Task<List<ItemsForOrderDetailInKitchenDTO>> GetItemsForKitchenAsync(List<int> itemIds);
     }
 }

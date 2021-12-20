@@ -10,5 +10,7 @@ namespace Procuratio.Modules.Menu.Shared
     public interface IItemModuleAPI
     {
         Task<List<MenuForOrderDetailDTO>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn);
+
+        Task<List<ItemsForOrderDetailInKitchenDTO>> GetItemsForKitchenAsync(List<int> itemIds);
     }
 }

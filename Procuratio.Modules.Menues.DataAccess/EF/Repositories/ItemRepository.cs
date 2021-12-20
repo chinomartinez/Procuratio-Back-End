@@ -75,7 +75,18 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
                     ItemId = x.Id,
                     ItemName = x.Name,
                     ForKitchen = x.ForKitchen,
-                    Price = dineIn ? (decimal)x.PriceInsideRestaurant : (decimal)x.PriceOutsideRestaurant ,
+                    Price = dineIn ? (decimal)x.PriceInsideRestaurant : (decimal)x.PriceOutsideRestaurant
+
+                }).ToListAsync();
+        }
+
+        public async Task<List<ItemsForOrderDetailInKitchen>> GetItemsForKitchenAsync(List<int> itemIds)
+        {
+            return await _item.Where(x => itemIds.Contains(x.Id))
+                .Select(x => new ItemsForOrderDetailInKitchen
+                {
+                    Id = x.Id,
+                    Name = x.Name
 
                 }).ToListAsync();
         }

@@ -19,15 +19,12 @@ namespace Procuratio.Modules.Order.Service.Services
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
-        private readonly IOrderDetailRepository _orderDetailRepository;
         private readonly IItemModuleAPI _itemModuleAPI;
 
-        public OrderService(IOrderRepository orderRepository, IMapper mapper, IOrderDetailRepository orderDetailRepository, 
-            IItemModuleAPI itemModuleAPI)
+        public OrderService(IOrderRepository orderRepository, IMapper mapper, IItemModuleAPI itemModuleAPI)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
-            _orderDetailRepository = orderDetailRepository;
             _itemModuleAPI = itemModuleAPI;
         }
 
@@ -35,7 +32,9 @@ namespace Procuratio.Modules.Order.Service.Services
         {
             Orders.Domain.Entities.Order order = await _orderRepository.GetOrderForUpdateOrderDetailAsync(id);
 
-            List<int> itemsIds = new ();
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            List<int> itemsIds = new();
 
             foreach (OrderDetail item in order.OrderDetails)
             {
@@ -76,6 +75,39 @@ namespace Procuratio.Modules.Order.Service.Services
             IReadOnlyList<Orders.Domain.Entities.Order> orders = await _orderRepository.GetOrdersInProgressForKitchenAsync();
 
             return _mapper.Map<IReadOnlyList<OrderListForKitchenDTO>>(orders);
+        }
+
+        public async Task<List<OrderWithOrderDetailVM>> GetOrderDetailForKitchenAsync(int id)
+        {
+            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderDetailForKitchenAsync(id);
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            List<int> itemsIds = new();
+
+            foreach (OrderDetail item in order.OrderDetails)
+            {
+                if (item.QuantityInKitchen > 0) { itemsIds.Add(item.ItemId); }
+            }
+
+            List<ItemsForOrderDetailInKitchenDTO> itemsForOrderDetailInKitchenList = await _itemModuleAPI.GetItemsForKitchenAsync(itemsIds);
+
+            List<OrderWithOrderDetailVM> orderDetailForKitchenDTO = new();
+
+            foreach (ItemsForOrderDetailInKitchenDTO item in itemsForOrderDetailInKitchenList)
+            {
+                OrderDetail currentOrderDetail = order.OrderDetails.Find(x => x.ItemId == item.Id);
+
+                orderDetailForKitchenDTO.Add(new OrderWithOrderDetailVM
+                {
+                    Id = currentOrderDetail.OrderId,
+                    ItemName = item.Name,
+                    Note = currentOrderDetail.Note,
+                    Quantity = currentOrderDetail.QuantityInKitchen
+                });
+            }
+
+            return orderDetailForKitchenDTO;
         }
 
         public async Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync()
