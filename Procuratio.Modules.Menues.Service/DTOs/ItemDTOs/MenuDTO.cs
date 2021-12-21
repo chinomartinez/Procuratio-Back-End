@@ -8,7 +8,7 @@
 
         public int MenuSubCategoryId { get; set; }
 
-        public string MenuSubCategoryName { get; set; }
+        public string MenuSubcategoryName { get; set; }
 
         public int ItemId { get; set; }
 

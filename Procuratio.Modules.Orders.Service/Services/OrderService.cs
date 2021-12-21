@@ -110,6 +110,39 @@ namespace Procuratio.Modules.Order.Service.Services
             return orderDetailForKitchenDTO;
         }
 
+        public async Task<List<OrderBillDTO>> GetBillAsync(int id, bool dineIn)
+        {
+            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderDetailForBillAsync(id);
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            List<int> itemsIds = new();
+
+            foreach (OrderDetail item in order.OrderDetails)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<ItemsForBillDTO> itemsForOrderDetailBillList = await _itemModuleAPI.GetItemsFoBillAsync(itemsIds, dineIn);
+
+            List<OrderBillDTO> orderBillDTO = new();
+
+            foreach (ItemsForBillDTO item in itemsForOrderDetailBillList)
+            {
+                OrderDetail currentOrderDetail = order.OrderDetails.Find(x => x.ItemId == item.Id);
+
+                orderBillDTO.Add(new OrderBillDTO
+                {
+                    Id = currentOrderDetail.OrderId,
+                    Name = item.Name,
+                    Quantity = currentOrderDetail.Quantity,
+                    Price = item.Price
+                });
+            }
+
+            return orderBillDTO;
+        }
+
         public async Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync()
         {
             IReadOnlyList<Orders.Domain.Entities.Order> ordersInProgress = await _orderRepository.GetOrderInProgressAsync();

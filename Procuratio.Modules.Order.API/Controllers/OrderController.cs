@@ -67,5 +67,8 @@ namespace Procuratio.Modules.Order.API.Controllers
 
         [HttpGet("dine-in-in-progress")]
         public async Task<ActionResult<IReadOnlyList<OrderInProgressDTO>>> GetInProgressAsync() => Ok(await _orderService.GetInProgressAsync());
+
+        [HttpGet("bill/" + BasicStringsForControllers.IntParameter + "/{dineIn:bool}")]
+        public async Task<ActionResult<List<OrderBillDTO>>> GetBillAsync(int id, bool dineIn) => Ok(await _orderService.GetBillAsync(id, dineIn));
     }
 }

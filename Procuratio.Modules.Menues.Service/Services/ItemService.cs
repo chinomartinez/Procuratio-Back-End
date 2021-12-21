@@ -116,9 +116,16 @@ namespace Procuratio.Modules.Menues.Service.Services
 
         public async Task<List<ItemsForOrderDetailInKitchenDTO>> GetItemsForKitchenAsync(List<int> itemIds)
         {
-            List<ItemsForOrderDetailInKitchen> menuForOrderDetailList = await _itemRepository.GetItemsForKitchenAsync(itemIds);
+            List<ItemsForOrderDetailInKitchen> itemsForOrderDetailInKitchenList = await _itemRepository.GetItemsForKitchenAsync(itemIds);
 
-            return _mapper.Map<List<ItemsForOrderDetailInKitchenDTO>>(menuForOrderDetailList);
+            return _mapper.Map<List<ItemsForOrderDetailInKitchenDTO>>(itemsForOrderDetailInKitchenList);
+        }
+
+        public async Task<List<ItemsForBillDTO>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn)
+        {
+            List<ItemsBill> itemsForBillList = await _itemRepository.GetItemsFoBillAsync(itemIds, dineIn);
+
+            return _mapper.Map<List<ItemsForBillDTO>>(itemsForBillList);
         }
 
         private async Task<Item> GetItemAsync(int id)
