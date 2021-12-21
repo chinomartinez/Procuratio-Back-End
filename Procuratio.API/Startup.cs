@@ -91,10 +91,7 @@ namespace Procuratio.API
                     ClockSkew = TimeSpan.Zero
                 });
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("IsAdmin", policy => policy.RequireClaim("role", "Admin"));
-            });
+            services.AddAuthorization();
 
             services.AddOrderModule();
             services.AddMenuModule();

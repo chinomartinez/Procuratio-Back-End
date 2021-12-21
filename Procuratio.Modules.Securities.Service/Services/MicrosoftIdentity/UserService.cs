@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Procuratio.Modules.Securities.DataAccess.EF.JWT;
@@ -100,6 +101,11 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             User user = await _userRepository.GetEntityEditionFormInitializerAsync(id);
 
             return _mapper.Map<UserEditionFormInitializerDTO>(user);
+        }
+
+        public async Task CreateCreateUsersAndRolesAsync()
+        {
+            await _userRepository.CreateCreateUsersAndRolesAsync();
         }
 
         public async Task<AuthenticationResponseDTO> AuthAsync(UserCredentialsDTO userCredentialsDTO)

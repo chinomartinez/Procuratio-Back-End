@@ -70,6 +70,14 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             return Ok(await _userService.GetEntityEditionFormInitializerAsync(id));
         }
 
+        [HttpPost("create-users-and-roles")]
+        [AllowAnonymous]
+        public async Task<ActionResult> CreateCreateUsersAndRolesAsync()
+        {
+            await _userService.CreateCreateUsersAndRolesAsync();
+            return Ok();
+        }
+
         [HttpPost("auth")]
         [AllowAnonymous]
         public async Task<ActionResult<AuthenticationResponseDTO>> AuthAsync([FromBody] UserCredentialsDTO userCredentialsDTO)
