@@ -27,5 +27,10 @@ namespace Procuratio.Modules.Menu.Service.Services.ModuleAPI
         {
             return await _itemService.GetItemsForKitchenAsync(itemIds);
         }
+
+        public async Task<List<ItemsForBillDTO>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn)
+        {
+            return await _itemService.GetItemsFoBillAsync(itemIds, dineIn);
+        }
     }
 }

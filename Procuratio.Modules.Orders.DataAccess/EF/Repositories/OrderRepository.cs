@@ -48,12 +48,17 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
 
         public async Task<Orders.Domain.Entities.Order> GetWithOrderDetailAsync(int Id)
         {
-            return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == Id);
+            return await _order.Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == Id);
         }
 
         public async Task<Orders.Domain.Entities.Order> GetOrderDetailForKitchenAsync(int id)
         {
-            return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == id);
+            return await _order.Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<Orders.Domain.Entities.Order> GetOrderDetailForBillAsync(int id)
+        {
+            return await _order.Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }

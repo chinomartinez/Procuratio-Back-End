@@ -15,5 +15,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces
         Task<List<MenuForOrderDetail>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn);
 
         Task<List<ItemsForOrderDetailInKitchen>> GetItemsForKitchenAsync(List<int> itemIds);
+
+        Task<List<ItemsBill>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn);
     }
 }
