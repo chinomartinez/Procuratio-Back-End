@@ -20,12 +20,15 @@ namespace Procuratio.Modules.Order.Service.Services
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
         private readonly IItemModuleAPI _itemModuleAPI;
+        private readonly IOrderDetailRepository _orderDetailRepository;
 
-        public OrderService(IOrderRepository orderRepository, IMapper mapper, IItemModuleAPI itemModuleAPI)
+        public OrderService(IOrderRepository orderRepository, IMapper mapper, IItemModuleAPI itemModuleAPI, 
+            IOrderDetailRepository orderDetailRepository)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
             _itemModuleAPI = itemModuleAPI;
+            _orderDetailRepository = orderDetailRepository;
         }
 
         public async Task<OrderEditionFormInitializerDTO> GetOrderDetailAsync(int id, bool dineIn)
@@ -54,6 +57,25 @@ namespace Procuratio.Modules.Order.Service.Services
                 item.ForKitchen = menuForOrderDetailDTO.ForKitchen;
             }
 
+            if (order.OrderStateId == (short)OrderState.State.ForDelivery)
+            {
+                List<int> auxItemsIds = new();
+
+                foreach (OrderDetailForListItemsDTO item in orderEditionFormInitializerDTO.Items)
+                {
+                    if (!item.ForKitchen)
+                    {
+                        auxItemsIds.Add(item.ItemId);
+                    }
+                    else
+                    {
+                        item.Quantity = 0;
+                    }
+                }
+
+                orderEditionFormInitializerDTO.Items.RemoveAll(x => auxItemsIds.Contains(x.ItemId) || x.QuantityInKitchen == 0);
+            }
+
             return orderEditionFormInitializerDTO;
         }
 
@@ -64,8 +86,6 @@ namespace Procuratio.Modules.Order.Service.Services
             if (order is null) { throw new OrderNotFoundException(); }
 
             order = _mapper.Map(updateDTO, order);
-
-            if (order.WaitingTimeForKitchen is null) { order.WaitingTimeForKitchen = DateTime.Now; }
 
             await _orderRepository.UpdateAsync(order);
         }
@@ -199,6 +219,13 @@ namespace Procuratio.Modules.Order.Service.Services
             order.OrderStateId = (short)OrderState.State.Paid;
 
             await _orderRepository.UpdateAsync(order);
+        }
+
+        public async Task<int> DeleteOrderDetailAsync(int orderId, int itemId)
+        {
+            OrderDetail orderDetail = await _orderDetailRepository.GetOrderDetailByOrderIdAndItemId(orderId, itemId);
+
+            return await _orderDetailRepository.DeleteOrderDetail(orderDetail);
         }
     }
 }
