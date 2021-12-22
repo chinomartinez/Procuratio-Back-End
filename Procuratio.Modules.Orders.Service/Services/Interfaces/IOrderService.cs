@@ -24,6 +24,8 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 
         Task PaidAsync(int id);
 
+        Task<int> DeleteOrderDetailAsync(int orderId, int itemId);
+
         Task<List<OrderWithOrderDetailVM>> GetOrderDetailForKitchenAsync(int id);
 
         Task<List<OrderBillDTO>> GetBillAsync(int id, bool dineIn);

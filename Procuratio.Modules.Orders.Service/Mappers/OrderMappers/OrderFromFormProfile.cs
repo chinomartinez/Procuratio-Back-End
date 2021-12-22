@@ -2,6 +2,7 @@
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +14,8 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
         {
             CreateMap<OrderFromFormDTO, Orders.Domain.Entities.Order>()
                 .ForMember(x => x.OrderDetails, options => options.MapFrom(MapOrderDetailAndSetState))
-                .ForMember(x => x.OrderStateId, options => options.MapFrom(MapOrderState));
+                .ForMember(x => x.OrderStateId, options => options.MapFrom(MapOrderState))
+                .ForMember(x => x.WaitingTimeForKitchen, options => options.MapFrom(WaitingTimeForKitchen));
         }
 
         private static List<OrderDetail> MapOrderDetailAndSetState(OrderFromFormDTO orderFromFormDTO, Orders.Domain.Entities.Order order)
@@ -99,6 +101,11 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                     return (short)OrderState.State.Delivered;
                 }
             }
+        }
+
+        private static DateTime? WaitingTimeForKitchen(OrderFromFormDTO orderFromFormDTO, Orders.Domain.Entities.Order order)
+        {
+            return order.OrderStateId == (short)OrderState.State.InProgress ? DateTime.Now : null;
         }
     }
 }

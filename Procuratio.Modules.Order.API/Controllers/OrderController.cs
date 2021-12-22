@@ -18,6 +18,12 @@ namespace Procuratio.Modules.Order.API.Controllers
             _orderService = orderService;
         }
 
+        [HttpDelete("delete-order-detail/" + "{orderId:int}" + "/{itemId:int}")]
+        public async Task<ActionResult<int>> DeleteOrderDetailAsync(int orderId, int itemId)
+        {
+            return Ok(await _orderService.DeleteOrderDetailAsync(orderId, itemId));
+        }
+
         [HttpGet("edit-order-detail/" + BasicStringsForControllers.IntParameter + "/{dineIn:bool}")]
         public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetOrderDetailAsync(int id, bool dineIn) => Ok(await _orderService.GetOrderDetailAsync(id, dineIn));
 
