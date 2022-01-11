@@ -3,6 +3,7 @@ using Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs;
 using Procuratio.Modules.Menues.API.Controllers.Base;
 using Procuratio.Modules.Menues.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.ModelBinder;
 using Procuratio.Shared.Infrastructure.Controllers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -65,6 +66,19 @@ namespace Procuratio.Modules.Menues.API.Controllers
         public async Task<ActionResult> UpdateAsync([FromBody] MenuCategoryFromFormDTO updateDTO, int id)
         {
             await _menuCategoryService.UpdateAsync(updateDTO, id);
+            return NoContent();
+        }
+
+        [HttpGet("menu")]
+        public async Task<ActionResult<IReadOnlyList<MenuDTO>>> GetMenuAsync()
+        {
+            return Ok(await _menuCategoryService.GetMenuAsync());
+        }
+
+        [HttpPost("menu")]
+        public async Task<ActionResult> UpdateMenuAsync([FromBody] List<MenuDTO> menuDTOs)
+        {
+            await _menuCategoryService.UpdateMenuAsync(menuDTOs);
             return NoContent();
         }
     }

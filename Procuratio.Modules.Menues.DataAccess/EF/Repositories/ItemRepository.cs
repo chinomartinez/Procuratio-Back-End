@@ -54,10 +54,10 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             int? lastOrder = await _item.Where(x => x.MenuSubcategoryId == menuSubcategoryId)
                 .MaxAsync<Item, int?>(x => x.Order);
 
-            return lastOrder is null ? 1 : (int)++lastOrder;
+            return lastOrder is null ? 0 : (int)++lastOrder;
         }
 
-        public async Task<IReadOnlyList<Item>> GetMenuAsync()
+        public async Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync()
         {
             return await _item.Include(x => x.MenuSubcategory).ThenInclude(x => x.MenuCategory)
                 .Where(x => x.ItemStateId == (short)ItemState.State.Available && x.MenuSubcategory.MenuSubCategoryStateId == (short)MenuSubCategoryState.State.Available

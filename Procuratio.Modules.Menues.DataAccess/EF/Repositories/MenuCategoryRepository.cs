@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;
+using Procuratio.Modules.Menues.Domain.Entities.State;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -53,7 +55,50 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
         {
             int? lastOrder = await _menuCategory.MaxAsync<MenuCategory, int?>(x => x.Order);
 
-            return lastOrder is null ? 1 : (int)++lastOrder;
+            return lastOrder is null ? 0 : (int)++lastOrder;
+        }
+
+        public async Task<IReadOnlyList<MenuModel>> GetMenuAsync()
+        {
+            return await _menuCategory.Include(x => x.MenuSubCategories).ThenInclude(x => x.Items)
+                .Select(x => new MenuModel
+                {
+                    MenuCategoryId = x.Id,
+                    MenuCategoryName = x.Name,
+                    MenuCategoryOrder = x.Order,
+                    SubcategoriesModel = x.MenuSubCategories.Select(x => new SubcategoryModel
+                    {
+                        MenuSubcategoryId = x.Id,
+                        MenuSubcategoryName = x.Name,
+                        MenuSubcategoryOrder = x.Order,
+                        ItemsModel = x.Items.Select(x => new ItemModel
+                        {
+                            ItemId = x.Id,
+                            ItemName = x.Name,
+                            ItemOrder = x.Order
+                        }).OrderBy(x => x.ItemOrder).ToList()
+                    }).OrderBy(x => x.MenuSubcategoryOrder).ToList()
+                }).OrderBy(x => x.MenuCategoryOrder)
+                .AsNoTracking().ToListAsync();
+        }
+
+        public async Task<List<MenuCategory>> GetMenuToUpdateAsync()
+        {
+            return await _menuCategory.Include(x => x.MenuSubCategories).ThenInclude(x => x.Items).ToListAsync();
+        }
+
+        public async Task UpdateMenuAsync(List<MenuCategory> toUpdate)
+        {
+            try
+            {
+                _menuCategory.UpdateRange(toUpdate);
+
+                await _menuDbContext.SaveChangesAsync();
+            }
+            catch (System.Exception e)
+            {
+                var sdsdsd = e.Message;
+            }
         }
     }
 }

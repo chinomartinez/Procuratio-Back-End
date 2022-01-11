@@ -1,6 +1,6 @@
 ﻿namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
 {
-    public class MenuDTO
+    public class MenuAddItemsToOrderVM
     {
         public int MenuCategoryId { get; set; }
 

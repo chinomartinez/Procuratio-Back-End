@@ -10,8 +10,8 @@ using Procuratio.Modules.Menues.DataAccess;
 namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
 {
     [DbContext(typeof(MenuDbContext))]
-    [Migration("20211106192902_AddingIndexs")]
-    partial class AddingIndexs
+    [Migration("20220111184050_Menu_Module_init")]
+    partial class Menu_Module_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -45,13 +46,14 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<short>("ItemStateId")
                         .HasColumnType("smallint");
 
-                    b.Property<int>("MenuCategoryId")
+                    b.Property<int>("MenuSubcategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -74,12 +76,12 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
 
                     b.HasIndex("ItemStateId");
 
-                    b.HasIndex("MenuCategoryId");
+                    b.HasIndex("MenuSubcategoryId");
 
                     b.HasIndex("BranchId", "Name")
                         .IsUnique();
 
-                    b.HasIndex("BranchId", "Order", "MenuCategoryId")
+                    b.HasIndex("BranchId", "Order", "MenuSubcategoryId")
                         .IsUnique();
 
                     b.ToTable("Item");
@@ -211,15 +213,15 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.MenuSubcategory", "MenuCategory")
+                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.MenuSubcategory", "MenuSubcategory")
                         .WithMany("Items")
-                        .HasForeignKey("MenuCategoryId")
+                        .HasForeignKey("MenuSubcategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ItemState");
 
-                    b.Navigation("MenuCategory");
+                    b.Navigation("MenuSubcategory");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.MenuCategory", b =>
