@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs;
 using Procuratio.Modules.Menu.Service.Exceptions;
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
@@ -73,6 +74,13 @@ namespace Procuratio.Modules.Menues.Service.Services
             return _mapper.Map<MenuCategoryEditionFormInitializerDTO>(menuCategory);
         }
 
+        public async Task<IReadOnlyList<MenuDTO>> GetMenuAsync()
+        {
+            IReadOnlyList<MenuModel> menuesModel = await _menuCategoryRepository.GetMenuAsync();
+
+            return _mapper.Map<IReadOnlyList<MenuDTO>>(menuesModel);
+        }
+
         public async Task UpdateAsync(MenuCategoryFromFormDTO updateDTO, int id)
         {
             MenuCategory menuCategory = await GetMenuCategoryAsync(id);
@@ -80,6 +88,15 @@ namespace Procuratio.Modules.Menues.Service.Services
             menuCategory = _mapper.Map(updateDTO, menuCategory);
 
             await _menuCategoryRepository.UpdateAsync(menuCategory);
+        }
+
+        public async Task UpdateMenuAsync(List<MenuDTO> menuDTOs)
+        {
+            List<MenuCategory> menuCategories = await _menuCategoryRepository.GetMenuToUpdateAsync();
+
+            menuCategories = _mapper.Map(menuDTOs, menuCategories);
+
+            await _menuCategoryRepository.UpdateMenuAsync(menuCategories);
         }
 
         private async Task<MenuCategory> GetMenuCategoryAsync(int id)

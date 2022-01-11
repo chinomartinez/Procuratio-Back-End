@@ -100,11 +100,11 @@ namespace Procuratio.Modules.Menues.Service.Services
             return _mapper.Map<List<ItemDTO>>(items);
         }
 
-        public async Task<IReadOnlyList<MenuDTO>> GetMenuAsync()
+        public async Task<IReadOnlyList<MenuAddItemsToOrderVM>> GetMenuAddItemsToOrderAsync()
         {
-            IReadOnlyList<Item> items = await _itemRepository.GetMenuAsync();
+            IReadOnlyList<Item> items = await _itemRepository.GetMenuAddItemsToOrderAsync();
 
-            return _mapper.Map<IReadOnlyList<MenuDTO>>(items);
+            return _mapper.Map<IReadOnlyList<MenuAddItemsToOrderVM>>(items);
         }
 
         public async Task<List<MenuForOrderDetailDTO>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn)

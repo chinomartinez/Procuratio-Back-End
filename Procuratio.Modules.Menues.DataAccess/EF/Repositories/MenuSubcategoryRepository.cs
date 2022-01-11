@@ -54,7 +54,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             int? lastOrder = await _menuSubcategory.Where(x => x.MenuCategoryId == menuCategoryId)
                 .MaxAsync<MenuSubcategory, int?>(x => x.Order);
 
-            return lastOrder is null ? 1 : (int)++lastOrder;
+            return lastOrder is null ? 0 : (int)++lastOrder;
         }
     }
 }

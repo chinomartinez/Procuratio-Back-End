@@ -67,10 +67,10 @@ namespace Procuratio.Modules.Menues.API.Controllers
             return NoContent();
         }
 
-        [HttpGet("menu")]
-        public async Task<ActionResult<IReadOnlyList<MenuDTO>>> GetMenuAsync()
+        [HttpGet("menu-add-item-to-order")]
+        public async Task<ActionResult<IReadOnlyList<MenuAddItemsToOrderVM>>> GetMenuAddItemsToOrderAsync()
         {
-            return Ok(await _itemService.GetMenuAsync());
+            return Ok(await _itemService.GetMenuAddItemsToOrderAsync());
         }
 
         [HttpGet("id")]
