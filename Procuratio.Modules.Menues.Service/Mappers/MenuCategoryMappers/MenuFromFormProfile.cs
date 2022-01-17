@@ -24,16 +24,10 @@ namespace Procuratio.Modules.Menu.Service.Mappers.MenuCategoryMappers
                 MenuCategory menuCategory = menuCategories.FirstOrDefault(x => x.Id == categoryDTO.MenuCategoryId);
                 menuCategory.Order = categoryDTO.MenuCategoryOrder;
 
-                foreach (SubcategoryForMenuDTO subcategoryDTO in categoryDTO.SubcategoryForMenuList)
+                foreach (ItemForMenuDTO itemDTO in categoryDTO.ItemForMenuList)
                 {
-                    MenuSubcategory menuSubcategory = menuCategory.MenuSubCategories.FirstOrDefault(x => x.Id == subcategoryDTO.MenuSubcategoryId);
-                    menuSubcategory.Order = subcategoryDTO.MenuSubcategoryOrder;
-
-                    foreach (ItemForMenuDTO itemDTO in subcategoryDTO.ItemForMenuList)
-                    {
-                        Item item = menuSubcategory.Items.FirstOrDefault(x => x.Id == itemDTO.ItemId);
-                        item.Order = itemDTO.ItemOrder;
-                    }
+                    Item item = menuCategory.Items.FirstOrDefault(x => x.Id == itemDTO.ItemId);
+                    item.Order = itemDTO.ItemOrder;
                 }
             }
 

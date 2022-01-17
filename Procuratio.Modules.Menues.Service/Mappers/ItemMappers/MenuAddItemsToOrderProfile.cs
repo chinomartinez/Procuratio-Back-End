@@ -9,10 +9,8 @@ namespace Procuratio.Modules.Menu.Service.Mappers.ItemMappers
         public MenuAddItemsToOrderProfile()
         {
             CreateMap<Item, MenuAddItemsToOrderVM>()
-                .ForMember(x => x.MenuCategoryId, x => x.MapFrom(x => x.MenuSubcategory.MenuCategory.Id))
-                .ForMember(x => x.MenuCategoryName, x => x.MapFrom(x => x.MenuSubcategory.MenuCategory.Name))
-                .ForMember(x => x.MenuSubCategoryId, x => x.MapFrom(x => x.MenuSubcategory.Id))
-                .ForMember(x => x.MenuSubcategoryName, x => x.MapFrom(x => x.MenuSubcategory.Name))
+                .ForMember(x => x.MenuCategoryId, x => x.MapFrom(x => x.MenuCategory.Id))
+                .ForMember(x => x.MenuCategoryName, x => x.MapFrom(x => x.MenuCategory.Name))
                 .ForMember(x => x.ItemId, x => x.MapFrom(x => x.Id))
                 .ForMember(x => x.ItemName, x => x.MapFrom(x => x.Name))
                 .ForMember(x => x.PriceInsideRestaurant, x => x.MapFrom(x => x.PriceInsideRestaurant))

@@ -15,7 +15,6 @@ namespace Procuratio.Modules.Menues.Service
         {
             services.AddScoped<IMenuCategoryService, MenuCategoryService>();
             services.AddScoped<IItemService, ItemService>();
-            services.AddScoped<IMenuSubcategoryService, MenuSubCategoryService>();
 
             services.AddTransient<IItemModuleAPI, ItemModuleAPI>();
 

@@ -15,7 +15,6 @@ namespace Procuratio.Modules.Menues.DataAccess
         {
             services.AddScoped<IMenuCategoryRepository, MenuCategoryRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<IMenuSubcategoryRepository, MenuSubcategoryRepository>();
 
             services.AddSQLServer<MenuDbContext>();
 

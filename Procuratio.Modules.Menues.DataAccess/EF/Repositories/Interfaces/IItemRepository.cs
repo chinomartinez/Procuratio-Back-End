@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces
 {
     public interface IItemRepository : IBaseRepositoryOperations<Item, int>
     {
-        Task<int> GetNextOrderAsync(int menuSubcategoryId);
+        Task<int> GetNextOrderAsync(int menuCategoryId);
 
         Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync();
 

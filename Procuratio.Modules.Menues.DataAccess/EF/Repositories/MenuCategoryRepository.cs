@@ -60,31 +60,25 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
         public async Task<IReadOnlyList<MenuModel>> GetMenuAsync()
         {
-            return await _menuCategory.Include(x => x.MenuSubCategories).ThenInclude(x => x.Items)
+            return await _menuCategory.Include(x => x.Items)
                 .Select(x => new MenuModel
                 {
                     MenuCategoryId = x.Id,
                     MenuCategoryName = x.Name,
                     MenuCategoryOrder = x.Order,
-                    SubcategoriesModel = x.MenuSubCategories.Select(x => new SubcategoryModel
+                    ItemsModel = x.Items.Select(x => new ItemModel
                     {
-                        MenuSubcategoryId = x.Id,
-                        MenuSubcategoryName = x.Name,
-                        MenuSubcategoryOrder = x.Order,
-                        ItemsModel = x.Items.Select(x => new ItemModel
-                        {
-                            ItemId = x.Id,
-                            ItemName = x.Name,
-                            ItemOrder = x.Order
-                        }).OrderBy(x => x.ItemOrder).ToList()
-                    }).OrderBy(x => x.MenuSubcategoryOrder).ToList()
+                        ItemId = x.Id,
+                        ItemName = x.Name,
+                        ItemOrder = x.Order
+                    }).OrderBy(x => x.ItemOrder).ToList()
                 }).OrderBy(x => x.MenuCategoryOrder)
                 .AsNoTracking().ToListAsync();
         }
 
         public async Task<List<MenuCategory>> GetMenuToUpdateAsync()
         {
-            return await _menuCategory.Include(x => x.MenuSubCategories).ThenInclude(x => x.Items).ToListAsync();
+            return await _menuCategory.Include(x => x.Items).ToListAsync();
         }
 
         public async Task UpdateMenuAsync(List<MenuCategory> toUpdate)
