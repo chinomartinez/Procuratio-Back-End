@@ -6,6 +6,6 @@ namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
 {
     public class ItemCreationFormInitializerDTO : IEntityCreationFormInitializerDTO
     {
-        public List<SelectListItemDTO> MenuSubcategories { get; set; } = new List<SelectListItemDTO>();
+        public List<SelectListItemDTO> MenuCategories { get; set; } = new List<SelectListItemDTO>();
     }
 }

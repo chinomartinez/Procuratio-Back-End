@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs;
-using Procuratio.Modules.Menu.Service.DTOs.MenuSubcategoryDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,34 +17,23 @@ namespace Procuratio.Modules.Menu.Service.Mappers.MenuCategoryMappers
                 .ForMember(x => x.MenuCategoryId, x => x.MapFrom(x => x.MenuCategoryId))
                 .ForMember(x => x.MenuCategoryName, x => x.MapFrom(x => x.MenuCategoryName))
                 .ForMember(x => x.MenuCategoryOrder, x => x.MapFrom(x => x.MenuCategoryOrder))
-                .ForMember(x => x.SubcategoryForMenuList, options => options.MapFrom(MapMenuSubcategory));
+                .ForMember(x => x.ItemForMenuList, options => options.MapFrom(MapMenuItem));
         }
 
-        private static List<SubcategoryForMenuDTO> MapMenuSubcategory(MenuModel menuModel, MenuDTO menuDTO)
+        private static List<ItemForMenuDTO> MapMenuItem(MenuModel menuModel, MenuDTO menuDTO)
         {
-            List<SubcategoryForMenuDTO> result = new();
+            List<ItemForMenuDTO> result = new();
 
-            foreach (SubcategoryModel subcategoryItem in menuModel.SubcategoriesModel)
+            foreach (ItemModel item in menuModel.ItemsModel)
             {
-                SubcategoryForMenuDTO subcategoryForMenuDTO = new()
+                ItemForMenuDTO itemForMenuDTO = new()
                 {
-                    MenuSubcategoryId = subcategoryItem.MenuSubcategoryId,
-                    MenuSubcategoryName = subcategoryItem.MenuSubcategoryName,
-                    MenuSubcategoryOrder = subcategoryItem.MenuSubcategoryOrder,
-                    ItemForMenuList = new List<ItemForMenuDTO>()
+                    ItemId = item.ItemId,
+                    ItemName = item.ItemName,
+                    ItemOrder = item.ItemOrder
                 };
 
-                foreach (ItemModel item in subcategoryItem.ItemsModel)
-                {
-                    subcategoryForMenuDTO.ItemForMenuList.Add(new ItemForMenuDTO
-                    {
-                        ItemId = item.ItemId,
-                        ItemName = item.ItemName,
-                        ItemOrder = item.ItemOrder
-                    });
-                }
-
-                result.Add(subcategoryForMenuDTO);
+                result.Add(itemForMenuDTO);
             }
 
             return result;
