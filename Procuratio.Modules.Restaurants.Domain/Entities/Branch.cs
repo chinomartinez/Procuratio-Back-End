@@ -10,7 +10,7 @@ namespace Procuratio.Modules.Restaurants.Domain.Entities
 
         public string Address { get; set; }
 
-        public int? Withdrawn { get; set; }
+        public string Phone { get; set; }
 
         public DateTime? DateWithdrawn { get; set; }
     }

@@ -66,7 +66,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
                     MenuCategoryId = x.Id,
                     MenuCategoryName = x.Name,
                     MenuCategoryOrder = x.Order,
-                    ItemsModel = x.Items.Select(x => new ItemModel
+                    ItemsModel = x.Items.Select(x => new ItemMenuModel
                     {
                         ItemId = x.Id,
                         ItemName = x.Name,
@@ -93,6 +93,25 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             {
                 var sdsdsd = e.Message;
             }
+        }
+
+        public async Task<IReadOnlyList<OnlineMenuModel>> GetDineInOnlineMenuAsync(int branchId)
+        {
+            return await _menuCategory.IgnoreQueryFilters().Include(x => x.Items)
+                .Where(x => x.BranchId == branchId && x.Items.Count > 0).Select(x => new OnlineMenuModel
+                {
+                    MenuCategoryName = x.Name,
+                    CategoryOrder = x.Order,
+                    ItemsModel = x.Items.Where(x => x.PriceInsideRestaurant != null && x.BranchId == branchId).Select(x => new ItemOnlineMenuModel
+                    {
+                        ItemId = x.Id,
+                        ItemName = x.Name,
+                        Description = x.Description,
+                        Image = x.Image,
+                        Price = (decimal)x.PriceInsideRestaurant,
+                        ItemOrder = x.Order
+                    }).OrderBy(x => x.ItemOrder).ToList()
+                }).OrderBy(x => x.CategoryOrder).AsNoTracking().ToListAsync();
         }
     }
 }

@@ -14,6 +14,6 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models
 
         public int MenuCategoryOrder { get; set; }
 
-        public List<ItemModel> ItemsModel { get; set; }
+        public List<ItemMenuModel> ItemsModel { get; set; }
     }
 }

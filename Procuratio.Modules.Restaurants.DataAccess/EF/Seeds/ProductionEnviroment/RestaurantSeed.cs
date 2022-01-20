@@ -9,7 +9,24 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Seeds.ProductionEnviromen
         {
             if (restaurantDbSet.Any()) return;
 
-            restaurantDbSet.Add(new Domain.Entities.Restaurant() { Id = 1, Name = "El DOMO", Slogan = "Experiencias sensoriales" });
+            restaurantDbSet.Add(new Domain.Entities.Restaurant() 
+            {
+                Id = 1, 
+                Name = "El DOMO", 
+                Slogan = "Experiencias sensoriales", 
+                Image = string.Empty,
+                Branches = new System.Collections.Generic.List<Domain.Entities.Branch>()
+                {
+                    new Domain.Entities.Branch()
+                    {
+                        Id = 1,
+                        RestaurantId = 1,
+                        Address = "Direccion falsa 5600",
+                        Phone = "03034274171",
+                        DateWithdrawn = null
+                    }
+                }
+            });
         }
     }
 }

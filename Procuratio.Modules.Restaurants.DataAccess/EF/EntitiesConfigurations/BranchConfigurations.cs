@@ -9,6 +9,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<Branch> builder)
         {
             builder.Property(x => x.Address).HasMaxLength(30).IsRequired();
+            builder.Property(x => x.Phone).HasMaxLength(30).IsRequired();
 
             builder.Property(x => x.DateWithdrawn);
         }

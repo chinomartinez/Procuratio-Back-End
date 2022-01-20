@@ -24,7 +24,7 @@ namespace Procuratio.Modules.Menu.Service.Mappers.MenuCategoryMappers
         {
             List<ItemForMenuDTO> result = new();
 
-            foreach (ItemModel item in menuModel.ItemsModel)
+            foreach (ItemMenuModel item in menuModel.ItemsModel)
             {
                 ItemForMenuDTO itemForMenuDTO = new()
                 {

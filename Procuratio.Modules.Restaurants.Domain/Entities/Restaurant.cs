@@ -9,6 +9,8 @@ namespace Procuratio.Modules.Restaurants.Domain.Entities
 
         public string Slogan { get; set; }
 
+        public string Image { get; set; }
+
         public List<Branch> Branches { get; set; }
     }
 }

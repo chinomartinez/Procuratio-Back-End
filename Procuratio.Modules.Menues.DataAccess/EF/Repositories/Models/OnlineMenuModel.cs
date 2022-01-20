@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models
 {
-    public class ItemModel
+    public class OnlineMenuModel
     {
-        public int ItemId { get; set; }
+        public string MenuCategoryName { get; set; }
 
-        public string ItemName { get; set; }
+        public int CategoryOrder { get; set; }
 
-        public int ItemOrder { get; set; }
+        public List<ItemOnlineMenuModel> ItemsModel { get; set; }
     }
 }
