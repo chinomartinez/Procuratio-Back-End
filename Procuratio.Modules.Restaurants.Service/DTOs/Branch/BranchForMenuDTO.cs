@@ -16,6 +16,10 @@ namespace Procuratio.Modules.Restaurant.Service.DTOs.Branch
 
         public string Image { get; set; }
 
+        public string Instagram { get; set; }
+
+        public string Location { get; set; }
+
         public string Address { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Procuratio.Modules.Restaurant.API.Controllers
             _branchService = branchService;
         }
 
-        [HttpGet("branch-for-menu/{branchId:int}")]
+        [HttpGet("for-menu/{branchId:int}")]
         [AllowAnonymous]
         public async Task<ActionResult<BranchForMenuDTO>> GetBranchForMenu(int branchId)
         {

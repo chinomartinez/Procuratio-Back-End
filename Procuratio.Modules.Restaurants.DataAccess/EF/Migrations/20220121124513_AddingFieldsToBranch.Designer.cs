@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Restaurants.DataAccess;
 
 namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    partial class RestaurantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220121124513_AddingFieldsToBranch")]
+    partial class AddingFieldsToBranch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,8 +37,8 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
 
                     b.Property<string>("Instagram")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Location")
                         .IsRequired()

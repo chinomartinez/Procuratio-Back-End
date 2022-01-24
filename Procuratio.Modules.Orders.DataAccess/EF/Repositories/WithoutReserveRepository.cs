@@ -49,6 +49,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             await _withoutReserve.AddAsync(toCreate);
 
             await _ordersDbContext.SaveChangesAsync();
+
+            toCreate.Password = $"{toCreate.Id}-{toCreate.OrderId}";
+
+            await UpdateAsync(toCreate);
         }
 
         public async Task DeleteAsync(WithoutReserve entity)

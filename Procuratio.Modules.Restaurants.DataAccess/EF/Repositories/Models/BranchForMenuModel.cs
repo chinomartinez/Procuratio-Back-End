@@ -16,6 +16,10 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Models
 
         public string Phone { get; set; }
 
+        public string Instagram { get; set; }
+
+        public string Location { get; set; }
+
         public string Image { get; set; }
 
         public string Address { get; set; }

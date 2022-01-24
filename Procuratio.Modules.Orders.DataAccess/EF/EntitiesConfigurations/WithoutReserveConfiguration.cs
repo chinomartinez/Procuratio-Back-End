@@ -8,6 +8,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<WithoutReserve> builder)
         {
+            builder.Property(x => x.Password).HasMaxLength(200).IsRequired();
         }
     }
 }

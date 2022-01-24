@@ -107,6 +107,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
                         ItemId = x.Id,
                         ItemName = x.Name,
                         Description = x.Description,
+                        ForKitchen = x.ForKitchen,
                         Image = x.Image,
                         Price = (decimal)x.PriceInsideRestaurant,
                         ItemOrder = x.Order

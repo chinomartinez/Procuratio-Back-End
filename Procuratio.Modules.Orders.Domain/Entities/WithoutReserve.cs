@@ -8,6 +8,8 @@ namespace Procuratio.Modules.Orders.Domain.Entities
         public int OrderId { get; set; }
         public Order Order { get; set; }
 
+        public string Password { get; set; }
+
         public short WithoutReserveStateId { get; set; }
         public WithoutReserveState WithoutReserveState { get; set; }
     }

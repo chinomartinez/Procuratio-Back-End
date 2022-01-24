@@ -29,6 +29,7 @@ namespace Procuratio.Modules.Menu.Service.Mappers.MenuCategoryMappers
                     ItemId = item.ItemId,
                     ItemName = item.ItemName,
                     Description = item.Description,
+                    ForKitchen = item.ForKitchen,
                     Image = item.Image,
                     Price = item.Price
                 };

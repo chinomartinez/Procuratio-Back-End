@@ -31,7 +31,9 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories
                 Slogan = x.Restaurant.Slogan,
                 Phone = x.Phone,
                 Address = x.Address,
-                Image = x.Restaurant.Image
+                Image = x.Restaurant.Image,
+                Location = x.Location,
+                Instagram = x.Instagram
 
             }).FirstAsync(x => x.Id == branchId);
         }

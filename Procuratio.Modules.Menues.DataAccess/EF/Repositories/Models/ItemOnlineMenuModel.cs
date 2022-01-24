@@ -14,6 +14,8 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models
 
         public string Description { get; set; }
 
+        public bool ForKitchen { get; set; }
+
         public int ItemOrder { get; set; }
 
         public decimal Price { get; set; }

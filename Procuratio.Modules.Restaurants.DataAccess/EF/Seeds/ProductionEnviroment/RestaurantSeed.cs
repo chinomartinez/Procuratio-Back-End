@@ -23,6 +23,8 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Seeds.ProductionEnviromen
                         RestaurantId = 1,
                         Address = "Direccion falsa 5600",
                         Phone = "03034274171",
+                        Instagram = "https://www.instagram.com/procuratiosoftware/",
+                        Location = string.Empty,
                         DateWithdrawn = null
                     }
                 }

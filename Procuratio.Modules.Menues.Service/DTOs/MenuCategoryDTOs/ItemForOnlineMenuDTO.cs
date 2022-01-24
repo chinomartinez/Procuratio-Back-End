@@ -14,6 +14,8 @@ namespace Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs
 
         public string Description { get; set; }
 
+        public bool ForKitchen { get; set; }
+
         public decimal Price { get; set; }
 
         public string Image { get; set; }
