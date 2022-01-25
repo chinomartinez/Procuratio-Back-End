@@ -20,7 +20,6 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
         {
             MenuCategoryStateSeed.StartMenuCategoryStateSeed(menuesDbContext.MenuCategoryState);
             ItemStateSeed.StartItemStateSeed(menuesDbContext.ItemState);
-            MenuSubCategoryStateSeed.StartMenuSubCategoryStateSeed(menuesDbContext.MenuSubCategoryState);
         }
 
         private static void TestingSeeds(MenuDbContext menuesDbContext)
