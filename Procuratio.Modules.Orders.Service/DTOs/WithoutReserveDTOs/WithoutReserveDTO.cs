@@ -8,6 +8,8 @@ namespace Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs
 
         public int OrderId { get; set; }
 
+        public string Password { get; set; }
+
         public short WithoutReserveStateId { get; set; }
     }
 }

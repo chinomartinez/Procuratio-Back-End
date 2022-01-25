@@ -9,6 +9,8 @@ namespace Procuratio.Modules.Menues.Service.Services.Interfaces
     {
         Task<IReadOnlyList<MenuDTO>> GetMenuAsync();
 
+        Task<IReadOnlyList<OnlineMenuDTO>> GetDineInOnlineMenuAsync(int branchId);
+
         Task UpdateMenuAsync(List<MenuDTO> menuDTOs);
     }
 }

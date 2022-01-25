@@ -18,7 +18,6 @@ namespace Procuratio.Modules.Menues.DataAccess
         #region DbSet of entities
         public DbSet<Item> Item { get; set; }
         public DbSet<MenuCategory> MenuCategory { get; set; }
-        public DbSet<MenuSubcategory> MenuSubCategory { get; set; }
         #endregion
 
         #region DbSet of intermediate entities
@@ -27,7 +26,6 @@ namespace Procuratio.Modules.Menues.DataAccess
         #region DbSet of state entities
         public DbSet<MenuCategoryState> MenuCategoryState { get; set; }
         public DbSet<ItemState> ItemState { get; set; }
-        public DbSet<MenuSubCategoryState> MenuSubCategoryState { get; set; }
         #endregion
 
         public MenuDbContext(DbContextOptions<MenuDbContext> options, ITenantService tenantService) : base(options)

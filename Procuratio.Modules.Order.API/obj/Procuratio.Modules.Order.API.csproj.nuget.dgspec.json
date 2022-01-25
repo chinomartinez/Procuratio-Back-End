@@ -1,27 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj": {}
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj",
         "projectName": "Procuratio.Modules.Menu.Shared",
-        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj",
         "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\obj\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Menu.Shared\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -64,24 +58,18 @@
         }
       }
     },
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj",
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj",
         "projectName": "Procuratio.Modules.Order.API",
-        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.API\\Procuratio.Modules.Order.API.csproj",
         "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Order.API\\obj\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -94,14 +82,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj"
               },
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
               },
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
               }
             }
           }
@@ -134,24 +122,18 @@
         }
       }
     },
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj",
         "projectName": "Procuratio.Modules.Order.DataAccess",
-        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj",
         "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -164,11 +146,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj"
               },
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
               }
             }
           }
@@ -201,24 +183,18 @@
         }
       }
     },
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj",
         "projectName": "Procuratio.Modules.Order.Domain",
-        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Domain\\Procuratio.Modules.Order.Domain.csproj",
         "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Domain\\obj\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -231,8 +207,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj"
               }
             }
           }
@@ -265,24 +241,18 @@
         }
       }
     },
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj",
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj",
         "projectName": "Procuratio.Modules.Order.Service",
-        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Service\\Procuratio.Modules.Order.Service.csproj",
         "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.Service\\obj\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.Service\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -295,17 +265,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj"
               },
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj"
               },
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
               },
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
               }
             }
           }
@@ -338,24 +308,18 @@
         }
       }
     },
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj",
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj",
         "projectName": "Procuratio.Shared.ProcuratioFramework",
-        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.ProcuratioFramework.ProcuratioFramework\\Procuratio.Shared.ProcuratioFramework.csproj",
         "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.ProcuratioFramework.ProcuratioFramework\\obj\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.ProcuratioFramework.ProcuratioFramework\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -368,11 +332,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
               },
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj"
               }
             }
           }
@@ -415,24 +379,18 @@
         }
       }
     },
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj",
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj",
         "projectName": "Procuratio.Shared.Abstractions",
-        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj",
         "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\obj\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -493,24 +451,18 @@
         }
       }
     },
-    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj",
         "projectName": "Procuratio.Shared.Infrastructure",
-        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\Procuratio.Shared.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -523,8 +475,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
-                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj"
               }
             }
           }

@@ -14,6 +14,8 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces
 
         Task<IReadOnlyList<MenuModel>> GetMenuAsync();
 
+        Task<IReadOnlyList<OnlineMenuModel>> GetDineInOnlineMenuAsync(int branchId);
+
         Task<List<MenuCategory>> GetMenuToUpdateAsync();
 
         Task UpdateMenuAsync(List<MenuCategory> toUpdate);

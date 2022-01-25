@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
+using Procuratio.Modules.Order.Service.Exceptions;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
@@ -9,6 +10,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.Service.Services
@@ -103,6 +105,27 @@ namespace Procuratio.Modules.Orders.Service.Services
             if (withoutReserve is null) { throw new WithoutReserveNotFoundException(); }
 
             return withoutReserve;
+        }
+
+        public async Task<CutomerAuthenticationResponseDTO> OnlineMenuAuth(CustomerCredentialsDTO customerCredentials)
+        {
+            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
+
+            if (!regex.IsMatch(customerCredentials.Password)) { throw new InvalidPasswordException(); }
+
+            string[] values = customerCredentials.Password.Split('-');
+
+            string response = await _withoutReserveRepository.OnlineMenuAuth(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+
+            if (response is not null) 
+            {
+                return new CutomerAuthenticationResponseDTO
+                {
+                    OrderKey = response
+                };
+            }
+
+            return null;
         }
     }
 }

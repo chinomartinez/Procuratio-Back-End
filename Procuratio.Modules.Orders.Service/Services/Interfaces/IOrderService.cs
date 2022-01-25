@@ -14,6 +14,8 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 
         Task UpdateOrderDetailAsync(OrderFromFormDTO updateDTO, int id);
 
+        Task UpdateOrderDetailFromCustomerAsync(ShoppingCartFromFormDTO shoppingCartFromFormDTO);
+
         Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressForKitchenAsync();
 
         Task OrderForDeliverAsync(int id);

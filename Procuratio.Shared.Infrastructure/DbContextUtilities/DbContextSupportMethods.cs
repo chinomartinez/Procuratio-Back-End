@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 using Procuratio.Shared.Abstractions.Tenant;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Procuratio.Shared.Infrastructure.DbContextDbContextUtilities
@@ -10,15 +11,20 @@ namespace Procuratio.Shared.Infrastructure.DbContextDbContextUtilities
     {
         public static void BeforeSaveChanges(ChangeTracker changeTracker, ITenantService tenantService)
         {
-            int branchId = tenantService.GetBranchId();
+            int? branchId = tenantService.GetBranchId();
 
-            foreach (var entry in changeTracker.Entries<ITenant>().ToList())
+            if (branchId is not null)
             {
-                switch (entry.State)
+                List<EntityEntry<ITenant>> entries = changeTracker.Entries<ITenant>().ToList();
+
+                foreach (var entry in entries)
                 {
-                    case EntityState.Added:
-                        entry.Entity.BranchId = branchId;
-                        break;
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            entry.Entity.BranchId = (int)branchId;
+                            break;
+                    }
                 }
             }
         }

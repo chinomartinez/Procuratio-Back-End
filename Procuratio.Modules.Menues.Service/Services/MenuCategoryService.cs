@@ -81,6 +81,13 @@ namespace Procuratio.Modules.Menues.Service.Services
             return _mapper.Map<IReadOnlyList<MenuDTO>>(menuesModel);
         }
 
+        public async Task<IReadOnlyList<OnlineMenuDTO>> GetDineInOnlineMenuAsync(int branchId)
+        {
+            IReadOnlyList<OnlineMenuModel> onlineMenuesModel = await _menuCategoryRepository.GetDineInOnlineMenuAsync(branchId);
+
+            return _mapper.Map<IReadOnlyList<OnlineMenuDTO>>(onlineMenuesModel);
+        }
+
         public async Task UpdateAsync(MenuCategoryFromFormDTO updateDTO, int id)
         {
             MenuCategory menuCategory = await GetMenuCategoryAsync(id);

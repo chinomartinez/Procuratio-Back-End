@@ -13,6 +13,6 @@ namespace Procuratio.Modules.Menues.Domain.Entities
         public short MenuCategoryStateId { get; set; }
         public MenuCategoryState MenuCategoryState { get; set; }
 
-        public List<MenuSubcategory> MenuSubCategories { get; set; }
+        public List<Item> Items { get; set; }
     }
 }

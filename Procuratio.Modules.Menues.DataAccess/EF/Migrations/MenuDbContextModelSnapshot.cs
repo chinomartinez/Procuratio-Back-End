@@ -51,7 +51,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.Property<short>("ItemStateId")
                         .HasColumnType("smallint");
 
-                    b.Property<int>("MenuSubcategoryId")
+                    b.Property<int>("MenuCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -74,12 +74,12 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
 
                     b.HasIndex("ItemStateId");
 
-                    b.HasIndex("MenuSubcategoryId");
+                    b.HasIndex("MenuCategoryId");
 
                     b.HasIndex("BranchId", "Name")
                         .IsUnique();
 
-                    b.HasIndex("BranchId", "Order", "MenuSubcategoryId")
+                    b.HasIndex("BranchId", "Order", "MenuCategoryId")
                         .IsUnique();
 
                     b.ToTable("Item");
@@ -119,45 +119,6 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.ToTable("MenuCategory");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.MenuSubcategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BranchId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MenuCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<short>("MenuSubCategoryStateId")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MenuCategoryId");
-
-                    b.HasIndex("MenuSubCategoryStateId");
-
-                    b.HasIndex("BranchId", "Name")
-                        .IsUnique();
-
-                    b.HasIndex("BranchId", "Order", "MenuCategoryId")
-                        .IsUnique();
-
-                    b.ToTable("MenuSubCategory");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.ItemState", b =>
                 {
                     b.Property<short>("Id")
@@ -188,21 +149,6 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.ToTable("MenuCategoryState");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.MenuSubCategoryState", b =>
-                {
-                    b.Property<short>("Id")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("StateName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MenuSubCategoryState");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.Item", b =>
                 {
                     b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.ItemState", "ItemState")
@@ -211,15 +157,15 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.MenuSubcategory", "MenuSubcategory")
+                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.MenuCategory", "MenuCategory")
                         .WithMany("Items")
-                        .HasForeignKey("MenuSubcategoryId")
+                        .HasForeignKey("MenuCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ItemState");
 
-                    b.Navigation("MenuSubcategory");
+                    b.Navigation("MenuCategory");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.MenuCategory", b =>
@@ -233,31 +179,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.Navigation("MenuCategoryState");
                 });
 
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.MenuSubcategory", b =>
-                {
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.MenuCategory", "MenuCategory")
-                        .WithMany("MenuSubCategories")
-                        .HasForeignKey("MenuCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Procuratio.Modules.Menues.Domain.Entities.State.MenuSubCategoryState", "MenuSubCategoryState")
-                        .WithMany("CollectionNavigationProperty")
-                        .HasForeignKey("MenuSubCategoryStateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MenuCategory");
-
-                    b.Navigation("MenuSubCategoryState");
-                });
-
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.MenuCategory", b =>
-                {
-                    b.Navigation("MenuSubCategories");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.MenuSubcategory", b =>
                 {
                     b.Navigation("Items");
                 });
@@ -268,11 +190,6 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.MenuCategoryState", b =>
-                {
-                    b.Navigation("CollectionNavigationProperty");
-                });
-
-            modelBuilder.Entity("Procuratio.Modules.Menues.Domain.Entities.State.MenuSubCategoryState", b =>
                 {
                     b.Navigation("CollectionNavigationProperty");
                 });

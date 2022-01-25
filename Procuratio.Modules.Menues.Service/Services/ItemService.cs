@@ -17,20 +17,20 @@ namespace Procuratio.Modules.Menues.Service.Services
     {
         private readonly IItemRepository _itemRepository;
         private readonly IMapper _mapper;
-        private readonly IMenuSubcategoryRepository _menuSubcategoryRepository;
+        private readonly IMenuCategoryRepository _menuCategoryRepository;
 
-        public ItemService(IItemRepository itemRepository, IMapper mapper, IMenuSubcategoryRepository menuSubcategoryRepository)
+        public ItemService(IItemRepository itemRepository, IMapper mapper, IMenuCategoryRepository menuCategoryRepository)
         {
             _itemRepository = itemRepository;
             _mapper = mapper;
-            _menuSubcategoryRepository = menuSubcategoryRepository;
+            _menuCategoryRepository = menuCategoryRepository;
         }
 
         public async Task AddAsync(ItemFromFormDTO addDTO)
         {
             Item item = new();
 
-            int nextOrder = await _itemRepository.GetNextOrderAsync((int)addDTO.MenuSubcategoryId);
+            int nextOrder = await _itemRepository.GetNextOrderAsync((int)addDTO.MenuCategoryId);
 
             item = _mapper.Map(addDTO, item, opt =>
             {
@@ -68,9 +68,9 @@ namespace Procuratio.Modules.Menues.Service.Services
         {
             ItemCreationFormInitializerDTO itemCreationFormInitializerDTO = new();
 
-            List<MenuSubcategory> menuSubcategories = await _menuSubcategoryRepository.GetAllAsync();
+            List<MenuCategory> menuSubcategories = await _menuCategoryRepository.GetAllAsync();
 
-            menuSubcategories.ForEach(x => itemCreationFormInitializerDTO.MenuSubcategories.Add(new SelectListItemDTO() { Id = x.Id.ToString(), Description = x.Name }));
+            menuSubcategories.ForEach(x => itemCreationFormInitializerDTO.MenuCategories.Add(new SelectListItemDTO() { Id = x.Id.ToString(), Description = x.Name }));
 
             return itemCreationFormInitializerDTO;
         }
@@ -85,8 +85,6 @@ namespace Procuratio.Modules.Menues.Service.Services
         public async Task UpdateAsync(ItemFromFormDTO updateDTO, int id)
         {
             Item item = await GetItemAsync(id);
-
-            updateDTO.MenuSubcategoryId = item.MenuSubcategoryId;
 
             item = _mapper.Map(updateDTO, item);
 

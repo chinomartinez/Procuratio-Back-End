@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
 using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
@@ -62,5 +63,21 @@ namespace Procuratio.Modules.Orders.API.Controllers
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
         public async Task<ActionResult<WithoutReserveEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id) => Ok(await _withoutReserveService.GetEntityEditionFormInitializerAsync(id));
+
+        [HttpPost("online-menu-auth")]
+        [AllowAnonymous]
+        public async Task<ActionResult<CutomerAuthenticationResponseDTO>> OnlineMenuAuth([FromBody] CustomerCredentialsDTO customerCredentialsDTO)
+        {
+            CutomerAuthenticationResponseDTO cutomerAuthenticationResponseDTO = await _withoutReserveService.OnlineMenuAuth(customerCredentialsDTO);
+
+            if (cutomerAuthenticationResponseDTO is not null)
+            {
+                return Ok(cutomerAuthenticationResponseDTO);
+            }
+            else
+            {
+                return BadRequest("Inicio de sesión invalido");
+            }
+        }
     }
 }

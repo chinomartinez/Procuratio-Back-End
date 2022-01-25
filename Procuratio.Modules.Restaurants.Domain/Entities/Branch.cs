@@ -10,7 +10,11 @@ namespace Procuratio.Modules.Restaurants.Domain.Entities
 
         public string Address { get; set; }
 
-        public int? Withdrawn { get; set; }
+        public string Phone { get; set; }
+
+        public string Instagram { get; set; }
+
+        public string Location { get; set; } // cambiar al tipo point de NetTopologySuite.Geometries
 
         public DateTime? DateWithdrawn { get; set; }
     }

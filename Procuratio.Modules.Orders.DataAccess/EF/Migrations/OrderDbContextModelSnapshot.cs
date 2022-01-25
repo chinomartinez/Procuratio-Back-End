@@ -328,6 +328,11 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<short>("WithoutReserveStateId")
                         .HasColumnType("smallint");
 

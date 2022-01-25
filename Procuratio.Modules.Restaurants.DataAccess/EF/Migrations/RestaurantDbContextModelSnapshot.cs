@@ -33,10 +33,22 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                     b.Property<DateTime?>("DateWithdrawn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RestaurantId")
-                        .HasColumnType("int");
+                    b.Property<string>("Instagram")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Withdrawn")
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -50,6 +62,11 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Name")
                         .IsRequired()

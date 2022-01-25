@@ -58,8 +58,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         public async Task<List<Table>> GetAvailablesTablesAsync()
         {
             return await _table
-                //.Include(x => x.TableXOrder).ThenInclude(x => x.Order).ThenInclude(x => x.WithoutReserve)
-                //.Include(x => x.TableXOrder).ThenInclude(x => x.Order).ThenInclude(x => x.Reserve)
                 .Where(x => !x.TableXOrder.Any(x => x.Order.OrderStateId != (short)OrderState.State.Paid))
                 .AsNoTracking().ToListAsync();
         }
