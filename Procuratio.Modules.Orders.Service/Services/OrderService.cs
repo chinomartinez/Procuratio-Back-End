@@ -5,12 +5,14 @@ using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
+using Procuratio.Modules.Order.Service.Exceptions;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.Service.Services
@@ -86,6 +88,38 @@ namespace Procuratio.Modules.Order.Service.Services
             if (order is null) { throw new OrderNotFoundException(); }
 
             order = _mapper.Map(updateDTO, order);
+
+            await _orderRepository.UpdateAsync(order);
+        }
+
+        public async Task UpdateOrderDetailFromCustomerAsync(ShoppingCartFromFormDTO shoppingCartFromFormDTO)
+        {
+            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
+
+            if (!regex.IsMatch(shoppingCartFromFormDTO.OrderKey)) { throw new InvalidPasswordException(); }
+
+            string[] values = shoppingCartFromFormDTO.OrderKey.Split('-');
+
+            Orders.Domain.Entities.Order order = await _orderRepository.GetOrderForUpdateOrderDetailFromCustomerAsync(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            OrderFromFormDTO orderFormDTO = new()
+            {
+                Items = new List<ItemForOrderFormDTO>()
+            };
+
+            shoppingCartFromFormDTO.Items.ForEach(x => orderFormDTO.Items.Add(new ItemForOrderFormDTO()
+            {
+                ItemId = x.Id,
+                Quantity = x.Quantity,
+                Note = x.Comment,
+                ForKitchen = x.ForKitchen
+            }));
+
+            order = _mapper.Map(orderFormDTO, order);
+
+            order.OrderDetails.ForEach(x => x.BranchId = Convert.ToInt32(values[1])); // tengo que poner logica para saltear el save si es de un endpoint anonimo
 
             await _orderRepository.UpdateAsync(order);
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
@@ -31,6 +32,14 @@ namespace Procuratio.Modules.Order.API.Controllers
         public async Task<ActionResult> UpdateOrderDetailAsync([FromBody] OrderFromFormDTO updateDTO, int id)
         {
             await _orderService.UpdateOrderDetailAsync(updateDTO, id);
+            return NoContent();
+        }
+
+        [HttpPut("order-detail-from-customer")]
+        [AllowAnonymous]
+        public async Task<ActionResult> UpdateOrderDetailFromCustomerAsync([FromBody] ShoppingCartFromFormDTO shoppingCartFromFormDTO)
+        {
+            await _orderService.UpdateOrderDetailFromCustomerAsync(shoppingCartFromFormDTO);
             return NoContent();
         }
 
