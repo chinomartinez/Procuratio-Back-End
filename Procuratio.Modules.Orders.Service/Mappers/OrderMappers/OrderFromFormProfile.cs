@@ -33,7 +33,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                 if (itemsAlreadyInDatabase.Contains(itemDTO.ItemId))
                 {
                     OrderDetail currentOrderDetail = result.First(x => x.ItemId == itemDTO.ItemId);
-                    currentOrderDetail.Note = itemDTO.Note;
+                    currentOrderDetail.Comment = itemDTO.Comment;
 
                     if (itemDTO.ForKitchen)
                     {
@@ -64,7 +64,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
 
                     orderDetail.OrderId = order.Id;
                     orderDetail.ItemId = itemDTO.ItemId;
-                    orderDetail.Note = itemDTO.Note;
+                    orderDetail.Comment = itemDTO.Comment;
 
                     if (itemDTO.ForKitchen)
                     {

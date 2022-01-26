@@ -28,7 +28,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.OrderMappers
                 orderDetailForListItemsDTOs.Add(new OrderDetailForListItemsDTO()
                 {
                     ItemId = x.ItemId,
-                    Note = x.Note,
+                    Comment = x.Comment,
                     Quantity = x.Quantity,
                     QuantityInKitchen = x.QuantityInKitchen
                 });

@@ -12,7 +12,7 @@ namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen
 
         public string ItemName { get; set; }
 
-        public string Note { get; set; }
+        public string Comment { get; set; }
 
         public int Quantity { get; set; }
     }
