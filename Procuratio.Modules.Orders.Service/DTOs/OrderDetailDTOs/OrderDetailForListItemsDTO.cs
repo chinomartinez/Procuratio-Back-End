@@ -12,7 +12,7 @@
 
         public bool ForKitchen { get; set; }
 
-        public string Note { get; set; }
+        public string Comment { get; set; }
 
         public int Quantity { get; set; }
 

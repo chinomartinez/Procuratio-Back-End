@@ -10,7 +10,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.EntitiesConfigurations
         {
             builder.HasIndex(x => new { x.BranchId, x.ItemId, x.OrderId }).IsUnique();
 
-            builder.Property(x => x.Note).HasMaxLength(200);
+            builder.Property(x => x.Comment).HasMaxLength(200);
         }
     }
 }

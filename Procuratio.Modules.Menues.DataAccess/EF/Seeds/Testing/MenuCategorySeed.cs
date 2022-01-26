@@ -10,7 +10,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
     {
         internal static void StartMenuCategorySeed(DbSet<MenuCategory> menuCategoryDbSet)
         {
-            if (menuCategoryDbSet.Any()) return;
+            if (menuCategoryDbSet.IgnoreQueryFilters().Any()) return;
 
             menuCategoryDbSet.AddRange(new MenuCategory()
             {

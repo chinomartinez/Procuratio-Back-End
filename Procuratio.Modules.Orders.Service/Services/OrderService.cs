@@ -113,7 +113,7 @@ namespace Procuratio.Modules.Order.Service.Services
             {
                 ItemId = x.Id,
                 Quantity = x.Quantity,
-                Note = x.Comment,
+                Comment = x.Comment,
                 ForKitchen = x.ForKitchen
             }));
 
@@ -156,7 +156,7 @@ namespace Procuratio.Modules.Order.Service.Services
                 {
                     Id = currentOrderDetail.OrderId,
                     ItemName = item.Name,
-                    Note = currentOrderDetail.Note,
+                    Comment = currentOrderDetail.Comment,
                     Quantity = currentOrderDetail.QuantityInKitchen
                 });
             }
