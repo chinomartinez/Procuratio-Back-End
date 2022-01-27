@@ -60,7 +60,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
         public async Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync()
         {
             return await _item.Include(x => x.MenuCategory)
-                .Where(x => x.ItemStateId == (short)ItemState.State.Available 
+                .Where(x => x.ItemStateId == (short)ItemState.State.Available
                 && x.MenuCategory.MenuCategoryStateId == (short)MenuCategoryState.State.Available)
                 .OrderByDescending(x => x.MenuCategory.Order).ThenByDescending(x => x.Order)
                 .ThenByDescending(x => x.Order).AsNoTracking().ToListAsync();

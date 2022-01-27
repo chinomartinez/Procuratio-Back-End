@@ -1,5 +1,7 @@
-﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
+﻿using Procuratio.Modules.Restaurant.Domain.Entities;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain;
 using System;
+using System.Collections.Generic;
 
 namespace Procuratio.Modules.Restaurants.Domain.Entities
 {
@@ -17,5 +19,7 @@ namespace Procuratio.Modules.Restaurants.Domain.Entities
         public string Location { get; set; } // cambiar al tipo point de NetTopologySuite.Geometries
 
         public DateTime? DateWithdrawn { get; set; }
+
+        public List<BranchSetting> BranchSettings { get; set; }
     }
 }

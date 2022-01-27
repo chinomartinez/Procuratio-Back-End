@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Procuratio.Modules.Restaurant.Domain.Entities;
+using Procuratio.Modules.Restaurant.Domain.Entities.intermediate;
 using Procuratio.Modules.Restaurants.DataAccess.EF.Seeds;
 using Procuratio.Modules.Restaurants.Domain.Entities;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.SeedConfiguration.Interfaces;
@@ -17,9 +19,12 @@ namespace Procuratio.Modules.Restaurants.DataAccess
         #region DbSet of entities
         public DbSet<Domain.Entities.Restaurant> Restaurant { get; set; }
         public DbSet<Branch> Branch { get; set; }
+        public DbSet<BranchSetting> BranchSetting { get; set; }
+        public DbSet<Setting> Setting { get; set; }
         #endregion
 
         #region DbSet of intermediate entities
+        public DbSet<AllowedSettingValue> AllowedSettingValue { get; set; }
         #endregion
 
         #region DbSet of state entities

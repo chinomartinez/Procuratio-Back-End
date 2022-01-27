@@ -24,7 +24,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
             {
                 withoutReserve.Order.TableXOrders.Clear();
             }
-            else 
+            else
             {
                 withoutReserve.Order = new Orders.Domain.Entities.Order
                 {

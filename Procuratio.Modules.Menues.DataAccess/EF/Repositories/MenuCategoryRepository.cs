@@ -2,7 +2,6 @@
 using Procuratio.Modules.Menu.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;
-using Procuratio.Modules.Menues.Domain.Entities.State;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

@@ -4,7 +4,6 @@ using Procuratio.Modules.Menu.Service.DTOs.MenuCategoryDTOs;
 using Procuratio.Modules.Menues.API.Controllers.Base;
 using Procuratio.Modules.Menues.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.ModelBinder;
 using Procuratio.Shared.Infrastructure.Controllers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
