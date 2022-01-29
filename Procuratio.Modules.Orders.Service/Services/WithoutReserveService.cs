@@ -6,7 +6,6 @@ using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
-using Procuratio.ProcuratioFramework.ProcuratioFramework;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
@@ -117,7 +116,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
             string response = await _withoutReserveRepository.OnlineMenuAuth(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
 
-            if (response is not null) 
+            if (response is not null)
             {
                 return new CutomerAuthenticationResponseDTO
                 {

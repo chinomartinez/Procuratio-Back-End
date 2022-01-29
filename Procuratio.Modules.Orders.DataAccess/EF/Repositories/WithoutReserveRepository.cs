@@ -71,7 +71,7 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
 
         public async Task<string> OnlineMenuAuth(int orderId, int branchId)
         {
-            var result = await _withoutReserve.IgnoreQueryFilters().Select(x => new { x.OrderId, x.BranchId, x.Password}).FirstOrDefaultAsync(x => x.OrderId == orderId && x.BranchId == branchId);
+            var result = await _withoutReserve.IgnoreQueryFilters().Select(x => new { x.OrderId, x.BranchId, x.Password }).FirstOrDefaultAsync(x => x.OrderId == orderId && x.BranchId == branchId);
 
             return result?.Password;
         }

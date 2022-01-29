@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
+﻿using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using System.Collections.Generic;
 using System.Security.Claims;

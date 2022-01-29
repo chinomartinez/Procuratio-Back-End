@@ -24,7 +24,7 @@ namespace Procuratio.Modules.Order.Service.Services
         private readonly IItemModuleAPI _itemModuleAPI;
         private readonly IOrderDetailRepository _orderDetailRepository;
 
-        public OrderService(IOrderRepository orderRepository, IMapper mapper, IItemModuleAPI itemModuleAPI, 
+        public OrderService(IOrderRepository orderRepository, IMapper mapper, IItemModuleAPI itemModuleAPI,
             IOrderDetailRepository orderDetailRepository)
         {
             _orderRepository = orderRepository;

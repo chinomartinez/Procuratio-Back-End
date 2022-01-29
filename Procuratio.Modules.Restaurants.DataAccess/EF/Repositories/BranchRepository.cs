@@ -3,10 +3,8 @@ using Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Restaurants.DataAccess;
 using Procuratio.Modules.Restaurants.Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories
@@ -36,6 +34,39 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories
                 Instagram = x.Instagram
 
             }).FirstAsync(x => x.Id == branchId);
+        }
+
+        public async Task<List<SettingsModel>> GetSettings(int branchId)
+        {
+            return await _branch.IgnoreQueryFilters().Where(x => x.BranchSettings.Any(x => x.BranchId == branchId)).SelectMany(c => c.BranchSettings, (c, i) =>
+                           new SettingsModel()
+                           {
+                               SettingId = i.SettingId,
+                               BranchId = i.BranchId,
+                               Description = i.Setting.Description,
+                               DataType = i.Setting.DataType,
+                               Value = i.UnconstrainedValue,
+                               Caption = i.Setting.AllowedSettingValues.FirstOrDefault(x => x.SettingId == i.SettingId).Caption,
+                               MinValue = i.Setting.MinValue,
+                               MaxValue = i.Setting.MaxValue
+
+                           }).ToListAsync();
+        }
+
+        public async Task<Branch> GetBranchForUpdateSettings(int branchId)
+        {
+            return await _branch.IgnoreQueryFilters().Where(x => x.Id == branchId)
+                .Include(x => x.BranchSettings)
+                .ThenInclude(x => x.Setting)
+                .ThenInclude(x => x.AllowedSettingValues)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task UpdateSettings(Branch branch)
+        {
+            _branch.Update(branch);
+
+            await _restaurantDbContext.SaveChangesAsync();
         }
     }
 }
