@@ -104,22 +104,9 @@ namespace Procuratio.Modules.Order.Service.Services
 
             if (order is null) { throw new OrderNotFoundException(); }
 
-            OrderFromFormDTO orderFormDTO = new()
-            {
-                Items = new List<ItemForOrderFormDTO>()
-            };
+            order = _mapper.Map(shoppingCartFromFormDTO, order);
 
-            shoppingCartFromFormDTO.Items.ForEach(x => orderFormDTO.Items.Add(new ItemForOrderFormDTO()
-            {
-                ItemId = x.Id,
-                Quantity = x.Quantity,
-                Comment = x.Comment,
-                ForKitchen = x.ForKitchen
-            }));
-
-            order = _mapper.Map(orderFormDTO, order);
-
-            order.OrderDetails.ForEach(x => x.BranchId = Convert.ToInt32(values[1])); // tengo que poner logica para saltear el save si es de un endpoint anonimo
+            order.OrderDetails.ForEach(x => x.BranchId = Convert.ToInt32(values[1]));
 
             await _orderRepository.UpdateAsync(order);
         }
