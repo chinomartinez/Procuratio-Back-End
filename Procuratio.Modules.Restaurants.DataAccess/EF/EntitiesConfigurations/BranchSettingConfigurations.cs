@@ -14,6 +14,8 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.EntitiesConfigurations
         public void Configure(EntityTypeBuilder<BranchSetting> builder)
         {
             builder.Property(x => x.UnconstrainedValue).IsRequired(false);
+
+            builder.HasIndex(x => new { x.BranchId, x.SettingId }).IsUnique();
         }
     }
 }

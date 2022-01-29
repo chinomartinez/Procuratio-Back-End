@@ -32,5 +32,12 @@ namespace Procuratio.Modules.Restaurant.API.Controllers
         {
             return Ok(await _branchService.GetSettings((int)_tenantService.GetBranchId()));
         }
+
+        [HttpPut("setting")]
+        public async Task<ActionResult> UpdateSettings([FromBody] SettingsFromFormDTO settingsFromFormDTO)
+        {
+            await _branchService.UpdateSettings(settingsFromFormDTO, (int)_tenantService.GetBranchId());
+            return NoContent();
+        }
     }
 }

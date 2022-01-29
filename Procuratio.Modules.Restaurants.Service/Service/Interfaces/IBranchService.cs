@@ -9,5 +9,7 @@ namespace Procuratio.Modules.Restaurant.Service.Service.Interfaces
         Task<BranchForMenuDTO> GetBranchForMenu(int branchId);
 
         Task<List<SettingsDTO>> GetSettings(int branchId);
+
+        Task UpdateSettings(SettingsFromFormDTO settingFromFormDTO, int branchId);
     }
 }
