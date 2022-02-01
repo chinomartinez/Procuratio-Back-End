@@ -4,9 +4,13 @@ using Procuratio.Modules.Securities.API.Controllers.Base;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
+using Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using Procuratio.Shared.Infrastructure.Controllers;
+using Procuratio.Shared.ProcuratioFramework.JWT;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
@@ -67,6 +71,19 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         public async Task<ActionResult<UserEditionFormInitializerDTO>> GetEntityEditionFormInitializerAsync(int id)
         {
             return Ok(await _userService.GetEntityEditionFormInitializerAsync(id));
+        }
+
+        [HttpGet("profile-edition-form-initializer")]
+        public async Task<ActionResult<ProfileEditionFormInitializerDTO>> GetProfileEditionFormInitializerAsync()
+        {
+            return Ok(await _userService.GetProfileEditionFormInitializerAsync(Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JWTClaimNames.UserId).Value)));
+        }
+
+        [HttpPut("profile")]
+        public async Task<ActionResult> UpdateProfileAsync([FromForm] ProfileFromFormDTO profileFromFormDTO)
+        {
+            await _userService.UpdateProfileAsync(profileFromFormDTO, Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JWTClaimNames.UserId).Value));
+            return NoContent();
         }
 
         [HttpPost("create-users-and-roles")]

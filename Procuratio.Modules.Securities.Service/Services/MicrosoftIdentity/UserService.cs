@@ -9,6 +9,7 @@ using Procuratio.Modules.Securities.Service.Exceptions;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
+using Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile;
 using Procuratio.Shared.Infrastructure.Exceptions;
 using Procuratio.Shared.ProcuratioFramework.JWT;
 using System;
@@ -107,6 +108,32 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             await _userRepository.CreateCreateUsersAndRolesAsync();
         }
 
+        public async Task<ProfileEditionFormInitializerDTO> GetProfileEditionFormInitializerAsync(int userId)
+        {
+            User user = await _userRepository.GetAsync(userId);
+
+            IList<string> roles = await _userRepository.GetRolesAsync(user);
+
+            ProfileEditionFormInitializerDTO profileEditionFormInitializerDTO = new();
+
+            return _mapper.Map<ProfileEditionFormInitializerDTO>(user, opt =>
+            {
+                opt.AfterMap((src, dest) =>
+                {
+                    dest.Roles = roles;
+                });
+            });
+        }
+
+        public async Task UpdateProfileAsync(ProfileFromFormDTO profileFromFormDTO, int userId)
+        {
+            User user = await _userRepository.GetAsync(userId);
+
+            user = _mapper.Map(profileFromFormDTO, user);
+
+            await _userRepository.UpdateAsync(user);
+        }
+
         public async Task<AuthenticationResponseDTO> AuthAsync(UserCredentialsDTO userCredentialsDTO)
         {
             User user = await _userRepository.GetByUserNameIgnoringQueryFiltersAsync(userCredentialsDTO.UserName);
@@ -127,6 +154,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             List<Claim> claims = new()
             {
                 new Claim(JWTClaimNames.BranchId, user.BranchId.ToString()),
+                new Claim(JWTClaimNames.UserId, user.Id.ToString()),
                 new Claim(JWTClaimNames.UserFullName, $"{user.Name} {user.Surname}"),
             };
 
