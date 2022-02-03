@@ -5,6 +5,7 @@ using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentit
 using Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.ValidateChangeState;
 using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
+using System;
 using System.Reflection;
 
 namespace Procuratio.Modules.Securities.Service
@@ -29,9 +30,9 @@ namespace Procuratio.Modules.Securities.Service
             return services;
         }
 
-        public static IApplicationBuilder AddSecurityApps(this IApplicationBuilder app)
+        public static IApplicationBuilder AddSecurityApps(this IApplicationBuilder app, IServiceProvider serviceProvider)
         {
-            app.AddDatabase();
+            app.AddDatabase(serviceProvider);
 
             return app;
         }

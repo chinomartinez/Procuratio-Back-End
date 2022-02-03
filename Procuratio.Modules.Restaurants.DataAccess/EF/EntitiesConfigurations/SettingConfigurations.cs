@@ -13,7 +13,24 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.EntitiesConfigurations
     {
         public void Configure(EntityTypeBuilder<Setting> builder)
         {
-            
+            builder.HasData(new Setting()
+            {
+                Id = (short)Setting.Type.OnlineMenu,
+                Description = "Online menu",
+                Constrained = true,
+                DataType = "boolean",
+                MinValue = null,
+                MaxValue = null
+            },
+            new Setting()
+            {
+                Id = (short)Setting.Type.OrderFromTable,
+                Description = "Order from table",
+                Constrained = true,
+                DataType = "boolean",
+                MinValue = null,
+                MaxValue = null
+            });
         }
     }
 }

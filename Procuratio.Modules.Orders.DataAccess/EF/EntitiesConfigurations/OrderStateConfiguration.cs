@@ -1,16 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Procuratio.Modules.Orders.Domain.Entities.State;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Procuratio.Modules.Orders.DataAccess.EF.Seeds.ProductionEnviroment
+namespace Procuratio.Modules.Order.DataAccess.EF.EntitiesConfigurations
 {
-    internal static class OrderStateSeed
+    internal class OrderStateConfiguration : IEntityTypeConfiguration<OrderState>
     {
-        internal static void StartOrderStateSeed(DbSet<OrderState> orderStateDbSet)
+        public void Configure(EntityTypeBuilder<OrderState> builder)
         {
-            if (orderStateDbSet.Any()) return;
-
-            orderStateDbSet.AddRange(
+            builder.HasData(
                 new OrderState() { Id = (short)OrderState.State.Pending, StateName = "Pendiente" },
                 new OrderState() { Id = (short)OrderState.State.InProgress, StateName = "En proceso" },
                 new OrderState() { Id = (short)OrderState.State.ForDelivery, StateName = "Para entrega" },

@@ -15,7 +15,5 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.Mi
         Task<IList<Claim>> GetClaimsAsync(User user);
 
         Task<IList<string>> GetRolesAsync(User user);
-
-        Task CreateCreateUsersAndRolesAsync();
     }
 }

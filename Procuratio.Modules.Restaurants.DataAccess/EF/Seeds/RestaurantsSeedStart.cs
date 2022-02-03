@@ -1,5 +1,4 @@
-﻿using Procuratio.Modules.Restaurant.DataAccess.EF.Seeds.ProductionEnviroment;
-using Procuratio.Modules.Restaurants.DataAccess.EF.Seeds.ProductionEnviroment;
+﻿using Procuratio.Modules.Restaurants.DataAccess.EF.Seeds.ProductionEnviroment;
 
 namespace Procuratio.Modules.Restaurants.DataAccess.EF.Seeds
 {
@@ -13,7 +12,6 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.Seeds
 
         private static void ProductionEnviromentSeeds(RestaurantDbContext restaurantsDbContext)
         {
-            SettingSeed.StartSettingSeed(restaurantsDbContext.Setting);
             restaurantsDbContext.SaveChanges();
         }
 

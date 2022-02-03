@@ -15,4 +15,8 @@
 	  <ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="EF\Seeds\ProductionEnviroment\" />
+	</ItemGroup>
+
 </Project>
