@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using Procuratio.Modules.Securities.DataAccess.EF.JWT;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
@@ -10,6 +14,7 @@ using Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 
 [assembly: InternalsVisibleTo(assemblyName: "Procuratio.Modules.Security.Service")]
@@ -28,6 +33,20 @@ namespace Procuratio.Modules.Securities.DataAccess
             services.AddScoped<IUserXRolRepository, UserXRolRepository>();
 
             services.AddSQLServer<SecurityDbContext>();
+
+            JsonWebToken JWToptions = services.GetOptions<JsonWebToken>(sectionName: nameof(JsonWebToken));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWToptions.Key)),
+                    ClockSkew = TimeSpan.Zero
+                });
 
             services.AddIdentity<User, Role>(config =>
             {
@@ -78,6 +97,18 @@ namespace Procuratio.Modules.Securities.DataAccess
             }
 
             return app;
+        }
+
+        private static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
+        {
+            using ServiceProvider serviceProvider = services.BuildServiceProvider();
+            IConfiguration configuration = serviceProvider.GetRequiredService<IConfiguration>();
+            IConfiguration section = configuration.GetSection(sectionName);
+            T options = new();
+
+            section.Bind(options);
+
+            return options;
         }
     }
 }
