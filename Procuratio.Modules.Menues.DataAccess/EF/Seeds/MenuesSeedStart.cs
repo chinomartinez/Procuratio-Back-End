@@ -1,5 +1,4 @@
 ﻿using Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing;
-using Procuratio.Modules.Menues.DataAccess.EF.Seeds.ProductionEnviroment;
 
 namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
 {
@@ -18,8 +17,6 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
 
         private static void ProductionEnviromentSeeds(MenuDbContext menuesDbContext)
         {
-            MenuCategoryStateSeed.StartMenuCategoryStateSeed(menuesDbContext.MenuCategoryState);
-            ItemStateSeed.StartItemStateSeed(menuesDbContext.ItemState);
         }
 
         private static void TestingSeeds(MenuDbContext menuesDbContext)
