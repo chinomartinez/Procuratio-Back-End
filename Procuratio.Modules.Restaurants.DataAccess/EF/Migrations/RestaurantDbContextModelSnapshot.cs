@@ -20,6 +20,94 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Procuratio.Modules.Restaurant.Domain.Entities.BranchSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SettingId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UnconstrainedValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SettingId");
+
+                    b.HasIndex("BranchId", "SettingId")
+                        .IsUnique();
+
+                    b.ToTable("BranchSetting");
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Restaurant.Domain.Entities.Setting", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Constrained")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DataType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MaxValue")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinValue")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Setting");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Constrained = true,
+                            DataType = "boolean",
+                            Description = "Online menu"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Constrained = true,
+                            DataType = "boolean",
+                            Description = "Order from table"
+                        });
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Restaurant.Domain.Entities.intermediate.AllowedSettingValue", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ItemValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SettingId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SettingId");
+
+                    b.ToTable("AllowedSettingValue");
+                });
+
             modelBuilder.Entity("Procuratio.Modules.Restaurants.Domain.Entities.Branch", b =>
                 {
                     b.Property<int>("Id")
@@ -33,10 +121,22 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                     b.Property<DateTime?>("DateWithdrawn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RestaurantId")
-                        .HasColumnType("int");
+                    b.Property<string>("Instagram")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Withdrawn")
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -50,6 +150,11 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -69,6 +174,36 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                     b.ToTable("Restaurant");
                 });
 
+            modelBuilder.Entity("Procuratio.Modules.Restaurant.Domain.Entities.BranchSetting", b =>
+                {
+                    b.HasOne("Procuratio.Modules.Restaurants.Domain.Entities.Branch", "Branch")
+                        .WithMany("BranchSettings")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Procuratio.Modules.Restaurant.Domain.Entities.Setting", "Setting")
+                        .WithMany("BranchSetting")
+                        .HasForeignKey("SettingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+
+                    b.Navigation("Setting");
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Restaurant.Domain.Entities.intermediate.AllowedSettingValue", b =>
+                {
+                    b.HasOne("Procuratio.Modules.Restaurant.Domain.Entities.Setting", "Setting")
+                        .WithMany("AllowedSettingValues")
+                        .HasForeignKey("SettingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Setting");
+                });
+
             modelBuilder.Entity("Procuratio.Modules.Restaurants.Domain.Entities.Branch", b =>
                 {
                     b.HasOne("Procuratio.Modules.Restaurants.Domain.Entities.Restaurant", "Restaurant")
@@ -78,6 +213,18 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                         .IsRequired();
 
                     b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Restaurant.Domain.Entities.Setting", b =>
+                {
+                    b.Navigation("AllowedSettingValues");
+
+                    b.Navigation("BranchSetting");
+                });
+
+            modelBuilder.Entity("Procuratio.Modules.Restaurants.Domain.Entities.Branch", b =>
+                {
+                    b.Navigation("BranchSettings");
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Restaurants.Domain.Entities.Restaurant", b =>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen
+﻿namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen
 {
     public class OrderWithOrderDetailVM
     {
@@ -12,7 +6,7 @@ namespace Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen
 
         public string ItemName { get; set; }
 
-        public string Note { get; set; }
+        public string Comment { get; set; }
 
         public int Quantity { get; set; }
     }

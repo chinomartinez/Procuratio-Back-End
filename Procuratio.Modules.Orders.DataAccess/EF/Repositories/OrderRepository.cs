@@ -24,6 +24,11 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
             return await _order.Include(x => x.OrderDetails).FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<Orders.Domain.Entities.Order> GetOrderForUpdateOrderDetailFromCustomerAsync(int id, int branchId)
+        {
+            return await _order.IgnoreQueryFilters().Include(x => x.OrderDetails).FirstOrDefaultAsync(x => x.Id == id && x.BranchId == branchId);
+        }
+
         public async Task UpdateAsync(Orders.Domain.Entities.Order toUpdate)
         {
             _order.Update(toUpdate);
@@ -48,12 +53,17 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
 
         public async Task<Orders.Domain.Entities.Order> GetWithOrderDetailAsync(int Id)
         {
-            return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == Id);
+            return await _order.Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == Id);
         }
 
         public async Task<Orders.Domain.Entities.Order> GetOrderDetailForKitchenAsync(int id)
         {
-            return await _order.Include(x => x.OrderDetails).SingleOrDefaultAsync(x => x.Id == id);
+            return await _order.Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<Orders.Domain.Entities.Order> GetOrderDetailForBillAsync(int id)
+        {
+            return await _order.Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }

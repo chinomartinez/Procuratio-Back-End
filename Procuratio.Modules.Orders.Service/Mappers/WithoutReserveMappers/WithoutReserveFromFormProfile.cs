@@ -14,6 +14,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
         public WithoutReserveFromFormProfile()
         {
             CreateMap<WithoutReserveFromFormDTO, WithoutReserve>()
+             .ForMember(x => x.Password, x => x.MapFrom(x => string.Empty))
              .ForMember(x => x.Order, options => options.MapFrom(MapOrder));
         }
 
@@ -23,7 +24,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
             {
                 withoutReserve.Order.TableXOrders.Clear();
             }
-            else 
+            else
             {
                 withoutReserve.Order = new Orders.Domain.Entities.Order
                 {

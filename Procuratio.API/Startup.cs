@@ -32,6 +32,8 @@ namespace Procuratio.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddInfrastructure();
+
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -77,24 +79,7 @@ namespace Procuratio.API
 
             services.AddHttpContextAccessor();
 
-            JsonWebToken JWToptions = services.GetOptions<JsonWebToken>(sectionName: nameof(JsonWebToken));
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWToptions.Key)),
-                    ClockSkew = TimeSpan.Zero
-                });
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("IsAdmin", policy => policy.RequireClaim("role", "Admin"));
-            });
+            services.AddAuthorization();
 
             services.AddOrderModule();
             services.AddMenuModule();
@@ -102,13 +87,13 @@ namespace Procuratio.API
             services.AddRestaurantModule();
             services.AddReportModule();
             services.AddSecurityModule();
-
-            services.AddInfrastructure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
+            app.UseInfrastructure();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -122,8 +107,6 @@ namespace Procuratio.API
 
             app.UseHttpsRedirection();
 
-            app.UseInfrastructure();
-
             app.UseRouting();
 
             app.UseCors();
@@ -133,7 +116,7 @@ namespace Procuratio.API
             app.UseCustomerModule();
             app.UseRestaurantModule();
             app.UseReportModule();
-            app.UseSecurityModule();
+            app.UseSecurityModule(serviceProvider);
 
             app.UseAuthorization();
 

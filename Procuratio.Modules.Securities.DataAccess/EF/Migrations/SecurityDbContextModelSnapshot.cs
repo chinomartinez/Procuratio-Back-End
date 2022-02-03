@@ -246,9 +246,6 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BranchId")
-                        .HasColumnType("int");
-
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
@@ -269,6 +266,18 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserState");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            StateName = "Activo"
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            StateName = "Dado de baja"
+                        });
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity.RoleClaim", b =>

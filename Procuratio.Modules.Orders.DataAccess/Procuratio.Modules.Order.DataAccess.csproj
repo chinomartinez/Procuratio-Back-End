@@ -10,6 +10,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="EF\Seeds\ProductionEnviroment\" />
 	  <Folder Include="EF\Seeds\Testing\" />
 	</ItemGroup>
 

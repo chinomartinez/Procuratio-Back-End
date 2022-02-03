@@ -1,5 +1,4 @@
-﻿using Procuratio.Modules.Securities.DataAccess.EF.Seeds.ProductionEnviroment;
-
+﻿
 namespace Procuratio.Modules.Securities.DataAccess.EF.Seeds
 {
     internal static class SecuritiesSeedStart
@@ -17,7 +16,6 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Seeds
 
         private static void TestingSeeds(SecurityDbContext securitiesDbContext)
         {
-            UserStateSeed.StartUserStateSeed(securitiesDbContext.UserState);
             securitiesDbContext.SaveChanges();
         }
     }

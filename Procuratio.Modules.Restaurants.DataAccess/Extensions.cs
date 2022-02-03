@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Restaurant.DataAccess.EF.Repositories;
+using Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.Middleware;
 using Procuratio.Shared.Infrastructure.SQLServer;
 using System.Runtime.CompilerServices;
@@ -11,6 +13,9 @@ namespace Procuratio.Modules.Restaurants.DataAccess
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
+            services.AddScoped<IBranchRepository, BranchRepository>();
+            services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+
             services.AddSQLServer<RestaurantDbContext>();
 
             return services;

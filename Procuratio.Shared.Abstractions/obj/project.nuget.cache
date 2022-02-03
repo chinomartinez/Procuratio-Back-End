@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qq2NpViuWslVC23ZcnjiDfzBy450ao7G7uxYYio7XWkjLrsncsqc4t5yxHNvdSvVfT1R2biSJf2a5z9e90JD6g==",
+  "dgSpecHash": "mviKBAYZp01MuHKr5WxfFwkRHl7JGMajcve0EFnUCPdcWvPWCcAeq4I0u8asFCvYpVUWtrDFw5Inu/ZZE3oJAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Back-End\\Procuratio\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj",
+  "projectFilePath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Shared.Abstractions\\Procuratio.Shared.Abstractions.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\tomi_\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

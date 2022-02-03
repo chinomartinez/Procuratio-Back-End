@@ -10,31 +10,22 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
     {
         internal static void StartMenuCategorySeed(DbSet<MenuCategory> menuCategoryDbSet)
         {
-            if (menuCategoryDbSet.Any()) return;
+            if (menuCategoryDbSet.IgnoreQueryFilters().Any()) return;
 
-            menuCategoryDbSet.IgnoreQueryFilters();
             menuCategoryDbSet.AddRange(new MenuCategory()
             {
-                Name = "Bebidas",
+                Name = "Gaseosas",
                 MenuCategoryStateId = (short)MenuCategoryState.State.Available,
                 BranchId = 1,
                 Order = 1,
-                MenuSubCategories = new List<MenuSubcategory>()
-                {
-                    new MenuSubcategory()
-                    {
-                        Name = "Gaseosas",
-                        Order = 1,
-                        MenuSubCategoryStateId = (short)MenuSubCategoryState.State.Available,
-                        BranchId = 1,
-                        Items = new List<Item>()
+                Items = new List<Item>()
                         {
                             new Item()
                             {
                                 Name = "Coca cola 500 ml",
-                                Description = null,
+                                Description = string.Empty,
                                 ForKitchen = false,
-                                Image = null,
+                                Image = string.Empty,
                                 Order = 1,
                                 PriceInsideRestaurant = 200,
                                 PriceOutsideRestaurant = 150,
@@ -45,9 +36,9 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                             new Item()
                             {
                                 Name = "Sprite 500 ml",
-                                Description = null,
+                                Description = string.Empty,
                                 ForKitchen = false,
-                                Image = null,
+                                Image = string.Empty,
                                 Order = 2,
                                 PriceInsideRestaurant = 200,
                                 PriceOutsideRestaurant = 150,
@@ -58,9 +49,9 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                             new Item()
                             {
                                 Name = "Fanta 1 L",
-                                Description = null,
+                                Description = string.Empty,
                                 ForKitchen = false,
-                                Image = null,
+                                Image = string.Empty,
                                 Order = 3,
                                 PriceInsideRestaurant = 300,
                                 PriceOutsideRestaurant = 250,
@@ -69,8 +60,6 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                                 BranchId = 1
                             }
                         }
-                    }
-                }
             },
             new MenuCategory()
             {
@@ -78,22 +67,14 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                 MenuCategoryStateId = (short)MenuCategoryState.State.Available,
                 BranchId = 1,
                 Order = 2,
-                MenuSubCategories = new List<MenuSubcategory>()
+                Items = new List<Item>()
                 {
-                    new MenuSubcategory()
-                    {
-                        Name = "Tallarines",
-                        Order = 1,
-                        MenuSubCategoryStateId = (short)MenuSubCategoryState.State.Available,
-                        BranchId = 1,
-                        Items = new List<Item>()
-                        {
                             new Item()
                             {
                                 Name = "Espagueti",
-                                Description = null,
+                                Description = "Con salsa bolognesa",
                                 ForKitchen = true,
-                                Image = null,
+                                Image = string.Empty,
                                 Order = 1,
                                 PriceInsideRestaurant = 350,
                                 PriceOutsideRestaurant = 275,
@@ -104,9 +85,9 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                             new Item()
                             {
                                 Name = "Ñoquis",
-                                Description = null,
+                                Description = "Con queso provolone",
                                 ForKitchen = true,
-                                Image = null,
+                                Image = string.Empty,
                                 Order = 2,
                                 PriceInsideRestaurant = 325,
                                 PriceOutsideRestaurant = 225,
@@ -117,9 +98,9 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                             new Item()
                             {
                                 Name = "Rigatoni",
-                                Description = null,
+                                Description = "Con salsa a elección",
                                 ForKitchen = true,
-                                Image = null,
+                                Image = string.Empty,
                                 Order = 3,
                                 PriceInsideRestaurant = 150,
                                 PriceOutsideRestaurant = 125,
@@ -127,8 +108,55 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                                 ItemStateId = (short)ItemState.State.Available,
                                 BranchId = 1
                             }
-                        }
-                    }
+                }
+            },
+            new MenuCategory()
+            {
+                Name = "Vinos",
+                MenuCategoryStateId = (short)MenuCategoryState.State.Available,
+                BranchId = 1,
+                Order = 3,
+                Items = new List<Item>()
+                {
+                            new Item()
+                            {
+                                Name = "Toro 1L",
+                                Description = string.Empty,
+                                ForKitchen = true,
+                                Image = string.Empty,
+                                Order = 1,
+                                PriceInsideRestaurant = 400,
+                                PriceOutsideRestaurant = 500,
+                                Code = "0007",
+                                ItemStateId = (short)ItemState.State.Available,
+                                BranchId = 1
+                            },
+                            new Item()
+                            {
+                                Name = "Cristobal 1L",
+                                Description = string.Empty,
+                                ForKitchen = false,
+                                Image = string.Empty,
+                                Order = 2,
+                                PriceInsideRestaurant = 425,
+                                PriceOutsideRestaurant = 525,
+                                Code = "0008",
+                                ItemStateId = (short)ItemState.State.Available,
+                                BranchId = 1
+                            },
+                            new Item()
+                            {
+                                Name = "Santa Isabel 1L",
+                                Description = string.Empty,
+                                ForKitchen = false,
+                                Image = string.Empty,
+                                Order = 3,
+                                PriceInsideRestaurant = 325,
+                                PriceOutsideRestaurant = 225,
+                                Code = "0009",
+                                ItemStateId = (short)ItemState.State.Available,
+                                BranchId = 1
+                            }
                 }
             });
         }

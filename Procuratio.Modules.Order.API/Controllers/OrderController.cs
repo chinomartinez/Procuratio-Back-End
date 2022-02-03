@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
@@ -18,6 +19,12 @@ namespace Procuratio.Modules.Order.API.Controllers
             _orderService = orderService;
         }
 
+        [HttpDelete("delete-order-detail/" + "{orderId:int}" + "/{itemId:int}")]
+        public async Task<ActionResult<int>> DeleteOrderDetailAsync(int orderId, int itemId)
+        {
+            return Ok(await _orderService.DeleteOrderDetailAsync(orderId, itemId));
+        }
+
         [HttpGet("edit-order-detail/" + BasicStringsForControllers.IntParameter + "/{dineIn:bool}")]
         public async Task<ActionResult<OrderEditionFormInitializerDTO>> GetOrderDetailAsync(int id, bool dineIn) => Ok(await _orderService.GetOrderDetailAsync(id, dineIn));
 
@@ -25,6 +32,14 @@ namespace Procuratio.Modules.Order.API.Controllers
         public async Task<ActionResult> UpdateOrderDetailAsync([FromBody] OrderFromFormDTO updateDTO, int id)
         {
             await _orderService.UpdateOrderDetailAsync(updateDTO, id);
+            return NoContent();
+        }
+
+        [HttpPut("order-detail-from-customer")]
+        [AllowAnonymous]
+        public async Task<ActionResult> UpdateOrderDetailFromCustomerAsync([FromBody] ShoppingCartFromFormDTO shoppingCartFromFormDTO)
+        {
+            await _orderService.UpdateOrderDetailFromCustomerAsync(shoppingCartFromFormDTO);
             return NoContent();
         }
 
@@ -67,5 +82,8 @@ namespace Procuratio.Modules.Order.API.Controllers
 
         [HttpGet("dine-in-in-progress")]
         public async Task<ActionResult<IReadOnlyList<OrderInProgressDTO>>> GetInProgressAsync() => Ok(await _orderService.GetInProgressAsync());
+
+        [HttpGet("bill/" + BasicStringsForControllers.IntParameter + "/{dineIn:bool}")]
+        public async Task<ActionResult<List<OrderBillDTO>>> GetBillAsync(int id, bool dineIn) => Ok(await _orderService.GetBillAsync(id, dineIn));
     }
 }

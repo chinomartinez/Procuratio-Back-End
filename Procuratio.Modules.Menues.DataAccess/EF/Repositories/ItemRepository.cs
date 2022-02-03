@@ -49,22 +49,21 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             await _menuDbContext.SaveChangesAsync();
         }
 
-        public async Task<int> GetNextOrderAsync(int menuSubcategoryId)
+        public async Task<int> GetNextOrderAsync(int menuCategoryId)
         {
-            int? lastOrder = await _item.Where(x => x.MenuSubcategoryId == menuSubcategoryId)
+            int? lastOrder = await _item.Where(x => x.MenuCategoryId == menuCategoryId)
                 .MaxAsync<Item, int?>(x => x.Order);
 
-            return lastOrder is null ? 1 : (int)++lastOrder;
+            return lastOrder is null ? 0 : (int)++lastOrder;
         }
 
-        public async Task<IReadOnlyList<Item>> GetMenuAsync()
+        public async Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync()
         {
-            return await _item.Include(x => x.MenuSubcategory).ThenInclude(x => x.MenuCategory)
-                .Where(x => x.ItemStateId == (short)ItemState.State.Available && x.MenuSubcategory.MenuSubCategoryStateId == (short)MenuSubCategoryState.State.Available
-                && x.MenuSubcategory.MenuCategory.MenuCategoryStateId == (short)MenuCategoryState.State.Available)
-                .OrderByDescending(x => x.MenuSubcategory.MenuCategory.Order)
-                .ThenByDescending(x => x.MenuSubcategory.Order).ThenByDescending(x => x.Order)
-                .ThenByDescending(x => x.Order).ToListAsync();
+            return await _item.Include(x => x.MenuCategory)
+                .Where(x => x.ItemStateId == (short)ItemState.State.Available
+                && x.MenuCategory.MenuCategoryStateId == (short)MenuCategoryState.State.Available)
+                .OrderByDescending(x => x.MenuCategory.Order).ThenByDescending(x => x.Order)
+                .ThenByDescending(x => x.Order).AsNoTracking().ToListAsync();
         }
 
         public async Task<List<MenuForOrderDetail>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn)
@@ -77,7 +76,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
                     ForKitchen = x.ForKitchen,
                     Price = dineIn ? (decimal)x.PriceInsideRestaurant : (decimal)x.PriceOutsideRestaurant
 
-                }).ToListAsync();
+                }).AsNoTracking().ToListAsync();
         }
 
         public async Task<List<ItemsForOrderDetailInKitchen>> GetItemsForKitchenAsync(List<int> itemIds)
@@ -88,7 +87,19 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
                     Id = x.Id,
                     Name = x.Name
 
-                }).ToListAsync();
+                }).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<List<ItemsBill>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn)
+        {
+            return await _item.Where(x => itemIds.Contains(x.Id))
+                .Select(x => new ItemsBill
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = dineIn ? (decimal)x.PriceInsideRestaurant : (decimal)x.PriceOutsideRestaurant
+
+                }).AsNoTracking().ToListAsync();
         }
     }
 }

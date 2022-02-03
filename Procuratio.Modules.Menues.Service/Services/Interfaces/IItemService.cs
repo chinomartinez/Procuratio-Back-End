@@ -8,12 +8,14 @@ namespace Procuratio.Modules.Menues.Service.Services.Interfaces
 {
     public interface IItemService : IBaseServiceOperations<ItemDTO, ItemForListDTO, ItemFromFormDTO, ItemCreationFormInitializerDTO, ItemEditionFormInitializerDTO, int>
     {
-        Task<IReadOnlyList<MenuDTO>> GetMenuAsync();
+        Task<IReadOnlyList<MenuAddItemsToOrderVM>> GetMenuAddItemsToOrderAsync();
 
         Task<List<ItemDTO>> GetByIds(List<int> Ids);
 
         Task<List<MenuForOrderDetailDTO>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn);
 
         Task<List<ItemsForOrderDetailInKitchenDTO>> GetItemsForKitchenAsync(List<int> itemIds);
+
+        Task<List<ItemsForBillDTO>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn);
     }
 }

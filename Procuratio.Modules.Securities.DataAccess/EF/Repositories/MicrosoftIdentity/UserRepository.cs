@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
+using Procuratio.Modules.Securities.Domain.Entities.State;
 using Procuratio.Modules.Security.DataAccess.EF.CustomMicrosoftIdentityImplementations;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,16 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
         private readonly DbSet<User> _user;
         private readonly CustomUserManager _userManager;
         private readonly CustomSignInManager _signInManager;
+        private readonly RoleManager<Role> _roleManager;
 
-        public UserRepository(SecurityDbContext securitiesDbContext, CustomUserManager userManager, CustomSignInManager signInManager)
+        public UserRepository(SecurityDbContext securitiesDbContext, CustomUserManager userManager,
+            CustomSignInManager signInManager, RoleManager<Role> roleManager)
         {
             _securitiesDbContext = securitiesDbContext;
             _user = _securitiesDbContext.Users;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         public async Task<IReadOnlyList<User>> BrowseAsync() => await _user.AsNoTracking().ToListAsync();

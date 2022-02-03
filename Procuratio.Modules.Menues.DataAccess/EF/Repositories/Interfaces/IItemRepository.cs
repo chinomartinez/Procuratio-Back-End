@@ -8,12 +8,14 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces
 {
     public interface IItemRepository : IBaseRepositoryOperations<Item, int>
     {
-        Task<int> GetNextOrderAsync(int menuSubcategoryId);
+        Task<int> GetNextOrderAsync(int menuCategoryId);
 
-        Task<IReadOnlyList<Item>> GetMenuAsync();
+        Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync();
 
         Task<List<MenuForOrderDetail>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn);
 
         Task<List<ItemsForOrderDetailInKitchen>> GetItemsForKitchenAsync(List<int> itemIds);
+
+        Task<List<ItemsBill>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn);
     }
 }

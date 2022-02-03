@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Restaurant.Service.Service;
+using Procuratio.Modules.Restaurant.Service.Service.Interfaces;
 using Procuratio.Modules.Restaurants.DataAccess;
-using Procuratio.Modules.Restaurants.Service.Repositories;
-using Procuratio.Modules.Restaurants.Service.Repositories.Interfaces;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -13,7 +13,7 @@ namespace Procuratio.Modules.Restaurants.Service
     {
         public static IServiceCollection AddRestaurantServices(this IServiceCollection services)
         {
-            services.AddScoped<IRestaruantService, RestaruantService>();
+            services.AddScoped<IRestaurantService, RestaurantService>();
             services.AddScoped<IBranchService, BranchService>();
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);

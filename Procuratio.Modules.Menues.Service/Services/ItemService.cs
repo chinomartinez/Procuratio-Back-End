@@ -17,20 +17,20 @@ namespace Procuratio.Modules.Menues.Service.Services
     {
         private readonly IItemRepository _itemRepository;
         private readonly IMapper _mapper;
-        private readonly IMenuSubcategoryRepository _menuSubcategoryRepository;
+        private readonly IMenuCategoryRepository _menuCategoryRepository;
 
-        public ItemService(IItemRepository itemRepository, IMapper mapper, IMenuSubcategoryRepository menuSubcategoryRepository)
+        public ItemService(IItemRepository itemRepository, IMapper mapper, IMenuCategoryRepository menuCategoryRepository)
         {
             _itemRepository = itemRepository;
             _mapper = mapper;
-            _menuSubcategoryRepository = menuSubcategoryRepository;
+            _menuCategoryRepository = menuCategoryRepository;
         }
 
         public async Task AddAsync(ItemFromFormDTO addDTO)
         {
             Item item = new();
 
-            int nextOrder = await _itemRepository.GetNextOrderAsync((int)addDTO.MenuSubcategoryId);
+            int nextOrder = await _itemRepository.GetNextOrderAsync((int)addDTO.MenuCategoryId);
 
             item = _mapper.Map(addDTO, item, opt =>
             {
@@ -68,9 +68,9 @@ namespace Procuratio.Modules.Menues.Service.Services
         {
             ItemCreationFormInitializerDTO itemCreationFormInitializerDTO = new();
 
-            List<MenuSubcategory> menuSubcategories = await _menuSubcategoryRepository.GetAllAsync();
+            List<MenuCategory> menuSubcategories = await _menuCategoryRepository.GetAllAsync();
 
-            menuSubcategories.ForEach(x => itemCreationFormInitializerDTO.MenuSubcategories.Add(new SelectListItemDTO() { Id = x.Id.ToString(), Description = x.Name }));
+            menuSubcategories.ForEach(x => itemCreationFormInitializerDTO.MenuCategories.Add(new SelectListItemDTO() { Id = x.Id.ToString(), Description = x.Name }));
 
             return itemCreationFormInitializerDTO;
         }
@@ -86,8 +86,6 @@ namespace Procuratio.Modules.Menues.Service.Services
         {
             Item item = await GetItemAsync(id);
 
-            updateDTO.MenuSubcategoryId = item.MenuSubcategoryId;
-
             item = _mapper.Map(updateDTO, item);
 
             await _itemRepository.UpdateAsync(item);
@@ -100,11 +98,11 @@ namespace Procuratio.Modules.Menues.Service.Services
             return _mapper.Map<List<ItemDTO>>(items);
         }
 
-        public async Task<IReadOnlyList<MenuDTO>> GetMenuAsync()
+        public async Task<IReadOnlyList<MenuAddItemsToOrderVM>> GetMenuAddItemsToOrderAsync()
         {
-            IReadOnlyList<Item> items = await _itemRepository.GetMenuAsync();
+            IReadOnlyList<Item> items = await _itemRepository.GetMenuAddItemsToOrderAsync();
 
-            return _mapper.Map<IReadOnlyList<MenuDTO>>(items);
+            return _mapper.Map<IReadOnlyList<MenuAddItemsToOrderVM>>(items);
         }
 
         public async Task<List<MenuForOrderDetailDTO>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn)
@@ -116,9 +114,16 @@ namespace Procuratio.Modules.Menues.Service.Services
 
         public async Task<List<ItemsForOrderDetailInKitchenDTO>> GetItemsForKitchenAsync(List<int> itemIds)
         {
-            List<ItemsForOrderDetailInKitchen> menuForOrderDetailList = await _itemRepository.GetItemsForKitchenAsync(itemIds);
+            List<ItemsForOrderDetailInKitchen> itemsForOrderDetailInKitchenList = await _itemRepository.GetItemsForKitchenAsync(itemIds);
 
-            return _mapper.Map<List<ItemsForOrderDetailInKitchenDTO>>(menuForOrderDetailList);
+            return _mapper.Map<List<ItemsForOrderDetailInKitchenDTO>>(itemsForOrderDetailInKitchenList);
+        }
+
+        public async Task<List<ItemsForBillDTO>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn)
+        {
+            List<ItemsBill> itemsForBillList = await _itemRepository.GetItemsFoBillAsync(itemIds, dineIn);
+
+            return _mapper.Map<List<ItemsForBillDTO>>(itemsForBillList);
         }
 
         private async Task<Item> GetItemAsync(int id)

@@ -49,6 +49,10 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             await _withoutReserve.AddAsync(toCreate);
 
             await _ordersDbContext.SaveChangesAsync();
+
+            toCreate.Password = $"{toCreate.OrderId}-{toCreate.BranchId}";
+
+            await UpdateAsync(toCreate);
         }
 
         public async Task DeleteAsync(WithoutReserve entity)
@@ -64,5 +68,12 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         }
 
         public async Task<List<WithoutReserve>> GetByIdsAsync(List<int> ids) => await _withoutReserve.Where(x => ids.Contains(x.Id)).ToListAsync();
+
+        public async Task<string> OnlineMenuAuth(int orderId, int branchId)
+        {
+            var result = await _withoutReserve.IgnoreQueryFilters().Select(x => new { x.OrderId, x.BranchId, x.Password }).FirstOrDefaultAsync(x => x.OrderId == orderId && x.BranchId == branchId);
+
+            return result?.Password;
+        }
     }
 }

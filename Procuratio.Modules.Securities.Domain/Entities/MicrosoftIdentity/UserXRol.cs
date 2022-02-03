@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseEntityDomain.Interfaces;
 
 namespace Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity
 {
-    public class UserXRole : IdentityUserRole<int>, ITenant
+    public class UserXRole : IdentityUserRole<int>
     {
-        public int BranchId { get; set; }
     }
 }

@@ -111,12 +111,12 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
+                    b.Property<string>("Comment")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
@@ -186,6 +186,18 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DeliveryState");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            StateName = "Completado"
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            StateName = "En curso"
+                        });
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.OrderState", b =>
@@ -201,6 +213,38 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OrderState");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            StateName = "Pendiente"
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            StateName = "En proceso"
+                        },
+                        new
+                        {
+                            Id = (short)3,
+                            StateName = "Para entrega"
+                        },
+                        new
+                        {
+                            Id = (short)4,
+                            StateName = "Entregado"
+                        },
+                        new
+                        {
+                            Id = (short)5,
+                            StateName = "Esperando el pago"
+                        },
+                        new
+                        {
+                            Id = (short)6,
+                            StateName = "Pagado"
+                        });
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.ReserveState", b =>
@@ -216,6 +260,33 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReserveState");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            StateName = "Pendiente"
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            StateName = "Sin confirmar"
+                        },
+                        new
+                        {
+                            Id = (short)3,
+                            StateName = "En curso"
+                        },
+                        new
+                        {
+                            Id = (short)4,
+                            StateName = "Completada"
+                        },
+                        new
+                        {
+                            Id = (short)5,
+                            StateName = "No vino"
+                        });
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.TableState", b =>
@@ -231,6 +302,18 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TableState");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            StateName = "Disponible"
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            StateName = "Ocupada"
+                        });
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.TakeAwayState", b =>
@@ -246,6 +329,23 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TakeAwayState");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            StateName = "En curso"
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            StateName = "Completado"
+                        },
+                        new
+                        {
+                            Id = (short)3,
+                            StateName = "No vino"
+                        });
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.State.WithoutReserveState", b =>
@@ -261,6 +361,18 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("WithoutReserveState");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)2,
+                            StateName = "En curso"
+                        },
+                        new
+                        {
+                            Id = (short)1,
+                            StateName = "Completada"
+                        });
                 });
 
             modelBuilder.Entity("Procuratio.Modules.Orders.Domain.Entities.Table", b =>
@@ -327,6 +439,11 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Migrations
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<short>("WithoutReserveStateId")
                         .HasColumnType("smallint");
