@@ -21,7 +21,7 @@ namespace Procuratio.Shared.Infrastructure.Tenant
         {
             int? branchId = null;
 
-            if (ItsAnonymousEndPoint()) { return branchId; }
+            if (AnonymousEndPoint()) { return branchId; }
 
             if (_httpContext is not null)
             {
@@ -40,7 +40,7 @@ namespace Procuratio.Shared.Infrastructure.Tenant
             return branchId;
         }
 
-        private bool ItsAnonymousEndPoint()
+        private bool AnonymousEndPoint()
         {
             Endpoint endpoint = _httpContext?.GetEndpoint();
 

@@ -104,7 +104,7 @@ namespace Procuratio.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             app.UseInfrastructure();
 
@@ -130,7 +130,7 @@ namespace Procuratio.API
             app.UseCustomerModule();
             app.UseRestaurantModule();
             app.UseReportModule();
-            app.UseSecurityModule();
+            app.UseSecurityModule(serviceProvider);
 
             app.UseAuthorization();
 
