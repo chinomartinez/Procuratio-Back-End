@@ -24,7 +24,6 @@ namespace Procuratio.Shared.Infrastructure
                     manager.FeatureProviders.Add(item: new InternalControllerFeatureProvider());
                 });
 
-            // ver si scope o singleton (y ver si el tenant lo dejo con scoped o transient)
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ErrorHandlerMiddleware>();
             services.AddSQLServer();
