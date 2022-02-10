@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Procuratio.API.HubSettings;
 using Procuratio.API.Modules.Notification.API;
+using Procuratio.API.Modules.Notification.API.Services;
 using Procuratio.Modules.Customers.API;
 using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
@@ -40,7 +40,7 @@ namespace Procuratio.API
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins(Configuration.GetValue<string>("Local_FrontEnd_URL"));//.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                    builder.WithOrigins(Configuration.GetValue<string>("Local_FrontEnd_URL"));
                 });
 
                 options.AddPolicy("AllowAllHeaders", builder =>
@@ -96,7 +96,7 @@ namespace Procuratio.API
             services.AddRestaurantModule();
             services.AddReportModule();
             services.AddSecurityModule();
-            //services.AddNotificationModule();
+            services.AddNotificationModule();
 
             services.AddSignalR(options =>
             {
@@ -124,15 +124,13 @@ namespace Procuratio.API
 
             app.UseRouting();
 
-            //app.UseCors(c => c.AllowAnyHeader());
-
             app.UseOrderModule();
             app.UseMenuModule();
             app.UseCustomerModule();
             app.UseRestaurantModule();
             app.UseReportModule();
             app.UseSecurityModule(serviceProvider);
-            //app.UseNotificationModule();
+            app.UseNotificationModule();
 
             app.UseAuthorization();
 
@@ -143,10 +141,6 @@ namespace Procuratio.API
                 endpoints.MapControllers();
                 endpoints.MapHub<CustomerMenuSender>("/CustomerMenuSender");
             });
-            //app.UseSignalR(c =>
-            //{
-            //    c.MapHub<CustomerMenuSender>("/CustomerMenuSender");
-            //});
         }
     }
 }

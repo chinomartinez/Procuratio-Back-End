@@ -110,6 +110,27 @@ namespace Procuratio.Modules.Order.Service.Services
 
             await _orderRepository.UpdateAsync(order);
         }
+        public async Task<List<string>> GetTablesForWaiterNotification(string customerPassword)
+        {
+            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
+
+            if (!regex.IsMatch(customerPassword)) { throw new InvalidPasswordException(); }
+
+            string[] values = customerPassword.Split('-');
+
+            return await _orderRepository.GetTablesForWaiterNotification(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+        }
+
+        public async Task<int?> GetWaiterIdOfTheOrder(string orderKey)
+        {
+            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
+
+            if (!regex.IsMatch(orderKey)) { throw new InvalidPasswordException(); }
+
+            string[] values = orderKey.Split('-');
+
+            return await _orderRepository.GetWaiterIdOfTheOrder(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+        }
 
         public async Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressForKitchenAsync()
         {

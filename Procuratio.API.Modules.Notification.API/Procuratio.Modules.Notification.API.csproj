@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Procuratio.Modules.Notification.Shared\Procuratio.Modules.Notification.Shared.csproj" />
+    <ProjectReference Include="..\Procuratio.ProcuratioFramework.ProcuratioFramework\Procuratio.Shared.ProcuratioFramework.csproj" />
     <ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
   </ItemGroup>
 

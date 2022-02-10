@@ -122,6 +122,60 @@
         }
       }
     },
+    "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.Shared\\Procuratio.Modules.Order.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.Shared\\Procuratio.Modules.Order.Shared.csproj",
+        "projectName": "Procuratio.Modules.Order.Shared",
+        "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.Shared\\Procuratio.Modules.Order.Shared.csproj",
+        "packagesPath": "C:\\Users\\tomi_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\tomi_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -267,6 +321,9 @@
             "projectReferences": {
               "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj": {
                 "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Menu.Shared\\Procuratio.Modules.Menu.Shared.csproj"
+              },
+              "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.Shared\\Procuratio.Modules.Order.Shared.csproj": {
+                "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Order.Shared\\Procuratio.Modules.Order.Shared.csproj"
               },
               "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj": {
                 "projectPath": "C:\\Users\\tomi_\\Desktop\\Mis archivos\\B_Universidad\\O__PP2\\App\\Procuratio-Back-End\\Procuratio.Modules.Orders.DataAccess\\Procuratio.Modules.Order.DataAccess.csproj"
