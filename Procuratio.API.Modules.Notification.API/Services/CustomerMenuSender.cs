@@ -44,6 +44,17 @@ namespace Procuratio.API.Modules.Notification.API.Services
                     OrderKey = orderKey,
                     WaiterId = int.TryParse(waiterId, out int tryParseResult) == true ? Convert.ToInt32(waiterId) : null
                 });
+            } 
+            else
+            {
+                foreach (ConnectedUsers conectedUser in _connectedUsers)
+                {
+                    if (conectedUser.OrderKey == orderKey || conectedUser.WaiterId == waiterId)
+                    {
+                        conectedUser.ConectionId = Context.ConnectionId;
+                        break;
+                    }
+                }
             }
 
             return base.OnConnectedAsync();
@@ -67,7 +78,6 @@ namespace Procuratio.API.Modules.Notification.API.Services
             if (tables.Count > 1)
             {
                 customerNotificationDTO.Message = $"El ciente de las mesas { string.Join(", ", tables) } te esta llamando.";
-
                 customerNotificationDTO.Message = StringHelper.ReplaceLastOccurrence(customerNotificationDTO.Message, ", ", " y ");
             }
             else
@@ -83,7 +93,41 @@ namespace Procuratio.API.Modules.Notification.API.Services
             {
                 if (conectedUser.WaiterId == waiterIdOfTheOrder)
                 {
-                    await Clients.Client(conectedUser.ConectionId).SendAsync("waiterResponse", fromUser, customerNotificationDTO);
+                    await Clients.Client(conectedUser.ConectionId).SendAsync("waiterResponse", customerNotificationDTO, fromUser);
+                    return;
+                }
+            }
+
+            throw new WaiterOfflineException();
+        }
+
+        public async Task SendBillNotificationFromCustomerToWaiter(string fromUser, string orderKey)
+        {
+            List<string> tables = await _orderModuleAPI.GetTablesForWaiterNotification(orderKey);
+
+            if (tables is null || tables.Count == 0) { throw new TablesNotFoundException(); }
+
+            CustomerNotificationDTO customerNotificationDTO = new();
+
+            if (tables.Count > 1)
+            {
+                customerNotificationDTO.Message = $"El ciente de las mesas { string.Join(", ", tables) } quiere la cuenta.";
+                customerNotificationDTO.Message = StringHelper.ReplaceLastOccurrence(customerNotificationDTO.Message, ", ", " y ");
+            }
+            else
+            {
+                customerNotificationDTO.Message = $"El ciente de la mesa { tables.First() } quiere la cuenta.";
+            }
+
+            int? waiterIdOfTheOrder = await _orderModuleAPI.GetWaiterIdOfTheOrder(orderKey);
+
+            if (waiterIdOfTheOrder is null || waiterIdOfTheOrder <= 0) { throw new WaiterOfflineException(); }
+
+            foreach (ConnectedUsers conectedUser in _connectedUsers)
+            {
+                if (conectedUser.WaiterId == waiterIdOfTheOrder)
+                {
+                    await Clients.Client(conectedUser.ConectionId).SendAsync("waiterBillResponse", customerNotificationDTO, fromUser);
                     return;
                 }
             }
