@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Procuratio.Modules.Menu.Shared;
 using Procuratio.Modules.Order.Service.Services;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
+using Procuratio.Modules.Order.Service.Services.ModuleAPI;
+using Procuratio.Modules.Order.Shared;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Service.Services;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
@@ -21,6 +24,8 @@ namespace Procuratio.Modules.Orders.Service
             services.AddScoped<IReserveService, ReserveService>();
             services.AddScoped<ITableService, TableService>();
             services.AddScoped<ITakeAwayService, TakeAwayService>();
+
+            services.AddTransient<IOrderModuleAPI, OrderModuleAPI>();
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
 

@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Procuratio.API.Modules.Notification.API;
+using Procuratio.API.Modules.Notification.API.Services;
 using Procuratio.Modules.Customers.API;
 using Procuratio.Modules.Menues.API;
 using Procuratio.Modules.Orders.API;
@@ -38,9 +40,16 @@ namespace Procuratio.API
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins(Configuration.GetValue<string>("Local_FrontEnd_URL")).AllowAnyMethod().AllowAnyHeader();
+                    builder.WithOrigins(Configuration.GetValue<string>("Local_FrontEnd_URL"));
+                });
+
+                options.AddPolicy("AllowAllHeaders", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
+
+            services.AddControllers();
 
             services.AddSwaggerGen(options =>
             {
@@ -87,10 +96,16 @@ namespace Procuratio.API
             services.AddRestaurantModule();
             services.AddReportModule();
             services.AddSecurityModule();
+            services.AddNotificationModule();
+
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             app.UseInfrastructure();
 
@@ -109,20 +124,22 @@ namespace Procuratio.API
 
             app.UseRouting();
 
-            app.UseCors();
-
             app.UseOrderModule();
             app.UseMenuModule();
             app.UseCustomerModule();
             app.UseRestaurantModule();
             app.UseReportModule();
             app.UseSecurityModule(serviceProvider);
+            app.UseNotificationModule();
 
             app.UseAuthorization();
+
+            app.UseCors("AllowAllHeaders");
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<CustomerMenuSender>("/CustomerMenuSender");
             });
         }
     }
