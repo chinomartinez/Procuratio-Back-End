@@ -124,6 +124,14 @@ namespace Procuratio.Modules.Menues.Service.Services
             List<ItemsBill> itemsForBillList = await _itemRepository.GetItemsFoBillAsync(itemIds, dineIn);
 
             return _mapper.Map<List<ItemsForBillDTO>>(itemsForBillList);
+
+        }
+
+        public async Task<List<ItemsForBillDTO>> GetAnonymousItemsFoBillAsync(List<int> itemIds, int branchId)
+        {
+            List<ItemsBill> itemsForBillList = await _itemRepository.GetAnonymousItemsFoBillAsync(itemIds, branchId);
+
+            return _mapper.Map<List<ItemsForBillDTO>>(itemsForBillList);
         }
 
         private async Task<Item> GetItemAsync(int id)

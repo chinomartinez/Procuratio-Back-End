@@ -77,12 +77,12 @@ namespace Procuratio.API.Modules.Notification.API.Services
 
             if (tables.Count > 1)
             {
-                customerNotificationDTO.Message = $"El ciente de las mesas { string.Join(", ", tables) } te esta llamando.";
+                customerNotificationDTO.Message = $"El comensal de las mesas { string.Join(", ", tables) } te esta llamando.";
                 customerNotificationDTO.Message = StringHelper.ReplaceLastOccurrence(customerNotificationDTO.Message, ", ", " y ");
             }
             else
             {
-                customerNotificationDTO.Message = $"El ciente de la mesa { tables.First() } te esta llamando.";
+                customerNotificationDTO.Message = $"El comensal de la mesa { tables.First() } te esta llamando.";
             }
 
             int? waiterIdOfTheOrder = await _orderModuleAPI.GetWaiterIdOfTheOrder(orderKey);
@@ -111,12 +111,12 @@ namespace Procuratio.API.Modules.Notification.API.Services
 
             if (tables.Count > 1)
             {
-                customerNotificationDTO.Message = $"El ciente de las mesas { string.Join(", ", tables) } quiere la cuenta.";
+                customerNotificationDTO.Message = $"El comensal de las mesas { string.Join(", ", tables) } quiere la cuenta.";
                 customerNotificationDTO.Message = StringHelper.ReplaceLastOccurrence(customerNotificationDTO.Message, ", ", " y ");
             }
             else
             {
-                customerNotificationDTO.Message = $"El ciente de la mesa { tables.First() } quiere la cuenta.";
+                customerNotificationDTO.Message = $"El comensal de la mesa { tables.First() } quiere la cuenta.";
             }
 
             int? waiterIdOfTheOrder = await _orderModuleAPI.GetWaiterIdOfTheOrder(orderKey);

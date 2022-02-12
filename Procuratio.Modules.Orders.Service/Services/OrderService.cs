@@ -185,7 +185,7 @@ namespace Procuratio.Modules.Order.Service.Services
                 itemsIds.Add(item.ItemId);
             }
 
-            List<ItemsForBillDTO> itemsForOrderDetailBillList = await _itemModuleAPI.GetItemsFoBillAsync(itemsIds, dineIn);
+            List<ItemsForBillDTO> itemsForOrderDetailBillList = await _itemModuleAPI.GetItemsForBillAsync(itemsIds, dineIn);
 
             List<OrderBillDTO> orderBillDTO = new();
 
@@ -198,6 +198,45 @@ namespace Procuratio.Modules.Order.Service.Services
                     Id = currentOrderDetail.OrderId,
                     Name = item.Name,
                     Quantity = currentOrderDetail.Quantity,
+                    Price = item.Price
+                });
+            }
+
+            return orderBillDTO;
+        }
+
+        public async Task<List<OrderBillDTO>> GetMenuBillAsync(string orderKey)
+        {
+            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
+
+            if (!regex.IsMatch(orderKey)) { throw new InvalidPasswordException(); }
+
+            string[] values = orderKey.Split('-');
+
+            Orders.Domain.Entities.Order order = await _orderRepository.GetAnonymousOrderDetailForBillAsync(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            List<int> itemsIds = new();
+
+            foreach (OrderDetail item in order.OrderDetails)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<ItemsForBillDTO> itemsForOrderDetailBillList = await _itemModuleAPI.GetAnonymousItemsForBillAsync(itemsIds, Convert.ToInt32(values[1]));
+
+            List<OrderBillDTO> orderBillDTO = new();
+
+            foreach (ItemsForBillDTO item in itemsForOrderDetailBillList)
+            {
+                OrderDetail currentOrderDetail = order.OrderDetails.Find(x => x.ItemId == item.Id);
+
+                orderBillDTO.Add(new OrderBillDTO
+                {
+                    Id = currentOrderDetail.OrderId,
+                    Name = item.Name,
+                    Quantity = currentOrderDetail.Quantity + currentOrderDetail.QuantityInKitchen,
                     Price = item.Price
                 });
             }

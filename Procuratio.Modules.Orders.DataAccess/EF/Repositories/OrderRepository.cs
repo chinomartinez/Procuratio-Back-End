@@ -66,6 +66,11 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
             return await _order.Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<Orders.Domain.Entities.Order> GetAnonymousOrderDetailForBillAsync(int id, int branchId)
+        {
+            return await _order.IgnoreQueryFilters().Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id && x.BranchId == branchId);
+        }
+
         public async Task<List<string>> GetTablesForWaiterNotification(int id, int branchId)
         {
             return await _order.IgnoreQueryFilters()

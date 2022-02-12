@@ -24,5 +24,6 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
         Task<List<string>> GetTablesForWaiterNotification(int id, int branchId);
 
         Task<int?> GetWaiterIdOfTheOrder(int id, int branchId);
+        Task<Orders.Domain.Entities.Order> GetAnonymousOrderDetailForBillAsync(int id, int branchId);
     }
 }

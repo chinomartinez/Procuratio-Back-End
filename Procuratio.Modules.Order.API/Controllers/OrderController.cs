@@ -85,5 +85,9 @@ namespace Procuratio.Modules.Order.API.Controllers
 
         [HttpGet("bill/" + BasicStringsForControllers.IntParameter + "/{dineIn:bool}")]
         public async Task<ActionResult<List<OrderBillDTO>>> GetBillAsync(int id, bool dineIn) => Ok(await _orderService.GetBillAsync(id, dineIn));
+
+        [HttpGet("bill/" + "{orderKey}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<OrderBillDTO>>> GetMenuBillAsync(string orderKey) => Ok(await _orderService.GetMenuBillAsync(orderKey));
     }
 }

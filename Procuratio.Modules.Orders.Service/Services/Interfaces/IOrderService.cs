@@ -31,6 +31,8 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 
         Task<List<OrderBillDTO>> GetBillAsync(int id, bool dineIn);
 
+        Task<List<OrderBillDTO>> GetMenuBillAsync(string orderKey);
+
         Task<List<string>> GetTablesForWaiterNotification(string customerPassword);
     }
 }

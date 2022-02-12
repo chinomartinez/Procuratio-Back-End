@@ -10,6 +10,7 @@ namespace Procuratio.Modules.Menu.Shared
 
         Task<List<ItemsForOrderDetailInKitchenDTO>> GetItemsForKitchenAsync(List<int> itemIds);
 
-        Task<List<ItemsForBillDTO>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn);
+        Task<List<ItemsForBillDTO>> GetItemsForBillAsync(List<int> itemIds, bool dineIn);
+        Task<List<ItemsForBillDTO>> GetAnonymousItemsForBillAsync(List<int> itemsIds, int v2);
     }
 }

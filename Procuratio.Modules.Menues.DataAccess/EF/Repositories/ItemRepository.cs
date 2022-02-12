@@ -101,5 +101,17 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
                 }).AsNoTracking().ToListAsync();
         }
+
+        public async Task<List<ItemsBill>> GetAnonymousItemsFoBillAsync(List<int> itemIds, int branchId)
+        {
+            return await _item.IgnoreQueryFilters().Where(x => itemIds.Contains(x.Id) && x.BranchId == branchId)
+                .Select(x => new ItemsBill
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = (decimal)x.PriceInsideRestaurant
+
+                }).AsNoTracking().ToListAsync();
+        }
     }
 }
