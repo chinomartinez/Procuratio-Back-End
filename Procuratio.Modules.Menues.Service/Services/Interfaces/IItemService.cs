@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Menues.Service.Services.Interfaces
 {
     public interface IItemService : IBaseServiceOperations<ItemDTO, ItemForListDTO, ItemFromFormDTO, ItemCreationFormInitializerDTO, ItemEditionFormInitializerDTO, int>
     {
-        Task<IReadOnlyList<MenuAddItemsToOrderVM>> GetMenuAddItemsToOrderAsync();
+        Task<IReadOnlyList<MenuAddItemsToOrderVM>> GetMenuAddItemsToOrderAsync(List<int> ids);
 
         Task<List<ItemDTO>> GetByIds(List<int> Ids);
 
