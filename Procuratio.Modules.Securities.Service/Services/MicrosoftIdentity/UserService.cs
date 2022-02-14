@@ -11,6 +11,7 @@ using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile;
 using Procuratio.Shared.Infrastructure.Exceptions;
+using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using Procuratio.Shared.ProcuratioFramework.JWT;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,10 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             _validateChangeStateUser.SetFromWithoutStateToActive(user);
 
             await _userRepository.AddAsync(user);
+
+            User newUser = await _userRepository.GetByUserNameAsync(user.Name);
+
+            await _userRepository.SetRole(newUser, addDTO.Role);
         }
 
         public async Task DeleteAsync(int id)
@@ -93,6 +98,10 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         {
             UserCreationFormInitializerDTO userCreationFormInitializerDTO = new();
 
+            List<Role> roles = await _userRepository.GetRolesAsync();
+
+            roles.ForEach(x => userCreationFormInitializerDTO.Roles.Add(new SelectListItemDTO { Id = x.Name, Description = x.Name }));
+
             return userCreationFormInitializerDTO;
         }
 
@@ -107,7 +116,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         {
             User user = await _userRepository.GetAsync(userId);
 
-            IList<string> roles = await _userRepository.GetRolesAsync(user);
+            IList<string> roles = await _userRepository.GetRolesByUserAsync(user);
 
             ProfileEditionFormInitializerDTO profileEditionFormInitializerDTO = new();
 
@@ -154,7 +163,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             IList<Claim> claimsDB = await _userRepository.GetClaimsAsync(user);
             claims.AddRange(claimsDB);
 
-            IList<string> roles = await _userRepository.GetRolesAsync(user);
+            IList<string> roles = await _userRepository.GetRolesByUserAsync(user);
 
             // el contains se debera sacar ya que un admin tendra un endpoint especial
             if (user.BranchId <= 0 && !roles.Contains("Administrador")) { throw new BranchIdNotFoundException(); }
