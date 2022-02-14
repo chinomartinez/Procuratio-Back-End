@@ -57,11 +57,11 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             return lastOrder is null ? 0 : (int)++lastOrder;
         }
 
-        public async Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync()
+        public async Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync(List<int> ids)
         {
             return await _item.Include(x => x.MenuCategory)
                 .Where(x => x.ItemStateId == (short)ItemState.State.Available
-                && x.MenuCategory.MenuCategoryStateId == (short)MenuCategoryState.State.Available)
+                && x.MenuCategory.MenuCategoryStateId == (short)MenuCategoryState.State.Available && !ids.Contains(x.Id))
                 .OrderByDescending(x => x.MenuCategory.Order).ThenByDescending(x => x.Order)
                 .ThenByDescending(x => x.Order).AsNoTracking().ToListAsync();
         }
