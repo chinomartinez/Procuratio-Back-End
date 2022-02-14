@@ -306,7 +306,29 @@ namespace Procuratio.Modules.Order.Service.Services
         {
             OrderDetail orderDetail = await _orderDetailRepository.GetOrderDetailByOrderIdAndItemId(orderId, itemId);
 
-            return await _orderDetailRepository.DeleteOrderDetail(orderDetail);
+            int orderDetailDeleted = await _orderDetailRepository.DeleteOrderDetail(orderDetail);
+
+            Orders.Domain.Entities.Order orderToUpdateState = await _orderRepository.GetWithOrderDetailAsync(orderId);
+
+            if (orderToUpdateState.OrderDetails.Exists(x => x.QuantityInKitchen > 0))
+            {
+                orderToUpdateState.OrderStateId = (short)OrderState.State.InProgress;
+            }
+            else
+            {
+                if (orderToUpdateState.OrderDetails.Count == 0)
+                {
+                    orderToUpdateState.OrderStateId = (short)OrderState.State.Pending;
+                }
+                else
+                {
+                    orderToUpdateState.OrderStateId = (short)OrderState.State.Delivered;
+                }
+            }
+
+            await _orderRepository.UpdateAsync(orderToUpdateState);
+
+            return orderDetailDeleted;
         }
     }
 }

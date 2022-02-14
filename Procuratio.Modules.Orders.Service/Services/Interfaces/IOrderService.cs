@@ -22,7 +22,9 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
         Task DeliverOrderAsync(int id);
 
         Task WaitingForPaymentAsync(int id);
+
         Task<int?> GetWaiterIdOfTheOrder(string orderKey);
+
         Task PaidAsync(int id);
 
         Task<int> DeleteOrderDetailAsync(int orderId, int itemId);
