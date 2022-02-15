@@ -18,7 +18,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Seeds.MicrosoftIdentity
             RoleManager<Role> roleManager = scope.ServiceProvider.GetService<RoleManager<Role>>();
             CustomUserManager customUserManager = scope.ServiceProvider.GetService<CustomUserManager>();
 
-            string[] roles = new string[] { "Administrador", "Chef", "Mozo" };
+            string[] roles = new string[] { "Administrador", "Chef", "Mozo", "Gerente" };
 
             foreach (string role in roles)
             {

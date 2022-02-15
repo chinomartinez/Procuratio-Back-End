@@ -64,7 +64,14 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
         public async Task<ActionResult<UserCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync()
         {
-            return Ok(await _userService.GetEntityCreationFormInitializerAsync());
+            UserCreationFormInitializerDTO userCreationFormInitializerDTO = await _userService.GetEntityCreationFormInitializerAsync();
+
+            if (JWTClaims.GetRole(HttpContext) != "Administrador")
+            {
+                userCreationFormInitializerDTO.Roles = userCreationFormInitializerDTO.Roles.Where(x => x.Id != "Gerente").ToList();
+            }
+
+            return userCreationFormInitializerDTO;
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]

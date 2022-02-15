@@ -97,7 +97,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         public async Task<UserCreationFormInitializerDTO> GetEntityCreationFormInitializerAsync()
         {
             UserCreationFormInitializerDTO userCreationFormInitializerDTO = new();
-
+            
             List<Role> roles = await _userRepository.GetRolesAsync();
 
             roles.ForEach(x => userCreationFormInitializerDTO.Roles.Add(new SelectListItemDTO { Id = x.Name, Description = x.Name }));
