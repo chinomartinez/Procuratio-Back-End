@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Procuratio.Modules.Restaurant.Service.Service;
 using Procuratio.Modules.Restaurant.Service.Service.Interfaces;
+using Procuratio.Modules.Restaurant.Service.Service.ModuleAPI;
+using Procuratio.Modules.Restaurant.Shared;
 using Procuratio.Modules.Restaurants.DataAccess;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -15,6 +17,8 @@ namespace Procuratio.Modules.Restaurants.Service
         {
             services.AddScoped<IRestaurantService, RestaurantService>();
             services.AddScoped<IBranchService, BranchService>();
+
+            services.AddTransient<IBranchModuleAPI, BranchModuleAPI>();
 
             services.AddAutoMapper(typeof(Extensions).GetTypeInfo().Assembly);
 

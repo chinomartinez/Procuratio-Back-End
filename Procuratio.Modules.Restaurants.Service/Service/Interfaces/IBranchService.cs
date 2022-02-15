@@ -11,5 +11,7 @@ namespace Procuratio.Modules.Restaurant.Service.Service.Interfaces
         Task<List<SettingsDTO>> GetSettings(int branchId);
 
         Task UpdateSettings(SettingsFromFormDTO settingFromFormDTO, int branchId);
+
+        Task<bool> ExistBranchId(int branchId);
     }
 }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Procuratio.Modules.Menues.DataAccess\Procuratio.Modules.Menu.DataAccess.csproj" />
+    <ProjectReference Include="..\Procuratio.Modules.Restaurant.Shared\Procuratio.Modules.Restaurant.Shared.csproj" />
     <ProjectReference Include="..\Procuratio.Modules.Restaurants.DataAccess\Procuratio.Modules.Restaurant.DataAccess.csproj" />
     <ProjectReference Include="..\Procuratio.Shared.Abstractions\Procuratio.Shared.Abstractions.csproj" />
     <ProjectReference Include="..\Procuratio.Shared.Infrastructure\Procuratio.Shared.Infrastructure.csproj" />
