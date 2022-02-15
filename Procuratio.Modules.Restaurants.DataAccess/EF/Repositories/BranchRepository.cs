@@ -68,5 +68,10 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories
 
             await _restaurantDbContext.SaveChangesAsync();
         }
+
+        public async Task<bool> ExistBranchId(int branchId)
+        {
+            return await _branch.FirstOrDefaultAsync(x => x.Id == branchId) is not null;
+        }
     }
 }

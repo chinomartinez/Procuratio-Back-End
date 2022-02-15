@@ -21,6 +21,11 @@ namespace Procuratio.Modules.Restaurant.Service.Service
             _mapper = mapper;
         }
 
+        public async Task<bool> ExistBranchId(int branchId)
+        {
+            return await _branchRepository.ExistBranchId(branchId);
+        }
+
         public async Task<BranchForMenuDTO> GetBranchForMenu(int branchId)
         {
             BranchForMenuModel branchForMenuModel = await _branchRepository.GetBranchForMenu(branchId);

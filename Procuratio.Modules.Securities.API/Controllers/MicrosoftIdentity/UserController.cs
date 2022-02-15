@@ -108,5 +108,21 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
                 return BadRequest("Usuario y/o contraseña invalido");
             }
         }
+
+        [HttpPost("admin-auth")]
+        [AllowAnonymous]
+        public async Task<ActionResult<AuthenticationResponseDTO>> AdminAuthAsync([FromBody] AdminCredentialsDTO adminCredentialsDTO)
+        {
+            AuthenticationResponseDTO authenticationResponseDTO = await _userService.AdminAuthAsync(adminCredentialsDTO);
+
+            if (authenticationResponseDTO is not null)
+            {
+                return Ok(authenticationResponseDTO);
+            }
+            else
+            {
+                return BadRequest("Usuario y/o contraseña invalido");
+            }
+        }
     }
 }

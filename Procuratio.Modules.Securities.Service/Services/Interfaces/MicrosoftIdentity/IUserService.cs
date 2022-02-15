@@ -13,5 +13,6 @@ namespace Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIde
         public Task<ProfileEditionFormInitializerDTO> GetProfileEditionFormInitializerAsync(int userId);
 
         public Task UpdateProfileAsync(ProfileFromFormDTO profileFromFormDTO, int userId);
+        Task<AuthenticationResponseDTO> AdminAuthAsync(AdminCredentialsDTO adminCredentialsDTO);
     }
 }

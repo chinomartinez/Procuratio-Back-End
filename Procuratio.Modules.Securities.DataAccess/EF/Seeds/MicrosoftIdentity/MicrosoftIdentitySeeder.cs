@@ -45,6 +45,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Seeds.MicrosoftIdentity
                 user.NormalizedEmail = string.Empty;
                 user.PhoneNumber = "3534274171";
                 user.ProfilePicture = string.Empty;
+                user.BranchId = -1;
 
                 IdentityResult checkUser = await customUserManager.CreateAsync(user, "admin123");
 

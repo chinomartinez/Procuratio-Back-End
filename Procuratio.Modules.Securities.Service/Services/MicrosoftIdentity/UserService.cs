@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Procuratio.Modules.Restaurant.Shared;
 using Procuratio.Modules.Securities.DataAccess.EF.JWT;
 using Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
@@ -28,13 +29,16 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
         private readonly IValidateChangeStateUser _validateChangeStateUser;
+        private readonly IBranchModuleAPI _branchModuleAPI;
 
-        public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser)
+        public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser, 
+            IBranchModuleAPI branchModuleAPI)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _configuration = configuration;
             _validateChangeStateUser = validateChangeStateUser;
+            _branchModuleAPI = branchModuleAPI;
         }
 
         public async Task<IReadOnlyList<UserForListDTO>> BrowseAsync()
@@ -55,7 +59,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             await _userRepository.AddAsync(user);
 
-            User newUser = await _userRepository.GetByUserNameAsync(user.Name);
+            User newUser = await _userRepository.GetByUserNameAsync(user.UserName);
 
             await _userRepository.SetRole(newUser, addDTO.Role);
         }
@@ -151,6 +155,23 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             return null;
         }
 
+        public async Task<AuthenticationResponseDTO> AdminAuthAsync(AdminCredentialsDTO adminCredentialsDTO)
+        {
+            bool existBranchId = await _branchModuleAPI.ExistBranchId(adminCredentialsDTO.BranchId);
+
+            if (!existBranchId) { throw new BranchIdNotFoundException(); }
+
+            User user = await _userRepository.GetByUserNameIgnoringQueryFiltersAsync(adminCredentialsDTO.UserName);
+
+            if (user is null) return null;
+
+            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.AuthAsync(user, adminCredentialsDTO.Password);
+
+            if (signInresult.Succeeded) { return await BuildAdminToken(adminCredentialsDTO, user); }
+
+            return null;
+        }
+
         private async Task<AuthenticationResponseDTO> BuildToken(UserCredentialsDTO credentials, User user)
         {
             List<Claim> claims = new()
@@ -165,8 +186,45 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             IList<string> roles = await _userRepository.GetRolesByUserAsync(user);
 
-            // el contains se debera sacar ya que un admin tendra un endpoint especial
-            if (user.BranchId <= 0 && !roles.Contains("Administrador")) { throw new BranchIdNotFoundException(); }
+            if (user.BranchId <= 0) { throw new BranchIdNotFoundException(); }
+
+            foreach (string role in roles)
+            {
+                claims.Add(new Claim(JWTClaimNames.Role, role));
+            }
+
+            JsonWebToken options = _configuration.GetSection(nameof(JsonWebToken)).Get<JsonWebToken>();
+
+            SymmetricSecurityKey symmetricSecurityKey = new(Encoding.UTF8.GetBytes(options.Key));
+            SigningCredentials credential = new(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+
+            DateTime expiration = DateTime.UtcNow.AddDays(1);
+
+            JwtSecurityToken token = new(
+                issuer: null,
+                audience: null,
+                claims: claims,
+                expires: expiration,
+                signingCredentials: credential);
+
+            return new AuthenticationResponseDTO() { Token = new JwtSecurityTokenHandler().WriteToken(token) };
+        }
+
+        private async Task<AuthenticationResponseDTO> BuildAdminToken(AdminCredentialsDTO credentials, User user)
+        {
+            List<Claim> claims = new()
+            {
+                new Claim(JWTClaimNames.BranchId, credentials.BranchId.ToString()),
+                new Claim(JWTClaimNames.UserId, user.Id.ToString()),
+                new Claim(JWTClaimNames.UserFullName, $"{user.Name} {user.Surname}"),
+            };
+
+            IList<Claim> claimsDB = await _userRepository.GetClaimsAsync(user);
+            claims.AddRange(claimsDB);
+
+            IList<string> roles = await _userRepository.GetRolesByUserAsync(user);
+
+            if (!roles.Contains("Administrador")) { throw new AdminRoleRequiredException(); }
 
             foreach (string role in roles)
             {
