@@ -24,8 +24,8 @@ namespace Procuratio.Shared.Infrastructure
                     manager.FeatureProviders.Add(item: new InternalControllerFeatureProvider());
                 });
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ErrorHandlerMiddleware>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSQLServer();
             services.AddEvents();
             services.AddMessaging();

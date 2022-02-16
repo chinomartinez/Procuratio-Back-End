@@ -97,11 +97,6 @@ namespace Procuratio.API
             services.AddReportModule();
             services.AddSecurityModule();
             services.AddNotificationModule();
-
-            services.AddSignalR(options =>
-            {
-                options.EnableDetailedErrors = true;
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -111,7 +106,6 @@ namespace Procuratio.API
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
