@@ -14,21 +14,13 @@ namespace Procuratio.API.Modules.Notification.API
             services.AddTransient<INotificationModuleAPI, NotificationModuleAPI>();
             //services.AddSingleton<ICustomerMenuSenderHub, CustomerMenuSenderHub>();
 
-            services.AddSignalR(options =>
-            {
-                options.EnableDetailedErrors = true;
-            });
+            services.AddSignalR();
 
             return services;
         }
 
         public static IApplicationBuilder UseNotificationModule(this IApplicationBuilder app)
         {
-            //app.UseSignalR(c =>
-            //{
-            //    c.MapHub<CustomerMenuSender>("/CustomerMenuSender");
-            //});
-
             return app;
         }
     }

@@ -9,6 +9,6 @@ namespace Procuratio.Modules.Notification.API.Exceptions
 {
     public class WaiterOfflineException : CustomExceptionBase
     {
-        public WaiterOfflineException() : base(message: "El mozo a cargo de su pedido no esta logeado en la aplicacion para recibir su solicitud.") { }
+        public WaiterOfflineException() : base(message: "El mozo a cargo de su pedido no puede recibir su solicitud debido a que no se encuentra logeado en la aplicación.") { }
     }
 }
