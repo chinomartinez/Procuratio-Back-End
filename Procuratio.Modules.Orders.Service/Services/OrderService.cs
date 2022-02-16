@@ -94,9 +94,7 @@ namespace Procuratio.Modules.Order.Service.Services
 
         public async Task UpdateOrderDetailFromCustomerAsync(ShoppingCartFromFormDTO shoppingCartFromFormDTO)
         {
-            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
-
-            if (!regex.IsMatch(shoppingCartFromFormDTO.OrderKey)) { throw new InvalidPasswordException(); }
+            ValidateOrderKey(shoppingCartFromFormDTO.OrderKey);
 
             string[] values = shoppingCartFromFormDTO.OrderKey.Split('-');
 
@@ -112,9 +110,7 @@ namespace Procuratio.Modules.Order.Service.Services
         }
         public async Task<List<string>> GetTablesForWaiterNotification(string customerPassword)
         {
-            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
-
-            if (!regex.IsMatch(customerPassword)) { throw new InvalidPasswordException(); }
+            ValidateOrderKey(customerPassword);
 
             string[] values = customerPassword.Split('-');
 
@@ -123,9 +119,7 @@ namespace Procuratio.Modules.Order.Service.Services
 
         public async Task<int?> GetWaiterIdOfTheOrder(string orderKey)
         {
-            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
-
-            if (!regex.IsMatch(orderKey)) { throw new InvalidPasswordException(); }
+            ValidateOrderKey(orderKey);
 
             string[] values = orderKey.Split('-');
 
@@ -207,9 +201,7 @@ namespace Procuratio.Modules.Order.Service.Services
 
         public async Task<List<OrderBillDTO>> GetMenuBillAsync(string orderKey)
         {
-            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
-
-            if (!regex.IsMatch(orderKey)) { throw new InvalidPasswordException(); }
+            ValidateOrderKey(orderKey);
 
             string[] values = orderKey.Split('-');
 
@@ -291,6 +283,21 @@ namespace Procuratio.Modules.Order.Service.Services
             await _orderRepository.UpdateAsync(order);
         }
 
+        public async Task WaitingForPaymentAnonymousAsync(string orderKey)
+        {
+            ValidateOrderKey(orderKey);
+
+            string[] values = orderKey.Split('-');
+
+            Orders.Domain.Entities.Order order = await _orderRepository.GetAnonymousOrderAsync(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            order.OrderStateId = (short)OrderState.State.WaitingForPayment;
+
+            await _orderRepository.UpdateAsync(order);
+        }
+
         public async Task PaidAsync(int id)
         {
             Orders.Domain.Entities.Order order = await _orderRepository.GetWithOrderDetailAsync(id);
@@ -329,6 +336,22 @@ namespace Procuratio.Modules.Order.Service.Services
             await _orderRepository.UpdateAsync(orderToUpdateState);
 
             return orderDetailDeleted;
+        }
+
+        public async Task<short> GetOrderStateAsync(string orderKey)
+        {
+            ValidateOrderKey(orderKey);
+
+            string[] values = orderKey.Split('-');
+
+            return await _orderRepository.GetOrderStateIdAsync(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+        }
+
+        private static void ValidateOrderKey(string orderKey)
+        {
+            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
+
+            if (!regex.IsMatch(orderKey)) { throw new InvalidPasswordException(); }
         }
     }
 }

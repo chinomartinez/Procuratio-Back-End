@@ -83,5 +83,17 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         {
             return await _order.IgnoreQueryFilters().Where(x => x.Id == id && x.BranchId == branchId).Select(x => x.WaiterId).FirstOrDefaultAsync();
         }
+
+        public async Task<short> GetOrderStateIdAsync(int orderId, int branchId)
+        {
+            var result = await _order.IgnoreQueryFilters().Select(x => new { x.Id, x.BranchId, x.OrderStateId }).FirstAsync(x => x.Id == orderId && x.BranchId == branchId);
+
+            return result.OrderStateId;
+        }
+
+        public async Task<Orders.Domain.Entities.Order> GetAnonymousOrderAsync(int orderId, int branchId)
+        {
+            return await _order.IgnoreQueryFilters().AsNoTracking().SingleOrDefaultAsync(x => x.Id == orderId && x.BranchId == branchId);
+        }
     }
 }
