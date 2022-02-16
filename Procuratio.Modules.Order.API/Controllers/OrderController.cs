@@ -73,6 +73,14 @@ namespace Procuratio.Modules.Order.API.Controllers
             return NoContent();
         }
 
+        [HttpPut("waiting-for-payment-anonymous/" + "{orderKey}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> WaitingForPaymentAnonymousAsync(string orderKey)
+        {
+            await _orderService.WaitingForPaymentAnonymousAsync(orderKey);
+            return NoContent();
+        }
+
         [HttpPut("paid/" + BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult> PaidAsync(int id)
         {
@@ -89,5 +97,9 @@ namespace Procuratio.Modules.Order.API.Controllers
         [HttpGet("bill/" + "{orderKey}")]
         [AllowAnonymous]
         public async Task<ActionResult<List<OrderBillDTO>>> GetMenuBillAsync(string orderKey) => Ok(await _orderService.GetMenuBillAsync(orderKey));
+
+        [HttpGet("order-state/" + "{orderKey}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<short>> GetOrderStateAsync(string orderKey) => Ok(await _orderService.GetOrderStateAsync(orderKey));
     }
 }
