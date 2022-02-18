@@ -29,7 +29,7 @@ namespace Procuratio.Modules.Order.Service.Mappers.WithoutReserveMappers
                 withoutReserve.Order = new Orders.Domain.Entities.Order
                 {
                     OrderStateId = (short)OrderState.State.Pending,
-                    WaiterId = TGRID.UserId,
+                    WaiterId = withoutReserveFromFormDTO.UserId,
                     CustomerId = TGRID.CustomerId,
                     Date = DateTime.Now,
                     TableXOrders = new List<TableXOrder>()
