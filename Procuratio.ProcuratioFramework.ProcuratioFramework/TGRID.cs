@@ -5,10 +5,6 @@
     /// </summary>
     public static class TGRID
     {
-        public static int BranchId { get { return 1; } }
-
-        public static int UserId { get { return 1; } }
-
         public static int CustomerId { get { return 1; } }
 
         public static string WaitersName { get { return "Javier Martinez"; } }

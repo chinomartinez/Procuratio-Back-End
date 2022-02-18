@@ -5,7 +5,10 @@ using Procuratio.Modules.Orders.API.Controllers.Base;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using Procuratio.Shared.Infrastructure.Controllers;
+using Procuratio.Shared.ProcuratioFramework.JWT;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Orders.API.Controllers
@@ -35,7 +38,8 @@ namespace Procuratio.Modules.Orders.API.Controllers
 
         [HttpPost]
         public async Task<ActionResult> AddAsync([FromBody] WithoutReserveFromFormDTO withoutReserveCreationDTO)
-        {
+        { 
+            withoutReserveCreationDTO.UserId = Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JWTClaimNames.UserId).Value);
             await _withoutReserveService.AddAsync(withoutReserveCreationDTO);
             return NoContent();
             //return CreatedAtAction(nameof(Get), new { id = dto.Id }, null);
