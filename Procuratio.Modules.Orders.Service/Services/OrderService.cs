@@ -2,11 +2,13 @@
 using Procuratio.Modules.Menu.Shared;
 using Procuratio.Modules.Menu.Shared.DTO;
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
+using Procuratio.Modules.Order.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
 using Procuratio.Modules.Order.Service.Exceptions;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
+using Procuratio.Modules.Order.Shared.DTO;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
@@ -345,6 +347,13 @@ namespace Procuratio.Modules.Order.Service.Services
             string[] values = orderKey.Split('-');
 
             return await _orderRepository.GetOrderStateIdAsync(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+        }
+
+        public async Task<List<OrderForReportDTO>> GetOrderForReport(int from, int to)
+        {
+            List<OrderForReport> ordersForReport = await _orderRepository.GetOrderForReport(from, to);
+
+            return _mapper.Map<List<OrderForReportDTO>>(ordersForReport);
         }
 
         private static void ValidateOrderKey(string orderKey)

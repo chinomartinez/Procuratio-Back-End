@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
+using Procuratio.Modules.Order.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using System.Collections.Generic;
@@ -94,6 +95,21 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         public async Task<Orders.Domain.Entities.Order> GetAnonymousOrderAsync(int orderId, int branchId)
         {
             return await _order.IgnoreQueryFilters().AsNoTracking().SingleOrDefaultAsync(x => x.Id == orderId && x.BranchId == branchId);
+        }
+
+        public async Task<List<OrderForReport>> GetOrderForReport(int from, int to)
+        {
+            return await _order.Where(x => x.OrderStateId == (short)OrderState.State.Paid
+            && x.Date.Year >= from && x.Date.Year <= to)
+                .GroupBy(x => new { x.Date.Year, x.Date.Month })
+                .Select(x => new OrderForReport()
+                {
+                    Year = x.Key.Year,
+                    Month = x.Key.Month,
+                    Quantity = x.Count()
+                }).AsNoTracking()
+                .OrderByDescending(x => x.Year)
+                .ToListAsync();
         }
     }
 }

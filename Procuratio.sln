@@ -117,6 +117,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Notifica
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Notification.Shared", "Procuratio.Modules.Notification.Shared\Procuratio.Modules.Notification.Shared.csproj", "{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.Modules.Report.Shared", "Procuratio.Modules.Report.Shared\Procuratio.Modules.Report.Shared.csproj", "{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -283,6 +285,10 @@ Global
 		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -341,6 +347,7 @@ Global
 		{90BE8C2D-9FAD-4345-B344-6B678B18325D} = {15717C1A-155D-4B90-93CC-B6F6988A8094}
 		{1D7504F6-0D46-4445-992A-220F28BB2469} = {90BE8C2D-9FAD-4345-B344-6B678B18325D}
 		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C} = {90BE8C2D-9FAD-4345-B344-6B678B18325D}
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB} = {B4646215-3422-420E-9CEE-8B779EB3E1F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C884A54F-7BD6-4032-B462-DEA7C50A6DF3}

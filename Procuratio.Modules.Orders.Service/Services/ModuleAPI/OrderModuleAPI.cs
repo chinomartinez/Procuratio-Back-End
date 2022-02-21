@@ -1,5 +1,6 @@
 ﻿using Procuratio.Modules.Order.Service.Services.Interfaces;
 using Procuratio.Modules.Order.Shared;
+using Procuratio.Modules.Order.Shared.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace Procuratio.Modules.Order.Service.Services.ModuleAPI
         public OrderModuleAPI(IOrderService orderService)
         {
             _orderService = orderService;
+        }
+
+        public async Task<List<OrderForReportDTO>> GetOrderForReport(int from, int to)
+        {
+            return await _orderService.GetOrderForReport(from, to);
         }
 
         public async Task<List<string>> GetTablesForWaiterNotification(string customerPassword)

@@ -1,5 +1,6 @@
 ﻿using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
+using Procuratio.Modules.Order.Shared.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -38,6 +39,9 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
         Task<List<string>> GetTablesForWaiterNotification(string customerPassword);
 
         Task<short> GetOrderStateAsync(string orderKey);
+
         Task WaitingForPaymentAnonymousAsync(string orderKey);
+
+        Task<List<OrderForReportDTO>> GetOrderForReport(int from, int to);
     }
 }

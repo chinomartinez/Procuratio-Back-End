@@ -26,7 +26,6 @@ namespace Procuratio.Modules.Securities.DataAccess
         {
             services.AddScoped<IRoleClaimRepository, RoleClaimRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IUserClaimRepository, UserClaimRepository>();
             services.AddScoped<IUserLoginRepository, UserLoginRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserTokenRepository, UserTokenRepository>();
