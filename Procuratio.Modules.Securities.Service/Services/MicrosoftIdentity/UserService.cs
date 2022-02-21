@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Procuratio.Modules.Restaurant.Shared;
@@ -9,8 +10,10 @@ using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Exceptions;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
 using Procuratio.Modules.Securities.Service.ValidateChangeState.Interfaces;
+using Procuratio.Modules.Security.Service.DTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile;
+using Procuratio.Modules.Security.Service.Exceptions;
 using Procuratio.Shared.Infrastructure.Exceptions;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using Procuratio.Shared.ProcuratioFramework.JWT;
@@ -83,6 +86,9 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             user = _mapper.Map(updateDTO, user);
 
+            await _userRepository.RemoveRoles(user);
+            await _userRepository.SetRole(user, updateDTO.Role);
+
             await _userRepository.UpdateAsync(user);
         }
 
@@ -113,7 +119,25 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         {
             User user = await _userRepository.GetEntityEditionFormInitializerAsync(id);
 
-            return _mapper.Map<UserEditionFormInitializerDTO>(user);
+            List<Role> roles = await _userRepository.GetRolesAsync();
+            IList<string> userRoles = await _userRepository.GetRolesByUserAsync(user);
+
+            string userRole = string.Empty;
+
+            foreach (string item in userRoles)
+            {
+                userRole = item;
+                break;
+            }
+
+            return _mapper.Map<UserEditionFormInitializerDTO>(user, opt =>
+            {
+                opt.AfterMap((src, dest) =>
+                {
+                    roles.ForEach(x => dest.Roles.Items.Add(new SelectListItemDTO { Id = x.Name, Description= x.Name }));
+                    dest.Roles.SelectedOptionId = userRole;
+                });
+            });
         }
 
         public async Task<ProfileEditionFormInitializerDTO> GetProfileEditionFormInitializerAsync(int userId)
@@ -142,13 +166,26 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
             await _userRepository.UpdateAsync(user);
         }
 
+        public async Task<bool> UpdatePassword(ChangeUserPasswordDTO changeUserPasswordDTO, int userId)
+        {
+            User user = await _userRepository.GetAsync(userId);
+
+            SignInResult signInresult = await _userRepository.AuthAsync(user, changeUserPasswordDTO.CurrentPassword);
+
+            if (!signInresult.Succeeded) { throw new InvalidPasswordException(); }
+
+            IdentityResult identityResult = await _userRepository.UpdatePassword(user, changeUserPasswordDTO.Password);
+
+            return identityResult.Succeeded;
+        }
+
         public async Task<AuthenticationResponseDTO> AuthAsync(UserCredentialsDTO userCredentialsDTO)
         {
             User user = await _userRepository.GetByUserNameIgnoringQueryFiltersAsync(userCredentialsDTO.UserName);
 
             if (user is null) return null;
 
-            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.AuthAsync(user, userCredentialsDTO.Password);
+            SignInResult signInresult = await _userRepository.AuthAsync(user, userCredentialsDTO.Password);
 
             if (signInresult.Succeeded) { return await BuildToken(userCredentialsDTO, user); }
 
@@ -186,6 +223,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             IList<string> roles = await _userRepository.GetRolesByUserAsync(user);
 
+            if (roles.Contains("Administrador")) { throw new InvalidAuthForUserAdminException(); }
             if (user.BranchId <= 0) { throw new BranchIdNotFoundException(); }
 
             foreach (string role in roles)

@@ -1,4 +1,7 @@
-﻿using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
+﻿using Microsoft.AspNetCore.Identity;
+using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
+using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
+using Procuratio.Modules.Security.Service.DTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
@@ -13,6 +16,9 @@ namespace Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIde
         public Task<ProfileEditionFormInitializerDTO> GetProfileEditionFormInitializerAsync(int userId);
 
         public Task UpdateProfileAsync(ProfileFromFormDTO profileFromFormDTO, int userId);
+
         Task<AuthenticationResponseDTO> AdminAuthAsync(AdminCredentialsDTO adminCredentialsDTO);
+
+        Task<bool> UpdatePassword(ChangeUserPasswordDTO changeUserPasswordDTO, int userId);
     }
 }

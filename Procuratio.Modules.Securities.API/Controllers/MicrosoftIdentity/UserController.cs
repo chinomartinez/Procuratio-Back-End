@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Securities.API.Controllers.Base;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
+using Procuratio.Modules.Security.Service.DTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
@@ -123,6 +124,12 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             {
                 return BadRequest("Usuario y/o contraseña invalido");
             }
+        }
+
+        [HttpPut("password")]
+        public async Task<ActionResult<bool>> UpdatePassword([FromBody] ChangeUserPasswordDTO changeUserPasswordDTO)
+        {
+            return await _userService.UpdatePassword(changeUserPasswordDTO, Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JWTClaimNames.UserId).Value));
         }
     }
 }
