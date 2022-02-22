@@ -86,7 +86,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             {
                 _menuCategory.UpdateRange(toUpdate);
 
-                await _menuDbContext.SaveChangesAsync();
+                var sdfdfd = await _menuDbContext.SaveChangesAsync();
             }
             catch (System.Exception e)
             {
