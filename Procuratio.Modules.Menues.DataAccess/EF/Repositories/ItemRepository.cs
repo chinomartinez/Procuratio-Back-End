@@ -27,8 +27,8 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             await _menuDbContext.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<Item>> BrowseAsync() => await _item.AsNoTracking()
-            .OrderByDescending(x => x.Name).ToListAsync();
+        public async Task<IReadOnlyList<Item>> BrowseAsync() => await _item.Include(x => x.MenuCategory).AsNoTracking()
+            .OrderBy(x => x.MenuCategory.Name).ToListAsync();
 
         public async Task DeleteAsync(Item entity)
         {

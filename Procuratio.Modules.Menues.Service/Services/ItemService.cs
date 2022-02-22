@@ -79,7 +79,16 @@ namespace Procuratio.Modules.Menues.Service.Services
         {
             Item item = await _itemRepository.GetEntityEditionFormInitializerAsync(id);
 
-            return _mapper.Map<ItemEditionFormInitializerDTO>(item);
+            List<MenuCategory> menuSubcategories = await _menuCategoryRepository.GetAllAsync();
+
+            return _mapper.Map<ItemEditionFormInitializerDTO>(item, opt =>
+            {
+                opt.AfterMap((src, dest) =>
+                {
+                    menuSubcategories.ForEach(x => dest.MenuCategories.Items.Add(new SelectListItemDTO { Id = x.Id.ToString(), Description = x.Name }));
+                    dest.MenuCategories.SelectedOptionId = item.MenuCategoryId.ToString();
+                });
+            });
         }
 
         public async Task UpdateAsync(ItemFromFormDTO updateDTO, int id)

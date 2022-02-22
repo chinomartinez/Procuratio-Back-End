@@ -82,16 +82,9 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
 
         public async Task UpdateMenuAsync(List<MenuCategory> toUpdate)
         {
-            try
-            {
-                _menuCategory.UpdateRange(toUpdate);
+            _menuCategory.UpdateRange(toUpdate);
 
-                await _menuDbContext.SaveChangesAsync();
-            }
-            catch (System.Exception e)
-            {
-                var sdsdsd = e.Message;
-            }
+            await _menuDbContext.SaveChangesAsync();
         }
 
         public async Task<IReadOnlyList<OnlineMenuModel>> GetDineInOnlineMenuAsync(int branchId)

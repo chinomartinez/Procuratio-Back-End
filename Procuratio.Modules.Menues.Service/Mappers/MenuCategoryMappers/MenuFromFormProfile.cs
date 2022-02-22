@@ -29,22 +29,6 @@ namespace Procuratio.Modules.Menu.Service.Mappers.MenuCategoryMappers
             }
 
             return menuCategories;
-
-            //for (int categoryCount = 0; categoryCount < menuDTOs.Count; categoryCount++)
-            //{
-
-            //    menuCategories[categoryCount].Order = categoryCount;
-
-            //    for (int subcategoryCount = 0; subcategoryCount < menuDTOs[categoryCount].SubcategoryForMenuList.Count; subcategoryCount++)
-            //    {
-            //        menuCategories[subcategoryCount].MenuSubCategories[subcategoryCount].Order = subcategoryCount;
-
-            //        for (int itemCount = 0; itemCount < menuDTOs[categoryCount].SubcategoryForMenuList[subcategoryCount].ItemForMenuList.Count; itemCount++)
-            //        {
-            //            menuCategories[itemCount].MenuSubCategories[itemCount].Items[itemCount].Order = itemCount;
-            //        }
-            //    }
-            //}
         }
     }
 }
