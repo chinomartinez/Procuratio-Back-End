@@ -19,5 +19,7 @@ namespace Procuratio.Modules.Restaurant.Service.DTOs.Branch
         public string Image { get; set; }
 
         public string Phone { get; set; }
+
+        public bool OnlineMenu { get; set; }
     }
 }

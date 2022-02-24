@@ -6,12 +6,12 @@ using Procuratio.Modules.Order.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
-using Procuratio.Modules.Order.Service.Exceptions;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
 using Procuratio.Modules.Order.Shared.DTO;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
+using Procuratio.Shared.Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -360,7 +360,7 @@ namespace Procuratio.Modules.Order.Service.Services
         {
             Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
 
-            if (!regex.IsMatch(orderKey)) { throw new InvalidPasswordException(); }
+            if (!regex.IsMatch(orderKey)) { throw new InvalidOrderKeyException(); }
         }
     }
 }
