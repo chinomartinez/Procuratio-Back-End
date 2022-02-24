@@ -30,6 +30,15 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.EntitiesConfigurations
                 DataType = "boolean",
                 MinValue = null,
                 MaxValue = null
+            },
+            new Setting()
+            {
+                Id = (short)Setting.Type.ShowRestaurantInOnlineMenu,
+                Description = "Show Restaurant In Online Menu",
+                Constrained = true,
+                DataType = "boolean",
+                MinValue = null,
+                MaxValue = null
             });
         }
     }

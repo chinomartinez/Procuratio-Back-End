@@ -27,7 +27,8 @@ namespace Procuratio.Modules.Restaurant.Domain.Entities
         public enum Type : short
         {
             OnlineMenu = 1,
-            OrderFromTable
+            OrderFromTable,
+            ShowRestaurantInOnlineMenu
         }
     }
 }

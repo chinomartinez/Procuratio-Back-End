@@ -11,6 +11,7 @@ namespace Procuratio.Modules.Restaurant.Service.DTOs.Branch
 {
     public class SettingsFromFormDTO : IFromFormDTO
     {
+        [ModelBinder(typeof(TypeBinder<List<SettingToUpdateDTO>>))]
         public List<SettingToUpdateDTO> SettingsToUpdate { get; set; }
     }
 }

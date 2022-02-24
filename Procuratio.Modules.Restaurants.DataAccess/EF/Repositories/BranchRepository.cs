@@ -80,14 +80,16 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories
             return await _branch.IgnoreQueryFilters()
                 .Include(x => x.Restaurant)
                 .Include(x => x.BranchSettings).ThenInclude(x => x.Setting)
-                .Where(x => x.BranchSettings.Any(x => x.SettingId == (int)BranchSetting.Type.OnlineMenu && x.UnconstrainedValue == true.ToString().ToLower())) // cambiar el type
+                .Where(x => x.BranchSettings.Any(x => x.SettingId == (int)Setting.Type.ShowRestaurantInOnlineMenu && x.UnconstrainedValue == true.ToString().ToLower()))
                 .Select(x => new RestaurantForOnlineMenuModel
                 {
                     BranchId = x.Id,
                     Name = x.Restaurant.Name,
                     Slogan = x.Restaurant.Slogan,
-                    Adress = x.Address
+                    Address = x.Address,
+                    Phone = x.Phone
                 })
+                .OrderBy(x => x.Name)
                 .ToListAsync();
         }
     }
