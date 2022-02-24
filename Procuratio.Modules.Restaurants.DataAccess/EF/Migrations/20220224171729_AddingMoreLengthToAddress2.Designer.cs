@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Procuratio.Modules.Restaurants.DataAccess;
 
 namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    partial class RestaurantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220224171729_AddingMoreLengthToAddress2")]
+    partial class AddingMoreLengthToAddress2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,13 +86,6 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                             Constrained = true,
                             DataType = "boolean",
                             Description = "Order from table"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Constrained = true,
-                            DataType = "boolean",
-                            Description = "Show Restaurant In Online Menu"
                         });
                 });
 
