@@ -33,6 +33,13 @@ namespace Procuratio.Modules.Restaurant.Service.Service
             return _mapper.Map<BranchForMenuDTO>(branchForMenuModel);
         }
 
+        public async Task<List<RestaurantForOnlineMenuDTO>> GetRestaurantsForOnlineMenu()
+        {
+            List<RestaurantForOnlineMenuModel> restaurantModel = await _branchRepository.GetRestaurantsForOnlineMenu();
+
+            return _mapper.Map<List<RestaurantForOnlineMenuDTO>>(restaurantModel);
+        }
+
         public async Task<List<SettingsDTO>> GetSettings(int branchId)
         {
             List<SettingsModel> settingsModels = await _branchRepository.GetSettings(branchId);

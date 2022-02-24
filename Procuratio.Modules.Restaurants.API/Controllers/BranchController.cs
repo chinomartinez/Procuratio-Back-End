@@ -39,5 +39,12 @@ namespace Procuratio.Modules.Restaurant.API.Controllers
             await _branchService.UpdateSettings(settingsFromFormDTO, (int)_tenantService.GetBranchId());
             return NoContent();
         }
+
+        [HttpGet("restaurant-online-menu")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<RestaurantForOnlineMenuDTO>>> GetRestaurantsForOnlineMenu()
+        {
+            return Ok(await _branchService.GetRestaurantsForOnlineMenu());
+        }
     }
 }

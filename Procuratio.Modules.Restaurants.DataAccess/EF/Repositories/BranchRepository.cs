@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Models;
+using Procuratio.Modules.Restaurant.Domain.Entities;
 using Procuratio.Modules.Restaurants.DataAccess;
 using Procuratio.Modules.Restaurants.Domain.Entities;
 using System.Collections.Generic;
@@ -72,6 +73,22 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories
         public async Task<bool> ExistBranchId(int branchId)
         {
             return await _branch.FirstOrDefaultAsync(x => x.Id == branchId) is not null;
+        }
+
+        public async Task<List<RestaurantForOnlineMenuModel>> GetRestaurantsForOnlineMenu()
+        {
+            return await _branch.IgnoreQueryFilters()
+                .Include(x => x.Restaurant)
+                .Include(x => x.BranchSettings).ThenInclude(x => x.Setting)
+                .Where(x => x.BranchSettings.Any(x => x.SettingId == (int)BranchSetting.Type.OnlineMenu && x.UnconstrainedValue == true.ToString().ToLower())) // cambiar el type
+                .Select(x => new RestaurantForOnlineMenuModel
+                {
+                    BranchId = x.Id,
+                    Name = x.Restaurant.Name,
+                    Slogan = x.Restaurant.Slogan,
+                    Adress = x.Address
+                })
+                .ToListAsync();
         }
     }
 }
