@@ -18,5 +18,12 @@ namespace Procuratio.Modules.Restaurant.Domain.Entities
         public Setting Setting { get; set; }
 
         public string UnconstrainedValue { get; set; }
+
+        public enum Type
+        {
+            OnlineMenu = 1,
+            OrderFromTable,
+            ShowRestaurantInOnlineMenu
+        }
     }
 }
