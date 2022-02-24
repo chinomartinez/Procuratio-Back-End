@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Procuratio.Modules.Order.Service.DTOs.WithoutReserveDTOs;
-using Procuratio.Modules.Order.Service.Exceptions;
 using Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Modules.Orders.Service.Services.Interfaces;
+using Procuratio.Shared.Infrastructure.Exceptions;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System;
 using System.Collections.Generic;
@@ -110,7 +110,7 @@ namespace Procuratio.Modules.Orders.Service.Services
         {
             Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
 
-            if (!regex.IsMatch(customerCredentials.Password)) { throw new InvalidPasswordException(); }
+            if (!regex.IsMatch(customerCredentials.Password)) { throw new InvalidOrderKeyException(); }
 
             string[] values = customerCredentials.Password.Split('-');
 

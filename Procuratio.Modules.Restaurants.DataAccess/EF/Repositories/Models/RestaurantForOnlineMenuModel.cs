@@ -19,5 +19,7 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Models
         public string Image { get; set; }
 
         public string Phone { get; set; }
+
+        public bool OnlineMenu { get; set; }
     }
 }
