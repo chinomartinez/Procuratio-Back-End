@@ -135,6 +135,40 @@ namespace Procuratio.API.Modules.Notification.API.Services
             throw new WaiterOfflineException();
         }
 
+        public async Task SendNewOrderNotificationFromCustomerToWaiter(string fromUser, string orderKey)
+        {
+            List<string> tables = await _orderModuleAPI.GetTablesForWaiterNotification(orderKey);
+
+            if (tables is null || tables.Count == 0) { throw new TablesNotFoundException(); }
+
+            CustomerNotificationDTO customerNotificationDTO = new();
+
+            if (tables.Count > 1)
+            {
+                customerNotificationDTO.Message = $"El comensal de las mesas { string.Join(", ", tables) } agrego artículos al pedido.";
+                customerNotificationDTO.Message = StringHelper.ReplaceLastOccurrence(customerNotificationDTO.Message, ", ", " y ");
+            }
+            else
+            {
+                customerNotificationDTO.Message = $"El comensal de la mesa { tables.First() } agrego artículos al pedido.";
+            }
+
+            int? waiterIdOfTheOrder = await _orderModuleAPI.GetWaiterIdOfTheOrder(orderKey);
+
+            if (waiterIdOfTheOrder is null || waiterIdOfTheOrder <= 0) { throw new WaiterOfflineException(); }
+
+            foreach (ConnectedUsers conectedUser in _connectedUsers)
+            {
+                if (conectedUser.WaiterId == waiterIdOfTheOrder)
+                {
+                    await Clients.Client(conectedUser.ConectionId).SendAsync("waiterNewOrderResponse", customerNotificationDTO, fromUser);
+                    return;
+                }
+            }
+
+            throw new WaiterOfflineException();
+        }
+
         public string GetConnectionId() => Context.ConnectionId;
     }
 }
