@@ -110,6 +110,7 @@ namespace Procuratio.Modules.Order.Service.Services
 
             await _orderRepository.UpdateAsync(order);
         }
+
         public async Task<List<string>> GetTablesForWaiterNotification(string customerPassword)
         {
             ValidateOrderKey(customerPassword);

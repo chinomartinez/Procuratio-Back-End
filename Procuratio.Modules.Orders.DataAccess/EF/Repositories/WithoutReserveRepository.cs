@@ -58,6 +58,9 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
         public async Task DeleteAsync(WithoutReserve entity)
         {
             _withoutReserve.Remove(entity);
+            _ordersDbContext.Order.Remove(entity.Order);
+            _ordersDbContext.TableXOrder.RemoveRange(entity.Order.TableXOrders);
+
             await _ordersDbContext.SaveChangesAsync();
         }
 
@@ -74,6 +77,11 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories
             var result = await _withoutReserve.IgnoreQueryFilters().Select(x => new { x.OrderId, x.BranchId, x.Password }).FirstOrDefaultAsync(x => x.OrderId == orderId && x.BranchId == branchId);
 
             return result?.Password;
+        }
+
+        public async Task<WithoutReserve> GetWithoutReserveForDeleteAsync(int id)
+        {
+            return await _withoutReserve.Include(x => x.Order).ThenInclude(x => x.TableXOrders).SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }
