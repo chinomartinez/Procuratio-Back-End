@@ -64,7 +64,7 @@ namespace Procuratio.Modules.Orders.Service.Services
 
         public async Task DeleteAsync(int id)
         {
-            WithoutReserve withoutReserve = await GetWithoutReserveAsync(id);
+            WithoutReserve withoutReserve = await _withoutReserveRepository.GetWithoutReserveForDeleteAsync(id);
             await _withoutReserveRepository.DeleteAsync(withoutReserve);
         }
 

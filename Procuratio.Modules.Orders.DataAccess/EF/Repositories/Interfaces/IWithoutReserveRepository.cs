@@ -9,5 +9,6 @@ namespace Procuratio.Modules.Orders.DataAccess.EF.Repositories.Interfaces
         Task<WithoutReserve> GetWithTableXWithoutReserveAsync(int id);
 
         Task<string> OnlineMenuAuth(int orderId, int branchId);
+        Task<WithoutReserve> GetWithoutReserveForDeleteAsync(int id);
     }
 }
