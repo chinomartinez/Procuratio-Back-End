@@ -13,7 +13,6 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
             if (menuCategoryDbSet.IgnoreQueryFilters().Any()) return;
 
             menuCategoryDbSet.AddRange(
-
             new MenuCategory()
             {
                 Name = "Entradas",
