@@ -202,7 +202,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             if (user is null) return null;
 
-            Microsoft.AspNetCore.Identity.SignInResult signInresult = await _userRepository.AuthAsync(user, adminCredentialsDTO.Password);
+            SignInResult signInresult = await _userRepository.AuthAsync(user, adminCredentialsDTO.Password);
 
             if (signInresult.Succeeded) { return await BuildAdminToken(adminCredentialsDTO, user); }
 
