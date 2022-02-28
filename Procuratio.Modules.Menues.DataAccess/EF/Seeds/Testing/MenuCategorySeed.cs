@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Procuratio.Modules.Menues.DataAccess;
 using Procuratio.Modules.Menues.Domain.Entities;
 using Procuratio.Modules.Menues.Domain.Entities.State;
 using System.Collections.Generic;
@@ -8,11 +9,11 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
 {
     internal static class MenuCategorySeed
     {
-        internal static void StartMenuCategorySeed(DbSet<MenuCategory> menuCategoryDbSet)
+        internal static void StartMenuCategorySeed(MenuDbContext menuDbContext)
         {
-            if (menuCategoryDbSet.IgnoreQueryFilters().Any()) return;
+            if (menuDbContext.MenuCategory.IgnoreQueryFilters().Any()) return;
 
-            menuCategoryDbSet.AddRange(
+            menuDbContext.MenuCategory.AddRange(
             new MenuCategory()
             {
                 Name = "Entradas",
@@ -887,10 +888,11 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                         BranchId = 1
                     }
                 }
-            },
+            });
 
-            // vvv Categorias iguales para el resto de sucursales vvv
-
+            menuDbContext.SaveChanges();
+            
+            menuDbContext.MenuCategory.AddRange(
             new MenuCategory()
             {
                 Name = "Gaseosas",

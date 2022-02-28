@@ -20,7 +20,7 @@ namespace Procuratio.Modules.Report.API.Controllers
         }
 
         [HttpGet("report/{from:int}/{to:int}")]
-        public async Task<ActionResult<List<MultiDTO>>> GetOrderForReport(int from, int to)
+        public async Task<ActionResult<ReportDTO>> GetOrderForReport(int from, int to)
         {
             return Ok(await _reportService.GetOrderForReport(from, to));
         }

@@ -9,6 +9,6 @@ namespace Procuratio.Modules.Report.Service.Services.Interfaces
 {
     public interface IReportService
     {
-        Task<List<MultiDTO>> GetOrderForReport(int from , int to);
+        Task<ReportDTO> GetOrderForReport(int from , int to);
     }
 }

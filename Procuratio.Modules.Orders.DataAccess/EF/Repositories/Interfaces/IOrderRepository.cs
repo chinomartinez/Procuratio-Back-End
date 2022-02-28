@@ -30,5 +30,9 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
         Task<Orders.Domain.Entities.Order> GetAnonymousOrderAsync(int orderId, int branchId);
 
         Task<List<OrderForReport>> GetOrderForReport(int from, int to);
+        Task<List<ItemForReport>> GetItemForBestSellingDrink();
+        Task<List<ItemForReport>> GetItemForBestSellingMeal();
+        Task<List<ItemForReport>> GetItemForWorstSellingDrink();
+        Task<List<ItemForReport>> GetItemForWorstSellingMeal();
     }
 }

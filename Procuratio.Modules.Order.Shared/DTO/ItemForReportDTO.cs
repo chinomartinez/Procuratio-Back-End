@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.Shared.DTO
 {
-    public class OrderForReportDTO
+    public class ItemForReportDTO
     {
-        public int Year { get; set; }
+        public string Name { get; set; }
 
-        public int Month { get; set; }
+        public int ItemId { get; set; }
 
-        public int Quantity { get; set; }
+        public int Value { get; set; }
     }
 }

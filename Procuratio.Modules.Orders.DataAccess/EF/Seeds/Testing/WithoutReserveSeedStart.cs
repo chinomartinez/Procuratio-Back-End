@@ -47,7 +47,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Seeds.Testing
 
                     do
                     {
-                        currentItemId = rand.Next(1, 156);
+                        currentItemId = rand.Next(1, 58);
 
                     } while (order.OrderDetails.Any(x => x.ItemId == currentItemId));
 

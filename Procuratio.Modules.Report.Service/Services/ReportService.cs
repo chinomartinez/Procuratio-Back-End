@@ -20,7 +20,24 @@ namespace Procuratio.Modules.Report.Service.Services
             _orderModuleAPI = orderModuleAPI;
         }
 
-        public async Task<List<MultiDTO>> GetOrderForReport(int from, int to)
+        public async Task<ReportDTO> GetOrderForReport(int from, int to)
+        {
+            ReportDTO reportDTO = new();
+
+            reportDTO.OrderReport = await BuildOrderReport(from, to);
+
+            // AGREGAR LA OPCION DE INDICAR SI ES BEBIDA O NO Y TERMINAR LOS FILTROS
+
+            reportDTO.BestSellingMeal = await BuildBestSellingMealReport();
+            //reportDTO.WorstSellingMeal = await BuildWorstSellingMealReport();
+
+            //reportDTO.BestSellingDrink = await BuildBestSellingDrinkReport();
+            //reportDTO.WorstSellingDrink = await BuildWorstSellingDrinkReport();
+
+            return reportDTO;
+        }
+
+        private async Task<List<MultiDTO>> BuildOrderReport(int from, int to)
         {
             List<MultiDTO> multiDTOs = new();
 
@@ -60,6 +77,44 @@ namespace Procuratio.Modules.Report.Service.Services
             }
 
             return multiDTOs;
+        }
+
+        private async Task<List<SeriesDTO>> BuildBestSellingMealReport()
+        {
+            List<SeriesDTO> seriesDTOs = new();
+
+            List<ItemForReportDTO> itemForReport = await _orderModuleAPI.GetItemForBestSellingMeal();
+
+            itemForReport.ForEach(x => seriesDTOs.Add(new SeriesDTO() { Name = x.Name, Value = x.Value }));
+
+            return seriesDTOs;
+        }
+
+        private async Task<List<SeriesDTO>> BuildWorstSellingMealReport()
+        {
+            List<SeriesDTO> seriesDTOs = new();
+
+            List<ItemForReportDTO> itemForReport = await _orderModuleAPI.GetItemForWorstSellingMeal();
+
+            return null;
+        }
+
+        private async Task<List<SeriesDTO>> BuildBestSellingDrinkReport()
+        {
+            List<SeriesDTO> seriesDTOs = new();
+
+            List<ItemForReportDTO> itemForReport = await _orderModuleAPI.GetItemForBestSellingDrink();
+
+            return null;
+        }
+
+        private async Task<List<SeriesDTO>> BuildWorstSellingDrinkReport()
+        {
+            List<SeriesDTO> seriesDTOs = new();
+
+            List<ItemForReportDTO> itemForReport = await _orderModuleAPI.GetItemForWorstSellingDrink();
+
+            return null;
         }
     }
 }

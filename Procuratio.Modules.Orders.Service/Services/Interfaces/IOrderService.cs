@@ -18,15 +18,23 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 
         Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressForKitchenAsync();
 
+        Task<List<ItemForReportDTO>> GetItemForBestSellingDrink();
+
         Task OrderForDeliverAsync(int id);
+
+        Task<List<ItemForReportDTO>> GetItemForBestSellingMeal();
 
         Task DeliverOrderAsync(int id);
 
         Task WaitingForPaymentAsync(int id);
 
+        Task<List<ItemForReportDTO>> GetItemForWorstSellingDrink();
+
         Task<int?> GetWaiterIdOfTheOrder(string orderKey);
 
         Task PaidAsync(int id);
+
+        Task<List<ItemForReportDTO>> GetItemForWorstSellingMeal();
 
         Task<int> DeleteOrderDetailAsync(int orderId, int itemId);
 
