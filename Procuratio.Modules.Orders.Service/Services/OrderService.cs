@@ -357,18 +357,9 @@ namespace Procuratio.Modules.Order.Service.Services
             return _mapper.Map<List<OrderForReportDTO>>(ordersForReport);
         }
 
-        public async Task<List<ItemForReportDTO>> GetItemForBestSellingDrink()
+        public async Task<List<ItemForReportDTO>> GetItemForBestSelling(int topBestSellingItems)
         {
-            // conseguir itemsId y nombre cuando son para cocina
-
-            List<ItemForReport> itemForReport = await _orderRepository.GetItemForBestSellingDrink();
-
-            return _mapper.Map<List<ItemForReportDTO>>(itemForReport);
-        }
-
-        public async Task<List<ItemForReportDTO>> GetItemForBestSellingMeal()
-        {
-            List<ItemForReport> itemForReport = await _orderRepository.GetItemForBestSellingMeal();
+            List<ItemForReport> itemForReport = await _orderRepository.GetItemForBestSelling(topBestSellingItems);
 
             List<ItemForReportDTO> itemForReportDTO = _mapper.Map<List<ItemForReportDTO>>(itemForReport);
 
@@ -389,18 +380,27 @@ namespace Procuratio.Modules.Order.Service.Services
             return itemForReportDTO;
         }
 
-        public async Task<List<ItemForReportDTO>> GetItemForWorstSellingDrink()
+        public async Task<List<ItemForReportDTO>> GetItemForWorstSelling(int topWorstSellingItems)
         {
-            List<ItemForReport> itemForReport = await _orderRepository.GetItemForWorstSellingDrink();
+            List<ItemForReport> itemForReport = await _orderRepository.GetItemForWorstSelling(topWorstSellingItems);
 
-            return _mapper.Map<List<ItemForReportDTO>>(itemForReport);
-        }
+            List<ItemForReportDTO> itemForReportDTO = _mapper.Map<List<ItemForReportDTO>>(itemForReport);
 
-        public async Task<List<ItemForReportDTO>> GetItemForWorstSellingMeal()
-        {
-            List<ItemForReport> itemForReport = await _orderRepository.GetItemForWorstSellingMeal();
+            List<int> itemsIds = new();
 
-            return _mapper.Map<List<ItemForReportDTO>>(itemForReport);
+            foreach (ItemForReport item in itemForReport)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<ItemsForOrderDetailInKitchenDTO> itemsName = await _itemModuleAPI.GetItemsForKitchenAsync(itemsIds);
+
+            foreach (ItemForReportDTO item in itemForReportDTO)
+            {
+                item.Name = itemsName.Find(x => x.Id == item.ItemId).Name;
+            }
+
+            return itemForReportDTO;
         }
 
         private static void ValidateOrderKey(string orderKey)

@@ -112,7 +112,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
                 .ToListAsync();
         }
 
-        public async Task<List<ItemForReport>> GetItemForBestSellingMeal()
+        public async Task<List<ItemForReport>> GetItemForBestSelling(int topBestSellingItems)
         {
             return await _orderDbContext.OrderDetail.Include(x => x.Order).Where(x => x.Order.OrderStateId == (short)OrderState.State.Paid)
                 .GroupBy(x => new { x.ItemId }).Select(x => new ItemForReport()
@@ -120,22 +120,18 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
                     ItemId = x.Key.ItemId,
                     Value = x.Sum(x => x.Quantity)
 
-                }).OrderByDescending(x => x.Value).Take(5).ToListAsync();
+                }).OrderByDescending(x => x.Value).Take(topBestSellingItems).ToListAsync();
         }
 
-        public async Task<List<ItemForReport>> GetItemForBestSellingDrink()
+        public async Task<List<ItemForReport>> GetItemForWorstSelling(int topWorstSellingItems)
         {
-            throw new System.NotImplementedException();
-        }
+            return await _orderDbContext.OrderDetail.Include(x => x.Order).Where(x => x.Order.OrderStateId == (short)OrderState.State.Paid)
+                .GroupBy(x => new { x.ItemId }).Select(x => new ItemForReport()
+                {
+                    ItemId = x.Key.ItemId,
+                    Value = x.Sum(x => x.Quantity)
 
-        public async Task<List<ItemForReport>> GetItemForWorstSellingDrink()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<List<ItemForReport>> GetItemForWorstSellingMeal()
-        {
-            throw new System.NotImplementedException();
+                }).OrderBy(x => x.Value).Take(topWorstSellingItems).ToListAsync();
         }
     }
 }

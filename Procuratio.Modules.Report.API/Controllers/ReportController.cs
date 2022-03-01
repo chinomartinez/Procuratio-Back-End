@@ -19,10 +19,10 @@ namespace Procuratio.Modules.Report.API.Controllers
             _reportService = reportService;
         }
 
-        [HttpGet("report/{from:int}/{to:int}")]
-        public async Task<ActionResult<ReportDTO>> GetOrderForReport(int from, int to)
+        [HttpGet("report/{from:int}/{to:int}/{topBestSellingItems:int}/{topWorstSellingItems:int}")]
+        public async Task<ActionResult<ReportDTO>> GetOrderForReport(int from, int to, int topBestSellingItems, int topWorstSellingItems)
         {
-            return Ok(await _reportService.GetOrderForReport(from, to));
+            return Ok(await _reportService.GetOrderForReport(from, to, topBestSellingItems, topWorstSellingItems));
         }
     }
 }

@@ -10,12 +10,8 @@ namespace Procuratio.Modules.Report.Service.DTOs
     {
         public List<MultiDTO> OrderReport { get; set; }
 
-        public List<SeriesDTO> BestSellingMeal { get; set; }
+        public List<SeriesDTO> BestSellingItems { get; set; }
 
-        public List<SeriesDTO> WorstSellingMeal { get; set; }
-
-        public List<SeriesDTO> BestSellingDrink { get; set; }
-
-        public List<SeriesDTO> WorstSellingDrink { get; set; }
+        public List<SeriesDTO> WorstSellingItems { get; set; }
     }
 }

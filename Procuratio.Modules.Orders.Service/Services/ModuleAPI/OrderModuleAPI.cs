@@ -18,24 +18,14 @@ namespace Procuratio.Modules.Order.Service.Services.ModuleAPI
             _orderService = orderService;
         }
 
-        public async Task<List<ItemForReportDTO>> GetItemForBestSellingDrink()
+        public async Task<List<ItemForReportDTO>> GetItemForBestSelling(int topBestSellingItems)
         {
-            return await _orderService.GetItemForBestSellingDrink();
+            return await _orderService.GetItemForBestSelling(topBestSellingItems);
         }
 
-        public async Task<List<ItemForReportDTO>> GetItemForBestSellingMeal()
+        public async Task<List<ItemForReportDTO>> GetItemForWorstSelling(int topWorstSellingItems)
         {
-            return await _orderService.GetItemForBestSellingMeal();
-        }
-
-        public async Task<List<ItemForReportDTO>> GetItemForWorstSellingDrink()
-        {
-            return await _orderService.GetItemForWorstSellingDrink();
-        }
-
-        public async Task<List<ItemForReportDTO>> GetItemForWorstSellingMeal()
-        {
-            return await _orderService.GetItemForWorstSellingMeal();
+            return await _orderService.GetItemForWorstSelling(topWorstSellingItems);
         }
 
         public async Task<List<OrderForReportDTO>> GetOrderForReport(int from, int to)
