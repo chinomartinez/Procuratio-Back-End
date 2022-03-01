@@ -120,7 +120,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
                     ItemId = x.Key.ItemId,
                     Value = x.Sum(x => x.Quantity)
 
-                }).OrderByDescending(x => x.Value).Take(topBestSellingItems).ToListAsync();
+                }).OrderByDescending(x => x.Value).Take(topBestSellingItems).AsNoTracking().ToListAsync();
         }
 
         public async Task<List<ItemForReport>> GetItemForWorstSelling(int topWorstSellingItems)
@@ -131,7 +131,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
                     ItemId = x.Key.ItemId,
                     Value = x.Sum(x => x.Quantity)
 
-                }).OrderBy(x => x.Value).Take(topWorstSellingItems).ToListAsync();
+                }).OrderBy(x => x.Value).Take(topWorstSellingItems).AsNoTracking().ToListAsync();
         }
     }
 }
