@@ -4,6 +4,6 @@ namespace Procuratio.Shared.Infrastructure.Exceptions
 {
     public class BranchIdNotFoundException : CustomExceptionBase
     {
-        public BranchIdNotFoundException() : base(message: $"No se encontro el identificador del usuario asociado al restaurante.") { }
+        public BranchIdNotFoundException() : base(message: $"No se encontro el identificador de la sucursal.") { }
     }
 }

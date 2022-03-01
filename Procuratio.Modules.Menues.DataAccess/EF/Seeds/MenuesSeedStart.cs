@@ -21,7 +21,7 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Seeds
 
         private static void TestingSeeds(MenuDbContext menuesDbContext)
         {
-            MenuCategorySeed.StartMenuCategorySeed(menuesDbContext.MenuCategory);
+            MenuCategorySeed.StartMenuCategorySeed(menuesDbContext);
         }
     }
 }

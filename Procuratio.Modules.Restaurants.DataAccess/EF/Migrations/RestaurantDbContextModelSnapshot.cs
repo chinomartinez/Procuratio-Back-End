@@ -84,6 +84,13 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
                             Constrained = true,
                             DataType = "boolean",
                             Description = "Order from table"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Constrained = true,
+                            DataType = "boolean",
+                            Description = "Show Restaurant In Online Menu"
                         });
                 });
 
@@ -115,8 +122,8 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("DateWithdrawn")
                         .HasColumnType("datetime2");

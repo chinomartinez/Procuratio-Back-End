@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Procuratio.Shared.ProcuratioFramework.JWT
 {
@@ -9,7 +10,7 @@ namespace Procuratio.Shared.ProcuratioFramework.JWT
 
         public static string GetUserFullName(HttpContext httpContext) => GetClaimData(httpContext, JWTClaimNames.UserFullName);
 
-        public static string GetRole(HttpContext httpContext) => GetClaimData(httpContext, JWTClaimNames.Role);
+        public static string GetRole(HttpContext httpContext) => GetClaimData(httpContext, ClaimTypes.Role);
 
         private static string GetClaimData(HttpContext httpContext, string claimName)
         {

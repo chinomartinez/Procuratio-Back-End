@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.API", "Procuratio.API\Procuratio.API.csproj", "{11F8F5E4-DB2B-4213-BC2F-4BBB28E80C1B}"
 EndProject
@@ -101,15 +101,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Report.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Report.Service", "Procuratio.Modules.Report.Service\Procuratio.Modules.Report.Service.csproj", "{9C7F9ECE-159B-4267-B43C-E01B91B89FCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.Modules.Customer.Shared", "Procuratio.Modules.Customer.Shared\Procuratio.Modules.Customer.Shared.csproj", "{292FB804-A7A9-462A-B48C-290D669AC62F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Customer.Shared", "Procuratio.Modules.Customer.Shared\Procuratio.Modules.Customer.Shared.csproj", "{292FB804-A7A9-462A-B48C-290D669AC62F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.Modules.Menu.Shared", "Procuratio.Modules.Menu.Shared\Procuratio.Modules.Menu.Shared.csproj", "{8C691B50-1E7A-4900-A2C2-C36E34C1423C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Menu.Shared", "Procuratio.Modules.Menu.Shared\Procuratio.Modules.Menu.Shared.csproj", "{8C691B50-1E7A-4900-A2C2-C36E34C1423C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.Modules.Order.Shared", "Procuratio.Modules.Order.Shared\Procuratio.Modules.Order.Shared.csproj", "{A2748E81-0AA0-43B1-8B88-B687E3F8E803}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Order.Shared", "Procuratio.Modules.Order.Shared\Procuratio.Modules.Order.Shared.csproj", "{A2748E81-0AA0-43B1-8B88-B687E3F8E803}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.Modules.Restaurant.Shared", "Procuratio.Modules.Restaurant.Shared\Procuratio.Modules.Restaurant.Shared.csproj", "{CF5C7A54-6B64-495F-980D-DB13E17733CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Restaurant.Shared", "Procuratio.Modules.Restaurant.Shared\Procuratio.Modules.Restaurant.Shared.csproj", "{CF5C7A54-6B64-495F-980D-DB13E17733CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.Modules.Security.Shared", "Procuratio.Modules.Security.Shared\Procuratio.Modules.Security.Shared.csproj", "{EE26A439-5671-405A-9F8B-2EB37AC88445}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Security.Shared", "Procuratio.Modules.Security.Shared\Procuratio.Modules.Security.Shared.csproj", "{EE26A439-5671-405A-9F8B-2EB37AC88445}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notification", "{90BE8C2D-9FAD-4345-B344-6B678B18325D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Notification.API", "Procuratio.API.Modules.Notification.API\Procuratio.Modules.Notification.API.csproj", "{1D7504F6-0D46-4445-992A-220F28BB2469}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Procuratio.Modules.Notification.Shared", "Procuratio.Modules.Notification.Shared\Procuratio.Modules.Notification.Shared.csproj", "{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procuratio.Modules.Report.Shared", "Procuratio.Modules.Report.Shared\Procuratio.Modules.Report.Shared.csproj", "{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -269,6 +277,18 @@ Global
 		{EE26A439-5671-405A-9F8B-2EB37AC88445}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE26A439-5671-405A-9F8B-2EB37AC88445}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE26A439-5671-405A-9F8B-2EB37AC88445}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7504F6-0D46-4445-992A-220F28BB2469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7504F6-0D46-4445-992A-220F28BB2469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7504F6-0D46-4445-992A-220F28BB2469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7504F6-0D46-4445-992A-220F28BB2469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -324,6 +344,10 @@ Global
 		{A2748E81-0AA0-43B1-8B88-B687E3F8E803} = {A56E8AEA-BF05-47F2-82D7-4CA75DE34D36}
 		{CF5C7A54-6B64-495F-980D-DB13E17733CD} = {17281B92-8A00-4429-A048-8A486FC59D18}
 		{EE26A439-5671-405A-9F8B-2EB37AC88445} = {A12988B0-0BE8-451E-8E9D-BFFF3A656DD3}
+		{90BE8C2D-9FAD-4345-B344-6B678B18325D} = {15717C1A-155D-4B90-93CC-B6F6988A8094}
+		{1D7504F6-0D46-4445-992A-220F28BB2469} = {90BE8C2D-9FAD-4345-B344-6B678B18325D}
+		{25F5D48C-5DD4-4F2C-9421-9CD87DAAAB0C} = {90BE8C2D-9FAD-4345-B344-6B678B18325D}
+		{4F064F1C-FB81-4E51-8B70-1F43BE8FEAFB} = {B4646215-3422-420E-9CEE-8B779EB3E1F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C884A54F-7BD6-4032-B462-DEA7C50A6DF3}

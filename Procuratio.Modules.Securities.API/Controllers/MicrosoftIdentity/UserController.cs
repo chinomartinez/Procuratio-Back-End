@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Procuratio.Modules.Securities.API.Controllers.Base;
 using Procuratio.Modules.Securities.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Securities.Service.Services.Interfaces.MicrosoftIdentity;
+using Procuratio.Modules.Security.Service.DTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
@@ -64,7 +65,14 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
         [HttpGet(BasicStringsForControllers.EntityCreationFormInitializer)]
         public async Task<ActionResult<UserCreationFormInitializerDTO>> GetEntityCreationFormInitializerAsync()
         {
-            return Ok(await _userService.GetEntityCreationFormInitializerAsync());
+            UserCreationFormInitializerDTO userCreationFormInitializerDTO = await _userService.GetEntityCreationFormInitializerAsync();
+
+            if (JWTClaims.GetRole(HttpContext) != "Administrador")
+            {
+                userCreationFormInitializerDTO.Roles = userCreationFormInitializerDTO.Roles.Where(x => x.Id != "Gerente").ToList();
+            }
+
+            return userCreationFormInitializerDTO;
         }
 
         [HttpGet(BasicStringsForControllers.EntityEditionFormInitializer)]
@@ -100,6 +108,28 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             {
                 return BadRequest("Usuario y/o contraseña invalido");
             }
+        }
+
+        [HttpPost("admin-auth")]
+        [AllowAnonymous]
+        public async Task<ActionResult<AuthenticationResponseDTO>> AdminAuthAsync([FromBody] AdminCredentialsDTO adminCredentialsDTO)
+        {
+            AuthenticationResponseDTO authenticationResponseDTO = await _userService.AdminAuthAsync(adminCredentialsDTO);
+
+            if (authenticationResponseDTO is not null)
+            {
+                return Ok(authenticationResponseDTO);
+            }
+            else
+            {
+                return BadRequest("Usuario y/o contraseña invalido");
+            }
+        }
+
+        [HttpPut("password")]
+        public async Task<ActionResult<bool>> UpdatePassword([FromBody] ChangeUserPasswordDTO changeUserPasswordDTO)
+        {
+            return await _userService.UpdatePassword(changeUserPasswordDTO, Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JWTClaimNames.UserId).Value));
         }
     }
 }

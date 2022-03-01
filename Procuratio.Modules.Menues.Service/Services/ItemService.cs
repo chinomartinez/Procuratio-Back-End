@@ -79,7 +79,16 @@ namespace Procuratio.Modules.Menues.Service.Services
         {
             Item item = await _itemRepository.GetEntityEditionFormInitializerAsync(id);
 
-            return _mapper.Map<ItemEditionFormInitializerDTO>(item);
+            List<MenuCategory> menuSubcategories = await _menuCategoryRepository.GetAllAsync();
+
+            return _mapper.Map<ItemEditionFormInitializerDTO>(item, opt =>
+            {
+                opt.AfterMap((src, dest) =>
+                {
+                    menuSubcategories.ForEach(x => dest.MenuCategories.Items.Add(new SelectListItemDTO { Id = x.Id.ToString(), Description = x.Name }));
+                    dest.MenuCategories.SelectedOptionId = item.MenuCategoryId.ToString();
+                });
+            });
         }
 
         public async Task UpdateAsync(ItemFromFormDTO updateDTO, int id)
@@ -98,9 +107,9 @@ namespace Procuratio.Modules.Menues.Service.Services
             return _mapper.Map<List<ItemDTO>>(items);
         }
 
-        public async Task<IReadOnlyList<MenuAddItemsToOrderVM>> GetMenuAddItemsToOrderAsync()
+        public async Task<IReadOnlyList<MenuAddItemsToOrderVM>> GetMenuAddItemsToOrderAsync(List<int> ids)
         {
-            IReadOnlyList<Item> items = await _itemRepository.GetMenuAddItemsToOrderAsync();
+            IReadOnlyList<Item> items = await _itemRepository.GetMenuAddItemsToOrderAsync(ids);
 
             return _mapper.Map<IReadOnlyList<MenuAddItemsToOrderVM>>(items);
         }
@@ -122,6 +131,14 @@ namespace Procuratio.Modules.Menues.Service.Services
         public async Task<List<ItemsForBillDTO>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn)
         {
             List<ItemsBill> itemsForBillList = await _itemRepository.GetItemsFoBillAsync(itemIds, dineIn);
+
+            return _mapper.Map<List<ItemsForBillDTO>>(itemsForBillList);
+
+        }
+
+        public async Task<List<ItemsForBillDTO>> GetAnonymousItemsFoBillAsync(List<int> itemIds, int branchId)
+        {
+            List<ItemsBill> itemsForBillList = await _itemRepository.GetAnonymousItemsFoBillAsync(itemIds, branchId);
 
             return _mapper.Map<List<ItemsForBillDTO>>(itemsForBillList);
         }

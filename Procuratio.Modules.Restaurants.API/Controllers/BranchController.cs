@@ -39,5 +39,26 @@ namespace Procuratio.Modules.Restaurant.API.Controllers
             await _branchService.UpdateSettings(settingsFromFormDTO, (int)_tenantService.GetBranchId());
             return NoContent();
         }
+
+        [HttpGet("restaurant-online-menu")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<RestaurantForOnlineMenuDTO>>> GetRestaurantsForOnlineMenu()
+        {
+            return Ok(await _branchService.GetRestaurantsForOnlineMenu());
+        }
+
+        [HttpGet("allow-online-menu/{branchId:int}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<bool>> GetAllowOnlineMenu(int branchId)
+        {
+            return Ok(await _branchService.GetAllowOnlineMenu(branchId));
+        }
+
+        [HttpGet("allow-order-from-table/" + "{orderKey}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<bool>> GetAllowOrderFromTable(string orderKey)
+        {
+            return Ok(await _branchService.GetAllowOrderFromTable(orderKey));
+        }
     }
 }

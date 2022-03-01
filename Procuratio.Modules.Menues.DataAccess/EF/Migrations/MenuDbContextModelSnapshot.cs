@@ -79,9 +79,6 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.HasIndex("BranchId", "Name")
                         .IsUnique();
 
-                    b.HasIndex("BranchId", "Order", "MenuCategoryId")
-                        .IsUnique();
-
                     b.ToTable("Item");
                 });
 
@@ -111,9 +108,6 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Migrations
                     b.HasIndex("MenuCategoryStateId");
 
                     b.HasIndex("BranchId", "Name")
-                        .IsUnique();
-
-                    b.HasIndex("BranchId", "Order")
                         .IsUnique();
 
                     b.ToTable("MenuCategory");

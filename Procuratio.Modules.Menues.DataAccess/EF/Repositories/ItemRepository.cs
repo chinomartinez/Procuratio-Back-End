@@ -27,8 +27,8 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             await _menuDbContext.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<Item>> BrowseAsync() => await _item.AsNoTracking()
-            .OrderByDescending(x => x.Name).ToListAsync();
+        public async Task<IReadOnlyList<Item>> BrowseAsync() => await _item.Include(x => x.MenuCategory).AsNoTracking()
+            .OrderBy(x => x.MenuCategory.Name).ToListAsync();
 
         public async Task DeleteAsync(Item entity)
         {
@@ -57,11 +57,11 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
             return lastOrder is null ? 0 : (int)++lastOrder;
         }
 
-        public async Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync()
+        public async Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync(List<int> ids)
         {
             return await _item.Include(x => x.MenuCategory)
                 .Where(x => x.ItemStateId == (short)ItemState.State.Available
-                && x.MenuCategory.MenuCategoryStateId == (short)MenuCategoryState.State.Available)
+                && x.MenuCategory.MenuCategoryStateId == (short)MenuCategoryState.State.Available && !ids.Contains(x.Id))
                 .OrderByDescending(x => x.MenuCategory.Order).ThenByDescending(x => x.Order)
                 .ThenByDescending(x => x.Order).AsNoTracking().ToListAsync();
         }
@@ -98,6 +98,18 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories
                     Id = x.Id,
                     Name = x.Name,
                     Price = dineIn ? (decimal)x.PriceInsideRestaurant : (decimal)x.PriceOutsideRestaurant
+
+                }).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<List<ItemsBill>> GetAnonymousItemsFoBillAsync(List<int> itemIds, int branchId)
+        {
+            return await _item.IgnoreQueryFilters().Where(x => itemIds.Contains(x.Id) && x.BranchId == branchId)
+                .Select(x => new ItemsBill
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = (decimal)x.PriceInsideRestaurant
 
                 }).AsNoTracking().ToListAsync();
         }

@@ -1,4 +1,5 @@
-﻿using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
+﻿using Microsoft.AspNetCore.Identity;
+using Procuratio.Modules.Securities.Domain.Entities.MicrosoftIdentity;
 using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -14,6 +15,16 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.Interfaces.Mi
 
         Task<IList<Claim>> GetClaimsAsync(User user);
 
-        Task<IList<string>> GetRolesAsync(User user);
+        Task<IList<string>> GetRolesByUserAsync(User user);
+
+        Task<List<Role>> GetRolesAsync();
+
+        Task SetRole(User user, string role);
+
+        Task<User> GetByUserNameAsync(string name);
+
+        Task<IdentityResult> UpdatePassword(User user, string newPassword);
+
+        Task RemoveRoles(User user);
     }
 }

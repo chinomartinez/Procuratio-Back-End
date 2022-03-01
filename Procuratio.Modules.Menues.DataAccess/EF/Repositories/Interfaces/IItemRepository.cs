@@ -10,12 +10,13 @@ namespace Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces
     {
         Task<int> GetNextOrderAsync(int menuCategoryId);
 
-        Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync();
+        Task<IReadOnlyList<Item>> GetMenuAddItemsToOrderAsync(List<int> ids);
 
         Task<List<MenuForOrderDetail>> GetMenuForOrderDetailAsync(List<int> itemIds, bool dineIn);
 
         Task<List<ItemsForOrderDetailInKitchen>> GetItemsForKitchenAsync(List<int> itemIds);
 
         Task<List<ItemsBill>> GetItemsFoBillAsync(List<int> itemIds, bool dineIn);
+        Task<List<ItemsBill>> GetAnonymousItemsFoBillAsync(List<int> itemIds, int branchId);
     }
 }

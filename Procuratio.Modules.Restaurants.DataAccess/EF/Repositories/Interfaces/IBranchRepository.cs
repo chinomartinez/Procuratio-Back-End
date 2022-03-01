@@ -14,5 +14,11 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Interfaces
         Task<Branch> GetBranchForUpdateSettings(int branchId);
 
         Task UpdateSettings(Branch branch);
+
+        Task<bool> ExistBranchId(int branchId);
+        Task<List<RestaurantForOnlineMenuModel>> GetRestaurantsForOnlineMenu();
+        Task<bool> GetAllowOnlineMenu(int branchId);
+
+        Task<bool> GetAllowOrderFromTable(int branchId);
     }
 }

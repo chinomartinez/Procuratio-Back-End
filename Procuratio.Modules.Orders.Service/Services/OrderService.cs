@@ -2,14 +2,16 @@
 using Procuratio.Modules.Menu.Shared;
 using Procuratio.Modules.Menu.Shared.DTO;
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
+using Procuratio.Modules.Order.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Order.Service.DTOs.OrderDetailDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs;
 using Procuratio.Modules.Order.Service.DTOs.OrderDTOs.Kitchen;
-using Procuratio.Modules.Order.Service.Exceptions;
 using Procuratio.Modules.Order.Service.Services.Interfaces;
+using Procuratio.Modules.Order.Shared.DTO;
 using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
+using Procuratio.Shared.Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -94,9 +96,7 @@ namespace Procuratio.Modules.Order.Service.Services
 
         public async Task UpdateOrderDetailFromCustomerAsync(ShoppingCartFromFormDTO shoppingCartFromFormDTO)
         {
-            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
-
-            if (!regex.IsMatch(shoppingCartFromFormDTO.OrderKey)) { throw new InvalidPasswordException(); }
+            ValidateOrderKey(shoppingCartFromFormDTO.OrderKey);
 
             string[] values = shoppingCartFromFormDTO.OrderKey.Split('-');
 
@@ -109,6 +109,24 @@ namespace Procuratio.Modules.Order.Service.Services
             order.OrderDetails.ForEach(x => x.BranchId = Convert.ToInt32(values[1]));
 
             await _orderRepository.UpdateAsync(order);
+        }
+
+        public async Task<List<string>> GetTablesForWaiterNotification(string customerPassword)
+        {
+            ValidateOrderKey(customerPassword);
+
+            string[] values = customerPassword.Split('-');
+
+            return await _orderRepository.GetTablesForWaiterNotification(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+        }
+
+        public async Task<int?> GetWaiterIdOfTheOrder(string orderKey)
+        {
+            ValidateOrderKey(orderKey);
+
+            string[] values = orderKey.Split('-');
+
+            return await _orderRepository.GetWaiterIdOfTheOrder(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
         }
 
         public async Task<IReadOnlyList<OrderListForKitchenDTO>> GetOrdersInProgressForKitchenAsync()
@@ -164,7 +182,7 @@ namespace Procuratio.Modules.Order.Service.Services
                 itemsIds.Add(item.ItemId);
             }
 
-            List<ItemsForBillDTO> itemsForOrderDetailBillList = await _itemModuleAPI.GetItemsFoBillAsync(itemsIds, dineIn);
+            List<ItemsForBillDTO> itemsForOrderDetailBillList = await _itemModuleAPI.GetItemsForBillAsync(itemsIds, dineIn);
 
             List<OrderBillDTO> orderBillDTO = new();
 
@@ -177,6 +195,43 @@ namespace Procuratio.Modules.Order.Service.Services
                     Id = currentOrderDetail.OrderId,
                     Name = item.Name,
                     Quantity = currentOrderDetail.Quantity,
+                    Price = item.Price
+                });
+            }
+
+            return orderBillDTO;
+        }
+
+        public async Task<List<OrderBillDTO>> GetMenuBillAsync(string orderKey)
+        {
+            ValidateOrderKey(orderKey);
+
+            string[] values = orderKey.Split('-');
+
+            Orders.Domain.Entities.Order order = await _orderRepository.GetAnonymousOrderDetailForBillAsync(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            List<int> itemsIds = new();
+
+            foreach (OrderDetail item in order.OrderDetails)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<ItemsForBillDTO> itemsForOrderDetailBillList = await _itemModuleAPI.GetAnonymousItemsForBillAsync(itemsIds, Convert.ToInt32(values[1]));
+
+            List<OrderBillDTO> orderBillDTO = new();
+
+            foreach (ItemsForBillDTO item in itemsForOrderDetailBillList)
+            {
+                OrderDetail currentOrderDetail = order.OrderDetails.Find(x => x.ItemId == item.Id);
+
+                orderBillDTO.Add(new OrderBillDTO
+                {
+                    Id = currentOrderDetail.OrderId,
+                    Name = item.Name,
+                    Quantity = currentOrderDetail.Quantity + currentOrderDetail.QuantityInKitchen,
                     Price = item.Price
                 });
             }
@@ -231,6 +286,21 @@ namespace Procuratio.Modules.Order.Service.Services
             await _orderRepository.UpdateAsync(order);
         }
 
+        public async Task WaitingForPaymentAnonymousAsync(string orderKey)
+        {
+            ValidateOrderKey(orderKey);
+
+            string[] values = orderKey.Split('-');
+
+            Orders.Domain.Entities.Order order = await _orderRepository.GetAnonymousOrderAsync(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+
+            if (order is null) { throw new OrderNotFoundException(); }
+
+            order.OrderStateId = (short)OrderState.State.WaitingForPayment;
+
+            await _orderRepository.UpdateAsync(order);
+        }
+
         public async Task PaidAsync(int id)
         {
             Orders.Domain.Entities.Order order = await _orderRepository.GetWithOrderDetailAsync(id);
@@ -246,7 +316,98 @@ namespace Procuratio.Modules.Order.Service.Services
         {
             OrderDetail orderDetail = await _orderDetailRepository.GetOrderDetailByOrderIdAndItemId(orderId, itemId);
 
-            return await _orderDetailRepository.DeleteOrderDetail(orderDetail);
+            int orderDetailDeleted = await _orderDetailRepository.DeleteOrderDetail(orderDetail);
+
+            Orders.Domain.Entities.Order orderToUpdateState = await _orderRepository.GetWithOrderDetailAsync(orderId);
+
+            if (orderToUpdateState.OrderDetails.Exists(x => x.QuantityInKitchen > 0))
+            {
+                orderToUpdateState.OrderStateId = (short)OrderState.State.InProgress;
+            }
+            else
+            {
+                if (orderToUpdateState.OrderDetails.Count == 0)
+                {
+                    orderToUpdateState.OrderStateId = (short)OrderState.State.Pending;
+                }
+                else
+                {
+                    orderToUpdateState.OrderStateId = (short)OrderState.State.Delivered;
+                }
+            }
+
+            await _orderRepository.UpdateAsync(orderToUpdateState);
+
+            return orderDetailDeleted;
+        }
+
+        public async Task<short> GetOrderStateAsync(string orderKey)
+        {
+            ValidateOrderKey(orderKey);
+
+            string[] values = orderKey.Split('-');
+
+            return await _orderRepository.GetOrderStateIdAsync(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+        }
+
+        public async Task<List<OrderForReportDTO>> GetOrderForReport(int from, int to)
+        {
+            List<OrderForReport> ordersForReport = await _orderRepository.GetOrderForReport(from, to);
+
+            return _mapper.Map<List<OrderForReportDTO>>(ordersForReport);
+        }
+
+        public async Task<List<ItemForReportDTO>> GetItemForBestSelling(int topBestSellingItems)
+        {
+            List<ItemForReport> itemForReport = await _orderRepository.GetItemForBestSelling(topBestSellingItems);
+
+            List<ItemForReportDTO> itemForReportDTO = _mapper.Map<List<ItemForReportDTO>>(itemForReport);
+
+            List<int> itemsIds = new();
+
+            foreach (ItemForReport item in itemForReport)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<ItemsForOrderDetailInKitchenDTO> itemsName = await _itemModuleAPI.GetItemsForKitchenAsync(itemsIds);
+
+            foreach (ItemForReportDTO item in itemForReportDTO)
+            {
+                item.Name = itemsName.Find(x => x.Id == item.ItemId).Name;
+            }
+
+            return itemForReportDTO;
+        }
+
+        public async Task<List<ItemForReportDTO>> GetItemForWorstSelling(int topWorstSellingItems)
+        {
+            List<ItemForReport> itemForReport = await _orderRepository.GetItemForWorstSelling(topWorstSellingItems);
+
+            List<ItemForReportDTO> itemForReportDTO = _mapper.Map<List<ItemForReportDTO>>(itemForReport);
+
+            List<int> itemsIds = new();
+
+            foreach (ItemForReport item in itemForReport)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<ItemsForOrderDetailInKitchenDTO> itemsName = await _itemModuleAPI.GetItemsForKitchenAsync(itemsIds);
+
+            foreach (ItemForReportDTO item in itemForReportDTO)
+            {
+                item.Name = itemsName.Find(x => x.Id == item.ItemId).Name;
+            }
+
+            return itemForReportDTO;
+        }
+
+        private static void ValidateOrderKey(string orderKey)
+        {
+            Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
+
+            if (!regex.IsMatch(orderKey)) { throw new InvalidOrderKeyException(); }
         }
     }
 }

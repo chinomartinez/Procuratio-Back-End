@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
+using Procuratio.Modules.Order.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using System.Collections.Generic;
@@ -64,6 +65,73 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
         public async Task<Orders.Domain.Entities.Order> GetOrderDetailForBillAsync(int id)
         {
             return await _order.Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<Orders.Domain.Entities.Order> GetAnonymousOrderDetailForBillAsync(int id, int branchId)
+        {
+            return await _order.IgnoreQueryFilters().Include(x => x.OrderDetails).AsNoTracking().SingleOrDefaultAsync(x => x.Id == id && x.BranchId == branchId);
+        }
+
+        public async Task<List<string>> GetTablesForWaiterNotification(int id, int branchId)
+        {
+            return await _order.IgnoreQueryFilters()
+                .Include(x => x.TableXOrders)
+                .ThenInclude(x => x.Table)
+                .Where(x => x.Id == id && x.BranchId == branchId).Select(x => x.TableXOrders.Select(x => x.Table.Number.ToString()).ToList()).FirstOrDefaultAsync();
+        }
+
+        public async Task<int?> GetWaiterIdOfTheOrder(int id, int branchId)
+        {
+            return await _order.IgnoreQueryFilters().Where(x => x.Id == id && x.BranchId == branchId).Select(x => x.WaiterId).FirstOrDefaultAsync();
+        }
+
+        public async Task<short> GetOrderStateIdAsync(int orderId, int branchId)
+        {
+            var result = await _order.IgnoreQueryFilters().Select(x => new { x.Id, x.BranchId, x.OrderStateId }).FirstAsync(x => x.Id == orderId && x.BranchId == branchId);
+
+            return result.OrderStateId;
+        }
+
+        public async Task<Orders.Domain.Entities.Order> GetAnonymousOrderAsync(int orderId, int branchId)
+        {
+            return await _order.IgnoreQueryFilters().AsNoTracking().SingleOrDefaultAsync(x => x.Id == orderId && x.BranchId == branchId);
+        }
+
+        public async Task<List<OrderForReport>> GetOrderForReport(int from, int to)
+        {
+            return await _order.Where(x => x.OrderStateId == (short)OrderState.State.Paid
+            && x.Date.Year >= from && x.Date.Year <= to)
+                .GroupBy(x => new { x.Date.Year, x.Date.Month })
+                .Select(x => new OrderForReport()
+                {
+                    Year = x.Key.Year,
+                    Month = x.Key.Month,
+                    Quantity = x.Count()
+                }).AsNoTracking()
+                .OrderByDescending(x => x.Year)
+                .ToListAsync();
+        }
+
+        public async Task<List<ItemForReport>> GetItemForBestSelling(int topBestSellingItems)
+        {
+            return await _orderDbContext.OrderDetail.Include(x => x.Order).Where(x => x.Order.OrderStateId == (short)OrderState.State.Paid)
+                .GroupBy(x => new { x.ItemId }).Select(x => new ItemForReport()
+                {
+                    ItemId = x.Key.ItemId,
+                    Value = x.Sum(x => x.Quantity)
+
+                }).OrderByDescending(x => x.Value).Take(topBestSellingItems).ToListAsync();
+        }
+
+        public async Task<List<ItemForReport>> GetItemForWorstSelling(int topWorstSellingItems)
+        {
+            return await _orderDbContext.OrderDetail.Include(x => x.Order).Where(x => x.Order.OrderStateId == (short)OrderState.State.Paid)
+                .GroupBy(x => new { x.ItemId }).Select(x => new ItemForReport()
+                {
+                    ItemId = x.Key.ItemId,
+                    Value = x.Sum(x => x.Quantity)
+
+                }).OrderBy(x => x.Value).Take(topWorstSellingItems).ToListAsync();
         }
     }
 }

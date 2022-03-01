@@ -68,9 +68,9 @@ namespace Procuratio.Modules.Menues.API.Controllers
         }
 
         [HttpGet("menu-add-item-to-order")]
-        public async Task<ActionResult<IReadOnlyList<MenuAddItemsToOrderVM>>> GetMenuAddItemsToOrderAsync()
+        public async Task<ActionResult<IReadOnlyList<MenuAddItemsToOrderVM>>> GetMenuAddItemsToOrderAsync([FromQuery] List<int> ids)
         {
-            return Ok(await _itemService.GetMenuAddItemsToOrderAsync());
+            return Ok(await _itemService.GetMenuAddItemsToOrderAsync(ids));
         }
 
         [HttpGet("id")]

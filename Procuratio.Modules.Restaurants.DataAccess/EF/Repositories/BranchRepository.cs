@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Restaurant.DataAccess.EF.Repositories.Models;
+using Procuratio.Modules.Restaurant.Domain.Entities;
 using Procuratio.Modules.Restaurants.DataAccess;
 using Procuratio.Modules.Restaurants.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -67,6 +69,44 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories
             _branch.Update(branch);
 
             await _restaurantDbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> ExistBranchId(int branchId)
+        {
+            return await _branch.FirstOrDefaultAsync(x => x.Id == branchId) is not null;
+        }
+
+        public async Task<List<RestaurantForOnlineMenuModel>> GetRestaurantsForOnlineMenu()
+        {
+            return await _branch.IgnoreQueryFilters()
+                .Include(x => x.Restaurant)
+                .Include(x => x.BranchSettings).ThenInclude(x => x.Setting)
+                .Where(x => x.BranchSettings.Any(x => x.SettingId == (int)Setting.Type.ShowRestaurantInOnlineMenu && x.UnconstrainedValue == true.ToString().ToLower()))
+                .Select(x => new RestaurantForOnlineMenuModel
+                {
+                    BranchId = x.Id,
+                    Name = x.Restaurant.Name,
+                    Slogan = x.Restaurant.Slogan,
+                    Address = x.Address,
+                    Phone = x.Phone,
+                    OnlineMenu = Convert.ToBoolean(x.BranchSettings.First(x => x.SettingId == (int)Setting.Type.OnlineMenu).UnconstrainedValue)
+                })
+                .OrderBy(x => x.Name)
+                .ToListAsync();
+        }
+
+        public async Task<bool> GetAllowOnlineMenu(int branchId)
+        {
+            Branch sdsd = await _branch.IgnoreQueryFilters().Include(x => x.BranchSettings).FirstAsync(x => x.Id == branchId);
+
+            return Convert.ToBoolean(sdsd.BranchSettings.First(x => x.SettingId == (int)Setting.Type.OnlineMenu).UnconstrainedValue);
+        }
+
+        public async Task<bool> GetAllowOrderFromTable(int branchId)
+        {
+            Branch sdsd = await _branch.IgnoreQueryFilters().Include(x => x.BranchSettings).FirstAsync(x => x.Id == branchId);
+
+            return Convert.ToBoolean(sdsd.BranchSettings.First(x => x.SettingId == (int)Setting.Type.OrderFromTable).UnconstrainedValue);
         }
     }
 }

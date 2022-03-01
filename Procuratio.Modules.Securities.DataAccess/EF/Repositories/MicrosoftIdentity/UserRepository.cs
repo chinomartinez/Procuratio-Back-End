@@ -52,6 +52,35 @@ namespace Procuratio.Modules.Securities.DataAccess.EF.Repositories.MicrosoftIden
 
         public async Task<IList<Claim>> GetClaimsAsync(User user) => await _userManager.GetClaimsAsync(user);
 
-        public async Task<IList<string>> GetRolesAsync(User user) => await _userManager.GetRolesAsync(user);
+        public async Task<IList<string>> GetRolesByUserAsync(User user) => await _userManager.GetRolesAsync(user);
+
+        public async Task<List<Role>> GetRolesAsync()
+        {
+            return await _roleManager.Roles.Where(x => x.Name != "Administrador").ToListAsync();
+        }
+
+        public async Task RemoveRoles(User user)
+        {
+            IEnumerable<string> roles = await _userManager.GetRolesAsync(user);
+
+            await _userManager.RemoveFromRolesAsync(user, roles);
+        }
+
+        public async Task SetRole(User user, string role)
+        {
+            await _userManager.AddToRoleAsync(user, role);
+        }
+
+        public async Task<User> GetByUserNameAsync(string name)
+        {
+            return await _userManager.FindByNameAsync(name);
+        }
+
+        public async Task<IdentityResult> UpdatePassword(User user, string newPassword)
+        {
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            return await _userManager.ResetPasswordAsync(user, token, newPassword);
+        }
     }
 }
