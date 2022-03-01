@@ -111,5 +111,27 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
                 .OrderByDescending(x => x.Year)
                 .ToListAsync();
         }
+
+        public async Task<List<ItemForReport>> GetItemForBestSelling(int topBestSellingItems)
+        {
+            return await _orderDbContext.OrderDetail.Include(x => x.Order).Where(x => x.Order.OrderStateId == (short)OrderState.State.Paid)
+                .GroupBy(x => new { x.ItemId }).Select(x => new ItemForReport()
+                {
+                    ItemId = x.Key.ItemId,
+                    Value = x.Sum(x => x.Quantity)
+
+                }).OrderByDescending(x => x.Value).Take(topBestSellingItems).ToListAsync();
+        }
+
+        public async Task<List<ItemForReport>> GetItemForWorstSelling(int topWorstSellingItems)
+        {
+            return await _orderDbContext.OrderDetail.Include(x => x.Order).Where(x => x.Order.OrderStateId == (short)OrderState.State.Paid)
+                .GroupBy(x => new { x.ItemId }).Select(x => new ItemForReport()
+                {
+                    ItemId = x.Key.ItemId,
+                    Value = x.Sum(x => x.Quantity)
+
+                }).OrderBy(x => x.Value).Take(topWorstSellingItems).ToListAsync();
+        }
     }
 }

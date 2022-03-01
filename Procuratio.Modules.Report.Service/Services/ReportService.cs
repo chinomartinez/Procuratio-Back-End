@@ -20,7 +20,19 @@ namespace Procuratio.Modules.Report.Service.Services
             _orderModuleAPI = orderModuleAPI;
         }
 
-        public async Task<List<MultiDTO>> GetOrderForReport(int from, int to)
+        public async Task<ReportDTO> GetOrderForReport(int from, int to, int topBestSellingItems, int topWorstSellingItems)
+        {
+            ReportDTO reportDTO = new();
+
+            reportDTO.OrderReport = await BuildOrderReport(from, to);
+
+            reportDTO.BestSellingItems = await BuildBestSellingReport(topBestSellingItems);
+            reportDTO.WorstSellingItems = await BuildWorstSellingReport(topWorstSellingItems);
+
+            return reportDTO;
+        }
+
+        private async Task<List<MultiDTO>> BuildOrderReport(int from, int to)
         {
             List<MultiDTO> multiDTOs = new();
 
@@ -60,6 +72,28 @@ namespace Procuratio.Modules.Report.Service.Services
             }
 
             return multiDTOs;
+        }
+
+        private async Task<List<SeriesDTO>> BuildBestSellingReport(int topBestSellingItems)
+        {
+            List<SeriesDTO> seriesDTOs = new();
+
+            List<ItemForReportDTO> itemForReport = await _orderModuleAPI.GetItemForBestSelling(topBestSellingItems);
+
+            itemForReport.ForEach(x => seriesDTOs.Add(new SeriesDTO() { Name = x.Name, Value = x.Value }));
+
+            return seriesDTOs;
+        }
+
+        private async Task<List<SeriesDTO>> BuildWorstSellingReport(int topWorstSellingItems)
+        {
+            List<SeriesDTO> seriesDTOs = new();
+
+            List<ItemForReportDTO> itemForReport = await _orderModuleAPI.GetItemForWorstSelling(topWorstSellingItems);
+
+            itemForReport.ForEach(x => seriesDTOs.Add(new SeriesDTO() { Name = x.Name, Value = x.Value }));
+
+            return seriesDTOs;
         }
     }
 }

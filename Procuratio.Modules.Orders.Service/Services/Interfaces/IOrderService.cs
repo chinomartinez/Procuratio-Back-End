@@ -20,6 +20,8 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 
         Task OrderForDeliverAsync(int id);
 
+        Task<List<ItemForReportDTO>> GetItemForBestSelling(int topBestSellingItems);
+
         Task DeliverOrderAsync(int id);
 
         Task WaitingForPaymentAsync(int id);
@@ -27,6 +29,8 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
         Task<int?> GetWaiterIdOfTheOrder(string orderKey);
 
         Task PaidAsync(int id);
+
+        Task<List<ItemForReportDTO>> GetItemForWorstSelling(int topWorstSellingItems);
 
         Task<int> DeleteOrderDetailAsync(int orderId, int itemId);
 

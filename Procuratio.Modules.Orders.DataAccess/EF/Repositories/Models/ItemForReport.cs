@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Models
 {
-    public class OrderForReport
+    public class ItemForReport
     {
-        public int Year { get; set; }
+        public int ItemId { get; set; }
 
-        public int Month { get; set; }
-
-        public int Quantity { get; set; }
+        public int Value { get; set; }
     }
 }

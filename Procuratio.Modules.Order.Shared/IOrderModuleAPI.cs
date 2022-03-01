@@ -14,5 +14,7 @@ namespace Procuratio.Modules.Order.Shared
         Task<int?> GetWaiterIdOfTheOrder(string orderKey);
 
         Task<List<OrderForReportDTO>> GetOrderForReport(int from, int to);
+        Task<List<ItemForReportDTO>> GetItemForBestSelling(int topBestSellingItems);
+        Task<List<ItemForReportDTO>> GetItemForWorstSelling(int topWorstSellingItems);
     }
 }

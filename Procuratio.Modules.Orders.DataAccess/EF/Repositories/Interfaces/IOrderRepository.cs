@@ -25,10 +25,17 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
         Task<List<string>> GetTablesForWaiterNotification(int id, int branchId);
 
         Task<int?> GetWaiterIdOfTheOrder(int id, int branchId);
+
         Task<Orders.Domain.Entities.Order> GetAnonymousOrderDetailForBillAsync(int id, int branchId);
+
         Task<short> GetOrderStateIdAsync(int v1, int v2);
+
         Task<Orders.Domain.Entities.Order> GetAnonymousOrderAsync(int orderId, int branchId);
 
         Task<List<OrderForReport>> GetOrderForReport(int from, int to);
+
+        Task<List<ItemForReport>> GetItemForBestSelling(int topBestSellingItems);
+
+        Task<List<ItemForReport>> GetItemForWorstSelling(int topWorstSellingItems);
     }
 }

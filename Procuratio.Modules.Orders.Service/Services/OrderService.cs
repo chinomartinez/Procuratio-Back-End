@@ -357,6 +357,52 @@ namespace Procuratio.Modules.Order.Service.Services
             return _mapper.Map<List<OrderForReportDTO>>(ordersForReport);
         }
 
+        public async Task<List<ItemForReportDTO>> GetItemForBestSelling(int topBestSellingItems)
+        {
+            List<ItemForReport> itemForReport = await _orderRepository.GetItemForBestSelling(topBestSellingItems);
+
+            List<ItemForReportDTO> itemForReportDTO = _mapper.Map<List<ItemForReportDTO>>(itemForReport);
+
+            List<int> itemsIds = new();
+
+            foreach (ItemForReport item in itemForReport)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<ItemsForOrderDetailInKitchenDTO> itemsName = await _itemModuleAPI.GetItemsForKitchenAsync(itemsIds);
+
+            foreach (ItemForReportDTO item in itemForReportDTO)
+            {
+                item.Name = itemsName.Find(x => x.Id == item.ItemId).Name;
+            }
+
+            return itemForReportDTO;
+        }
+
+        public async Task<List<ItemForReportDTO>> GetItemForWorstSelling(int topWorstSellingItems)
+        {
+            List<ItemForReport> itemForReport = await _orderRepository.GetItemForWorstSelling(topWorstSellingItems);
+
+            List<ItemForReportDTO> itemForReportDTO = _mapper.Map<List<ItemForReportDTO>>(itemForReport);
+
+            List<int> itemsIds = new();
+
+            foreach (ItemForReport item in itemForReport)
+            {
+                itemsIds.Add(item.ItemId);
+            }
+
+            List<ItemsForOrderDetailInKitchenDTO> itemsName = await _itemModuleAPI.GetItemsForKitchenAsync(itemsIds);
+
+            foreach (ItemForReportDTO item in itemForReportDTO)
+            {
+                item.Name = itemsName.Find(x => x.Id == item.ItemId).Name;
+            }
+
+            return itemForReportDTO;
+        }
+
         private static void ValidateOrderKey(string orderKey)
         {
             Regex regex = new("([1-9][0-9]*|0)-([1-9][0-9]*|0)");
