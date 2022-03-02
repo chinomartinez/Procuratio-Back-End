@@ -1,4 +1,6 @@
 ﻿using Procuratio.Modules.Order.DataAccess.EF.Repositories.Models;
+using Procuratio.Shared.ProcuratioFramework.HttpContextUtilities;
+using Procuratio.Shared.ProcuratioFramework.PaginationAndFilter;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +8,7 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces
 {
     public interface IOrderRepository
     {
-        Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrderInProgressAsync();
+        Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrderInProgressAsync(List<short> orderStateIdList);
 
         Task<Orders.Domain.Entities.Order> GetWithOrderDetailAsync(int id);
 
