@@ -3,6 +3,8 @@ using Procuratio.Modules.Order.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Order.DataAccess.EF.Repositories.Models;
 using Procuratio.Modules.Orders.DataAccess;
 using Procuratio.Modules.Orders.Domain.Entities.State;
+using Procuratio.Shared.ProcuratioFramework.HttpContextUtilities;
+using Procuratio.Shared.ProcuratioFramework.PaginationAndFilter;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,14 +39,18 @@ namespace Procuratio.Modules.Order.DataAccess.EF.Repositories
             await _orderDbContext.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrderInProgressAsync()
+        public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrderInProgressAsync(List<short> orderStateIdList)
         {
-            return await _order
+            IQueryable<Orders.Domain.Entities.Order> queryableOrder = _order
                 .Include(x => x.TableXOrders).ThenInclude(x => x.Table)
                 .Include(x => x.OrderState)
                 .Where(x => x.OrderStateId != (short)OrderState.State.Paid)
-                .AsNoTracking().ToListAsync();
-        }
+                .AsNoTracking().AsQueryable();
+
+            queryableOrder = queryableOrder.Where(x => orderStateIdList.Contains(x.OrderStateId));
+
+            return await queryableOrder.ToListAsync();
+        } 
 
         public async Task<IReadOnlyList<Orders.Domain.Entities.Order>> GetOrdersInProgressForKitchenAsync()
         {

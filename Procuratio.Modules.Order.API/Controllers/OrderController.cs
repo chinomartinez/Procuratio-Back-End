@@ -46,6 +46,7 @@ namespace Procuratio.Modules.Order.API.Controllers
         [HttpGet("order-in-progress-for-kitchen")]
         public async Task<ActionResult<IReadOnlyList<OrderListForKitchenDTO>>> GetOrdersInProgressForKitchenAsync() => Ok(await _orderService.GetOrdersInProgressForKitchenAsync());
 
+
         [HttpGet("order-detail-for-kitchen/" + BasicStringsForControllers.IntParameter)]
         public async Task<ActionResult<List<OrderWithOrderDetailVM>>> GetOrderDetailForKitchenAsync(int id)
         {
@@ -89,7 +90,11 @@ namespace Procuratio.Modules.Order.API.Controllers
         }
 
         [HttpGet("dine-in-in-progress")]
-        public async Task<ActionResult<IReadOnlyList<OrderInProgressDTO>>> GetInProgressAsync() => Ok(await _orderService.GetInProgressAsync());
+        public async Task<ActionResult<IReadOnlyList<OrderInProgressDTO>>> GetInProgressAsync([FromQuery] OrderInProgressFilterDTO orderInProgressFilterDTO)
+        {
+            return Ok(await _orderService.GetInProgressAsync(orderInProgressFilterDTO));
+        }
+
 
         [HttpGet("bill/" + BasicStringsForControllers.IntParameter + "/{dineIn:bool}")]
         public async Task<ActionResult<List<OrderBillDTO>>> GetBillAsync(int id, bool dineIn) => Ok(await _orderService.GetBillAsync(id, dineIn));

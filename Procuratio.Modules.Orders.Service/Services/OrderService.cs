@@ -12,6 +12,7 @@ using Procuratio.Modules.Orders.Domain.Entities;
 using Procuratio.Modules.Orders.Domain.Entities.State;
 using Procuratio.Modules.Orders.Service.Exceptions;
 using Procuratio.Shared.Infrastructure.Exceptions;
+using Procuratio.Shared.ProcuratioFramework.PaginationAndFilter;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -239,9 +240,9 @@ namespace Procuratio.Modules.Order.Service.Services
             return orderBillDTO;
         }
 
-        public async Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync()
+        public async Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync(OrderInProgressFilterDTO orderInProgressFilterDTO)
         {
-            IReadOnlyList<Orders.Domain.Entities.Order> ordersInProgress = await _orderRepository.GetOrderInProgressAsync();
+            IReadOnlyList<Orders.Domain.Entities.Order> ordersInProgress = await _orderRepository.GetOrderInProgressAsync(orderInProgressFilterDTO.OrderStateIdList);
 
             return _mapper.Map<IReadOnlyList<OrderInProgressDTO>>(ordersInProgress);
         }
