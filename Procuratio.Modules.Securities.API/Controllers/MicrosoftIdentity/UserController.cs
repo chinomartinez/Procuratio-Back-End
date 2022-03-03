@@ -87,7 +87,7 @@ namespace Procuratio.Modules.Securities.API.Controllers.MicrosoftIdentity
             return Ok(await _userService.GetProfileEditionFormInitializerAsync(Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JWTClaimNames.UserId).Value)));
         }
 
-        [HttpPut("profile")]
+        [HttpPost("profile")]
         public async Task<ActionResult> UpdateProfileAsync([FromForm] ProfileFromFormDTO profileFromFormDTO)
         {
             await _userService.UpdateProfileAsync(profileFromFormDTO, Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JWTClaimNames.UserId).Value));

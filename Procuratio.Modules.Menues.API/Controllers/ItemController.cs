@@ -19,7 +19,7 @@ namespace Procuratio.Modules.Menues.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync([FromBody] ItemFromFormDTO addDTO)
+        public async Task<ActionResult> AddAsync([FromForm] ItemFromFormDTO addDTO)
         {
             await _itemService.AddAsync(addDTO);
             return NoContent();
@@ -60,8 +60,8 @@ namespace Procuratio.Modules.Menues.API.Controllers
             return Ok(await _itemService.GetEntityEditionFormInitializerAsync(id));
         }
 
-        [HttpPut(BasicStringsForControllers.IntParameter)]
-        public async Task<ActionResult> UpdateAsync([FromBody] ItemFromFormDTO updateDTO, int id)
+        [HttpPost(BasicStringsForControllers.IntParameter)]
+        public async Task<ActionResult> UpdateAsync([FromForm] ItemFromFormDTO updateDTO, int id)
         {
             await _itemService.UpdateAsync(updateDTO, id);
             return NoContent();
