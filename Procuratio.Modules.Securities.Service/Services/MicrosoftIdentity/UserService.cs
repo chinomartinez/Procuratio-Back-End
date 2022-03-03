@@ -168,7 +168,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             if (profileFromFormDTO.ProfilePicture is not null)
             {
-                user.ProfilePicture = await _fileStorage.SaveFile("profile", profileFromFormDTO.ProfilePicture);
+                user.ProfilePicture = await _fileStorage.EditFile("profile", profileFromFormDTO.ProfilePicture, user.ProfilePicture);
             }
 
             await _userRepository.UpdateAsync(user);

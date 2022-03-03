@@ -107,7 +107,7 @@ namespace Procuratio.Modules.Menues.Service.Services
 
             if (updateDTO.Image is not null)
             {
-                item.Image = await _fileStorage.SaveFile("image", updateDTO.Image);
+                item.Image = await _fileStorage.EditFile("image", updateDTO.Image, item.Image);
             }
 
             await _itemRepository.UpdateAsync(item);
