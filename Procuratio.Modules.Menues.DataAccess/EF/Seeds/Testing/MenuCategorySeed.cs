@@ -511,7 +511,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                         Name = "Aguas saborizadas",
                         Description = string.Empty,
                         ForKitchen = false,
-                        Image = string.Empty,
+                        Image = "https://procuratio.blob.core.windows.net/image/62eef47c-6102-434f-9162-77212069de9d.png",
                         Order = 1,
                         PriceInsideRestaurant = 250,
                         PriceOutsideRestaurant = 250,
@@ -841,7 +841,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                     new Item()
                     {
                         Name = "Mojito",
-                        Description = "Ron carta blanca dos onzas, jugo de limnon, menta, agua co ngas, almíbar y hielo",
+                        Description = "Ron carta blanca dos onzas, jugo de limnon, menta, agua con gas, almíbar y hielo",
                         ForKitchen = true,
                         Image = string.Empty,
                         Order = 1,

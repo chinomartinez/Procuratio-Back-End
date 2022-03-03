@@ -11,6 +11,12 @@ namespace Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile
 {
     public class ProfileFromFormDTO
     {
+        //public string Name { get; set; }
+
+        //public string Surname { get; set; }
+
+        //public string PhoneNumber { get; set; }
+
         public IFormFile ProfilePicture { get; set; }
     }
 }

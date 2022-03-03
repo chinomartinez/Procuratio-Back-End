@@ -8,7 +8,8 @@ namespace Procuratio.Modules.Securities.Service.Mappers
     {
         public UserProfile()
         {
-            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap()
+                .ForMember(x => x.ProfilePicture, x => x.Ignore());
         }
     }
 }
