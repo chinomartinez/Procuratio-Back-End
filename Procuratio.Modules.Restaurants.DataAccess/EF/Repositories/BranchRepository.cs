@@ -89,6 +89,7 @@ namespace Procuratio.Modules.Restaurant.DataAccess.EF.Repositories
                     Slogan = x.Restaurant.Slogan,
                     Address = x.Address,
                     Phone = x.Phone,
+                    Image = x.Restaurant.Image,
                     OnlineMenu = Convert.ToBoolean(x.BranchSettings.First(x => x.SettingId == (int)Setting.Type.OnlineMenu).UnconstrainedValue)
                 })
                 .OrderBy(x => x.Name)
