@@ -12,7 +12,7 @@ namespace Procuratio.Modules.Restaurants.DataAccess.EF.EntitiesConfigurations
 
             builder.Property(x => x.Name).HasMaxLength(30).IsRequired();
             builder.Property(x => x.Slogan).HasMaxLength(30).IsRequired();
-            builder.Property(x => x.Image).HasMaxLength(30).IsRequired();
+            builder.Property(x => x.Image).HasMaxLength(200).IsRequired();
 
             builder.HasIndex(x => new { x.Name }).IsUnique(true);
 

@@ -1,4 +1,5 @@
-﻿using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
+﻿using Microsoft.AspNetCore.Http;
+using Procuratio.ProcuratioFramework.ProcuratioFramework.BaseInterfacesOperations.DTO;
 
 namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
 {
@@ -10,7 +11,7 @@ namespace Procuratio.Modules.Menu.Service.DTOs.ItemDTOs
 
         public bool ForKitchen { get; set; }
 
-        public string Image { get; set; }
+        public IFormFile Image { get; set; }
 
         public decimal? PriceInsideRestaurant { get; set; }
 

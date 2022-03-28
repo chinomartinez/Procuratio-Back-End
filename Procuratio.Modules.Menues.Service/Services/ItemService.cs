@@ -7,6 +7,7 @@ using Procuratio.Modules.Menues.DataAccess.EF.Repositories.Interfaces;
 using Procuratio.Modules.Menues.Domain.Entities;
 using Procuratio.Modules.Menues.Domain.Entities.State;
 using Procuratio.Modules.Menues.Service.Services.Interfaces;
+using Procuratio.Shared.Abstractions.Azure;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,12 +19,14 @@ namespace Procuratio.Modules.Menues.Service.Services
         private readonly IItemRepository _itemRepository;
         private readonly IMapper _mapper;
         private readonly IMenuCategoryRepository _menuCategoryRepository;
+        private readonly IFileStorage _fileStorage;
 
-        public ItemService(IItemRepository itemRepository, IMapper mapper, IMenuCategoryRepository menuCategoryRepository)
+        public ItemService(IItemRepository itemRepository, IMapper mapper, IMenuCategoryRepository menuCategoryRepository, IFileStorage fileStorage)
         {
             _itemRepository = itemRepository;
             _mapper = mapper;
             _menuCategoryRepository = menuCategoryRepository;
+            _fileStorage = fileStorage;
         }
 
         public async Task AddAsync(ItemFromFormDTO addDTO)
@@ -40,6 +43,11 @@ namespace Procuratio.Modules.Menues.Service.Services
                     dest.Order = nextOrder;
                 });
             });
+
+            if (addDTO.Image is not null)
+            {
+                item.Image = await _fileStorage.SaveFile("image", addDTO.Image);
+            }
 
             await _itemRepository.AddAsync(item);
         }
@@ -96,6 +104,11 @@ namespace Procuratio.Modules.Menues.Service.Services
             Item item = await GetItemAsync(id);
 
             item = _mapper.Map(updateDTO, item);
+
+            if (updateDTO.Image is not null)
+            {
+                item.Image = await _fileStorage.EditFile("image", updateDTO.Image, item.Image);
+            }
 
             await _itemRepository.UpdateAsync(item);
         }

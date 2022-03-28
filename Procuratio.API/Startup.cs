@@ -17,6 +17,7 @@ using Procuratio.Modules.Restaurants.API;
 using Procuratio.Modules.Securities.API;
 using Procuratio.Shared.Infrastructure;
 using Procuratio.Shared.Infrastructure.JWT;
+using Procuratio.Shared.ProcuratioFramework;
 using System;
 using System.Text;
 
@@ -35,6 +36,7 @@ namespace Procuratio.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfrastructure();
+            services.AddFramework();
 
             services.AddCors(options =>
             {
@@ -103,6 +105,7 @@ namespace Procuratio.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             app.UseInfrastructure();
+            app.UseFramework();
 
             if (env.IsDevelopment())
             {

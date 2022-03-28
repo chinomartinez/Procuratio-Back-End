@@ -8,7 +8,9 @@ namespace Procuratio.Modules.Menu.Service.Mappers.ItemMappers
     {
         public ItemFromFormProfile()
         {
-            CreateMap<ItemFromFormDTO, Item>();
+            CreateMap<ItemFromFormDTO, Item>()
+                .ForMember(dest => dest.Description, opt => opt.NullSubstitute(string.Empty))
+                .ForMember(dest => dest.Code, opt => opt.NullSubstitute(string.Empty));
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Seeds.MicrosoftIdentity
                 user.Email = string.Empty;
                 user.NormalizedEmail = string.Empty;
                 user.PhoneNumber = "3534274171";
-                user.ProfilePicture = string.Empty;
+                user.ProfilePicture = "https://procuratio.blob.core.windows.net/profile/my-profile-picture.jpg";
                 user.BranchId = -1;
 
                 IdentityResult checkUser = await customUserManager.CreateAsync(user, "admin123");
@@ -164,6 +164,8 @@ namespace Procuratio.Modules.Security.DataAccess.EF.Seeds.MicrosoftIdentity
                     user.PhoneNumber = "3534274171";
                     user.ProfilePicture = string.Empty;
                     user.BranchId = branchIds[i];
+
+                    if (user.UserName == "gerente1") { user.ProfilePicture = "https://procuratio.blob.core.windows.net/profile/8751ab5a-ec8a-4e4a-94b6-8dabfc25201b.jpeg"; }
 
                     IdentityResult checkUser = await customUserManager.CreateAsync(user, passwords[i]);
 

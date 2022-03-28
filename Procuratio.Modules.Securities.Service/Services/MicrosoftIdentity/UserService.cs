@@ -14,6 +14,7 @@ using Procuratio.Modules.Security.Service.DTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs;
 using Procuratio.Modules.Security.Service.DTOs.UserDTOs.Profile;
 using Procuratio.Modules.Security.Service.Exceptions;
+using Procuratio.Shared.Abstractions.Azure;
 using Procuratio.Shared.Infrastructure.Exceptions;
 using Procuratio.Shared.ProcuratioFramework.DTO.SelectListItem;
 using Procuratio.Shared.ProcuratioFramework.JWT;
@@ -33,15 +34,17 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
         private readonly IConfiguration _configuration;
         private readonly IValidateChangeStateUser _validateChangeStateUser;
         private readonly IBranchModuleAPI _branchModuleAPI;
+        private readonly IFileStorage _fileStorage;
 
         public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration, IValidateChangeStateUser validateChangeStateUser, 
-            IBranchModuleAPI branchModuleAPI)
+            IBranchModuleAPI branchModuleAPI, IFileStorage fileStorage)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _configuration = configuration;
             _validateChangeStateUser = validateChangeStateUser;
             _branchModuleAPI = branchModuleAPI;
+            _fileStorage = fileStorage;
         }
 
         public async Task<IReadOnlyList<UserForListDTO>> BrowseAsync()
@@ -163,6 +166,11 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
 
             user = _mapper.Map(profileFromFormDTO, user);
 
+            if (profileFromFormDTO.ProfilePicture is not null)
+            {
+                user.ProfilePicture = await _fileStorage.EditFile("profile", profileFromFormDTO.ProfilePicture, user.ProfilePicture);
+            }
+
             await _userRepository.UpdateAsync(user);
         }
 
@@ -216,6 +224,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
                 new Claim(JWTClaimNames.BranchId, user.BranchId.ToString()),
                 new Claim(JWTClaimNames.UserId, user.Id.ToString()),
                 new Claim(JWTClaimNames.UserFullName, $"{user.Name} {user.Surname}"),
+                new Claim(JWTClaimNames.ProfilePicture, user.ProfilePicture)
             };
 
             IList<Claim> claimsDB = await _userRepository.GetClaimsAsync(user);
@@ -255,6 +264,7 @@ namespace Procuratio.Modules.Securities.Service.Services.MicrosoftIdentity
                 new Claim(JWTClaimNames.BranchId, credentials.BranchId.ToString()),
                 new Claim(JWTClaimNames.UserId, user.Id.ToString()),
                 new Claim(JWTClaimNames.UserFullName, $"{user.Name} {user.Surname}"),
+                new Claim(JWTClaimNames.ProfilePicture, user.ProfilePicture),
             };
 
             IList<Claim> claimsDB = await _userRepository.GetClaimsAsync(user);

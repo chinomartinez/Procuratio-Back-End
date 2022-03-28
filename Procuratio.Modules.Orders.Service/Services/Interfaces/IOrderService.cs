@@ -8,7 +8,7 @@ namespace Procuratio.Modules.Order.Service.Services.Interfaces
 {
     public interface IOrderService
     {
-        Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync();
+        Task<IReadOnlyList<OrderInProgressDTO>> GetInProgressAsync(OrderInProgressFilterDTO orderInProgressFilterDTO);
 
         Task<OrderEditionFormInitializerDTO> GetOrderDetailAsync(int id, bool dineIn);
 
