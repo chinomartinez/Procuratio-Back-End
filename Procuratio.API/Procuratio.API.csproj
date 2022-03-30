@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <StartupObject>Procuratio.API.Program</StartupObject>
+    <ApplicationInsightsResourceId>/subscriptions/da2baca4-c808-4a4a-ae55-47c035dcde21/resourcegroups/Procuratio/providers/Microsoft.Insights/components/ProcuratioAPI</ApplicationInsightsResourceId>
+    <UserSecretsId>5a9e29b7-50c5-4db4-a1f7-6d11ea3d6048</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0-preview.2.21154.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

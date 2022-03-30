@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "storage1": {
+      "ignored": "true",
+      "suggestion": "true",
+      "type": "storage",
+      "connectionId": "connectionStrings:AzureStorage"
+    },
+    "mssql1": {
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/procuratioapidbserver/databases/Procuratio.API_db",
+      "type": "mssql.azure",
+      "connectionId": "defaultConnection"
+    }
+  }
+}

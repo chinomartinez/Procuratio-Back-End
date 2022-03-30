@@ -99,6 +99,7 @@ namespace Procuratio.API
             services.AddReportModule();
             services.AddSecurityModule();
             services.AddNotificationModule();
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -136,7 +137,7 @@ namespace Procuratio.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<CustomerMenuSender>("/CustomerMenuSender");
+                endpoints.MapHub<CustomerMenuSender>("/api/notification-module/customer-menu-sender");
             });
         }
     }

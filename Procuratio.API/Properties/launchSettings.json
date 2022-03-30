@@ -14,22 +14,16 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "development"
+        "ASPNETCORE_ENVIRONMENT": "development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.Azure.SignalR"
       }
     },
-    //"Procuratio": {
-    //  "commandName": "Project",
-    //  "launchBrowser": false,
-    //  "applicationUrl": "https://localhost:5001;http://localhost:5000",
-    //  "environmentVariables": {
-    //    "ASPNETCORE_ENVIRONMENT": "development"
-    //  }
-    //},
     "Procuratio.API": {
       "commandName": "Project",
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "development"
+        "ASPNETCORE_ENVIRONMENT": "development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.Azure.SignalR"
       },
       "applicationUrl": "http://localhost:5000",
       "dotnetRunMessages": "true"
@@ -39,7 +33,8 @@
       "launchUrl": "http://localhost:5000/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "development",
-        "ASPNETCORE_URLS": "http://localhost:5000"
+        "ASPNETCORE_URLS": "http://localhost:5000",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.Azure.SignalR"
       },
       "distributionName": ""
     }
