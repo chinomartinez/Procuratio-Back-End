@@ -42,7 +42,7 @@ namespace Procuratio.API
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins(Configuration.GetValue<string>("Local_FrontEnd_URL"));
+                    builder.WithOrigins(Configuration.GetValue<string>("FrontEnd_URL"));
                 });
 
                 options.AddPolicy("AllowAllHeaders", builder =>
