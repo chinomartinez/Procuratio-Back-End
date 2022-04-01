@@ -511,7 +511,7 @@ namespace Procuratio.Modules.Menu.DataAccess.EF.Seeds.Testing
                         Name = "Aguas saborizadas",
                         Description = string.Empty,
                         ForKitchen = false,
-                        Image = "https://procuratio.blob.core.windows.net/image/62eef47c-6102-434f-9162-77212069de9d.png",
+                        Image = string.Empty,
                         Order = 1,
                         PriceInsideRestaurant = 250,
                         PriceOutsideRestaurant = 250,
