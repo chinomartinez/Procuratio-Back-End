@@ -40,14 +40,9 @@ namespace Procuratio.API
 
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder =>
+                options.AddPolicy("Policy", builder =>
                 {
-                    builder.WithOrigins(Configuration.GetValue<string>("FrontEnd_URL"));
-                });
-
-                options.AddPolicy("AllowAllHeaders", builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                    builder.WithOrigins(Configuration.GetValue<string>("FrontEnd_URL")).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
                 });
             });
 
@@ -132,7 +127,7 @@ namespace Procuratio.API
 
             app.UseAuthorization();
 
-            app.UseCors("AllowAllHeaders");
+            app.UseCors("Policy");
 
             app.UseEndpoints(endpoints =>
             {
