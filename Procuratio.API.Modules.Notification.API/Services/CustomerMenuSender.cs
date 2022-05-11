@@ -17,55 +17,55 @@ namespace Procuratio.API.Modules.Notification.API.Services
     public class CustomerMenuSender : Hub
     {
         private readonly IOrderModuleAPI _orderModuleAPI;
-        private static List<ConnectedUsers> _connectedUsers = new List<ConnectedUsers>();
+        //private static List<ConnectedUsers> _connectedUsers = new List<ConnectedUsers>();
 
         public CustomerMenuSender(IOrderModuleAPI orderModuleAPI)
         {
             _orderModuleAPI = orderModuleAPI;
         }
 
-        public override Task OnConnectedAsync()
-        {
-            StringValues orderKey = Context.GetHttpContext().Request.Query["orderKey"];
-            StringValues waiterId = Context.GetHttpContext().Request.Query["waiterId"];
+        //public override Task OnConnectedAsync()
+        //{
+        //    StringValues orderKey = Context.GetHttpContext().Request.Query["orderKey"];
+        //    StringValues waiterId = Context.GetHttpContext().Request.Query["waiterId"];
 
-            if (string.IsNullOrEmpty(orderKey) && string.IsNullOrEmpty(waiterId))
-            {
-                throw new InvalidConectionException();
-            }
+        //    if (string.IsNullOrEmpty(orderKey) && string.IsNullOrEmpty(waiterId))
+        //    {
+        //        throw new InvalidConectionException();
+        //    }
 
-            ConnectedUsers status = _connectedUsers.FirstOrDefault(x => x.OrderKey == orderKey || x.WaiterId == waiterId);
+        //    ConnectedUsers status = _connectedUsers.FirstOrDefault(x => x.OrderKey == orderKey || x.WaiterId == waiterId);
 
-            if (status == null)
-            {
-                _connectedUsers.Add(new ConnectedUsers
-                {
-                    ConectionId = Context.ConnectionId,
-                    OrderKey = orderKey,
-                    WaiterId = int.TryParse(waiterId, out int tryParseResult) == true ? Convert.ToInt32(waiterId) : null
-                });
-            } 
-            else
-            {
-                foreach (ConnectedUsers conectedUser in _connectedUsers)
-                {
-                    if (conectedUser.OrderKey == orderKey || conectedUser.WaiterId == waiterId)
-                    {
-                        conectedUser.ConectionId = Context.ConnectionId;
-                        break;
-                    }
-                }
-            }
+        //    if (status == null)
+        //    {
+        //        _connectedUsers.Add(new ConnectedUsers
+        //        {
+        //            ConectionId = Context.ConnectionId,
+        //            OrderKey = orderKey,
+        //            WaiterId = int.TryParse(waiterId, out int tryParseResult) == true ? Convert.ToInt32(waiterId) : null
+        //        });
+        //    } 
+        //    else
+        //    {
+        //        foreach (ConnectedUsers conectedUser in _connectedUsers)
+        //        {
+        //            if (conectedUser.OrderKey == orderKey || conectedUser.WaiterId == waiterId)
+        //            {
+        //                conectedUser.ConectionId = Context.ConnectionId;
+        //                break;
+        //            }
+        //        }
+        //    }
 
-            return base.OnConnectedAsync();
-        }
+        //    return base.OnConnectedAsync();
+        //}
 
-        public override Task OnDisconnectedAsync(Exception exception)
-        {
-            _connectedUsers = _connectedUsers.Where(x => x.ConectionId != Context.ConnectionId).ToList();
+        //public override Task OnDisconnectedAsync(Exception exception)
+        //{
+        //    _connectedUsers = _connectedUsers.Where(x => x.ConectionId != Context.ConnectionId).ToList();
 
-            return base.OnDisconnectedAsync(exception);
-        }
+        //    return base.OnDisconnectedAsync(exception);
+        //}
 
         public async Task SendNotificationFromCustomerToWaiter(string fromUser, string orderKey)
         {
@@ -128,20 +128,22 @@ namespace Procuratio.API.Modules.Notification.API.Services
 
         private async void SendUserToUserMessage(string methodName, CustomerNotificationDTO customerNotificationDTO, string orderKey, string fromUser)
         {
-            int? waiterIdOfTheOrder = await _orderModuleAPI.GetWaiterIdOfTheOrder(orderKey);
+            await Clients.All.SendAsync(methodName, customerNotificationDTO, fromUser);
 
-            if (waiterIdOfTheOrder is null || waiterIdOfTheOrder <= 0) { throw new WaiterOfflineException(); }
+            //int? waiterIdOfTheOrder = await _orderModuleAPI.GetWaiterIdOfTheOrder(orderKey);
 
-            foreach (ConnectedUsers conectedUser in _connectedUsers)
-            {
-                if (conectedUser.WaiterId == waiterIdOfTheOrder)
-                {
-                    await Clients.Client(conectedUser.ConectionId).SendAsync(methodName, customerNotificationDTO, fromUser);
-                    return;
-                }
-            }
+            //if (waiterIdOfTheOrder is null || waiterIdOfTheOrder <= 0) { throw new WaiterOfflineException(); }
 
-            throw new WaiterOfflineException();
+            //foreach (ConnectedUsers conectedUser in _connectedUsers)
+            //{
+            //    if (conectedUser.WaiterId == waiterIdOfTheOrder)
+            //    {
+            //        await Clients.Client(conectedUser.ConectionId).SendAsync(methodName, customerNotificationDTO, fromUser);
+            //        return;
+            //    }
+            //}
+
+            //throw new WaiterOfflineException();
         }
 
         private async Task<List<string>> GetTablesOfTheOrder(string orderKey)
